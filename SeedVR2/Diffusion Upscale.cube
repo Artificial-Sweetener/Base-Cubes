@@ -1,0 +1,1868 @@
+{
+  "cube_id": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube",
+  "version": "1.0.0",
+  "description": "SeedVR2 image upscaling: load the SeedVR2 DiT model and upscale an input image by a scale factor.",
+  "metadata": {
+    "default_alias": "SeedVR2/Diffusion Upscale",
+    "target_model": "SeedVR2",
+    "supported_models": [
+      "SeedVR2"
+    ],
+    "author_url": "https://artificialsweetener.ai",
+    "icon": {
+      "kind": "asset",
+      "path": "assets/icons/Diffusion Upscale.png",
+      "media_type": "image/png"
+    }
+  },
+  "implementation": {
+    "nodes": {
+      "load_dit_model": {
+        "class_type": "SeedVR2LoadDiTModel",
+        "inputs": {},
+        "original_id": "15",
+        "label": "Load DiT Model"
+      },
+      "seedvr2_upscale_by_factor": {
+        "class_type": "9c18a058-dc20-4cde-a556-ad0d518710dc",
+        "inputs": {
+          "image": [
+            "@binding",
+            "input.value"
+          ],
+          "dit": [
+            "load_dit_model",
+            0
+          ]
+        },
+        "original_id": "16",
+        "label": "SeedVR2 Upscale by Factor"
+      }
+    },
+    "inputs": {
+      "input.value": {
+        "kind": "input",
+        "targets": [
+          [
+            "seedvr2_upscale_by_factor",
+            "image"
+          ]
+        ]
+      }
+    },
+    "outputs": {
+      "output.value": "seedvr2_upscale_by_factor"
+    },
+    "layout": {
+      "workflow_version": 0,
+      "origin": [
+        220.0,
+        820.0
+      ],
+      "ds": {
+        "scale": 1.1702693714523924,
+        "offset": [
+          150.65697679232395,
+          -457.6358828994805
+        ]
+      },
+      "nodes": {
+        "load_dit_model": {
+          "id": "15",
+          "class_type": "SeedVR2LoadDiTModel",
+          "pos": [
+            290.0,
+            0.0
+          ],
+          "size": [
+            280.0,
+            210.0
+          ],
+          "title": "Load DiT Model"
+        },
+        "seedvr2_upscale_by_factor": {
+          "id": "16",
+          "class_type": "9c18a058-dc20-4cde-a556-ad0d518710dc",
+          "pos": [
+            290.0,
+            250.0
+          ],
+          "size": [
+            280.0,
+            350.0
+          ],
+          "title": "SeedVR2 Upscale by Factor"
+        }
+      },
+      "markers": {
+        "input.value": {
+          "id": "14",
+          "class_type": "SugarCubes.CubeInput",
+          "kind": "input",
+          "pos": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            270.0,
+            130.0
+          ],
+          "title": "IMAGE Input",
+          "style": {
+            "color": "#2a363b",
+            "bgcolor": "#3f5159"
+          }
+        },
+        "output.value": {
+          "id": "17",
+          "class_type": "SugarCubes.CubeOutput",
+          "kind": "output",
+          "pos": [
+            590.0,
+            0.0
+          ],
+          "size": [
+            270.0,
+            270.0
+          ],
+          "title": "IMAGE Output",
+          "style": {
+            "color": "#2a363b",
+            "bgcolor": "#3f5159"
+          }
+        }
+      },
+      "groups": [
+        {
+          "id": 296,
+          "title": "SeedVR2/Diffusion Upscale",
+          "bounding": [
+            -10.0,
+            -60.0,
+            880.0,
+            670.0
+          ],
+          "color": "#3f789e",
+          "font_size": 24,
+          "flags": {},
+          "sugarcubes": {
+            "schema": 5,
+            "managed": true,
+            "cube_id": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube",
+            "default_alias": "SeedVR2/Diffusion Upscale",
+            "target_model": "SeedVR2",
+            "cube_version": "1.9.1",
+            "cube_revision_ref": "WORKTREE",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube@1.9.1",
+            "surface_signature": "b03285aa8656",
+            "icon": {
+              "kind": "asset",
+              "media_type": "image/png",
+              "url": "/sugarcubes/assets/icon?cube_id=Artificial-Sweetener%2FBase-Cubes%2FSeedVR2%2FDiffusion%20Upscale.cube",
+              "repo_relative_path": "assets/icons/Diffusion Upscale.png"
+            },
+            "markers": {
+              "inputs": [
+                "14"
+              ],
+              "outputs": [
+                "17"
+              ],
+              "inherits": [],
+              "metas": []
+            },
+            "nodes": [
+              "16",
+              "15"
+            ],
+            "bounds": {
+              "x": 210.0,
+              "y": 760.0,
+              "w": 880.0,
+              "h": 670.0,
+              "padding": {
+                "x": 2.0,
+                "y": 2.0,
+                "top_extra": 0.0
+              },
+              "header": {
+                "height": 32.0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "definitions": {
+      "SeedVR2LoadDiTModel": {
+        "input": {
+          "required": {
+            "model": [
+              "LIST"
+            ],
+            "device": [
+              "LIST"
+            ]
+          },
+          "optional": {
+            "blocks_to_swap": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 36,
+                "step": 1
+              }
+            ],
+            "swap_io_components": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "offload_device": [
+              "LIST"
+            ],
+            "cache_model": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "attention_mode": [
+              "LIST"
+            ],
+            "torch_compile_args": [
+              "TORCH_COMPILE_ARGS",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "device"
+          ],
+          "optional": [
+            "blocks_to_swap",
+            "swap_io_components",
+            "offload_device",
+            "cache_model",
+            "attention_mode",
+            "torch_compile_args"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "SEEDVR2_DIT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "SEEDVR2_DIT"
+        ],
+        "output_matchtypes": null,
+        "name": "SeedVR2LoadDiTModel",
+        "display_name": "SeedVR2 (Down)Load DiT Model",
+        "python_module": "custom_nodes.seedvr2_videoupscaler",
+        "category": "SEEDVR2",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null
+      },
+      "GetImageSize": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {}
+            ]
+          },
+          "hidden": {
+            "unique_id": [
+              "UNIQUE_ID"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image"
+          ],
+          "hidden": [
+            "unique_id"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "INT",
+          "INT",
+          "INT"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "width",
+          "height",
+          "batch_size"
+        ],
+        "output_matchtypes": null,
+        "name": "GetImageSize",
+        "display_name": "Get Image Size",
+        "python_module": "comfy_extras.nodes_images",
+        "category": "image",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "dimensions",
+          "resolution",
+          "image info"
+        ],
+        "essentials_category": null
+      },
+      "SimpleSyrup.ScaleFactor": {
+        "input": {
+          "required": {
+            "value": [
+              "FLOAT",
+              {
+                "default": 1.5,
+                "min": 1.0,
+                "max": 5.0,
+                "step": 0.1,
+                "tooltip": "Scaling multiplier. 1.0 keeps the target at its current size; larger values scale it up, with a maximum of 5.0x."
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "output": [
+          "FLOAT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "scale_factor"
+        ],
+        "name": "SimpleSyrup.ScaleFactor",
+        "display_name": "Scale Factor",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Primitives",
+        "output_node": false,
+        "description": "Provides a bounded multiplier for scaling.",
+        "output_tooltips": [
+          "Multiplier used to scale a connected target."
+        ]
+      },
+      "SimpleSyrup.Seed": {
+        "input": {
+          "required": {
+            "seed": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "seed"
+          ]
+        },
+        "output": [
+          "INT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "seed"
+        ],
+        "name": "SimpleSyrup.Seed",
+        "display_name": "Seed",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Utilities",
+        "output_node": false
+      },
+      "SeedVR2VideoUpscaler": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {}
+            ],
+            "dit": [
+              "SEEDVR2_DIT",
+              {}
+            ],
+            "vae": [
+              "SEEDVR2_VAE",
+              {}
+            ],
+            "seed": [
+              "INT",
+              {
+                "default": 42,
+                "min": 0,
+                "max": 4294967295,
+                "step": 1
+              }
+            ],
+            "resolution": [
+              "INT",
+              {
+                "default": 1080,
+                "min": 16,
+                "max": 16384,
+                "step": 2
+              }
+            ],
+            "max_resolution": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 16384,
+                "step": 2
+              }
+            ],
+            "batch_size": [
+              "INT",
+              {
+                "default": 5,
+                "min": 1,
+                "max": 16384,
+                "step": 4
+              }
+            ],
+            "uniform_batch_size": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "color_correction": [
+              "LIST"
+            ]
+          },
+          "optional": {
+            "temporal_overlap": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 16,
+                "step": 1
+              }
+            ],
+            "prepend_frames": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 32,
+                "step": 1
+              }
+            ],
+            "input_noise_scale": [
+              "FLOAT",
+              {
+                "default": 0.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.001
+              }
+            ],
+            "latent_noise_scale": [
+              "FLOAT",
+              {
+                "default": 0.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.001
+              }
+            ],
+            "offload_device": [
+              "LIST"
+            ],
+            "enable_debug": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image",
+            "dit",
+            "vae",
+            "seed",
+            "resolution",
+            "max_resolution",
+            "batch_size",
+            "uniform_batch_size",
+            "color_correction"
+          ],
+          "optional": [
+            "temporal_overlap",
+            "prepend_frames",
+            "input_noise_scale",
+            "latent_noise_scale",
+            "offload_device",
+            "enable_debug"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "IMAGE"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "IMAGE"
+        ],
+        "output_matchtypes": null,
+        "name": "SeedVR2VideoUpscaler",
+        "display_name": "SeedVR2 Video Upscaler (v2.5.22)",
+        "python_module": "custom_nodes.seedvr2_videoupscaler",
+        "category": "SEEDVR2",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null
+      },
+      "SeedVR2LoadVAEModel": {
+        "input": {
+          "required": {
+            "model": [
+              "LIST"
+            ],
+            "device": [
+              "LIST"
+            ]
+          },
+          "optional": {
+            "encode_tiled": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "encode_tile_size": [
+              "INT",
+              {
+                "default": 1024,
+                "min": 64,
+                "step": 32
+              }
+            ],
+            "encode_tile_overlap": [
+              "INT",
+              {
+                "default": 128,
+                "min": 0,
+                "step": 32
+              }
+            ],
+            "decode_tiled": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "decode_tile_size": [
+              "INT",
+              {
+                "default": 1024,
+                "min": 64,
+                "step": 32
+              }
+            ],
+            "decode_tile_overlap": [
+              "INT",
+              {
+                "default": 128,
+                "min": 0,
+                "step": 32
+              }
+            ],
+            "tile_debug": [
+              "LIST"
+            ],
+            "offload_device": [
+              "LIST"
+            ],
+            "cache_model": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "torch_compile_args": [
+              "TORCH_COMPILE_ARGS",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "device"
+          ],
+          "optional": [
+            "encode_tiled",
+            "encode_tile_size",
+            "encode_tile_overlap",
+            "decode_tiled",
+            "decode_tile_size",
+            "decode_tile_overlap",
+            "tile_debug",
+            "offload_device",
+            "cache_model",
+            "torch_compile_args"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "SEEDVR2_VAE"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "SEEDVR2_VAE"
+        ],
+        "output_matchtypes": null,
+        "name": "SeedVR2LoadVAEModel",
+        "display_name": "SeedVR2 (Down)Load VAE Model",
+        "python_module": "custom_nodes.seedvr2_videoupscaler",
+        "category": "SEEDVR2",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null
+      },
+      "ComfyMathExpression": {
+        "input": {
+          "required": {
+            "expression": [
+              "STRING",
+              {
+                "default": "a + b",
+                "multiline": true
+              }
+            ],
+            "values": [
+              "COMFY_AUTOGROW_V3",
+              {
+                "template": {
+                  "input": {
+                    "required": {
+                      "value": [
+                        "FLOAT,INT",
+                        {}
+                      ]
+                    }
+                  },
+                  "names": [
+                    "a",
+                    "b",
+                    "c",
+                    "d",
+                    "e",
+                    "f",
+                    "g",
+                    "h",
+                    "i",
+                    "j",
+                    "k",
+                    "l",
+                    "m",
+                    "n",
+                    "o",
+                    "p",
+                    "q",
+                    "r",
+                    "s",
+                    "t",
+                    "u",
+                    "v",
+                    "w",
+                    "x",
+                    "y",
+                    "z"
+                  ],
+                  "min": 1
+                }
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "expression",
+            "values"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "FLOAT",
+          "INT"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "output_name": [
+          "FLOAT",
+          "INT"
+        ],
+        "output_matchtypes": null,
+        "name": "ComfyMathExpression",
+        "display_name": "Math Expression",
+        "python_module": "comfy_extras.nodes_math",
+        "category": "math",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "expression",
+          "formula",
+          "calculate",
+          "calculator",
+          "eval",
+          "math"
+        ],
+        "essentials_category": null
+      }
+    },
+    "subgraphs": [
+      {
+        "id": "9c18a058-dc20-4cde-a556-ad0d518710dc",
+        "version": 1,
+        "revision": 0,
+        "state": {
+          "lastNodeId": 2072,
+          "lastLinkId": 2885,
+          "lastGroupId": 296,
+          "lastRerouteId": 0
+        },
+        "config": {},
+        "name": "SeedVR2 Upscale by Factor",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            4010,
+            1000,
+            155.76667022705078,
+            320
+          ],
+          "pinned": false
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            4840,
+            1120,
+            120,
+            60
+          ],
+          "pinned": false
+        },
+        "inputs": [
+          {
+            "id": "4caeda88-9528-4607-8a96-289db0b25f20",
+            "type": "IMAGE",
+            "linkIds": [
+              1258,
+              1273
+            ],
+            "name": "image",
+            "label": "image"
+          },
+          {
+            "id": "3cf31693-923f-4386-868c-0f42c5e4fb6a",
+            "type": "SEEDVR2_DIT",
+            "linkIds": [
+              1259
+            ],
+            "name": "dit",
+            "label": "dit"
+          },
+          {
+            "id": "c1f77c3c-8658-4929-8363-5022c676a168",
+            "type": "FLOAT",
+            "linkIds": [
+              1261
+            ],
+            "name": "value_1",
+            "label": "Scale Factor",
+            "min": 0.1,
+            "max": 10.0
+          },
+          {
+            "id": "4d6e861a-72e4-44a8-b076-1dccb7e11d43",
+            "type": "COMBO",
+            "linkIds": [
+              1262
+            ],
+            "name": "color_correction",
+            "label": "Color Correction"
+          },
+          {
+            "id": "c61236a7-44c2-4238-b16f-22f379b4c11f",
+            "type": "FLOAT",
+            "linkIds": [
+              1263
+            ],
+            "name": "input_noise_scale",
+            "label": "Input Noise Scale"
+          },
+          {
+            "id": "f0d5695c-559e-4d2a-baeb-23717b140e60",
+            "type": "FLOAT",
+            "linkIds": [
+              1264
+            ],
+            "name": "latent_noise_scale",
+            "label": "Latent Noise Scale"
+          },
+          {
+            "id": "bcc64f20-14f6-4c60-8959-07d3b42affa3",
+            "type": "BOOLEAN",
+            "linkIds": [
+              1265
+            ],
+            "name": "encode_tiled",
+            "label": "Tiled Encode (VAE)"
+          },
+          {
+            "id": "97de32b1-2201-44ee-928e-01c75c79837f",
+            "type": "INT",
+            "linkIds": [
+              1266
+            ],
+            "name": "encode_tile_size",
+            "label": "Encode Tile Size"
+          },
+          {
+            "id": "1589879a-4d11-44d3-ba67-72f92e52231b",
+            "type": "INT",
+            "linkIds": [
+              1267
+            ],
+            "name": "encode_tile_overlap",
+            "label": "Encode Tile Overlap"
+          },
+          {
+            "id": "37d8b5f5-c476-4b6a-9411-66145ed54a00",
+            "type": "BOOLEAN",
+            "linkIds": [
+              1268
+            ],
+            "name": "decode_tiled",
+            "label": "Tiled Decode (VAE)"
+          },
+          {
+            "id": "35a1eac0-691e-444c-98ee-5b973124b622",
+            "type": "INT",
+            "linkIds": [
+              1269
+            ],
+            "name": "decode_tile_size",
+            "label": "Decode Tile Size"
+          },
+          {
+            "id": "8646f55f-89ee-417a-9ffe-3342328c1fc0",
+            "type": "INT",
+            "linkIds": [
+              1270
+            ],
+            "name": "decode_tile_overlap",
+            "label": "Decode Tile Overlap"
+          },
+          {
+            "id": "283364f0-efbb-4268-86cf-c9fe31b604c8",
+            "type": "BOOLEAN",
+            "linkIds": [
+              1271
+            ],
+            "name": "cache_model",
+            "label": "Cache VAE?"
+          },
+          {
+            "id": "4912f5a1-b107-4ee8-b21a-4f570bd31d42",
+            "type": "INT",
+            "linkIds": [
+              1413
+            ],
+            "name": "seed",
+            "label": "seed"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "bd75adfe-2dc0-49bc-8913-c86b9e573ab3",
+            "type": "IMAGE",
+            "linkIds": [
+              1272
+            ],
+            "name": "IMAGE",
+            "label": "IMAGE"
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 1676,
+            "type": "GetImageSize",
+            "pos": [
+              4200,
+              1140
+            ],
+            "size": [
+              290,
+              70
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 2,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 1273
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": [
+                  1250
+                ]
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": [
+                  1411
+                ]
+              },
+              {
+                "localized_name": "batch_size",
+                "name": "batch_size",
+                "type": "INT",
+                "links": []
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.3.66",
+              "Node name for S&R": "GetImageSize",
+              "ue_properties": {
+                "input_ue_unconnectable": {},
+                "version": "7.8",
+                "widget_ue_connectable": {}
+              }
+            }
+          },
+          {
+            "id": 1674,
+            "type": "SimpleSyrup.ScaleFactor",
+            "pos": [
+              4200,
+              1250
+            ],
+            "size": [
+              290,
+              60
+            ],
+            "flags": {},
+            "order": 0,
+            "inputs": [
+              {
+                "label": "Scale Factor",
+                "localized_name": "value",
+                "name": "value",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 1261
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "scale_factor",
+                "name": "scale_factor",
+                "type": "FLOAT",
+                "links": [
+                  1412
+                ]
+              }
+            ],
+            "title": "Scale Factor",
+            "properties": {
+              "Node name for S&R": "SimpleSyrup.ScaleFactor",
+              "sugarcubes_symbol": "scale_factor"
+            },
+            "widgets_values": [
+              1.5
+            ]
+          },
+          {
+            "id": 1683,
+            "type": "SimpleSyrup.Seed",
+            "pos": [
+              4200,
+              840
+            ],
+            "size": [
+              290,
+              90
+            ],
+            "flags": {},
+            "order": 6,
+            "inputs": [
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 1413
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "links": [
+                  1407
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "SimpleSyrup.Seed"
+            },
+            "widgets_values": [
+              33804136484090,
+              "randomize"
+            ]
+          },
+          {
+            "id": 1678,
+            "type": "SeedVR2VideoUpscaler",
+            "pos": [
+              4510,
+              1150
+            ],
+            "size": [
+              300,
+              390
+            ],
+            "flags": {},
+            "order": 4,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 1258
+              },
+              {
+                "localized_name": "dit",
+                "name": "dit",
+                "type": "SEEDVR2_DIT",
+                "link": 1259
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "SEEDVR2_VAE",
+                "link": 1253
+              },
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 1254
+              },
+              {
+                "localized_name": "resolution",
+                "name": "resolution",
+                "type": "INT",
+                "widget": {
+                  "name": "resolution"
+                },
+                "link": 1255
+              },
+              {
+                "localized_name": "max_resolution",
+                "name": "max_resolution",
+                "type": "INT",
+                "widget": {
+                  "name": "max_resolution"
+                },
+                "link": 1256
+              },
+              {
+                "localized_name": "batch_size",
+                "name": "batch_size",
+                "type": "INT",
+                "widget": {
+                  "name": "batch_size"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "uniform_batch_size",
+                "name": "uniform_batch_size",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "uniform_batch_size"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "color_correction",
+                "name": "color_correction",
+                "type": "COMBO",
+                "widget": {
+                  "name": "color_correction"
+                },
+                "link": 1262
+              },
+              {
+                "localized_name": "temporal_overlap",
+                "name": "temporal_overlap",
+                "shape": 7,
+                "type": "INT",
+                "widget": {
+                  "name": "temporal_overlap"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "prepend_frames",
+                "name": "prepend_frames",
+                "shape": 7,
+                "type": "INT",
+                "widget": {
+                  "name": "prepend_frames"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "input_noise_scale",
+                "name": "input_noise_scale",
+                "shape": 7,
+                "type": "FLOAT",
+                "widget": {
+                  "name": "input_noise_scale"
+                },
+                "link": 1263
+              },
+              {
+                "localized_name": "latent_noise_scale",
+                "name": "latent_noise_scale",
+                "shape": 7,
+                "type": "FLOAT",
+                "widget": {
+                  "name": "latent_noise_scale"
+                },
+                "link": 1264
+              },
+              {
+                "localized_name": "offload_device",
+                "name": "offload_device",
+                "shape": 7,
+                "type": "COMBO",
+                "widget": {
+                  "name": "offload_device"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "enable_debug",
+                "name": "enable_debug",
+                "shape": 7,
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "enable_debug"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  1272
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "seedvr2_videoupscaler",
+              "ver": "2a873e2f286224bb00c60fe3fb61b88b65258a6d",
+              "Node name for S&R": "SeedVR2VideoUpscaler",
+              "ue_properties": {
+                "input_ue_unconnectable": {},
+                "version": "7.8",
+                "widget_ue_connectable": {}
+              }
+            },
+            "widgets_values": [
+              1741644249,
+              "randomize",
+              1080,
+              0,
+              1,
+              false,
+              "none",
+              0,
+              0,
+              0.025,
+              0.025,
+              "cuda:0",
+              false
+            ]
+          },
+          {
+            "id": 1680,
+            "type": "SeedVR2LoadVAEModel",
+            "pos": [
+              4500,
+              790
+            ],
+            "size": [
+              300,
+              310
+            ],
+            "flags": {},
+            "order": 5,
+            "inputs": [
+              {
+                "localized_name": "torch_compile_args",
+                "name": "torch_compile_args",
+                "shape": 7,
+                "type": "TORCH_COMPILE_ARGS",
+                "link": null
+              },
+              {
+                "localized_name": "model",
+                "name": "model",
+                "type": "COMBO",
+                "widget": {
+                  "name": "model"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "device",
+                "name": "device",
+                "type": "COMBO",
+                "widget": {
+                  "name": "device"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "encode_tiled",
+                "name": "encode_tiled",
+                "shape": 7,
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "encode_tiled"
+                },
+                "link": 1265
+              },
+              {
+                "localized_name": "encode_tile_size",
+                "name": "encode_tile_size",
+                "shape": 7,
+                "type": "INT",
+                "widget": {
+                  "name": "encode_tile_size"
+                },
+                "link": 1266
+              },
+              {
+                "localized_name": "encode_tile_overlap",
+                "name": "encode_tile_overlap",
+                "shape": 7,
+                "type": "INT",
+                "widget": {
+                  "name": "encode_tile_overlap"
+                },
+                "link": 1267
+              },
+              {
+                "localized_name": "decode_tiled",
+                "name": "decode_tiled",
+                "shape": 7,
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "decode_tiled"
+                },
+                "link": 1268
+              },
+              {
+                "localized_name": "decode_tile_size",
+                "name": "decode_tile_size",
+                "shape": 7,
+                "type": "INT",
+                "widget": {
+                  "name": "decode_tile_size"
+                },
+                "link": 1269
+              },
+              {
+                "localized_name": "decode_tile_overlap",
+                "name": "decode_tile_overlap",
+                "shape": 7,
+                "type": "INT",
+                "widget": {
+                  "name": "decode_tile_overlap"
+                },
+                "link": 1270
+              },
+              {
+                "localized_name": "tile_debug",
+                "name": "tile_debug",
+                "shape": 7,
+                "type": "COMBO",
+                "widget": {
+                  "name": "tile_debug"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "offload_device",
+                "name": "offload_device",
+                "shape": 7,
+                "type": "COMBO",
+                "widget": {
+                  "name": "offload_device"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "cache_model",
+                "name": "cache_model",
+                "shape": 7,
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "cache_model"
+                },
+                "link": 1271
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "SEEDVR2_VAE",
+                "name": "SEEDVR2_VAE",
+                "type": "SEEDVR2_VAE",
+                "links": [
+                  1253
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "seedvr2_videoupscaler",
+              "ver": "2a873e2f286224bb00c60fe3fb61b88b65258a6d",
+              "Node name for S&R": "SeedVR2LoadVAEModel",
+              "ue_properties": {
+                "input_ue_unconnectable": {},
+                "version": "7.8",
+                "widget_ue_connectable": {}
+              }
+            },
+            "widgets_values": [
+              "ema_vae_fp16.safetensors",
+              "cuda:0",
+              true,
+              1024,
+              128,
+              true,
+              1024,
+              128,
+              "false",
+              "cuda:0",
+              false
+            ]
+          },
+          {
+            "id": 1677,
+            "type": "ComfyMathExpression",
+            "pos": [
+              4200,
+              970
+            ],
+            "size": [
+              290,
+              130
+            ],
+            "flags": {},
+            "order": 3,
+            "inputs": [
+              {
+                "label": "a",
+                "localized_name": "values.a",
+                "name": "values.a",
+                "type": "FLOAT,INT",
+                "link": 1407
+              },
+              {
+                "label": "b",
+                "localized_name": "values.b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT",
+                "link": null
+              },
+              {
+                "localized_name": "expression",
+                "name": "expression",
+                "type": "STRING",
+                "widget": {
+                  "name": "expression"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              },
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  1254
+                ]
+              }
+            ],
+            "title": "Seed Range Adapter",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.2",
+              "Node name for S&R": "ComfyMathExpression"
+            },
+            "widgets_values": [
+              "a % 4293967296\n#Ensure seed is within SeedVR2 bounds"
+            ]
+          },
+          {
+            "id": 1675,
+            "type": "ComfyMathExpression",
+            "pos": [
+              4200,
+              1350
+            ],
+            "size": [
+              290,
+              170
+            ],
+            "flags": {},
+            "order": 1,
+            "inputs": [
+              {
+                "label": "a",
+                "localized_name": "values.a",
+                "name": "values.a",
+                "type": "FLOAT,INT",
+                "link": 1250
+              },
+              {
+                "label": "b",
+                "localized_name": "values.b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT",
+                "link": 1411
+              },
+              {
+                "label": "c",
+                "localized_name": "values.c",
+                "name": "values.c",
+                "shape": 7,
+                "type": "FLOAT,INT",
+                "link": 1412
+              },
+              {
+                "label": "d",
+                "localized_name": "values.d",
+                "name": "values.d",
+                "shape": 7,
+                "type": "FLOAT,INT",
+                "link": null
+              },
+              {
+                "localized_name": "expression",
+                "name": "expression",
+                "type": "STRING",
+                "widget": {
+                  "name": "expression"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              },
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  1255,
+                  1256
+                ]
+              }
+            ],
+            "title": "Get Target Res",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.2",
+              "Node name for S&R": "ComfyMathExpression"
+            },
+            "widgets_values": [
+              "2 * round(((a + b + abs(a - b)) / 2) * c / 2)\n#1 Find Longest Side\n#2 Multiply by Scale Factor\n#3 Ensure output divisible by 2"
+            ]
+          }
+        ],
+        "links": [
+          {
+            "id": 1250,
+            "origin_id": 1676,
+            "origin_slot": 0,
+            "target_id": 1675,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 1253,
+            "origin_id": 1680,
+            "origin_slot": 0,
+            "target_id": 1678,
+            "target_slot": 2,
+            "type": "SEEDVR2_VAE"
+          },
+          {
+            "id": 1254,
+            "origin_id": 1677,
+            "origin_slot": 1,
+            "target_id": 1678,
+            "target_slot": 3,
+            "type": "INT"
+          },
+          {
+            "id": 1255,
+            "origin_id": 1675,
+            "origin_slot": 1,
+            "target_id": 1678,
+            "target_slot": 4,
+            "type": "INT"
+          },
+          {
+            "id": 1256,
+            "origin_id": 1675,
+            "origin_slot": 1,
+            "target_id": 1678,
+            "target_slot": 5,
+            "type": "INT"
+          },
+          {
+            "id": 1258,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1678,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 1259,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 1678,
+            "target_slot": 1,
+            "type": "SEEDVR2_DIT"
+          },
+          {
+            "id": 1261,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 1674,
+            "target_slot": 0,
+            "type": "FLOAT"
+          },
+          {
+            "id": 1262,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 1678,
+            "target_slot": 8,
+            "type": "COMBO"
+          },
+          {
+            "id": 1263,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 1678,
+            "target_slot": 11,
+            "type": "FLOAT"
+          },
+          {
+            "id": 1264,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 1678,
+            "target_slot": 12,
+            "type": "FLOAT"
+          },
+          {
+            "id": 1265,
+            "origin_id": -10,
+            "origin_slot": 6,
+            "target_id": 1680,
+            "target_slot": 3,
+            "type": "BOOLEAN"
+          },
+          {
+            "id": 1266,
+            "origin_id": -10,
+            "origin_slot": 7,
+            "target_id": 1680,
+            "target_slot": 4,
+            "type": "INT"
+          },
+          {
+            "id": 1267,
+            "origin_id": -10,
+            "origin_slot": 8,
+            "target_id": 1680,
+            "target_slot": 5,
+            "type": "INT"
+          },
+          {
+            "id": 1268,
+            "origin_id": -10,
+            "origin_slot": 9,
+            "target_id": 1680,
+            "target_slot": 6,
+            "type": "BOOLEAN"
+          },
+          {
+            "id": 1269,
+            "origin_id": -10,
+            "origin_slot": 10,
+            "target_id": 1680,
+            "target_slot": 7,
+            "type": "INT"
+          },
+          {
+            "id": 1270,
+            "origin_id": -10,
+            "origin_slot": 11,
+            "target_id": 1680,
+            "target_slot": 8,
+            "type": "INT"
+          },
+          {
+            "id": 1271,
+            "origin_id": -10,
+            "origin_slot": 12,
+            "target_id": 1680,
+            "target_slot": 11,
+            "type": "BOOLEAN"
+          },
+          {
+            "id": 1272,
+            "origin_id": 1678,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 1273,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 1676,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 1407,
+            "origin_id": 1683,
+            "origin_slot": 0,
+            "target_id": 1677,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 1411,
+            "origin_id": 1676,
+            "origin_slot": 1,
+            "target_id": 1675,
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 1412,
+            "origin_id": 1674,
+            "origin_slot": 0,
+            "target_id": 1675,
+            "target_slot": 2,
+            "type": "FLOAT"
+          },
+          {
+            "id": 1413,
+            "origin_id": -10,
+            "origin_slot": 13,
+            "target_id": 1683,
+            "target_slot": 0,
+            "type": "INT"
+          }
+        ],
+        "floatingLinks": [],
+        "reroutes": [],
+        "extra": {}
+      }
+    ]
+  },
+  "surface": {
+    "default_flavor_id": "default",
+    "controls": [
+      {
+        "control_id": "load_dit_model.model",
+        "symbol": "load_dit_model",
+        "input_name": "model",
+        "label": "model",
+        "class_type": "SeedVR2LoadDiTModel",
+        "value_type": "string"
+      },
+      {
+        "control_id": "load_dit_model.device",
+        "symbol": "load_dit_model",
+        "input_name": "device",
+        "label": "device",
+        "class_type": "SeedVR2LoadDiTModel",
+        "value_type": "string"
+      },
+      {
+        "control_id": "load_dit_model.blocks_to_swap",
+        "symbol": "load_dit_model",
+        "input_name": "blocks_to_swap",
+        "label": "blocks_to_swap",
+        "class_type": "SeedVR2LoadDiTModel",
+        "value_type": "number"
+      },
+      {
+        "control_id": "load_dit_model.swap_io_components",
+        "symbol": "load_dit_model",
+        "input_name": "swap_io_components",
+        "label": "swap_io_components",
+        "class_type": "SeedVR2LoadDiTModel",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "load_dit_model.offload_device",
+        "symbol": "load_dit_model",
+        "input_name": "offload_device",
+        "label": "offload_device",
+        "class_type": "SeedVR2LoadDiTModel",
+        "value_type": "string"
+      },
+      {
+        "control_id": "load_dit_model.cache_model",
+        "symbol": "load_dit_model",
+        "input_name": "cache_model",
+        "label": "cache_model",
+        "class_type": "SeedVR2LoadDiTModel",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "load_dit_model.attention_mode",
+        "symbol": "load_dit_model",
+        "input_name": "attention_mode",
+        "label": "attention_mode",
+        "class_type": "SeedVR2LoadDiTModel",
+        "value_type": "string"
+      }
+    ]
+  },
+  "flavors": {
+    "authored": [
+      {
+        "id": "default",
+        "name": "Default",
+        "values": {
+          "load_dit_model.model": "seedvr2_ema_3b_fp8_e4m3fn.safetensors",
+          "load_dit_model.device": "cuda:0",
+          "load_dit_model.blocks_to_swap": 0,
+          "load_dit_model.swap_io_components": false,
+          "load_dit_model.offload_device": "none",
+          "load_dit_model.cache_model": false,
+          "load_dit_model.attention_mode": "sdpa"
+        }
+      }
+    ]
+  }
+}

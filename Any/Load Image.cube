@@ -1,0 +1,180 @@
+{
+  "cube_id": "Artificial-Sweetener/Base-Cubes/Any/Load Image.cube",
+  "version": "1.0.0",
+  "description": "Load an image for use by downstream SugarCubes or ComfyUI nodes.",
+  "metadata": {
+    "default_alias": "Any/Load Image",
+    "target_model": "Any",
+    "supported_models": [
+      "ALL"
+    ],
+    "author_url": "https://artificialsweetener.ai"
+  },
+  "implementation": {
+    "nodes": {
+      "load_image": {
+        "class_type": "LoadImage",
+        "inputs": {},
+        "original_id": "1683",
+        "label": "Load Image"
+      }
+    },
+    "inputs": {},
+    "outputs": {
+      "output.image": "load_image"
+    },
+    "layout": {
+      "workflow_version": 0,
+      "origin": [
+        372.918165,
+        2162.904789
+      ],
+      "ds": {
+        "scale": 1.2692302164473726,
+        "offset": [
+          133.48377727357158,
+          -1814.7227295142716
+        ]
+      },
+      "nodes": {
+        "load_image": {
+          "id": "1683",
+          "class_type": "LoadImage",
+          "pos": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            282.83333587646484,
+            314.0
+          ],
+          "title": "Load Image"
+        }
+      },
+      "markers": {
+        "output.image": {
+          "id": "1685",
+          "class_type": "SugarCubes.CubeOutput",
+          "kind": "output",
+          "pos": [
+            311.952022,
+            1.535354
+          ],
+          "size": [
+            270.0,
+            130.0
+          ],
+          "title": "IMAGE Output",
+          "style": {
+            "color": "#2a363b",
+            "bgcolor": "#3f5159"
+          }
+        }
+      },
+      "groups": [
+        {
+          "id": 232,
+          "title": "Any/Load Image",
+          "bounding": [
+            -10.0,
+            -60.0,
+            601.952022,
+            384.0
+          ],
+          "color": "#3f789e",
+          "font_size": 24,
+          "flags": {},
+          "sugarcubes": {
+            "schema": 5,
+            "managed": true,
+            "cube_id": "Artificial-Sweetener/Base-Cubes/Any/Load Image.cube",
+            "default_alias": "Any/Load Image",
+            "cube_revision_ref": "WORKTREE",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Any/Load Image.cube",
+            "markers": {
+              "inputs": [],
+              "outputs": [
+                "1685"
+              ],
+              "inherits": [],
+              "metas": []
+            },
+            "nodes": [
+              "1683"
+            ],
+            "bounds": {
+              "x": 362.918165,
+              "y": 2102.904789,
+              "w": 601.952022,
+              "h": 384.0,
+              "padding": {
+                "x": 2.0,
+                "y": 2.0,
+                "top_extra": 0.0
+              },
+              "header": {
+                "height": 32.0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "definitions": {
+      "LoadImage": {
+        "input": {
+          "required": {
+            "image": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image"
+          ]
+        },
+        "output": [
+          "IMAGE",
+          "MASK"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "output_name": [
+          "IMAGE",
+          "MASK"
+        ],
+        "name": "LoadImage",
+        "display_name": "Load Image",
+        "python_module": "nodes",
+        "category": "image",
+        "output_node": false
+      }
+    },
+    "subgraphs": []
+  },
+  "surface": {
+    "default_flavor_id": "default",
+    "controls": [
+      {
+        "control_id": "load_image.image",
+        "symbol": "load_image",
+        "input_name": "image",
+        "label": "image",
+        "class_type": "LoadImage",
+        "value_type": "string"
+      }
+    ]
+  },
+  "flavors": {
+    "authored": [
+      {
+        "id": "default",
+        "name": "Default",
+        "values": {}
+      }
+    ]
+  }
+}
