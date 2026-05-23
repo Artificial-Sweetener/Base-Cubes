@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Detector-guided detailing for Anima: detect image regions with an Ultralytics model, then upscale and refine those regions with tiled diffusion.",
   "metadata": {
     "default_alias": "Anima/Automask Detailer",
@@ -19,6 +19,7 @@
     "nodes": {
       "detailer": {
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactorTiledDiffusion",
+        "label": "Detailer",
         "inputs": {
           "image": [
             "@binding",
@@ -45,41 +46,41 @@
             2
           ]
         },
-        "original_id": "2064",
-        "label": "Detailer"
+        "original_id": "2064"
       },
       "detect_segs_w_ultralytics": {
         "class_type": "3f33e532-9a3f-40e8-ac9d-df3c42b4512a",
+        "label": "Detect SEGS w/ Ultralytics",
         "inputs": {
           "image": [
             "@binding",
             "input.value"
           ]
         },
-        "original_id": "2058",
-        "label": "Detect SEGS w/ Ultralytics"
+        "original_id": "2058"
       },
       "models": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "label": "Models",
         "inputs": {},
         "original_id": "1990",
-        "mode": 4,
-        "label": "Models"
+        "mode": 4
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
+        "label": "negative prompt",
         "inputs": {},
-        "original_id": "1991",
-        "label": "negative prompt"
+        "original_id": "1991"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
+        "label": "positive prompt",
         "inputs": {},
-        "original_id": "1992",
-        "label": "positive prompt"
+        "original_id": "1992"
       },
       "schedule_encode_prompts": {
         "class_type": "1011dbac-8141-48a1-9781-a5a3822c90e7",
+        "label": "Schedule & Encode Prompts",
         "inputs": {
           "positive_prompt": [
             "positive_prompt",
@@ -98,8 +99,7 @@
             1
           ]
         },
-        "original_id": "1989",
-        "label": "Schedule & Encode Prompts"
+        "original_id": "1989"
       }
     },
     "inputs": {
@@ -123,14 +123,14 @@
     "layout": {
       "workflow_version": 0,
       "origin": [
-        -350.0,
-        -660.0
+        1550.0,
+        540.0
       ],
       "ds": {
-        "scale": 1.1702693714523908,
+        "scale": 1.1,
         "offset": [
-          537.1895163952299,
-          947.9385514294984
+          -1504.716237531656,
+          -226.52007235516052
         ]
       },
       "nodes": {
@@ -198,7 +198,7 @@
           ],
           "size": [
             330.0,
-            250.0
+            342.0
           ],
           "title": "Detect SEGS w/ Ultralytics"
         },
@@ -256,7 +256,7 @@
       },
       "groups": [
         {
-          "id": 293,
+          "id": 295,
           "title": "Anima/Automask Detailer",
           "bounding": [
             -10.0,
@@ -273,10 +273,10 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube",
             "default_alias": "Anima/Automask Detailer",
             "target_model": "Anima",
-            "cube_version": "3.0.0",
+            "cube_version": "1.0.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube@3.0.0",
-            "surface_signature": "69ff778a4eba",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube@1.0.0",
+            "surface_signature": "cf19ad406fb9",
             "icon": {
               "kind": "asset",
               "media_type": "image/png",
@@ -289,21 +289,19 @@
               ],
               "outputs": [
                 "2011"
-              ],
-              "inherits": [],
-              "metas": []
+              ]
             },
             "nodes": [
               "2064",
               "2058",
               "1989",
               "1990",
-              "1991",
-              "1992"
+              "1992",
+              "1991"
             ],
             "bounds": {
-              "x": -360.0,
-              "y": -720.0,
+              "x": 1540.0,
+              "y": 480.0,
               "w": 1320.0,
               "h": 860.0,
               "padding": {
@@ -441,9 +439,9 @@
               "FLOAT",
               {
                 "default": 1.5,
-                "min": 0.01,
-                "max": 100.0,
-                "step": 0.05
+                "min": 1.0,
+                "max": 5.0,
+                "step": 0.1
               }
             ],
             "upscale_method": [
@@ -881,6 +879,40 @@
         ],
         "essentials_category": null
       },
+      "SimpleSyrup.LoadUltralyticsModel": {
+        "input": {
+          "required": {
+            "model_name": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model_name"
+          ]
+        },
+        "output": [
+          "DETECTOR_MODEL",
+          "BBOX_DETECTOR",
+          "SEGM_DETECTOR"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "detector_model",
+          "bbox_detector",
+          "segm_detector"
+        ],
+        "name": "SimpleSyrup.LoadUltralyticsModel",
+        "display_name": "Load Ultralytics Model",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Detection",
+        "output_node": false
+      },
       "SimpleSyrup.DetectSEGSWithUltralytics": {
         "input": {
           "required": {
@@ -908,6 +940,18 @@
                 "min": 1,
                 "max": 8192
               }
+            ],
+            "keep_only": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 4096,
+                "step": 1
+              }
+            ],
+            "keep_by": [
+              "LIST"
             ],
             "bbox_dilation": [
               "INT",
@@ -964,6 +1008,8 @@
             "detector_model",
             "confidence_threshold",
             "size_threshold",
+            "keep_only",
+            "keep_by",
             "bbox_dilation",
             "sub_dilation",
             "post_dilation",
@@ -989,40 +1035,6 @@
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Detection",
         "output_node": false
-      },
-      "SimpleSyrup.LoadUltralyticsModel": {
-        "input": {
-          "required": {
-            "model_name": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model_name"
-          ]
-        },
-        "output": [
-          "DETECTOR_MODEL",
-          "BBOX_DETECTOR",
-          "SEGM_DETECTOR"
-        ],
-        "output_is_list": [
-          false,
-          false,
-          false
-        ],
-        "output_name": [
-          "detector_model",
-          "bbox_detector",
-          "segm_detector"
-        ],
-        "name": "SimpleSyrup.LoadUltralyticsModel",
-        "display_name": "Load Ultralytics Model",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Detection",
-        "output_node": false
       }
     },
     "subgraphs": [
@@ -1031,9 +1043,9 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2064,
-          "lastLinkId": 2845,
-          "lastGroupId": 294,
+          "lastNodeId": 2174,
+          "lastLinkId": 3314,
+          "lastGroupId": 295,
           "lastRerouteId": 0
         },
         "config": {},
@@ -1067,8 +1079,8 @@
               314
             ],
             "name": "positive_prompt",
-            "localized_name": "string",
-            "label": "Positive Prompt"
+            "label": "Positive Prompt",
+            "localized_name": "string"
           },
           {
             "id": "94f725d5-39bf-4060-be68-f573214a2055:input:0",
@@ -1078,8 +1090,8 @@
               315
             ],
             "name": "negative_prompt",
-            "localized_name": "string",
-            "label": "Negative Prompt"
+            "label": "Negative Prompt",
+            "localized_name": "string"
           },
           {
             "id": "94f725d5-39bf-4060-be68-f573214a2055:input:3",
@@ -1122,8 +1134,8 @@
               274
             ],
             "name": "CONDITIONING_2",
-            "localized_name": "CONDITIONING",
-            "label": "Positive Cond"
+            "label": "Positive Cond",
+            "localized_name": "CONDITIONING"
           },
           {
             "id": "94f725d5-39bf-4060-be68-f573214a2055:output:1",
@@ -1132,8 +1144,8 @@
               266
             ],
             "name": "CONDITIONING",
-            "localized_name": "CONDITIONING",
-            "label": "Negative Cond"
+            "label": "Negative Cond",
+            "localized_name": "CONDITIONING"
           }
         ],
         "widgets": [],
@@ -2101,9 +2113,9 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2064,
-          "lastLinkId": 2845,
-          "lastGroupId": 294,
+          "lastNodeId": 2174,
+          "lastLinkId": 3314,
+          "lastGroupId": 295,
           "lastRerouteId": 0
         },
         "config": {},
@@ -2114,7 +2126,7 @@
             2310,
             2400,
             162.4499969482422,
-            240
+            280
           ],
           "pinned": false
         },
@@ -2133,7 +2145,7 @@
             "id": "f1a5ee8f-ad1a-4e66-be41-f3f00ea6e439",
             "type": "IMAGE",
             "linkIds": [
-              2754
+              3302
             ],
             "name": "image",
             "label": "image",
@@ -2152,7 +2164,7 @@
             "id": "0b36b7e8-d59b-4a89-97cc-968a868c14e1",
             "type": "FLOAT",
             "linkIds": [
-              2755
+              3304
             ],
             "name": "confidence_threshold",
             "label": "confidence_threshold"
@@ -2161,61 +2173,79 @@
             "id": "29af2ce2-90ff-4ebb-bcac-499976a040b4",
             "type": "INT",
             "linkIds": [
-              2756
+              3305
             ],
             "name": "size_threshold",
             "label": "size_threshold"
           },
           {
-            "id": "ead08782-e908-468d-8984-81bf96447b55",
+            "id": "1dcea69c-26a9-4c89-9d7b-b6336b091735",
             "type": "INT",
             "linkIds": [
-              2757
+              3307
+            ],
+            "name": "keep_only",
+            "label": "keep_only"
+          },
+          {
+            "id": "c37d7b24-e561-443d-a8c0-dfdd79d206d6",
+            "type": "COMBO",
+            "linkIds": [
+              3308
+            ],
+            "name": "keep_by",
+            "label": "keep_by"
+          },
+          {
+            "id": "65cc687b-c6fb-42c3-9e0c-84b647b9ae82",
+            "type": "INT",
+            "linkIds": [
+              3309
             ],
             "name": "bbox_dilation",
             "label": "bbox_dilation"
           },
           {
-            "id": "bbb153ac-fc82-47a4-9b43-0633ea225ef3",
+            "id": "9503b382-aa02-4aac-b496-9adec68c8997",
             "type": "INT",
             "linkIds": [
-              2758
+              3310
             ],
             "name": "sub_dilation",
             "label": "sub_dilation"
           },
           {
-            "id": "ad6424e1-1252-475f-b234-7361c9851e19",
+            "id": "c2729ab2-649c-425d-ae53-c115a8c2f789",
             "type": "INT",
             "linkIds": [
-              2759
+              3311
             ],
             "name": "post_dilation",
             "label": "post_dilation"
           },
           {
-            "id": "a2bb3c24-fdb1-457c-9eaa-4d7a9c558e5f",
+            "id": "efdd9099-9e01-4436-9504-70ce531c97f3",
             "type": "FLOAT",
             "linkIds": [
-              2760
+              3312
             ],
             "name": "crop_factor",
             "label": "crop_factor"
           },
           {
-            "id": "1a72461e-a6ee-441d-b1bb-6ae954b341e1",
+            "id": "6841f7be-618b-476b-be21-50cd819da7c9",
             "type": "COMBO",
             "linkIds": [
-              2761
+              3313
             ],
             "name": "sort_order",
             "label": "sort_order"
           },
           {
-            "id": "76da6ecd-789c-427a-a942-cbaec1254423",
+            "id": "d096e407-e7b7-45cb-9844-299695446c63",
             "type": "BOOLEAN",
             "linkIds": [
-              2762
+              3314
             ],
             "name": "combine_segs",
             "label": "combine_segs"
@@ -2226,7 +2256,7 @@
             "id": "edd4c3a7-cfdf-431d-9d14-14d15d6f0c2a",
             "type": "SEGS",
             "linkIds": [
-              2763
+              3306
             ],
             "name": "segs",
             "label": "segs",
@@ -2236,136 +2266,6 @@
         ],
         "widgets": [],
         "nodes": [
-          {
-            "id": 2059,
-            "type": "SimpleSyrup.DetectSEGSWithUltralytics",
-            "pos": [
-              2500,
-              2520
-            ],
-            "size": [
-              340,
-              250
-            ],
-            "flags": {},
-            "order": 1,
-            "inputs": [
-              {
-                "localized_name": "image",
-                "name": "image",
-                "type": "IMAGE",
-                "link": 2754
-              },
-              {
-                "localized_name": "detector_model",
-                "name": "detector_model",
-                "type": "DETECTOR_MODEL",
-                "link": 2753
-              },
-              {
-                "localized_name": "confidence_threshold",
-                "name": "confidence_threshold",
-                "type": "FLOAT",
-                "widget": {
-                  "name": "confidence_threshold"
-                },
-                "link": 2755
-              },
-              {
-                "localized_name": "size_threshold",
-                "name": "size_threshold",
-                "type": "INT",
-                "widget": {
-                  "name": "size_threshold"
-                },
-                "link": 2756
-              },
-              {
-                "localized_name": "bbox_dilation",
-                "name": "bbox_dilation",
-                "type": "INT",
-                "widget": {
-                  "name": "bbox_dilation"
-                },
-                "link": 2757
-              },
-              {
-                "localized_name": "sub_dilation",
-                "name": "sub_dilation",
-                "type": "INT",
-                "widget": {
-                  "name": "sub_dilation"
-                },
-                "link": 2758
-              },
-              {
-                "localized_name": "post_dilation",
-                "name": "post_dilation",
-                "type": "INT",
-                "widget": {
-                  "name": "post_dilation"
-                },
-                "link": 2759
-              },
-              {
-                "localized_name": "crop_factor",
-                "name": "crop_factor",
-                "type": "FLOAT",
-                "widget": {
-                  "name": "crop_factor"
-                },
-                "link": 2760
-              },
-              {
-                "localized_name": "sort_order",
-                "name": "sort_order",
-                "type": "COMBO",
-                "widget": {
-                  "name": "sort_order"
-                },
-                "link": 2761
-              },
-              {
-                "localized_name": "combine_segs",
-                "name": "combine_segs",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "combine_segs"
-                },
-                "link": 2762
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "segs",
-                "name": "segs",
-                "shape": 6,
-                "type": "SEGS",
-                "links": [
-                  2763
-                ]
-              },
-              {
-                "localized_name": "mask",
-                "name": "mask",
-                "type": "MASK",
-                "links": null
-              }
-            ],
-            "properties": {
-              "Node name for S&R": "SimpleSyrup.DetectSEGSWithUltralytics"
-            },
-            "widgets_values": [
-              0.02,
-              10,
-              0,
-              0,
-              8,
-              1.2,
-              "largest to smallest",
-              true
-            ]
-          },
           {
             "id": 2057,
             "type": "SimpleSyrup.LoadUltralyticsModel",
@@ -2396,7 +2296,7 @@
                 "name": "detector_model",
                 "type": "DETECTOR_MODEL",
                 "links": [
-                  2753
+                  3303
                 ]
               },
               {
@@ -2413,10 +2313,164 @@
               }
             ],
             "properties": {
+              "cnr_id": "simple-syrup",
+              "ver": "8936cc9069027d966a6153c504d358fa79b9be8e",
               "Node name for S&R": "SimpleSyrup.LoadUltralyticsModel"
             },
             "widgets_values": [
               "bbox/Anzhcs ManFace v02 1024 y8n.pt"
+            ]
+          },
+          {
+            "id": 2174,
+            "type": "SimpleSyrup.DetectSEGSWithUltralytics",
+            "pos": [
+              2500,
+              2520
+            ],
+            "size": [
+              340,
+              300
+            ],
+            "flags": {},
+            "order": 1,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 3302
+              },
+              {
+                "localized_name": "detector_model",
+                "name": "detector_model",
+                "type": "DETECTOR_MODEL",
+                "link": 3303
+              },
+              {
+                "localized_name": "confidence_threshold",
+                "name": "confidence_threshold",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "confidence_threshold"
+                },
+                "link": 3304
+              },
+              {
+                "localized_name": "size_threshold",
+                "name": "size_threshold",
+                "type": "INT",
+                "widget": {
+                  "name": "size_threshold"
+                },
+                "link": 3305
+              },
+              {
+                "localized_name": "keep_only",
+                "name": "keep_only",
+                "type": "INT",
+                "widget": {
+                  "name": "keep_only"
+                },
+                "link": 3307
+              },
+              {
+                "localized_name": "keep_by",
+                "name": "keep_by",
+                "type": "COMBO",
+                "widget": {
+                  "name": "keep_by"
+                },
+                "link": 3308
+              },
+              {
+                "localized_name": "bbox_dilation",
+                "name": "bbox_dilation",
+                "type": "INT",
+                "widget": {
+                  "name": "bbox_dilation"
+                },
+                "link": 3309
+              },
+              {
+                "localized_name": "sub_dilation",
+                "name": "sub_dilation",
+                "type": "INT",
+                "widget": {
+                  "name": "sub_dilation"
+                },
+                "link": 3310
+              },
+              {
+                "localized_name": "post_dilation",
+                "name": "post_dilation",
+                "type": "INT",
+                "widget": {
+                  "name": "post_dilation"
+                },
+                "link": 3311
+              },
+              {
+                "localized_name": "crop_factor",
+                "name": "crop_factor",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "crop_factor"
+                },
+                "link": 3312
+              },
+              {
+                "localized_name": "sort_order",
+                "name": "sort_order",
+                "type": "COMBO",
+                "widget": {
+                  "name": "sort_order"
+                },
+                "link": 3313
+              },
+              {
+                "localized_name": "combine_segs",
+                "name": "combine_segs",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "combine_segs"
+                },
+                "link": 3314
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "segs",
+                "name": "segs",
+                "shape": 6,
+                "type": "SEGS",
+                "links": [
+                  3306
+                ]
+              },
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "type": "MASK",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "simple-syrup",
+              "ver": "8f8ee91dea3ce1a044c0e61b482e571c51b372bc",
+              "Node name for S&R": "SimpleSyrup.DetectSEGSWithUltralytics"
+            },
+            "widgets_values": [
+              0.02,
+              10,
+              0,
+              "highest confidence",
+              0,
+              0,
+              0,
+              3,
+              "largest to smallest",
+              false
             ]
           }
         ],
@@ -2430,92 +2484,108 @@
             "type": "COMBO"
           },
           {
-            "id": 2753,
-            "origin_id": 2057,
-            "origin_slot": 0,
-            "target_id": 2059,
-            "target_slot": 1,
-            "type": "DETECTOR_MODEL"
-          },
-          {
-            "id": 2754,
+            "id": 3302,
             "origin_id": -10,
             "origin_slot": 0,
-            "target_id": 2059,
+            "target_id": 2174,
             "target_slot": 0,
             "type": "IMAGE"
           },
           {
-            "id": 2755,
+            "id": 3303,
+            "origin_id": 2057,
+            "origin_slot": 0,
+            "target_id": 2174,
+            "target_slot": 1,
+            "type": "DETECTOR_MODEL"
+          },
+          {
+            "id": 3304,
             "origin_id": -10,
             "origin_slot": 2,
-            "target_id": 2059,
+            "target_id": 2174,
             "target_slot": 2,
             "type": "FLOAT"
           },
           {
-            "id": 2756,
+            "id": 3305,
             "origin_id": -10,
             "origin_slot": 3,
-            "target_id": 2059,
+            "target_id": 2174,
             "target_slot": 3,
             "type": "INT"
           },
           {
-            "id": 2757,
-            "origin_id": -10,
-            "origin_slot": 4,
-            "target_id": 2059,
-            "target_slot": 4,
-            "type": "INT"
-          },
-          {
-            "id": 2758,
-            "origin_id": -10,
-            "origin_slot": 5,
-            "target_id": 2059,
-            "target_slot": 5,
-            "type": "INT"
-          },
-          {
-            "id": 2759,
-            "origin_id": -10,
-            "origin_slot": 6,
-            "target_id": 2059,
-            "target_slot": 6,
-            "type": "INT"
-          },
-          {
-            "id": 2760,
-            "origin_id": -10,
-            "origin_slot": 7,
-            "target_id": 2059,
-            "target_slot": 7,
-            "type": "FLOAT"
-          },
-          {
-            "id": 2761,
-            "origin_id": -10,
-            "origin_slot": 8,
-            "target_id": 2059,
-            "target_slot": 8,
-            "type": "COMBO"
-          },
-          {
-            "id": 2762,
-            "origin_id": -10,
-            "origin_slot": 9,
-            "target_id": 2059,
-            "target_slot": 9,
-            "type": "BOOLEAN"
-          },
-          {
-            "id": 2763,
-            "origin_id": 2059,
+            "id": 3306,
+            "origin_id": 2174,
             "origin_slot": 0,
             "target_id": -20,
             "target_slot": 0,
             "type": "SEGS"
+          },
+          {
+            "id": 3307,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 2174,
+            "target_slot": 4,
+            "type": "INT"
+          },
+          {
+            "id": 3308,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 2174,
+            "target_slot": 5,
+            "type": "COMBO"
+          },
+          {
+            "id": 3309,
+            "origin_id": -10,
+            "origin_slot": 6,
+            "target_id": 2174,
+            "target_slot": 6,
+            "type": "INT"
+          },
+          {
+            "id": 3310,
+            "origin_id": -10,
+            "origin_slot": 7,
+            "target_id": 2174,
+            "target_slot": 7,
+            "type": "INT"
+          },
+          {
+            "id": 3311,
+            "origin_id": -10,
+            "origin_slot": 8,
+            "target_id": 2174,
+            "target_slot": 8,
+            "type": "INT"
+          },
+          {
+            "id": 3312,
+            "origin_id": -10,
+            "origin_slot": 9,
+            "target_id": 2174,
+            "target_slot": 9,
+            "type": "FLOAT"
+          },
+          {
+            "id": 3313,
+            "origin_id": -10,
+            "origin_slot": 10,
+            "target_id": 2174,
+            "target_slot": 10,
+            "type": "COMBO"
+          },
+          {
+            "id": 3314,
+            "origin_id": -10,
+            "origin_slot": 11,
+            "target_id": 2174,
+            "target_slot": 11,
+            "type": "BOOLEAN"
           }
         ],
         "floatingLinks": [],
