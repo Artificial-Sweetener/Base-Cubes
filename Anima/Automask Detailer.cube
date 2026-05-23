@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Detector-guided detailing for Anima: detect image regions with an Ultralytics model, then upscale and refine those regions with tiled diffusion.",
   "metadata": {
     "default_alias": "Anima/Automask Detailer",
@@ -123,14 +123,14 @@
     "layout": {
       "workflow_version": 0,
       "origin": [
-        1550.0,
-        540.0
+        1600.0,
+        630.0
       ],
       "ds": {
-        "scale": 1.1,
+        "scale": 1.1000000000000005,
         "offset": [
-          -1504.716237531656,
-          -226.52007235516052
+          -1444.8548684560208,
+          -168.24464701163575
         ]
       },
       "nodes": {
@@ -198,7 +198,7 @@
           ],
           "size": [
             330.0,
-            342.0
+            300.0
           ],
           "title": "Detect SEGS w/ Ultralytics"
         },
@@ -256,7 +256,7 @@
       },
       "groups": [
         {
-          "id": 295,
+          "id": 296,
           "title": "Anima/Automask Detailer",
           "bounding": [
             -10.0,
@@ -273,9 +273,9 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube",
             "default_alias": "Anima/Automask Detailer",
             "target_model": "Anima",
-            "cube_version": "1.0.0",
+            "cube_version": "1.1.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube@1.0.0",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube@1.1.0",
             "surface_signature": "cf19ad406fb9",
             "icon": {
               "kind": "asset",
@@ -300,8 +300,8 @@
               "1991"
             ],
             "bounds": {
-              "x": 1540.0,
-              "y": 480.0,
+              "x": 1590.0,
+              "y": 570.0,
               "w": 1320.0,
               "h": 860.0,
               "padding": {
@@ -1044,8 +1044,8 @@
         "revision": 0,
         "state": {
           "lastNodeId": 2174,
-          "lastLinkId": 3314,
-          "lastGroupId": 295,
+          "lastLinkId": 3327,
+          "lastGroupId": 296,
           "lastRerouteId": 0
         },
         "config": {},
@@ -2114,8 +2114,8 @@
         "revision": 0,
         "state": {
           "lastNodeId": 2174,
-          "lastLinkId": 3314,
-          "lastGroupId": 295,
+          "lastLinkId": 3327,
+          "lastGroupId": 296,
           "lastRerouteId": 0
         },
         "config": {},
@@ -2461,16 +2461,16 @@
               "Node name for S&R": "SimpleSyrup.DetectSEGSWithUltralytics"
             },
             "widgets_values": [
-              0.02,
+              0.5,
               10,
               0,
               "highest confidence",
               0,
               0,
-              0,
-              3,
+              8,
+              1.5,
               "largest to smallest",
-              false
+              true
             ]
           }
         ],
