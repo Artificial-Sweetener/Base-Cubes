@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "description": "Detector-guided detailing for Anima: detect image regions with an Ultralytics model, then upscale and refine those regions with tiled diffusion.",
   "metadata": {
     "default_alias": "Anima/Automask Detailer",
