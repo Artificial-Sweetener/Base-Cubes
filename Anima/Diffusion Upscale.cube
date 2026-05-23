@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube",
-  "version": "3.0.0",
+  "version": "2.0.0",
   "description": "Diffusion upscaling for Anima: upscale an input image, then refine it with tiled diffusion to avoid running Anima diffusion outside its supported resolutions.",
   "metadata": {
     "default_alias": "Anima/Diffusion Upscale",
