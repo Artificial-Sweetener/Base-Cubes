@@ -1813,7 +1813,7 @@
               }
             ],
             "properties": {
-              "cnr_id": "simple-syrup",
+              "cnr_id": "SimpleSyrup",
               "ver": "37bcd403c5172adc2505b38d1d31c05969a69443",
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "sugarcubes_symbol": "scale_factor"
@@ -2026,7 +2026,7 @@
               }
             ],
             "properties": {
-              "cnr_id": "simple-syrup",
+              "cnr_id": "SimpleSyrup",
               "ver": "37bcd403c5172adc2505b38d1d31c05969a69443",
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "sugarcubes_symbol": "resize_image_to_target"
