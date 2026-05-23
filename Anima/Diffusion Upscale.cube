@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Diffusion upscaling for Anima: upscale an input image, then refine it with tiled diffusion to avoid running Anima diffusion outside its supported resolutions.",
   "metadata": {
     "default_alias": "Anima/Diffusion Upscale",
@@ -34,7 +34,7 @@
             2
           ],
           "latent_image": [
-            "vae_encode_options",
+            "vae_encode",
             0
           ]
         },
@@ -44,8 +44,7 @@
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Models",
         "inputs": {},
-        "original_id": "1900",
-        "mode": 4
+        "original_id": "1900"
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -93,9 +92,9 @@
         },
         "original_id": "2163"
       },
-      "vae_decode_options": {
+      "vae_decode": {
         "class_type": "SimpleSyrup.VAEDecodeOptions",
-        "label": "VAE Decode (Options)",
+        "label": "VAE Decode",
         "inputs": {
           "samples": [
             "ksampler",
@@ -108,9 +107,9 @@
         },
         "original_id": "2202"
       },
-      "vae_encode_options": {
+      "vae_encode": {
         "class_type": "SimpleSyrup.VAEEncodeOptions",
-        "label": "VAE Encode (Options)",
+        "label": "VAE Encode",
         "inputs": {
           "pixels": [
             "upscale_by_factor",
@@ -136,7 +135,7 @@
       }
     },
     "outputs": {
-      "output.image": "vae_decode_options"
+      "output.image": "vae_decode"
     },
     "layout": {
       "workflow_version": 0,
@@ -147,8 +146,8 @@
       "ds": {
         "scale": 0.9090909090909091,
         "offset": [
-          -1441.1562766590812,
-          -2435.3787006794014
+          -1615.0697036435179,
+          -2499.7187727577684
         ]
       },
       "nodes": {
@@ -216,7 +215,7 @@
           ],
           "size": [
             290.0,
-            590.0
+            594.0
           ],
           "title": "KSampler"
         },
@@ -233,7 +232,7 @@
           ],
           "title": "Upscale by Factor"
         },
-        "vae_encode_options": {
+        "vae_encode": {
           "id": "2200",
           "class_type": "SimpleSyrup.VAEEncodeOptions",
           "pos": [
@@ -244,9 +243,9 @@
             290.0,
             180.0
           ],
-          "title": "VAE Encode (Options)"
+          "title": "VAE Encode"
         },
-        "vae_decode_options": {
+        "vae_decode": {
           "id": "2202",
           "class_type": "SimpleSyrup.VAEDecodeOptions",
           "pos": [
@@ -257,7 +256,7 @@
             290.0,
             180.0
           ],
-          "title": "VAE Decode (Options)"
+          "title": "VAE Decode"
         }
       },
       "markers": {
@@ -317,10 +316,10 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube",
             "default_alias": "Anima/Diffusion Upscale",
             "target_model": "Anima",
-            "cube_version": "1.0.0",
+            "cube_version": "2.0.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube@1.0.0",
-            "surface_signature": "b9cd7a6d9eb1",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube@2.0.0",
+            "surface_signature": "9dace8c64f8a",
             "icon": {
               "kind": "asset",
               "media_type": "image/png",
@@ -1456,7 +1455,7 @@
         "revision": 0,
         "state": {
           "lastNodeId": 2202,
-          "lastLinkId": 3460,
+          "lastLinkId": 3461,
           "lastGroupId": 363,
           "lastRerouteId": 0
         },
@@ -2171,7 +2170,7 @@
         "revision": 0,
         "state": {
           "lastNodeId": 2202,
-          "lastLinkId": 3460,
+          "lastLinkId": 3461,
           "lastGroupId": 363,
           "lastRerouteId": 0
         },
@@ -3385,80 +3384,80 @@
         "value_type": "string"
       },
       {
-        "control_id": "vae_decode_options.use_tiling",
-        "symbol": "vae_decode_options",
+        "control_id": "vae_decode.use_tiling",
+        "symbol": "vae_decode",
         "input_name": "use_tiling",
         "label": "use_tiling",
         "class_type": "SimpleSyrup.VAEDecodeOptions",
         "value_type": "boolean"
       },
       {
-        "control_id": "vae_decode_options.tile_size",
-        "symbol": "vae_decode_options",
+        "control_id": "vae_decode.tile_size",
+        "symbol": "vae_decode",
         "input_name": "tile_size",
         "label": "tile_size",
         "class_type": "SimpleSyrup.VAEDecodeOptions",
         "value_type": "number"
       },
       {
-        "control_id": "vae_decode_options.overlap",
-        "symbol": "vae_decode_options",
+        "control_id": "vae_decode.overlap",
+        "symbol": "vae_decode",
         "input_name": "overlap",
         "label": "overlap",
         "class_type": "SimpleSyrup.VAEDecodeOptions",
         "value_type": "number"
       },
       {
-        "control_id": "vae_decode_options.temporal_size",
-        "symbol": "vae_decode_options",
+        "control_id": "vae_decode.temporal_size",
+        "symbol": "vae_decode",
         "input_name": "temporal_size",
         "label": "temporal_size",
         "class_type": "SimpleSyrup.VAEDecodeOptions",
         "value_type": "number"
       },
       {
-        "control_id": "vae_decode_options.temporal_overlap",
-        "symbol": "vae_decode_options",
+        "control_id": "vae_decode.temporal_overlap",
+        "symbol": "vae_decode",
         "input_name": "temporal_overlap",
         "label": "temporal_overlap",
         "class_type": "SimpleSyrup.VAEDecodeOptions",
         "value_type": "number"
       },
       {
-        "control_id": "vae_encode_options.use_tiling",
-        "symbol": "vae_encode_options",
+        "control_id": "vae_encode.use_tiling",
+        "symbol": "vae_encode",
         "input_name": "use_tiling",
         "label": "use_tiling",
         "class_type": "SimpleSyrup.VAEEncodeOptions",
         "value_type": "boolean"
       },
       {
-        "control_id": "vae_encode_options.tile_size",
-        "symbol": "vae_encode_options",
+        "control_id": "vae_encode.tile_size",
+        "symbol": "vae_encode",
         "input_name": "tile_size",
         "label": "tile_size",
         "class_type": "SimpleSyrup.VAEEncodeOptions",
         "value_type": "number"
       },
       {
-        "control_id": "vae_encode_options.overlap",
-        "symbol": "vae_encode_options",
+        "control_id": "vae_encode.overlap",
+        "symbol": "vae_encode",
         "input_name": "overlap",
         "label": "overlap",
         "class_type": "SimpleSyrup.VAEEncodeOptions",
         "value_type": "number"
       },
       {
-        "control_id": "vae_encode_options.temporal_size",
-        "symbol": "vae_encode_options",
+        "control_id": "vae_encode.temporal_size",
+        "symbol": "vae_encode",
         "input_name": "temporal_size",
         "label": "temporal_size",
         "class_type": "SimpleSyrup.VAEEncodeOptions",
         "value_type": "number"
       },
       {
-        "control_id": "vae_encode_options.temporal_overlap",
-        "symbol": "vae_encode_options",
+        "control_id": "vae_encode.temporal_overlap",
+        "symbol": "vae_encode",
         "input_name": "temporal_overlap",
         "label": "temporal_overlap",
         "class_type": "SimpleSyrup.VAEEncodeOptions",
@@ -3489,16 +3488,16 @@
           "models.vae": "",
           "negative_prompt.value": "",
           "positive_prompt.value": "",
-          "vae_decode_options.use_tiling": false,
-          "vae_decode_options.tile_size": 512,
-          "vae_decode_options.overlap": 64,
-          "vae_decode_options.temporal_size": 64,
-          "vae_decode_options.temporal_overlap": 8,
-          "vae_encode_options.use_tiling": false,
-          "vae_encode_options.tile_size": 512,
-          "vae_encode_options.overlap": 64,
-          "vae_encode_options.temporal_size": 64,
-          "vae_encode_options.temporal_overlap": 8
+          "vae_decode.use_tiling": false,
+          "vae_decode.tile_size": 512,
+          "vae_decode.overlap": 64,
+          "vae_decode.temporal_size": 64,
+          "vae_decode.temporal_overlap": 8,
+          "vae_encode.use_tiling": false,
+          "vae_encode.tile_size": 512,
+          "vae_encode.overlap": 64,
+          "vae_encode.temporal_size": 64,
+          "vae_encode.temporal_overlap": 8
         }
       }
     ]
