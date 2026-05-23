@@ -44,7 +44,8 @@
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Models",
         "inputs": {},
-        "original_id": "1900"
+        "original_id": "1900",
+        "mode": 4
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
