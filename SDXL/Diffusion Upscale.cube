@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Diffusion upscaling: upscale an input image, resize it to target constraints, then refine it with image-to-image diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -24,51 +24,15 @@
     "nodes": {
       "checkpoint": {
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
+        "label": "Checkpoint",
         "inputs": {},
         "original_id": "1941",
-        "mode": 4,
-        "label": "Checkpoint"
+        "mode": 4
       },
-      "mahiro_cfg": {
-        "class_type": "Mahiro",
+      "ksampler": {
+        "class_type": "SimpleSyrup.KSamplerExtras",
+        "label": "ksampler",
         "inputs": {
-          "model": [
-            "vectorscopecc",
-            0
-          ]
-        },
-        "original_id": "565",
-        "label": "mahiro CFG"
-      },
-      "negative_prompt": {
-        "class_type": "PrimitiveStringMultiline",
-        "inputs": {},
-        "original_id": "1607",
-        "label": "negative prompt"
-      },
-      "positive_prompt": {
-        "class_type": "PrimitiveStringMultiline",
-        "inputs": {},
-        "original_id": "1606",
-        "label": "positive prompt"
-      },
-      "prompt_encode_style": {
-        "class_type": "SimpleSyrup.PromptEncodeStyle",
-        "inputs": {},
-        "original_id": "1627",
-        "label": "Prompt Encode Style"
-      },
-      "resize_by_factor": {
-        "class_type": "de2c84e5-02a8-4c50-831d-3c169dee4820",
-        "inputs": {
-          "image": [
-            "@binding",
-            "input.value"
-          ],
-          "vae": [
-            "checkpoint",
-            2
-          ],
           "model": [
             "mahiro_cfg",
             0
@@ -80,13 +44,46 @@
           "negative": [
             "schedule_encode_prompts",
             2
+          ],
+          "latent_image": [
+            "vae_encode_options",
+            0
           ]
         },
-        "original_id": "1658",
-        "label": "Resize by Factor"
+        "original_id": "2213"
+      },
+      "mahiro_cfg": {
+        "class_type": "Mahiro",
+        "label": "mahiro CFG",
+        "inputs": {
+          "model": [
+            "vectorscopecc",
+            0
+          ]
+        },
+        "original_id": "565"
+      },
+      "negative_prompt": {
+        "class_type": "PrimitiveStringMultiline",
+        "label": "negative prompt",
+        "inputs": {},
+        "original_id": "1607"
+      },
+      "positive_prompt": {
+        "class_type": "PrimitiveStringMultiline",
+        "label": "positive prompt",
+        "inputs": {},
+        "original_id": "1606"
+      },
+      "prompt_encode_style": {
+        "class_type": "SimpleSyrup.PromptEncodeStyle",
+        "label": "Prompt Encode Style",
+        "inputs": {},
+        "original_id": "1627"
       },
       "schedule_encode_prompts": {
         "class_type": "bc2b2877-06d7-4b9f-881a-9263df411f13",
+        "label": "Schedule & Encode Prompts",
         "inputs": {
           "prompt_prefix": [
             "prompt_encode_style",
@@ -109,11 +106,52 @@
             1
           ]
         },
-        "original_id": "685",
-        "label": "Schedule & Encode Prompts"
+        "original_id": "685"
+      },
+      "upscale_by_factor": {
+        "class_type": "8a36fa26-de83-4e4f-a89f-0e5f545f3c0f",
+        "label": "Upscale by Factor",
+        "inputs": {
+          "image": [
+            "@binding",
+            "input.value"
+          ]
+        },
+        "original_id": "2223"
+      },
+      "vae_decode_options": {
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "label": "VAE Decode (Options)",
+        "inputs": {
+          "samples": [
+            "ksampler",
+            0
+          ],
+          "vae": [
+            "checkpoint",
+            2
+          ]
+        },
+        "original_id": "2225"
+      },
+      "vae_encode_options": {
+        "class_type": "SimpleSyrup.VAEEncodeOptions",
+        "label": "VAE Encode (Options)",
+        "inputs": {
+          "pixels": [
+            "upscale_by_factor",
+            0
+          ],
+          "vae": [
+            "checkpoint",
+            2
+          ]
+        },
+        "original_id": "2224"
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
+        "label": "vectorscopeCC",
         "inputs": {
           "model": [
             "schedule_encode_prompts",
@@ -121,8 +159,7 @@
           ]
         },
         "original_id": "584",
-        "mode": 4,
-        "label": "vectorscopeCC"
+        "mode": 4
       }
     },
     "inputs": {
@@ -130,26 +167,26 @@
         "kind": "input",
         "targets": [
           [
-            "resize_by_factor",
+            "upscale_by_factor",
             "image"
           ]
         ]
       }
     },
     "outputs": {
-      "output.value": "resize_by_factor"
+      "output.image": "vae_decode_options"
     },
     "layout": {
       "workflow_version": 0,
       "origin": [
-        1350.0,
-        810.0
+        3180.0,
+        4040.0
       ],
       "ds": {
-        "scale": 0.8264462809917354,
+        "scale": 0.8264462809917356,
         "offset": [
-          -625.8377277054462,
-          -430.92300597363806
+          -2802.6769869082264,
+          -3400.6554041556205
         ]
       },
       "nodes": {
@@ -158,7 +195,7 @@
           "class_type": "Mahiro",
           "pos": [
             450.0,
-            540.0
+            380.0
           ],
           "size": [
             190.0,
@@ -174,7 +211,7 @@
           "class_type": "VectorscopeCC",
           "pos": [
             360.0,
-            230.0
+            70.0
           ],
           "size": [
             220.0,
@@ -186,8 +223,8 @@
           "id": "685",
           "class_type": "bc2b2877-06d7-4b9f-881a-9263df411f13",
           "pos": [
-            370.0,
-            160.0
+            360.0,
+            0.0
           ],
           "size": [
             270.0,
@@ -237,19 +274,6 @@
           ],
           "title": "Prompt Encode Style"
         },
-        "resize_by_factor": {
-          "id": "1658",
-          "class_type": "de2c84e5-02a8-4c50-831d-3c169dee4820",
-          "pos": [
-            640.0,
-            0.0
-          ],
-          "size": [
-            280.0,
-            330.0
-          ],
-          "title": "Resize by Factor"
-        },
         "checkpoint": {
           "id": "1941",
           "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
@@ -259,9 +283,61 @@
           ],
           "size": [
             320.0,
-            130.0
+            138.0
           ],
           "title": "Checkpoint"
+        },
+        "ksampler": {
+          "id": "2213",
+          "class_type": "SimpleSyrup.KSamplerExtras",
+          "pos": [
+            930.0,
+            0.0
+          ],
+          "size": [
+            270.0,
+            480.0
+          ],
+          "title": "ksampler"
+        },
+        "upscale_by_factor": {
+          "id": "2223",
+          "class_type": "8a36fa26-de83-4e4f-a89f-0e5f545f3c0f",
+          "pos": [
+            610.0,
+            0.0
+          ],
+          "size": [
+            300.0,
+            110.0
+          ],
+          "title": "Upscale by Factor"
+        },
+        "vae_encode_options": {
+          "id": "2224",
+          "class_type": "SimpleSyrup.VAEEncodeOptions",
+          "pos": [
+            610.0,
+            170.0
+          ],
+          "size": [
+            300.0,
+            180.0
+          ],
+          "title": "VAE Encode (Options)"
+        },
+        "vae_decode_options": {
+          "id": "2225",
+          "class_type": "SimpleSyrup.VAEDecodeOptions",
+          "pos": [
+            930.0,
+            540.0
+          ],
+          "size": [
+            270.0,
+            180.0
+          ],
+          "title": "VAE Decode (Options)"
         }
       },
       "markers": {
@@ -283,16 +359,16 @@
             "bgcolor": "#3f5159"
           }
         },
-        "output.value": {
+        "output.image": {
           "id": "567",
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            950.0,
+            1230.0,
             0.0
           ],
           "size": [
-            270.0,
+            260.0,
             270.0
           ],
           "title": "IMAGE Output",
@@ -304,13 +380,13 @@
       },
       "groups": [
         {
-          "id": 257,
+          "id": 365,
           "title": "SDXL/Diffusion Upscale",
           "bounding": [
             -10.0,
             -60.0,
-            1240.0,
-            900.0
+            1510.0,
+            908.0
           ],
           "color": "#3f789e",
           "font_size": 24,
@@ -321,10 +397,10 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube",
             "default_alias": "SDXL/Diffusion Upscale",
             "target_model": "SDXL",
-            "cube_version": "2.4.0",
+            "cube_version": "2.0.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube@2.4.0",
-            "surface_signature": "48a4e4be6f3b",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube@2.0.0",
+            "surface_signature": "bbb730905464",
             "icon": {
               "kind": "asset",
               "media_type": "image/png",
@@ -337,25 +413,26 @@
               ],
               "outputs": [
                 "567"
-              ],
-              "inherits": [],
-              "metas": []
+              ]
             },
             "nodes": [
-              "1658",
-              "565",
-              "685",
+              "2223",
+              "2224",
               "1941",
-              "584",
-              "1607",
+              "2213",
+              "685",
+              "2225",
               "1627",
-              "1606"
+              "1606",
+              "1607",
+              "584",
+              "565"
             ],
             "bounds": {
-              "x": 1340.0,
-              "y": 750.0,
-              "w": 1240.0,
-              "h": 900.0,
+              "x": 3170.0,
+              "y": 3980.0,
+              "w": 1510.0,
+              "h": 908.0,
               "padding": {
                 "x": 2.0,
                 "y": 2.0,
@@ -592,13 +669,20 @@
             ],
             "vae_name": [
               "LIST"
+            ],
+            "clip_skip": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
             ]
           }
         },
         "input_order": {
           "required": [
             "ckpt_name",
-            "vae_name"
+            "vae_name",
+            "clip_skip"
           ]
         },
         "output": [
@@ -621,6 +705,676 @@
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Loaders",
         "output_node": false
+      },
+      "SimpleSyrup.KSamplerExtras": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {}
+            ],
+            "seed": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "steps": [
+              "INT",
+              {
+                "default": 20,
+                "min": 1,
+                "max": 10000
+              }
+            ],
+            "cfg": [
+              "FLOAT",
+              {
+                "default": 8.0,
+                "min": 0.0,
+                "max": 100.0,
+                "step": 0.1,
+                "round": 0.01
+              }
+            ],
+            "sampler_name": [
+              "LIST"
+            ],
+            "scheduler": [
+              "LIST"
+            ],
+            "positive": [
+              "CONDITIONING",
+              {}
+            ],
+            "negative": [
+              "CONDITIONING",
+              {}
+            ],
+            "latent_image": [
+              "LATENT",
+              {}
+            ],
+            "denoise": [
+              "FLOAT",
+              {
+                "default": 1.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "seed",
+            "steps",
+            "cfg",
+            "sampler_name",
+            "scheduler",
+            "positive",
+            "negative",
+            "latent_image",
+            "denoise"
+          ]
+        },
+        "output": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "LATENT"
+        ],
+        "name": "SimpleSyrup.KSamplerExtras",
+        "display_name": "KSampler (Extras)",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling",
+        "output_node": false
+      },
+      "SimpleSyrup.VAEEncodeOptions": {
+        "input": {
+          "required": {
+            "use_tiling": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "pixels": [
+              "IMAGE",
+              {
+                "rawLink": true
+              }
+            ],
+            "vae": [
+              "VAE",
+              {
+                "rawLink": true
+              }
+            ],
+            "tile_size": [
+              "INT",
+              {
+                "default": 512,
+                "min": 64,
+                "max": 4096,
+                "step": 64,
+                "advanced": true
+              }
+            ],
+            "overlap": [
+              "INT",
+              {
+                "default": 64,
+                "min": 0,
+                "max": 4096,
+                "step": 32,
+                "advanced": true
+              }
+            ],
+            "temporal_size": [
+              "INT",
+              {
+                "default": 64,
+                "min": 8,
+                "max": 4096,
+                "step": 4,
+                "advanced": true
+              }
+            ],
+            "temporal_overlap": [
+              "INT",
+              {
+                "default": 8,
+                "min": 4,
+                "max": 4096,
+                "step": 4,
+                "advanced": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "use_tiling",
+            "pixels",
+            "vae",
+            "tile_size",
+            "overlap",
+            "temporal_size",
+            "temporal_overlap"
+          ]
+        },
+        "output": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "latent"
+        ],
+        "name": "SimpleSyrup.VAEEncodeOptions",
+        "display_name": "VAE Encode (Options)",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Latent",
+        "output_node": false
+      },
+      "SimpleSyrup.VAEDecodeOptions": {
+        "input": {
+          "required": {
+            "use_tiling": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "samples": [
+              "LATENT",
+              {
+                "rawLink": true
+              }
+            ],
+            "vae": [
+              "VAE",
+              {
+                "rawLink": true
+              }
+            ],
+            "tile_size": [
+              "INT",
+              {
+                "default": 512,
+                "min": 64,
+                "max": 4096,
+                "step": 32,
+                "advanced": true
+              }
+            ],
+            "overlap": [
+              "INT",
+              {
+                "default": 64,
+                "min": 0,
+                "max": 4096,
+                "step": 32,
+                "advanced": true
+              }
+            ],
+            "temporal_size": [
+              "INT",
+              {
+                "default": 64,
+                "min": 8,
+                "max": 4096,
+                "step": 4,
+                "advanced": true
+              }
+            ],
+            "temporal_overlap": [
+              "INT",
+              {
+                "default": 8,
+                "min": 4,
+                "max": 4096,
+                "step": 4,
+                "advanced": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "use_tiling",
+            "samples",
+            "vae",
+            "tile_size",
+            "overlap",
+            "temporal_size",
+            "temporal_overlap"
+          ]
+        },
+        "output": [
+          "IMAGE"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "image"
+        ],
+        "name": "SimpleSyrup.VAEDecodeOptions",
+        "display_name": "VAE Decode (Options)",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Latent",
+        "output_node": false
+      },
+      "SimpleSyrup.ResizeImageToTarget": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {}
+            ],
+            "width": [
+              "INT",
+              {
+                "default": 1024,
+                "min": 1,
+                "max": 16384,
+                "step": 1
+              }
+            ],
+            "height": [
+              "INT",
+              {
+                "default": 1024,
+                "min": 1,
+                "max": 16384,
+                "step": 1
+              }
+            ],
+            "resize_mode": [
+              "LIST"
+            ],
+            "sampling": [
+              "LIST"
+            ],
+            "processor": [
+              "LIST"
+            ],
+            "divisible_by": [
+              "INT",
+              {
+                "default": 1,
+                "min": 1,
+                "max": 4096,
+                "step": 1
+              }
+            ],
+            "crop_position": [
+              "LIST"
+            ],
+            "pad_color": [
+              "STRING",
+              {
+                "default": "0, 0, 0",
+                "multiline": false
+              }
+            ],
+            "max_batch_size": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 4096,
+                "step": 1
+              }
+            ],
+            "sinc_window": [
+              "INT",
+              {
+                "default": 3,
+                "min": 1,
+                "max": 8,
+                "step": 1
+              }
+            ],
+            "precision": [
+              "LIST"
+            ]
+          },
+          "optional": {
+            "mask": [
+              "MASK",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image",
+            "width",
+            "height",
+            "resize_mode",
+            "sampling",
+            "processor",
+            "divisible_by",
+            "crop_position",
+            "pad_color",
+            "max_batch_size",
+            "sinc_window",
+            "precision"
+          ],
+          "optional": [
+            "mask"
+          ]
+        },
+        "output": [
+          "IMAGE",
+          "INT",
+          "INT",
+          "MASK"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "image",
+          "width",
+          "height",
+          "mask"
+        ],
+        "name": "SimpleSyrup.ResizeImageToTarget",
+        "display_name": "Resize Image to Target",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Image",
+        "output_node": false
+      },
+      "ComfyMathExpression": {
+        "input": {
+          "required": {
+            "expression": [
+              "STRING",
+              {
+                "default": "a + b",
+                "multiline": true
+              }
+            ],
+            "values": [
+              "COMFY_AUTOGROW_V3",
+              {
+                "template": {
+                  "input": {
+                    "required": {
+                      "value": [
+                        "FLOAT,INT",
+                        {}
+                      ]
+                    }
+                  },
+                  "names": [
+                    "a",
+                    "b",
+                    "c",
+                    "d",
+                    "e",
+                    "f",
+                    "g",
+                    "h",
+                    "i",
+                    "j",
+                    "k",
+                    "l",
+                    "m",
+                    "n",
+                    "o",
+                    "p",
+                    "q",
+                    "r",
+                    "s",
+                    "t",
+                    "u",
+                    "v",
+                    "w",
+                    "x",
+                    "y",
+                    "z"
+                  ],
+                  "min": 1
+                }
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "expression",
+            "values"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "FLOAT",
+          "INT"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "output_name": [
+          "FLOAT",
+          "INT"
+        ],
+        "output_matchtypes": null,
+        "name": "ComfyMathExpression",
+        "display_name": "Math Expression",
+        "python_module": "comfy_extras.nodes_math",
+        "category": "math",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "expression",
+          "formula",
+          "calculate",
+          "calculator",
+          "eval",
+          "math"
+        ],
+        "essentials_category": null
+      },
+      "SimpleSyrup.ScaleFactor": {
+        "input": {
+          "required": {
+            "value": [
+              "FLOAT",
+              {
+                "default": 1.5,
+                "min": 1.0,
+                "max": 5.0,
+                "step": 0.1
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "output": [
+          "FLOAT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "scale_factor"
+        ],
+        "name": "SimpleSyrup.ScaleFactor",
+        "display_name": "Scale Factor",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Primitives",
+        "output_node": false
+      },
+      "UpscaleModelLoader": {
+        "input": {
+          "required": {
+            "model_name": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model_name"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "UPSCALE_MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "UPSCALE_MODEL"
+        ],
+        "output_matchtypes": null,
+        "name": "UpscaleModelLoader",
+        "display_name": "Load Upscale Model",
+        "python_module": "comfy_extras.nodes_upscale_model",
+        "category": "loaders",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null
+      },
+      "GetImageSize": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {}
+            ]
+          },
+          "hidden": {
+            "unique_id": [
+              "UNIQUE_ID"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image"
+          ],
+          "hidden": [
+            "unique_id"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "INT",
+          "INT",
+          "INT"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "width",
+          "height",
+          "batch_size"
+        ],
+        "output_matchtypes": null,
+        "name": "GetImageSize",
+        "display_name": "Get Image Size",
+        "python_module": "comfy_extras.nodes_images",
+        "category": "image",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "dimensions",
+          "resolution",
+          "image info"
+        ],
+        "essentials_category": null
+      },
+      "ImageUpscaleWithModel": {
+        "input": {
+          "required": {
+            "upscale_model": [
+              "UPSCALE_MODEL",
+              {}
+            ],
+            "image": [
+              "IMAGE",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "upscale_model",
+            "image"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "IMAGE"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "IMAGE"
+        ],
+        "output_matchtypes": null,
+        "name": "ImageUpscaleWithModel",
+        "display_name": "Upscale Image (using Model)",
+        "python_module": "comfy_extras.nodes_upscale_model",
+        "category": "image/upscaling",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "upscale",
+          "upscaler",
+          "upsc",
+          "enlarge image",
+          "super resolution",
+          "hires",
+          "superres",
+          "increase resolution"
+        ],
+        "essentials_category": null
       },
       "PCLazyTextEncode": {
         "input": {
@@ -885,594 +1639,733 @@
           "parse text"
         ],
         "essentials_category": null
-      },
-      "MathExpression|pysssss": {
-        "input": {
-          "required": {
-            "expression": [
-              "STRING",
-              {
-                "multiline": true,
-                "dynamicPrompts": false,
-                "pysssss.autocomplete": {
-                  "words": [
-                    {
-                      "text": "round",
-                      "value": "round()",
-                      "showValue": false,
-                      "hint": "number, dp? = 0",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "ceil",
-                      "value": "ceil()",
-                      "showValue": false,
-                      "hint": "number",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "floor",
-                      "value": "floor()",
-                      "showValue": false,
-                      "hint": "number",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "min",
-                      "value": "min()",
-                      "showValue": false,
-                      "hint": "...numbers",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "max",
-                      "value": "max()",
-                      "showValue": false,
-                      "hint": "...numbers",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "randomint",
-                      "value": "randomint()",
-                      "showValue": false,
-                      "hint": "min, max",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "randomchoice",
-                      "value": "randomchoice()",
-                      "showValue": false,
-                      "hint": "...numbers",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "sqrt",
-                      "value": "sqrt()",
-                      "showValue": false,
-                      "hint": "number",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "int",
-                      "value": "int()",
-                      "showValue": false,
-                      "hint": "number",
-                      "caretOffset": -1
-                    },
-                    {
-                      "text": "iif",
-                      "value": "iif()",
-                      "showValue": false,
-                      "hint": "value, truepart, falsepart",
-                      "caretOffset": -1
-                    }
-                  ],
-                  "separator": ""
-                }
-              }
-            ]
-          },
-          "optional": {
-            "a": [
-              "*"
-            ],
-            "b": [
-              "*"
-            ],
-            "c": [
-              "*"
-            ]
-          },
-          "hidden": {
-            "extra_pnginfo": "EXTRA_PNGINFO",
-            "prompt": "PROMPT"
-          }
-        },
-        "input_order": {
-          "required": [
-            "expression"
-          ],
-          "optional": [
-            "a",
-            "b",
-            "c"
-          ],
-          "hidden": [
-            "extra_pnginfo",
-            "prompt"
-          ]
-        },
-        "output": [
-          "INT",
-          "FLOAT"
-        ],
-        "output_is_list": [
-          false,
-          false
-        ],
-        "output_name": [
-          "INT",
-          "FLOAT"
-        ],
-        "name": "MathExpression|pysssss",
-        "display_name": "Math Expression 🐍",
-        "python_module": "custom_nodes.comfyui-custom-scripts",
-        "category": "utils",
-        "output_node": true
-      },
-      "GetImageSize+": {
-        "input": {
-          "required": {
-            "image": [
-              "IMAGE"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "image"
-          ]
-        },
-        "output": [
-          "INT",
-          "INT",
-          "INT"
-        ],
-        "output_is_list": [
-          false,
-          false,
-          false
-        ],
-        "output_name": [
-          "width",
-          "height",
-          "count"
-        ],
-        "name": "GetImageSize+",
-        "display_name": "🔧 Get Image Size",
-        "python_module": "custom_nodes.comfyui_essentials",
-        "category": "essentials/image utils",
-        "output_node": false
-      },
-      "ImageUpscaleWithModel": {
-        "input": {
-          "required": {
-            "upscale_model": [
-              "UPSCALE_MODEL",
-              {}
-            ],
-            "image": [
-              "IMAGE",
-              {}
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "upscale_model",
-            "image"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "IMAGE"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "IMAGE"
-        ],
-        "output_matchtypes": null,
-        "name": "ImageUpscaleWithModel",
-        "display_name": "Upscale Image (using Model)",
-        "python_module": "comfy_extras.nodes_upscale_model",
-        "category": "image/upscaling",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": [
-          "upscale",
-          "upscaler",
-          "upsc",
-          "enlarge image",
-          "super resolution",
-          "hires",
-          "superres",
-          "increase resolution"
-        ],
-        "essentials_category": null
-      },
-      "SimpleSyrup.ScaleFactor": {
-        "input": {
-          "required": {
-            "value": [
-              "FLOAT",
-              {
-                "default": 1.5,
-                "min": 1.0,
-                "max": 5.0,
-                "step": 0.1,
-                "tooltip": "Scaling multiplier. 1.0 keeps the target at its current size; larger values scale it up, with a maximum of 5.0x."
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "value"
-          ]
-        },
-        "output": [
-          "FLOAT"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "scale_factor"
-        ],
-        "name": "SimpleSyrup.ScaleFactor",
-        "display_name": "Scale Factor",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Primitives",
-        "output_node": false,
-        "description": "Provides a bounded multiplier for scaling.",
-        "output_tooltips": [
-          "Multiplier used to scale a connected target."
-        ]
-      },
-      "SimpleSyrup.KSamplerExtras": {
-        "input": {
-          "required": {
-            "model": [
-              "MODEL",
-              {}
-            ],
-            "seed": [
-              "INT",
-              {
-                "default": 0,
-                "min": 0,
-                "max": 18446744073709551615,
-                "control_after_generate": true
-              }
-            ],
-            "steps": [
-              "INT",
-              {
-                "default": 20,
-                "min": 1,
-                "max": 10000
-              }
-            ],
-            "cfg": [
-              "FLOAT",
-              {
-                "default": 8.0,
-                "min": 0.0,
-                "max": 100.0,
-                "step": 0.1,
-                "round": 0.01
-              }
-            ],
-            "sampler_name": [
-              "LIST"
-            ],
-            "scheduler": [
-              "LIST"
-            ],
-            "positive": [
-              "CONDITIONING",
-              {}
-            ],
-            "negative": [
-              "CONDITIONING",
-              {}
-            ],
-            "latent_image": [
-              "LATENT",
-              {}
-            ],
-            "denoise": [
-              "FLOAT",
-              {
-                "default": 1.0,
-                "min": 0.0,
-                "max": 1.0,
-                "step": 0.01
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model",
-            "seed",
-            "steps",
-            "cfg",
-            "sampler_name",
-            "scheduler",
-            "positive",
-            "negative",
-            "latent_image",
-            "denoise"
-          ]
-        },
-        "output": [
-          "LATENT"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "LATENT"
-        ],
-        "name": "SimpleSyrup.KSamplerExtras",
-        "display_name": "KSampler (Extras)",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Sampling",
-        "output_node": false
-      },
-      "VAEEncode": {
-        "input": {
-          "required": {
-            "pixels": [
-              "IMAGE"
-            ],
-            "vae": [
-              "VAE"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "pixels",
-            "vae"
-          ]
-        },
-        "output": [
-          "LATENT"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "LATENT"
-        ],
-        "name": "VAEEncode",
-        "display_name": "VAE Encode",
-        "python_module": "nodes",
-        "category": "latent",
-        "output_node": false
-      },
-      "VAEDecode": {
-        "input": {
-          "required": {
-            "samples": [
-              "LATENT",
-              {}
-            ],
-            "vae": [
-              "VAE",
-              {}
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "samples",
-            "vae"
-          ]
-        },
-        "output": [
-          "IMAGE"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "IMAGE"
-        ],
-        "name": "VAEDecode",
-        "display_name": "VAE Decode",
-        "python_module": "nodes",
-        "category": "latent",
-        "output_node": false
-      },
-      "UpscaleModelLoader": {
-        "input": {
-          "required": {
-            "model_name": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model_name"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "UPSCALE_MODEL"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "UPSCALE_MODEL"
-        ],
-        "output_matchtypes": null,
-        "name": "UpscaleModelLoader",
-        "display_name": "Load Upscale Model",
-        "python_module": "comfy_extras.nodes_upscale_model",
-        "category": "loaders",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": null
-      },
-      "SimpleSyrup.ResizeImageToTarget": {
-        "input": {
-          "required": {
-            "image": [
-              "IMAGE"
-            ],
-            "width": [
-              "INT",
-              {
-                "default": 1024,
-                "min": 1,
-                "max": 16384,
-                "step": 1
-              }
-            ],
-            "height": [
-              "INT",
-              {
-                "default": 1024,
-                "min": 1,
-                "max": 16384,
-                "step": 1
-              }
-            ],
-            "resize_mode": [
-              "LIST"
-            ],
-            "sampling": [
-              "LIST"
-            ],
-            "processor": [
-              "LIST"
-            ],
-            "divisible_by": [
-              "INT",
-              {
-                "default": 1,
-                "min": 1,
-                "max": 4096,
-                "step": 1
-              }
-            ],
-            "crop_position": [
-              "LIST"
-            ],
-            "pad_color": [
-              "STRING",
-              {
-                "default": "0, 0, 0",
-                "multiline": false
-              }
-            ],
-            "max_batch_size": [
-              "INT",
-              {
-                "default": 0,
-                "min": 0,
-                "max": 4096,
-                "step": 1
-              }
-            ],
-            "sinc_window": [
-              "INT",
-              {
-                "default": 3,
-                "min": 1,
-                "max": 8,
-                "step": 1
-              }
-            ],
-            "precision": [
-              "LIST"
-            ]
-          },
-          "optional": {
-            "mask": [
-              "MASK"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "image",
-            "width",
-            "height",
-            "resize_mode",
-            "sampling",
-            "processor",
-            "divisible_by",
-            "crop_position",
-            "pad_color",
-            "max_batch_size",
-            "sinc_window",
-            "precision"
-          ],
-          "optional": [
-            "mask"
-          ]
-        },
-        "output": [
-          "IMAGE",
-          "INT",
-          "INT",
-          "MASK"
-        ],
-        "output_is_list": [
-          false,
-          false,
-          false,
-          false
-        ],
-        "output_name": [
-          "image",
-          "width",
-          "height",
-          "mask"
-        ],
-        "name": "SimpleSyrup.ResizeImageToTarget",
-        "display_name": "Resize Image to Target",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Image",
-        "output_node": false
       }
     },
     "subgraphs": [
+      {
+        "id": "8a36fa26-de83-4e4f-a89f-0e5f545f3c0f",
+        "version": 1,
+        "revision": 0,
+        "state": {
+          "lastNodeId": 2225,
+          "lastLinkId": 3515,
+          "lastGroupId": 365,
+          "lastRerouteId": 0
+        },
+        "config": {},
+        "name": "Upscale by Factor",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            3370,
+            -10,
+            163.9499969482422,
+            120
+          ],
+          "pinned": false
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            4310,
+            -70,
+            120,
+            60
+          ],
+          "pinned": false
+        },
+        "inputs": [
+          {
+            "id": "628a5b07-58a8-4b31-8a3d-70bca77e7250",
+            "type": "IMAGE",
+            "linkIds": [
+              3198,
+              3476
+            ],
+            "name": "image",
+            "label": "image",
+            "localized_name": "image"
+          },
+          {
+            "id": "e65eaac3-b8ae-4171-a989-9829d5b52f14",
+            "type": "FLOAT",
+            "linkIds": [
+              3211
+            ],
+            "name": "value",
+            "label": "Scale Factor"
+          },
+          {
+            "id": "71148757-ba6f-4db2-8a09-fc8a988be39e",
+            "type": "COMBO",
+            "linkIds": [
+              3212
+            ],
+            "name": "model_name",
+            "label": "ESRGAN Model"
+          },
+          {
+            "id": "1efbf970-ebf1-4bef-b430-fb4e08379e33",
+            "type": "COMBO",
+            "linkIds": [
+              3213
+            ],
+            "name": "sampling",
+            "label": "Resampling Algorithm"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "6f10cac5-823e-4fa0-b704-909f07199545",
+            "type": "IMAGE",
+            "linkIds": [
+              3199
+            ],
+            "name": "image",
+            "label": "image",
+            "localized_name": "image"
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 2216,
+            "type": "SimpleSyrup.ResizeImageToTarget",
+            "pos": [
+              4040,
+              -60
+            ],
+            "size": [
+              240,
+              360
+            ],
+            "flags": {},
+            "order": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 3189
+              },
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "shape": 7,
+                "type": "MASK",
+                "link": null
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": 3478
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": 3482
+              },
+              {
+                "localized_name": "resize_mode",
+                "name": "resize_mode",
+                "type": "COMBO",
+                "widget": {
+                  "name": "resize_mode"
+                },
+                "link": null
+              },
+              {
+                "label": "Resampling Algorithm",
+                "localized_name": "sampling",
+                "name": "sampling",
+                "type": "COMBO",
+                "widget": {
+                  "name": "sampling"
+                },
+                "link": 3213
+              },
+              {
+                "localized_name": "processor",
+                "name": "processor",
+                "type": "COMBO",
+                "widget": {
+                  "name": "processor"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "divisible_by",
+                "name": "divisible_by",
+                "type": "INT",
+                "widget": {
+                  "name": "divisible_by"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "crop_position",
+                "name": "crop_position",
+                "type": "COMBO",
+                "widget": {
+                  "name": "crop_position"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "pad_color",
+                "name": "pad_color",
+                "type": "STRING",
+                "widget": {
+                  "name": "pad_color"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "max_batch_size",
+                "name": "max_batch_size",
+                "type": "INT",
+                "widget": {
+                  "name": "max_batch_size"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "sinc_window",
+                "name": "sinc_window",
+                "type": "INT",
+                "widget": {
+                  "name": "sinc_window"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "precision",
+                "name": "precision",
+                "type": "COMBO",
+                "widget": {
+                  "name": "precision"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "links": [
+                  3199
+                ]
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": []
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": []
+              },
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "type": "MASK",
+                "links": []
+              }
+            ],
+            "properties": {
+              "cnr_id": "SimpleSyrup",
+              "ver": "37bcd403c5172adc2505b38d1d31c05969a69443",
+              "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
+              "sugarcubes_symbol": "resize_image_to_target"
+            },
+            "widgets_values": [
+              1024,
+              1024,
+              "Keep AR",
+              "lanczos",
+              "gpu",
+              2,
+              "center",
+              "0, 0, 0",
+              0,
+              3,
+              "fp32"
+            ]
+          },
+          {
+            "id": 2217,
+            "type": "ComfyMathExpression",
+            "pos": [
+              3810,
+              140
+            ],
+            "size": [
+              210,
+              150
+            ],
+            "flags": {},
+            "order": 1,
+            "inputs": [
+              {
+                "label": "a",
+                "localized_name": "values.a",
+                "name": "values.a",
+                "type": "FLOAT,INT",
+                "link": 3479
+              },
+              {
+                "label": "b",
+                "localized_name": "values.b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT",
+                "link": 3481
+              },
+              {
+                "label": "c",
+                "localized_name": "values.c",
+                "name": "values.c",
+                "shape": 7,
+                "type": "FLOAT,INT",
+                "link": null
+              },
+              {
+                "localized_name": "expression",
+                "name": "expression",
+                "type": "STRING",
+                "widget": {
+                  "name": "expression"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              },
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  3482
+                ]
+              }
+            ],
+            "title": "get new height",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.2",
+              "Node name for S&R": "ComfyMathExpression"
+            },
+            "widgets_values": [
+              "a * b"
+            ]
+          },
+          {
+            "id": 2218,
+            "type": "ComfyMathExpression",
+            "pos": [
+              3810,
+              -30
+            ],
+            "size": [
+              210,
+              150
+            ],
+            "flags": {},
+            "order": 2,
+            "inputs": [
+              {
+                "label": "a",
+                "localized_name": "values.a",
+                "name": "values.a",
+                "type": "FLOAT,INT",
+                "link": 3477
+              },
+              {
+                "label": "b",
+                "localized_name": "values.b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT",
+                "link": 3480
+              },
+              {
+                "label": "c",
+                "localized_name": "values.c",
+                "name": "values.c",
+                "shape": 7,
+                "type": "FLOAT,INT",
+                "link": null
+              },
+              {
+                "localized_name": "expression",
+                "name": "expression",
+                "type": "STRING",
+                "widget": {
+                  "name": "expression"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              },
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  3478
+                ]
+              }
+            ],
+            "title": "get new width",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.2",
+              "Node name for S&R": "ComfyMathExpression"
+            },
+            "widgets_values": [
+              "a * b"
+            ]
+          },
+          {
+            "id": 2219,
+            "type": "SimpleSyrup.ScaleFactor",
+            "pos": [
+              3570,
+              90
+            ],
+            "size": [
+              210,
+              60
+            ],
+            "flags": {},
+            "order": 3,
+            "inputs": [
+              {
+                "label": "Scale Factor",
+                "localized_name": "value",
+                "name": "value",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 3211
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "scale_factor",
+                "name": "scale_factor",
+                "type": "FLOAT",
+                "links": [
+                  3480,
+                  3481
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "SimpleSyrup",
+              "ver": "37bcd403c5172adc2505b38d1d31c05969a69443",
+              "Node name for S&R": "SimpleSyrup.ScaleFactor",
+              "sugarcubes_symbol": "scale_factor"
+            },
+            "widgets_values": [
+              1.5
+            ]
+          },
+          {
+            "id": 2220,
+            "type": "UpscaleModelLoader",
+            "pos": [
+              3570,
+              -40
+            ],
+            "size": [
+              210,
+              70
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 4,
+            "inputs": [
+              {
+                "label": "ESRGAN Model",
+                "localized_name": "model_name",
+                "name": "model_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "model_name"
+                },
+                "link": 3212
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "UPSCALE_MODEL",
+                "name": "UPSCALE_MODEL",
+                "type": "UPSCALE_MODEL",
+                "links": [
+                  3194
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.2",
+              "Node name for S&R": "UpscaleModelLoader",
+              "sugarcubes_symbol": "load_upscale_model"
+            },
+            "widgets_values": [
+              "R-ESRGAN 4x+ Anime6B.pth"
+            ]
+          },
+          {
+            "id": 2221,
+            "type": "GetImageSize",
+            "pos": [
+              3810,
+              -140
+            ],
+            "size": [
+              210,
+              70
+            ],
+            "flags": {},
+            "order": 5,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 3476
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": [
+                  3477
+                ]
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": [
+                  3479
+                ]
+              },
+              {
+                "localized_name": "batch_size",
+                "name": "batch_size",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.18.2",
+              "Node name for S&R": "GetImageSize"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 2222,
+            "type": "ImageUpscaleWithModel",
+            "pos": [
+              4040,
+              -170
+            ],
+            "size": [
+              240,
+              50
+            ],
+            "flags": {},
+            "order": 6,
+            "inputs": [
+              {
+                "localized_name": "upscale_model",
+                "name": "upscale_model",
+                "type": "UPSCALE_MODEL",
+                "link": 3194
+              },
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 3198
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  3189
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.7.0",
+              "Node name for S&R": "ImageUpscaleWithModel"
+            },
+            "widgets_values": []
+          }
+        ],
+        "links": [
+          {
+            "id": 3194,
+            "origin_id": 2220,
+            "origin_slot": 0,
+            "target_id": 2222,
+            "target_slot": 0,
+            "type": "UPSCALE_MODEL"
+          },
+          {
+            "id": 3189,
+            "origin_id": 2222,
+            "origin_slot": 0,
+            "target_id": 2216,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3198,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 2222,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3199,
+            "origin_id": 2216,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3211,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 2219,
+            "target_slot": 0,
+            "type": "FLOAT"
+          },
+          {
+            "id": 3212,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 2220,
+            "target_slot": 0,
+            "type": "COMBO"
+          },
+          {
+            "id": 3213,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 2216,
+            "target_slot": 5,
+            "type": "COMBO"
+          },
+          {
+            "id": 3476,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 2221,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3477,
+            "origin_id": 2221,
+            "origin_slot": 0,
+            "target_id": 2218,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 3478,
+            "origin_id": 2218,
+            "origin_slot": 1,
+            "target_id": 2216,
+            "target_slot": 2,
+            "type": "INT"
+          },
+          {
+            "id": 3479,
+            "origin_id": 2221,
+            "origin_slot": 1,
+            "target_id": 2217,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 3480,
+            "origin_id": 2219,
+            "origin_slot": 0,
+            "target_id": 2218,
+            "target_slot": 1,
+            "type": "FLOAT"
+          },
+          {
+            "id": 3481,
+            "origin_id": 2219,
+            "origin_slot": 0,
+            "target_id": 2217,
+            "target_slot": 1,
+            "type": "FLOAT"
+          },
+          {
+            "id": 3482,
+            "origin_id": 2217,
+            "origin_slot": 1,
+            "target_id": 2216,
+            "target_slot": 3,
+            "type": "INT"
+          }
+        ],
+        "floatingLinks": [],
+        "reroutes": [],
+        "extra": {}
+      },
       {
         "id": "bc2b2877-06d7-4b9f-881a-9263df411f13",
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 1941,
-          "lastLinkId": 2073,
-          "lastGroupId": 257,
+          "lastNodeId": 2225,
+          "lastLinkId": 3515,
+          "lastGroupId": 365,
           "lastRerouteId": 0
         },
         "config": {},
@@ -1572,8 +2465,8 @@
               274
             ],
             "name": "CONDITIONING_2",
-            "localized_name": "CONDITIONING",
-            "label": "Positive Cond"
+            "label": "Positive Cond",
+            "localized_name": "CONDITIONING"
           },
           {
             "id": "bc2b2877-06d7-4b9f-881a-9263df411f13:output:2",
@@ -1582,8 +2475,8 @@
               266
             ],
             "name": "CONDITIONING",
-            "localized_name": "CONDITIONING",
-            "label": "Negative Cond"
+            "label": "Negative Cond",
+            "localized_name": "CONDITIONING"
           }
         ],
         "widgets": [],
@@ -2563,1134 +3456,6 @@
         "extra": {
           "workflowRendererVersion": "LG"
         }
-      },
-      {
-        "id": "de2c84e5-02a8-4c50-831d-3c169dee4820",
-        "version": 1,
-        "revision": 0,
-        "state": {
-          "lastNodeId": 1941,
-          "lastLinkId": 2073,
-          "lastGroupId": 257,
-          "lastRerouteId": 0
-        },
-        "config": {},
-        "name": "Resize by Factor",
-        "inputNode": {
-          "id": -10,
-          "bounding": [
-            4910,
-            2050,
-            163.9499969482422,
-            320
-          ],
-          "pinned": false
-        },
-        "outputNode": {
-          "id": -20,
-          "bounding": [
-            6480,
-            2240,
-            120,
-            60
-          ],
-          "pinned": false
-        },
-        "inputs": [
-          {
-            "id": "4f9aa4c9-ed83-4a19-a3dd-082c8966dd19",
-            "type": "IMAGE",
-            "linkIds": [
-              1150,
-              1151
-            ],
-            "name": "image",
-            "label": "image",
-            "localized_name": "image"
-          },
-          {
-            "id": "d646e8e0-e95e-452b-894d-646776693486",
-            "type": "COMBO",
-            "linkIds": [
-              1158
-            ],
-            "name": "model_name",
-            "label": "ESRGAN Model"
-          },
-          {
-            "id": "d7e67849-67f8-4d59-8638-3306f9e8f3ba",
-            "type": "COMBO",
-            "linkIds": [
-              1159
-            ],
-            "name": "sampling",
-            "label": "Resampling Algorithm"
-          },
-          {
-            "id": "14472adb-6f90-48e8-8ff7-fae56edaa73b",
-            "type": "FLOAT",
-            "linkIds": [
-              1160
-            ],
-            "name": "value",
-            "label": "Scale Factor",
-            "min": 0.1,
-            "max": 10.0
-          },
-          {
-            "id": "9be8a265-add6-4376-aace-1ae05bfa046c",
-            "type": "VAE",
-            "linkIds": [
-              1164,
-              1165
-            ],
-            "name": "vae",
-            "label": "vae"
-          },
-          {
-            "id": "00ab47c8-d174-434c-bdac-8b2142f2878f",
-            "type": "INT",
-            "linkIds": [
-              1166
-            ],
-            "name": "steps",
-            "label": "steps"
-          },
-          {
-            "id": "ea8db281-1aa7-472a-85d3-16fbbe698d5c",
-            "type": "FLOAT",
-            "linkIds": [
-              1167
-            ],
-            "name": "cfg",
-            "label": "cfg"
-          },
-          {
-            "id": "a5e84fd7-188c-41c8-a50f-fa78311348b5",
-            "type": "INT",
-            "linkIds": [
-              1168
-            ],
-            "name": "seed",
-            "label": "seed"
-          },
-          {
-            "id": "d4746b82-8b8d-4f40-89fd-de5039af8dfa",
-            "type": "COMBO",
-            "linkIds": [
-              1169
-            ],
-            "name": "scheduler",
-            "label": "scheduler"
-          },
-          {
-            "id": "ff1e9a20-6266-4641-abc2-e7ace3c3763b",
-            "type": "FLOAT",
-            "linkIds": [
-              1170
-            ],
-            "name": "denoise",
-            "label": "denoise"
-          },
-          {
-            "id": "7ce6d33a-dbca-41fa-bb54-d2047014019e",
-            "type": "COMBO",
-            "linkIds": [
-              1171
-            ],
-            "name": "sampler_name",
-            "label": "sampler_name"
-          },
-          {
-            "id": "1e12b6bd-6f2b-4f92-acc7-f94641905c9f",
-            "type": "MODEL",
-            "linkIds": [
-              1172
-            ],
-            "name": "model",
-            "label": "model"
-          },
-          {
-            "id": "fcb03dab-5799-403a-9471-ea8b9b376bef",
-            "type": "CONDITIONING",
-            "linkIds": [
-              1192
-            ],
-            "name": "positive",
-            "label": "positive"
-          },
-          {
-            "id": "ef39f2f0-78df-4eac-8689-b818e03f8b81",
-            "type": "CONDITIONING",
-            "linkIds": [
-              1193
-            ],
-            "name": "negative",
-            "label": "negative"
-          }
-        ],
-        "outputs": [
-          {
-            "id": "d178efa7-a87f-4335-bcaa-cecae8a33dfb",
-            "type": "IMAGE",
-            "linkIds": [
-              1194
-            ],
-            "name": "image",
-            "label": "image",
-            "localized_name": "image"
-          }
-        ],
-        "widgets": [],
-        "nodes": [
-          {
-            "id": 1654,
-            "type": "MathExpression|pysssss",
-            "pos": [
-              5460,
-              2440
-            ],
-            "size": [
-              210,
-              80
-            ],
-            "flags": {
-              "collapsed": true
-            },
-            "order": 3,
-            "inputs": [
-              {
-                "localized_name": "a",
-                "name": "a",
-                "shape": 7,
-                "type": "INT,FLOAT,IMAGE,LATENT",
-                "link": 1146
-              },
-              {
-                "localized_name": "b",
-                "name": "b",
-                "shape": 7,
-                "type": "INT,FLOAT,IMAGE,LATENT",
-                "link": 1148
-              },
-              {
-                "localized_name": "c",
-                "name": "c",
-                "shape": 7,
-                "type": "INT,FLOAT,IMAGE,LATENT",
-                "link": null
-              },
-              {
-                "localized_name": "expression",
-                "name": "expression",
-                "type": "INT,FLOAT,IMAGE,LATENT",
-                "widget": {
-                  "name": "expression"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "INT",
-                "name": "INT",
-                "type": "INT",
-                "links": [
-                  1153
-                ]
-              },
-              {
-                "localized_name": "FLOAT",
-                "name": "FLOAT",
-                "type": "FLOAT",
-                "links": []
-              }
-            ],
-            "title": "calculate new height",
-            "properties": {
-              "cnr_id": "comfyui_fearnworksnodes",
-              "ver": "0.1.2"
-            },
-            "widgets_values": [
-              "a * b"
-            ]
-          },
-          {
-            "id": 1655,
-            "type": "GetImageSize+",
-            "pos": [
-              5460,
-              2320
-            ],
-            "size": [
-              160,
-              70
-            ],
-            "flags": {
-              "collapsed": true
-            },
-            "order": 4,
-            "inputs": [
-              {
-                "localized_name": "image",
-                "name": "image",
-                "type": "IMAGE",
-                "link": 1150
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "width",
-                "name": "width",
-                "type": "INT",
-                "links": [
-                  1147
-                ]
-              },
-              {
-                "localized_name": "height",
-                "name": "height",
-                "type": "INT",
-                "links": [
-                  1146
-                ]
-              },
-              {
-                "localized_name": "count",
-                "name": "count",
-                "type": "INT",
-                "links": []
-              }
-            ],
-            "title": "get image size",
-            "properties": {
-              "cnr_id": "comfyui_fearnworksnodes",
-              "ver": "0.1.2",
-              "Node name for S&R": "GetImageSize+"
-            }
-          },
-          {
-            "id": 1656,
-            "type": "ImageUpscaleWithModel",
-            "pos": [
-              5450,
-              2210
-            ],
-            "size": [
-              250,
-              50
-            ],
-            "flags": {},
-            "order": 5,
-            "inputs": [
-              {
-                "localized_name": "upscale_model",
-                "name": "upscale_model",
-                "type": "UPSCALE_MODEL",
-                "link": 1152
-              },
-              {
-                "localized_name": "image",
-                "name": "image",
-                "type": "IMAGE",
-                "link": 1151
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "IMAGE",
-                "name": "IMAGE",
-                "type": "IMAGE",
-                "links": [
-                  1155
-                ]
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.7.0",
-              "Node name for S&R": "ImageUpscaleWithModel"
-            }
-          },
-          {
-            "id": 1657,
-            "type": "MathExpression|pysssss",
-            "pos": [
-              5460,
-              2380
-            ],
-            "size": [
-              210,
-              80
-            ],
-            "flags": {
-              "collapsed": true
-            },
-            "order": 6,
-            "inputs": [
-              {
-                "localized_name": "a",
-                "name": "a",
-                "shape": 7,
-                "type": "INT,FLOAT,IMAGE,LATENT",
-                "link": 1147
-              },
-              {
-                "localized_name": "b",
-                "name": "b",
-                "shape": 7,
-                "type": "INT,FLOAT,IMAGE,LATENT",
-                "link": 1149
-              },
-              {
-                "localized_name": "c",
-                "name": "c",
-                "shape": 7,
-                "type": "INT,FLOAT,IMAGE,LATENT",
-                "link": null
-              },
-              {
-                "localized_name": "expression",
-                "name": "expression",
-                "type": "INT,FLOAT,IMAGE,LATENT",
-                "widget": {
-                  "name": "expression"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "INT",
-                "name": "INT",
-                "type": "INT",
-                "links": [
-                  1154
-                ]
-              },
-              {
-                "localized_name": "FLOAT",
-                "name": "FLOAT",
-                "type": "FLOAT",
-                "links": []
-              }
-            ],
-            "title": "calculate new width",
-            "properties": {
-              "cnr_id": "comfyui_fearnworksnodes",
-              "ver": "0.1.2"
-            },
-            "widgets_values": [
-              "a * b"
-            ]
-          },
-          {
-            "id": 621,
-            "type": "SimpleSyrup.ScaleFactor",
-            "pos": [
-              5130,
-              2210
-            ],
-            "size": [
-              270,
-              70
-            ],
-            "flags": {},
-            "order": 1,
-            "inputs": [
-              {
-                "label": "Scale Factor",
-                "localized_name": "value",
-                "name": "value",
-                "type": "FLOAT",
-                "widget": {
-                  "name": "value"
-                },
-                "link": 1160
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "scale_factor",
-                "name": "scale_factor",
-                "type": "FLOAT",
-                "links": [
-                  1148,
-                  1149
-                ]
-              }
-            ],
-            "title": "Scale Factor",
-            "properties": {
-              "Node name for S&R": "SimpleSyrup.ScaleFactor",
-              "sugarcubes_symbol": "scale_factor"
-            },
-            "widgets_values": [
-              1.5
-            ]
-          },
-          {
-            "id": 1661,
-            "type": "SimpleSyrup.KSamplerExtras",
-            "pos": [
-              6070,
-              2240
-            ],
-            "size": [
-              270,
-              480
-            ],
-            "flags": {},
-            "order": 9,
-            "inputs": [
-              {
-                "localized_name": "model",
-                "name": "model",
-                "type": "MODEL",
-                "link": 1172
-              },
-              {
-                "localized_name": "positive",
-                "name": "positive",
-                "type": "CONDITIONING",
-                "link": 1192
-              },
-              {
-                "localized_name": "negative",
-                "name": "negative",
-                "type": "CONDITIONING",
-                "link": 1193
-              },
-              {
-                "localized_name": "latent_image",
-                "name": "latent_image",
-                "type": "LATENT",
-                "link": 1162
-              },
-              {
-                "localized_name": "seed",
-                "name": "seed",
-                "type": "INT",
-                "widget": {
-                  "name": "seed"
-                },
-                "link": 1168
-              },
-              {
-                "localized_name": "steps",
-                "name": "steps",
-                "type": "INT",
-                "widget": {
-                  "name": "steps"
-                },
-                "link": 1166
-              },
-              {
-                "localized_name": "cfg",
-                "name": "cfg",
-                "type": "FLOAT",
-                "widget": {
-                  "name": "cfg"
-                },
-                "link": 1167
-              },
-              {
-                "localized_name": "sampler_name",
-                "name": "sampler_name",
-                "type": "COMBO",
-                "widget": {
-                  "name": "sampler_name"
-                },
-                "link": 1171
-              },
-              {
-                "localized_name": "scheduler",
-                "name": "scheduler",
-                "type": "COMBO",
-                "widget": {
-                  "name": "scheduler"
-                },
-                "link": 1169
-              },
-              {
-                "localized_name": "denoise",
-                "name": "denoise",
-                "type": "FLOAT",
-                "widget": {
-                  "name": "denoise"
-                },
-                "link": 1170
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "LATENT",
-                "name": "LATENT",
-                "type": "LATENT",
-                "links": [
-                  1161
-                ]
-              }
-            ],
-            "title": "ksampler",
-            "properties": {
-              "Node name for S&R": "SimpleSyrup.KSamplerExtras",
-              "sugarcubes_symbol": "ksampler"
-            },
-            "widgets_values": [
-              842318899946617,
-              "randomize",
-              12,
-              6.5,
-              "euler_ancestral",
-              "normal",
-              0.2
-            ]
-          },
-          {
-            "id": 1660,
-            "type": "VAEEncode",
-            "pos": [
-              6200,
-              2170
-            ],
-            "size": [
-              140,
-              50
-            ],
-            "flags": {
-              "collapsed": true
-            },
-            "order": 8,
-            "inputs": [
-              {
-                "localized_name": "pixels",
-                "name": "pixels",
-                "type": "IMAGE",
-                "link": 1163
-              },
-              {
-                "localized_name": "vae",
-                "name": "vae",
-                "type": "VAE",
-                "link": 1164
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "LATENT",
-                "name": "LATENT",
-                "type": "LATENT",
-                "links": [
-                  1162
-                ]
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.18.2",
-              "Node name for S&R": "VAEEncode",
-              "sugarcubes_symbol": "vae_encode"
-            }
-          },
-          {
-            "id": 1659,
-            "type": "VAEDecode",
-            "pos": [
-              6200,
-              2770
-            ],
-            "size": [
-              140,
-              50
-            ],
-            "flags": {
-              "collapsed": true
-            },
-            "order": 7,
-            "inputs": [
-              {
-                "localized_name": "samples",
-                "name": "samples",
-                "type": "LATENT",
-                "link": 1161
-              },
-              {
-                "localized_name": "vae",
-                "name": "vae",
-                "type": "VAE",
-                "link": 1165
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "IMAGE",
-                "name": "IMAGE",
-                "type": "IMAGE",
-                "links": [
-                  1194
-                ]
-              }
-            ],
-            "title": "VAE decode",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.18.2",
-              "Node name for S&R": "VAEDecode",
-              "sugarcubes_symbol": "vae_decode"
-            }
-          },
-          {
-            "id": 611,
-            "type": "UpscaleModelLoader",
-            "pos": [
-              5130,
-              2080
-            ],
-            "size": [
-              270,
-              70
-            ],
-            "flags": {
-              "collapsed": false
-            },
-            "order": 0,
-            "inputs": [
-              {
-                "label": "ESRGAN Model",
-                "localized_name": "model_name",
-                "name": "model_name",
-                "type": "COMBO",
-                "widget": {
-                  "name": "model_name"
-                },
-                "link": 1158
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "UPSCALE_MODEL",
-                "name": "UPSCALE_MODEL",
-                "type": "UPSCALE_MODEL",
-                "links": [
-                  1152
-                ]
-              }
-            ],
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.18.2",
-              "Node name for S&R": "UpscaleModelLoader",
-              "sugarcubes_symbol": "load_upscale_model"
-            },
-            "widgets_values": [
-              "R-ESRGAN 4x+ Anime6B.pth"
-            ]
-          },
-          {
-            "id": 1608,
-            "type": "SimpleSyrup.ResizeImageToTarget",
-            "pos": [
-              5740,
-              2160
-            ],
-            "size": [
-              240,
-              360
-            ],
-            "flags": {},
-            "order": 2,
-            "inputs": [
-              {
-                "localized_name": "image",
-                "name": "image",
-                "type": "IMAGE",
-                "link": 1155
-              },
-              {
-                "localized_name": "mask",
-                "name": "mask",
-                "shape": 7,
-                "type": "MASK",
-                "link": null
-              },
-              {
-                "localized_name": "width",
-                "name": "width",
-                "type": "INT",
-                "widget": {
-                  "name": "width"
-                },
-                "link": 1154
-              },
-              {
-                "localized_name": "height",
-                "name": "height",
-                "type": "INT",
-                "widget": {
-                  "name": "height"
-                },
-                "link": 1153
-              },
-              {
-                "localized_name": "resize_mode",
-                "name": "resize_mode",
-                "type": "COMBO",
-                "widget": {
-                  "name": "resize_mode"
-                },
-                "link": null
-              },
-              {
-                "label": "Resampling Algorithm",
-                "localized_name": "sampling",
-                "name": "sampling",
-                "type": "COMBO",
-                "widget": {
-                  "name": "sampling"
-                },
-                "link": 1159
-              },
-              {
-                "localized_name": "processor",
-                "name": "processor",
-                "type": "COMBO",
-                "widget": {
-                  "name": "processor"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "divisible_by",
-                "name": "divisible_by",
-                "type": "INT",
-                "widget": {
-                  "name": "divisible_by"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "crop_position",
-                "name": "crop_position",
-                "type": "COMBO",
-                "widget": {
-                  "name": "crop_position"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "pad_color",
-                "name": "pad_color",
-                "type": "STRING",
-                "widget": {
-                  "name": "pad_color"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "max_batch_size",
-                "name": "max_batch_size",
-                "type": "INT",
-                "widget": {
-                  "name": "max_batch_size"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "sinc_window",
-                "name": "sinc_window",
-                "type": "INT",
-                "widget": {
-                  "name": "sinc_window"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "precision",
-                "name": "precision",
-                "type": "COMBO",
-                "widget": {
-                  "name": "precision"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "image",
-                "name": "image",
-                "type": "IMAGE",
-                "links": [
-                  1163
-                ]
-              },
-              {
-                "localized_name": "width",
-                "name": "width",
-                "type": "INT",
-                "links": null
-              },
-              {
-                "localized_name": "height",
-                "name": "height",
-                "type": "INT",
-                "links": null
-              },
-              {
-                "localized_name": "mask",
-                "name": "mask",
-                "type": "MASK",
-                "links": null
-              }
-            ],
-            "properties": {
-              "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
-              "sugarcubes_symbol": "resize_image_to_target"
-            },
-            "widgets_values": [
-              1024,
-              1024,
-              "Keep AR",
-              "lanczos",
-              "gpu",
-              2,
-              "center",
-              "0, 0, 0",
-              0,
-              3,
-              "fp32"
-            ]
-          }
-        ],
-        "links": [
-          {
-            "id": 1155,
-            "origin_id": 1656,
-            "origin_slot": 0,
-            "target_id": 1608,
-            "target_slot": 0,
-            "type": "IMAGE"
-          },
-          {
-            "id": 1154,
-            "origin_id": 1657,
-            "origin_slot": 0,
-            "target_id": 1608,
-            "target_slot": 2,
-            "type": "INT"
-          },
-          {
-            "id": 1153,
-            "origin_id": 1654,
-            "origin_slot": 0,
-            "target_id": 1608,
-            "target_slot": 3,
-            "type": "INT"
-          },
-          {
-            "id": 1146,
-            "origin_id": 1655,
-            "origin_slot": 1,
-            "target_id": 1654,
-            "target_slot": 0,
-            "type": "INT"
-          },
-          {
-            "id": 1148,
-            "origin_id": 621,
-            "origin_slot": 0,
-            "target_id": 1654,
-            "target_slot": 1,
-            "type": "FLOAT"
-          },
-          {
-            "id": 1152,
-            "origin_id": 611,
-            "origin_slot": 0,
-            "target_id": 1656,
-            "target_slot": 0,
-            "type": "UPSCALE_MODEL"
-          },
-          {
-            "id": 1147,
-            "origin_id": 1655,
-            "origin_slot": 0,
-            "target_id": 1657,
-            "target_slot": 0,
-            "type": "INT"
-          },
-          {
-            "id": 1149,
-            "origin_id": 621,
-            "origin_slot": 0,
-            "target_id": 1657,
-            "target_slot": 1,
-            "type": "FLOAT"
-          },
-          {
-            "id": 1150,
-            "origin_id": -10,
-            "origin_slot": 0,
-            "target_id": 1655,
-            "target_slot": 0,
-            "type": "IMAGE"
-          },
-          {
-            "id": 1151,
-            "origin_id": -10,
-            "origin_slot": 0,
-            "target_id": 1656,
-            "target_slot": 1,
-            "type": "IMAGE"
-          },
-          {
-            "id": 1158,
-            "origin_id": -10,
-            "origin_slot": 1,
-            "target_id": 611,
-            "target_slot": 0,
-            "type": "COMBO"
-          },
-          {
-            "id": 1159,
-            "origin_id": -10,
-            "origin_slot": 2,
-            "target_id": 1608,
-            "target_slot": 5,
-            "type": "COMBO"
-          },
-          {
-            "id": 1160,
-            "origin_id": -10,
-            "origin_slot": 3,
-            "target_id": 621,
-            "target_slot": 0,
-            "type": "FLOAT"
-          },
-          {
-            "id": 1161,
-            "origin_id": 1661,
-            "origin_slot": 0,
-            "target_id": 1659,
-            "target_slot": 0,
-            "type": "LATENT"
-          },
-          {
-            "id": 1162,
-            "origin_id": 1660,
-            "origin_slot": 0,
-            "target_id": 1661,
-            "target_slot": 3,
-            "type": "LATENT"
-          },
-          {
-            "id": 1163,
-            "origin_id": 1608,
-            "origin_slot": 0,
-            "target_id": 1660,
-            "target_slot": 0,
-            "type": "IMAGE"
-          },
-          {
-            "id": 1164,
-            "origin_id": -10,
-            "origin_slot": 4,
-            "target_id": 1660,
-            "target_slot": 1,
-            "type": "VAE"
-          },
-          {
-            "id": 1165,
-            "origin_id": -10,
-            "origin_slot": 4,
-            "target_id": 1659,
-            "target_slot": 1,
-            "type": "VAE"
-          },
-          {
-            "id": 1166,
-            "origin_id": -10,
-            "origin_slot": 5,
-            "target_id": 1661,
-            "target_slot": 5,
-            "type": "INT"
-          },
-          {
-            "id": 1167,
-            "origin_id": -10,
-            "origin_slot": 6,
-            "target_id": 1661,
-            "target_slot": 6,
-            "type": "FLOAT"
-          },
-          {
-            "id": 1168,
-            "origin_id": -10,
-            "origin_slot": 7,
-            "target_id": 1661,
-            "target_slot": 4,
-            "type": "INT"
-          },
-          {
-            "id": 1169,
-            "origin_id": -10,
-            "origin_slot": 8,
-            "target_id": 1661,
-            "target_slot": 8,
-            "type": "COMBO"
-          },
-          {
-            "id": 1170,
-            "origin_id": -10,
-            "origin_slot": 9,
-            "target_id": 1661,
-            "target_slot": 9,
-            "type": "FLOAT"
-          },
-          {
-            "id": 1171,
-            "origin_id": -10,
-            "origin_slot": 10,
-            "target_id": 1661,
-            "target_slot": 7,
-            "type": "COMBO"
-          },
-          {
-            "id": 1172,
-            "origin_id": -10,
-            "origin_slot": 11,
-            "target_id": 1661,
-            "target_slot": 0,
-            "type": "MODEL"
-          },
-          {
-            "id": 1192,
-            "origin_id": -10,
-            "origin_slot": 12,
-            "target_id": 1661,
-            "target_slot": 1,
-            "type": "CONDITIONING"
-          },
-          {
-            "id": 1193,
-            "origin_id": -10,
-            "origin_slot": 13,
-            "target_id": 1661,
-            "target_slot": 2,
-            "type": "CONDITIONING"
-          },
-          {
-            "id": 1194,
-            "origin_id": 1659,
-            "origin_slot": 0,
-            "target_id": -20,
-            "target_slot": 0,
-            "type": "IMAGE"
-          }
-        ],
-        "floatingLinks": [],
-        "reroutes": [],
-        "extra": {}
       }
     ]
   },
@@ -3712,6 +3477,62 @@
         "label": "vae_name",
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
         "value_type": "string"
+      },
+      {
+        "control_id": "checkpoint.clip_skip",
+        "symbol": "checkpoint",
+        "input_name": "clip_skip",
+        "label": "clip_skip",
+        "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "ksampler.seed",
+        "symbol": "ksampler",
+        "input_name": "seed",
+        "label": "seed",
+        "class_type": "SimpleSyrup.KSamplerExtras",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.steps",
+        "symbol": "ksampler",
+        "input_name": "steps",
+        "label": "steps",
+        "class_type": "SimpleSyrup.KSamplerExtras",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.cfg",
+        "symbol": "ksampler",
+        "input_name": "cfg",
+        "label": "cfg",
+        "class_type": "SimpleSyrup.KSamplerExtras",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.sampler_name",
+        "symbol": "ksampler",
+        "input_name": "sampler_name",
+        "label": "sampler_name",
+        "class_type": "SimpleSyrup.KSamplerExtras",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.scheduler",
+        "symbol": "ksampler",
+        "input_name": "scheduler",
+        "label": "scheduler",
+        "class_type": "SimpleSyrup.KSamplerExtras",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.denoise",
+        "symbol": "ksampler",
+        "input_name": "denoise",
+        "label": "denoise",
+        "class_type": "SimpleSyrup.KSamplerExtras",
+        "value_type": "number"
       },
       {
         "control_id": "negative_prompt.value",
@@ -3736,6 +3557,86 @@
         "label": "encode_style",
         "class_type": "SimpleSyrup.PromptEncodeStyle",
         "value_type": "string"
+      },
+      {
+        "control_id": "vae_decode_options.use_tiling",
+        "symbol": "vae_decode_options",
+        "input_name": "use_tiling",
+        "label": "use_tiling",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "vae_decode_options.tile_size",
+        "symbol": "vae_decode_options",
+        "input_name": "tile_size",
+        "label": "tile_size",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_decode_options.overlap",
+        "symbol": "vae_decode_options",
+        "input_name": "overlap",
+        "label": "overlap",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_decode_options.temporal_size",
+        "symbol": "vae_decode_options",
+        "input_name": "temporal_size",
+        "label": "temporal_size",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_decode_options.temporal_overlap",
+        "symbol": "vae_decode_options",
+        "input_name": "temporal_overlap",
+        "label": "temporal_overlap",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_encode_options.use_tiling",
+        "symbol": "vae_encode_options",
+        "input_name": "use_tiling",
+        "label": "use_tiling",
+        "class_type": "SimpleSyrup.VAEEncodeOptions",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "vae_encode_options.tile_size",
+        "symbol": "vae_encode_options",
+        "input_name": "tile_size",
+        "label": "tile_size",
+        "class_type": "SimpleSyrup.VAEEncodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_encode_options.overlap",
+        "symbol": "vae_encode_options",
+        "input_name": "overlap",
+        "label": "overlap",
+        "class_type": "SimpleSyrup.VAEEncodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_encode_options.temporal_size",
+        "symbol": "vae_encode_options",
+        "input_name": "temporal_size",
+        "label": "temporal_size",
+        "class_type": "SimpleSyrup.VAEEncodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_encode_options.temporal_overlap",
+        "symbol": "vae_encode_options",
+        "input_name": "temporal_overlap",
+        "label": "temporal_overlap",
+        "class_type": "SimpleSyrup.VAEEncodeOptions",
+        "value_type": "number"
       },
       {
         "control_id": "vectorscopecc.alt",
@@ -3819,9 +3720,25 @@
         "values": {
           "checkpoint.ckpt_name": "Flux\\flux1-dev-bnb-nf4.safetensors",
           "checkpoint.vae_name": "Use Checkpoint VAE",
+          "checkpoint.clip_skip": false,
+          "ksampler.steps": 12,
+          "ksampler.cfg": 6.5,
+          "ksampler.sampler_name": "euler_ancestral",
+          "ksampler.scheduler": "normal",
+          "ksampler.denoise": 0.2,
           "negative_prompt.value": "",
           "positive_prompt.value": "",
           "prompt_encode_style.encode_style": "A1111",
+          "vae_decode_options.use_tiling": false,
+          "vae_decode_options.tile_size": 512,
+          "vae_decode_options.overlap": 64,
+          "vae_decode_options.temporal_size": 64,
+          "vae_decode_options.temporal_overlap": 8,
+          "vae_encode_options.use_tiling": false,
+          "vae_encode_options.tile_size": 512,
+          "vae_encode_options.overlap": 64,
+          "vae_encode_options.temporal_size": 64,
+          "vae_encode_options.temporal_overlap": 8,
           "vectorscopecc.alt": true,
           "vectorscopecc.brightness": 0,
           "vectorscopecc.contrast": 0,
