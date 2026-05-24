@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Text-to-image generation: prompts, checkpoint, sampler, size, VAE, prompt encoding, LoRA scheduling, and color controls.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -19,12 +19,13 @@
     "nodes": {
       "checkpoint": {
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
+        "label": "Checkpoint",
         "inputs": {},
-        "original_id": "1946",
-        "label": "Checkpoint"
+        "original_id": "1946"
       },
       "ksampler": {
         "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "label": "KSampler",
         "inputs": {
           "model": [
             "mahiro_cfg",
@@ -39,40 +40,40 @@
             2
           ]
         },
-        "original_id": "1918",
-        "label": "KSampler"
+        "original_id": "1918"
       },
       "mahiro_cfg": {
         "class_type": "Mahiro",
+        "label": "mahiro CFG",
         "inputs": {
           "model": [
             "vectorscopecc",
             0
           ]
         },
-        "original_id": "4",
-        "label": "mahiro CFG"
+        "original_id": "4"
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
+        "label": "negative prompt",
         "inputs": {},
-        "original_id": "5",
-        "label": "negative prompt"
+        "original_id": "5"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
+        "label": "positive prompt",
         "inputs": {},
-        "original_id": "6",
-        "label": "positive prompt"
+        "original_id": "6"
       },
       "prompt_encode_style": {
         "class_type": "SimpleSyrup.PromptEncodeStyle",
+        "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "7",
-        "label": "Prompt Encode Style"
+        "original_id": "7"
       },
       "schedule_encode_prompts": {
         "class_type": "94f725d5-39bf-4060-be68-f573214a2055",
+        "label": "Schedule & Encode Prompts",
         "inputs": {
           "prompt_prefix": [
             "prompt_encode_style",
@@ -95,11 +96,11 @@
             1
           ]
         },
-        "original_id": "8",
-        "label": "Schedule & Encode Prompts"
+        "original_id": "8"
       },
       "vae_decode": {
         "class_type": "VAEDecode",
+        "label": "VAE decode",
         "inputs": {
           "samples": [
             "ksampler",
@@ -110,11 +111,11 @@
             2
           ]
         },
-        "original_id": "9",
-        "label": "VAE decode"
+        "original_id": "9"
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
+        "label": "vectorscopeCC",
         "inputs": {
           "model": [
             "schedule_encode_prompts",
@@ -122,8 +123,7 @@
           ]
         },
         "original_id": "1945",
-        "mode": 4,
-        "label": "vectorscopeCC"
+        "mode": 4
       }
     },
     "inputs": {},
@@ -133,14 +133,14 @@
     "layout": {
       "workflow_version": 0,
       "origin": [
-        3080.0,
-        2650.0
+        1780.0,
+        5100.0
       ],
       "ds": {
-        "scale": 0.8264462809917354,
+        "scale": 0.6830134553650705,
         "offset": [
-          -2436.880963870669,
-          -2218.516800465025
+          -806.1149616463046,
+          -4291.597056049621
         ]
       },
       "nodes": {
@@ -266,7 +266,7 @@
           ],
           "size": [
             320.0,
-            130.0
+            138.0
           ],
           "title": "Checkpoint"
         }
@@ -293,13 +293,13 @@
       },
       "groups": [
         {
-          "id": 275,
+          "id": 366,
           "title": "SDXL/Text to Image",
           "bounding": [
             -10.0,
             -60.0,
             1220.0,
-            760.0
+            768.0
           ],
           "color": "#3f789e",
           "font_size": 24,
@@ -310,10 +310,10 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube",
             "default_alias": "SDXL/Text to Image",
             "target_model": "SDXL",
-            "cube_version": "1.8.0",
+            "cube_version": "1.1.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube@1.8.0",
-            "surface_signature": "3976a08e7efc",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube@1.1.0",
+            "surface_signature": "bbb730905464",
             "icon": {
               "kind": "asset",
               "media_type": "image/png",
@@ -324,9 +324,7 @@
               "inputs": [],
               "outputs": [
                 "13"
-              ],
-              "inherits": [],
-              "metas": []
+              ]
             },
             "nodes": [
               "9",
@@ -335,15 +333,15 @@
               "4",
               "8",
               "1945",
-              "5",
               "7",
-              "6"
+              "6",
+              "5"
             ],
             "bounds": {
-              "x": 3070.0,
-              "y": 2590.0,
+              "x": 1770.0,
+              "y": 5040.0,
               "w": 1220.0,
-              "h": 760.0,
+              "h": 768.0,
               "padding": {
                 "x": 2.0,
                 "y": 2.0,
@@ -614,13 +612,20 @@
             ],
             "vae_name": [
               "LIST"
+            ],
+            "clip_skip": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
             ]
           }
         },
         "input_order": {
           "required": [
             "ckpt_name",
-            "vae_name"
+            "vae_name",
+            "clip_skip"
           ]
         },
         "output": [
@@ -1060,9 +1065,9 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 1967,
-          "lastLinkId": 2488,
-          "lastGroupId": 275,
+          "lastNodeId": 2225,
+          "lastLinkId": 3541,
+          "lastGroupId": 367,
           "lastRerouteId": 0
         },
         "config": {},
@@ -1310,11 +1315,13 @@
             ],
             "title": "ksampler",
             "properties": {
+              "cnr_id": "simple-syrup",
+              "ver": "37bcd403c5172adc2505b38d1d31c05969a69443",
               "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [
-              0,
+              960950506788860,
               "randomize",
               28,
               5.5,
@@ -1504,9 +1511,9 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 1967,
-          "lastLinkId": 2488,
-          "lastGroupId": 275,
+          "lastNodeId": 2225,
+          "lastLinkId": 3541,
+          "lastGroupId": 367,
           "lastRerouteId": 0
         },
         "config": {},
@@ -2614,6 +2621,14 @@
         "value_type": "string"
       },
       {
+        "control_id": "checkpoint.clip_skip",
+        "symbol": "checkpoint",
+        "input_name": "clip_skip",
+        "label": "clip_skip",
+        "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
+        "value_type": "boolean"
+      },
+      {
         "control_id": "negative_prompt.value",
         "symbol": "negative_prompt",
         "input_name": "value",
@@ -2719,6 +2734,7 @@
         "values": {
           "checkpoint.ckpt_name": "",
           "checkpoint.vae_name": "",
+          "checkpoint.clip_skip": false,
           "negative_prompt.value": "",
           "positive_prompt.value": "",
           "prompt_encode_style.encode_style": "A1111",
