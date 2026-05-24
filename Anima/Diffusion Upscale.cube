@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Diffusion upscaling for Anima: upscale an input image, then refine it with tiled diffusion to avoid running Anima diffusion outside its supported resolutions.",
   "metadata": {
     "default_alias": "Anima/Diffusion Upscale",
@@ -147,8 +147,8 @@
       "ds": {
         "scale": 0.9090909090909091,
         "offset": [
-          -2583.2050403278968,
-          -2488.8136307354175
+          -2529.5106442305673,
+          -2336.5216834093567
         ]
       },
       "nodes": {
@@ -237,11 +237,11 @@
           "id": "2200",
           "class_type": "SimpleSyrup.VAEEncodeOptions",
           "pos": [
-            390.0,
+            380.0,
             210.0
           ],
           "size": [
-            290.0,
+            300.0,
             180.0
           ],
           "title": "VAE Encode"
@@ -317,9 +317,9 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube",
             "default_alias": "Anima/Diffusion Upscale",
             "target_model": "Anima",
-            "cube_version": "2.1.0",
+            "cube_version": "2.2.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube@2.1.0",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube@2.2.0",
             "surface_signature": "b873fa9381ad",
             "icon": {
               "kind": "asset",
@@ -1439,9 +1439,9 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2205,
-          "lastLinkId": 3482,
-          "lastGroupId": 364,
+          "lastNodeId": 2225,
+          "lastLinkId": 3515,
+          "lastGroupId": 365,
           "lastRerouteId": 0
         },
         "config": {},
@@ -1705,7 +1705,7 @@
             ],
             "size": [
               210,
-              130
+              150
             ],
             "flags": {},
             "order": 6,
@@ -1778,7 +1778,7 @@
             ],
             "size": [
               210,
-              130
+              150
             ],
             "flags": {},
             "order": 5,
@@ -2155,9 +2155,9 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2205,
-          "lastLinkId": 3482,
-          "lastGroupId": 364,
+          "lastNodeId": 2225,
+          "lastLinkId": 3515,
+          "lastGroupId": 365,
           "lastRerouteId": 0
         },
         "config": {},
