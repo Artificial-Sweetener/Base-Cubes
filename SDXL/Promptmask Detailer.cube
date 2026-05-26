@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Prompt-guided detailing: create masks with GroundingDINO, SAM, and ViTMatte, then inpaint and refine selected regions.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -15,13 +15,14 @@
     "nodes": {
       "checkpoint": {
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
+        "label": "Checkpoint",
         "inputs": {},
         "original_id": "1944",
-        "mode": 4,
-        "label": "Checkpoint"
+        "mode": 4
       },
       "detailer": {
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "label": "Detailer",
         "inputs": {
           "image": [
             "@binding",
@@ -32,7 +33,7 @@
             0
           ],
           "model": [
-            "mahiro_cfg",
+            "vectorscopecc",
             0
           ],
           "positive": [
@@ -48,40 +49,40 @@
             2
           ]
         },
-        "original_id": "2072",
-        "label": "Detailer"
+        "original_id": "2072"
       },
       "mahiro_cfg": {
         "class_type": "Mahiro",
+        "label": "mahiro CFG",
         "inputs": {
           "model": [
-            "vectorscopecc",
+            "checkpoint",
             0
           ]
         },
-        "original_id": "1619",
-        "label": "mahiro CFG"
+        "original_id": "1619"
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
+        "label": "negative prompt",
         "inputs": {},
-        "original_id": "1493",
-        "label": "negative prompt"
+        "original_id": "1493"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
+        "label": "positive prompt",
         "inputs": {},
-        "original_id": "1492",
-        "label": "positive prompt"
+        "original_id": "1492"
       },
       "prompt_encode_style": {
         "class_type": "SimpleSyrup.PromptEncodeStyle",
+        "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "1625",
-        "label": "Prompt Encode Style"
+        "original_id": "1625"
       },
       "prompt_segs_w_sam": {
         "class_type": "4f402150-e6b4-47a7-a634-a3302d8edead",
+        "label": "Prompt SEGS w/ SAM",
         "inputs": {
           "positive_prompt": [
             "sam_prompts",
@@ -92,22 +93,18 @@
             1
           ]
         },
-        "original_id": "2078",
-        "label": "Prompt SEGS w/ SAM"
+        "original_id": "2078"
       },
       "sam_prompts": {
         "class_type": "5d4d6fa7-684c-42c6-a405-f6e7e72a7a9e",
+        "label": "SAM Prompts",
         "inputs": {},
-        "original_id": "2073",
-        "label": "SAM Prompts"
+        "original_id": "2073"
       },
       "schedule_encode_prompts": {
-        "class_type": "53f09d1e-0364-4cb3-b5e7-535f63d1323f",
+        "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "label": "Schedule & Encode Prompts",
         "inputs": {
-          "prompt_prefix": [
-            "prompt_encode_style",
-            0
-          ],
           "positive_prompt": [
             "positive_prompt",
             0
@@ -116,20 +113,24 @@
             "negative_prompt",
             0
           ],
-          "model_in": [
-            "checkpoint",
+          "model": [
+            "mahiro_cfg",
             0
           ],
-          "clip_in": [
+          "encode_style": [
+            "prompt_encode_style",
+            0
+          ],
+          "clip": [
             "checkpoint",
             1
           ]
         },
-        "original_id": "1620",
-        "label": "Schedule & Encode Prompts"
+        "original_id": "2303"
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
+        "label": "vectorscopeCC",
         "inputs": {
           "model": [
             "schedule_encode_prompts",
@@ -137,8 +138,7 @@
           ]
         },
         "original_id": "1622",
-        "mode": 4,
-        "label": "vectorscopeCC"
+        "mode": 4
       }
     },
     "inputs": {
@@ -158,14 +158,14 @@
     "layout": {
       "workflow_version": 0,
       "origin": [
-        3220.0,
-        3510.0
+        -2690.0,
+        3630.0
       ],
       "ds": {
-        "scale": 1.0235105976460408,
+        "scale": 1.11678157794253,
         "offset": [
-          -2984.9904696238386,
-          -3212.716367472105
+          2580.969670282011,
+          -3344.2564376636515
         ]
       },
       "nodes": {
@@ -199,8 +199,8 @@
           "id": "1619",
           "class_type": "Mahiro",
           "pos": [
-            430.0,
-            550.0
+            320.0,
+            160.0
           ],
           "size": [
             190.0,
@@ -211,28 +211,12 @@
             "collapsed": true
           }
         },
-        "schedule_encode_prompts": {
-          "id": "1620",
-          "class_type": "53f09d1e-0364-4cb3-b5e7-535f63d1323f",
-          "pos": [
-            340.0,
-            180.0
-          ],
-          "size": [
-            270.0,
-            240.0
-          ],
-          "title": "Schedule & Encode Prompts",
-          "flags": {
-            "collapsed": true
-          }
-        },
         "vectorscopecc": {
           "id": "1622",
           "class_type": "VectorscopeCC",
           "pos": [
-            340.0,
-            240.0
+            320.0,
+            260.0
           ],
           "size": [
             220.0,
@@ -262,7 +246,7 @@
           ],
           "size": [
             280.0,
-            130.0
+            150.0
           ],
           "title": "Checkpoint"
         },
@@ -275,7 +259,7 @@
           ],
           "size": [
             300.0,
-            486.0
+            500.0
           ],
           "title": "Detailer"
         },
@@ -304,6 +288,22 @@
             520.0
           ],
           "title": "Prompt SEGS w/ SAM"
+        },
+        "schedule_encode_prompts": {
+          "id": "2303",
+          "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+          "pos": [
+            320.0,
+            210.0
+          ],
+          "size": [
+            287.4,
+            122.0
+          ],
+          "title": "Schedule & Encode Prompts",
+          "flags": {
+            "collapsed": true
+          }
         }
       },
       "markers": {
@@ -346,13 +346,13 @@
       },
       "groups": [
         {
-          "id": 295,
+          "id": 374,
           "title": "SDXL/Promptmask Detailer",
           "bounding": [
             -10.0,
             -60.0,
             1500.0,
-            880.0
+            900.0
           ],
           "color": "#3f789e",
           "font_size": 24,
@@ -363,37 +363,35 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube",
             "default_alias": "SDXL/Promptmask Detailer",
             "target_model": "SDXL",
-            "cube_version": "5.2.0",
+            "cube_version": "1.1.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube@5.2.0",
-            "surface_signature": "c53dd3061e58",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube@1.1.0",
+            "surface_signature": "cc0853c2b2e5",
             "markers": {
               "inputs": [
                 "1623"
               ],
               "outputs": [
                 "1624"
-              ],
-              "inherits": [],
-              "metas": []
+              ]
             },
             "nodes": [
               "2072",
-              "1619",
-              "1620",
-              "1944",
               "2078",
+              "1944",
               "1622",
-              "1493",
+              "2303",
+              "2073",
+              "1619",
               "1625",
               "1492",
-              "2073"
+              "1493"
             ],
             "bounds": {
-              "x": 3210.0,
-              "y": 3450.0,
+              "x": -2700.0,
+              "y": 3570.0,
               "w": 1500.0,
-              "h": 880.0,
+              "h": 900.0,
               "padding": {
                 "x": 2.0,
                 "y": 2.0,
@@ -614,7 +612,7 @@
           false
         ],
         "output_name": [
-          "style_tag"
+          "encode_style"
         ],
         "name": "SimpleSyrup.PromptEncodeStyle",
         "display_name": "Prompt Encode Style",
@@ -630,13 +628,20 @@
             ],
             "vae_name": [
               "LIST"
+            ],
+            "clip_skip": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
             ]
           }
         },
         "input_order": {
           "required": [
             "ckpt_name",
-            "vae_name"
+            "vae_name",
+            "clip_skip"
           ]
         },
         "output": [
@@ -691,9 +696,9 @@
               "FLOAT",
               {
                 "default": 1.5,
-                "min": 0.01,
-                "max": 100.0,
-                "step": 0.05
+                "min": 1.0,
+                "max": 5.0,
+                "step": 0.1
               }
             ],
             "upscale_method": [
@@ -821,6 +826,74 @@
         "display_name": "Detail SEGS by Scale Factor",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Detailing",
+        "output_node": false
+      },
+      "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "rawLink": true
+              }
+            ],
+            "clip": [
+              "CLIP",
+              {
+                "rawLink": true
+              }
+            ],
+            "encode_style": [
+              "STRING",
+              {
+                "default": "",
+                "forceInput": true
+              }
+            ],
+            "positive_prompt": [
+              "STRING",
+              {
+                "default": "",
+                "multiline": false
+              }
+            ],
+            "negative_prompt": [
+              "STRING",
+              {
+                "default": "",
+                "multiline": false
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "clip",
+            "encode_style",
+            "positive_prompt",
+            "negative_prompt"
+          ]
+        },
+        "output": [
+          "MODEL",
+          "CONDITIONING,CONDITIONING_BATCH",
+          "CONDITIONING,CONDITIONING_BATCH"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "model",
+          "positive",
+          "negative"
+        ],
+        "name": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "display_name": "Schedule & Encode Prompts",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Conditioning",
         "output_node": false
       },
       "SimpleSyrup.SAMModelLoader": {
@@ -957,6 +1030,18 @@
                 "max": 8192
               }
             ],
+            "keep_only": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 4096,
+                "step": 1
+              }
+            ],
+            "keep_by": [
+              "LIST"
+            ],
             "bbox_dilation": [
               "INT",
               {
@@ -1071,6 +1156,8 @@
             "negative_prompt",
             "confidence_threshold",
             "size_threshold",
+            "keep_only",
+            "keep_by",
             "bbox_dilation",
             "mask_dilation",
             "detail_method",
@@ -1106,270 +1193,6 @@
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Detection",
         "output_node": false
-      },
-      "RegexExtract": {
-        "input": {
-          "required": {
-            "string": [
-              "STRING",
-              {
-                "multiline": true
-              }
-            ],
-            "regex_pattern": [
-              "STRING",
-              {
-                "multiline": true
-              }
-            ],
-            "mode": [
-              "LIST"
-            ],
-            "case_insensitive": [
-              "BOOLEAN",
-              {
-                "advanced": true,
-                "default": true
-              }
-            ],
-            "multiline": [
-              "BOOLEAN",
-              {
-                "advanced": true,
-                "default": false
-              }
-            ],
-            "dotall": [
-              "BOOLEAN",
-              {
-                "advanced": true,
-                "default": false
-              }
-            ],
-            "group_index": [
-              "INT",
-              {
-                "advanced": true,
-                "default": 1,
-                "min": 0,
-                "max": 100
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "string",
-            "regex_pattern",
-            "mode",
-            "case_insensitive",
-            "multiline",
-            "dotall",
-            "group_index"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "STRING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "STRING"
-        ],
-        "output_matchtypes": null,
-        "name": "RegexExtract",
-        "display_name": "Regex Extract",
-        "python_module": "comfy_extras.nodes_string",
-        "category": "utils/string",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": [
-          "pattern extract",
-          "text parser",
-          "parse text"
-        ],
-        "essentials_category": null
-      },
-      "StringConcatenate": {
-        "input": {
-          "required": {
-            "string_a": [
-              "STRING",
-              {
-                "multiline": true
-              }
-            ],
-            "string_b": [
-              "STRING",
-              {
-                "multiline": true
-              }
-            ],
-            "delimiter": [
-              "STRING",
-              {
-                "default": "",
-                "multiline": false
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "string_a",
-            "string_b",
-            "delimiter"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "STRING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "STRING"
-        ],
-        "output_matchtypes": null,
-        "name": "StringConcatenate",
-        "display_name": "Concatenate",
-        "python_module": "comfy_extras.nodes_string",
-        "category": "utils/string",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": [
-          "text concat",
-          "join text",
-          "merge text",
-          "combine strings",
-          "concat",
-          "concatenate",
-          "append text",
-          "combine text",
-          "string"
-        ],
-        "essentials_category": null
-      },
-      "PCLazyLoraLoader": {
-        "input": {
-          "required": {
-            "text": [
-              "STRING",
-              {
-                "default": "",
-                "multiline": true
-              }
-            ]
-          },
-          "optional": {
-            "model": [
-              "MODEL",
-              {
-                "rawLink": true
-              }
-            ],
-            "clip": [
-              "CLIP",
-              {
-                "rawLink": true
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "text"
-          ],
-          "optional": [
-            "model",
-            "clip"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "MODEL",
-          "CLIP"
-        ],
-        "output_is_list": [
-          false,
-          false
-        ],
-        "output_name": [
-          "model",
-          "clip"
-        ],
-        "output_matchtypes": null,
-        "name": "PCLazyLoraLoader",
-        "display_name": "PC: Schedule LoRAs",
-        "python_module": "custom_nodes.comfyui-prompt-control",
-        "category": "promptcontrol",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": null
-      },
-      "PCLazyTextEncode": {
-        "input": {
-          "required": {
-            "clip": [
-              "CLIP",
-              {
-                "rawLink": true
-              }
-            ],
-            "text": [
-              "STRING",
-              {
-                "default": "",
-                "multiline": true
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "clip",
-            "text"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "CONDITIONING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "conditioning"
-        ],
-        "output_matchtypes": null,
-        "name": "PCLazyTextEncode",
-        "display_name": "PC: Schedule prompt",
-        "python_module": "custom_nodes.comfyui-prompt-control",
-        "category": "promptcontrol",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": null
       },
       "PrimitiveString": {
         "input": {
@@ -1418,9 +1241,9 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2078,
-          "lastLinkId": 2873,
-          "lastGroupId": 295,
+          "lastNodeId": 2303,
+          "lastLinkId": 3835,
+          "lastGroupId": 379,
           "lastRerouteId": 0
         },
         "config": {},
@@ -1684,6 +1507,8 @@
               }
             ],
             "properties": {
+              "cnr_id": "SimpleSyrup",
+              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
               "Node name for S&R": "SimpleSyrup.SAMModelLoader",
               "sugarcubes_symbol": "sam_model_loader"
             },
@@ -1726,6 +1551,8 @@
               }
             ],
             "properties": {
+              "cnr_id": "SimpleSyrup",
+              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
               "Node name for S&R": "SimpleSyrup.ViTMatteModelLoader",
               "sugarcubes_symbol": "vitmatte_model_loader"
             },
@@ -1777,6 +1604,8 @@
               }
             ],
             "properties": {
+              "cnr_id": "SimpleSyrup",
+              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
               "Node name for S&R": "SimpleSyrup.GroundingDINOModelLoader",
               "sugarcubes_symbol": "groundingdino_model_loader"
             },
@@ -1794,7 +1623,7 @@
             ],
             "size": [
               300,
-              510
+              550
             ],
             "flags": {},
             "order": 3,
@@ -1859,6 +1688,24 @@
                   "name": "size_threshold"
                 },
                 "link": 2823
+              },
+              {
+                "localized_name": "keep_only",
+                "name": "keep_only",
+                "type": "INT",
+                "widget": {
+                  "name": "keep_only"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "keep_by",
+                "name": "keep_by",
+                "type": "COMBO",
+                "widget": {
+                  "name": "keep_by"
+                },
+                "link": null
               },
               {
                 "localized_name": "bbox_dilation",
@@ -1996,6 +1843,8 @@
               }
             ],
             "properties": {
+              "cnr_id": "SimpleSyrup",
+              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
               "Node name for S&R": "SimpleSyrup.PromptSEGSWithSAM"
             },
             "widgets_values": [
@@ -2015,7 +1864,9 @@
               "auto",
               1.2,
               "largest to smallest",
-              true
+              true,
+              "largest to smallest",
+              false
             ]
           }
         ],
@@ -2121,7 +1972,7 @@
             "origin_id": -10,
             "origin_slot": 9,
             "target_id": 2077,
-            "target_slot": 8,
+            "target_slot": 10,
             "type": "INT"
           },
           {
@@ -2129,7 +1980,7 @@
             "origin_id": -10,
             "origin_slot": 10,
             "target_id": 2077,
-            "target_slot": 9,
+            "target_slot": 11,
             "type": "INT"
           },
           {
@@ -2137,7 +1988,7 @@
             "origin_id": -10,
             "origin_slot": 11,
             "target_id": 2077,
-            "target_slot": 10,
+            "target_slot": 12,
             "type": "COMBO"
           },
           {
@@ -2145,7 +1996,7 @@
             "origin_id": -10,
             "origin_slot": 12,
             "target_id": 2077,
-            "target_slot": 11,
+            "target_slot": 13,
             "type": "INT"
           },
           {
@@ -2153,7 +2004,7 @@
             "origin_id": -10,
             "origin_slot": 13,
             "target_id": 2077,
-            "target_slot": 12,
+            "target_slot": 14,
             "type": "INT"
           },
           {
@@ -2161,7 +2012,7 @@
             "origin_id": -10,
             "origin_slot": 14,
             "target_id": 2077,
-            "target_slot": 13,
+            "target_slot": 15,
             "type": "FLOAT"
           },
           {
@@ -2169,7 +2020,7 @@
             "origin_id": -10,
             "origin_slot": 15,
             "target_id": 2077,
-            "target_slot": 14,
+            "target_slot": 16,
             "type": "FLOAT"
           },
           {
@@ -2177,7 +2028,7 @@
             "origin_id": -10,
             "origin_slot": 16,
             "target_id": 2077,
-            "target_slot": 15,
+            "target_slot": 17,
             "type": "BOOLEAN"
           },
           {
@@ -2185,7 +2036,7 @@
             "origin_id": -10,
             "origin_slot": 17,
             "target_id": 2077,
-            "target_slot": 16,
+            "target_slot": 18,
             "type": "INT"
           },
           {
@@ -2193,7 +2044,7 @@
             "origin_id": -10,
             "origin_slot": 18,
             "target_id": 2077,
-            "target_slot": 18,
+            "target_slot": 20,
             "type": "FLOAT"
           },
           {
@@ -2201,7 +2052,7 @@
             "origin_id": -10,
             "origin_slot": 19,
             "target_id": 2077,
-            "target_slot": 19,
+            "target_slot": 21,
             "type": "COMBO"
           },
           {
@@ -2209,7 +2060,7 @@
             "origin_id": -10,
             "origin_slot": 20,
             "target_id": 2077,
-            "target_slot": 20,
+            "target_slot": 22,
             "type": "BOOLEAN"
           },
           {
@@ -2226,1090 +2077,13 @@
         "extra": {}
       },
       {
-        "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f",
-        "version": 1,
-        "revision": 0,
-        "state": {
-          "lastNodeId": 2078,
-          "lastLinkId": 2873,
-          "lastGroupId": 295,
-          "lastRerouteId": 0
-        },
-        "config": {},
-        "name": "Schedule & Encode Prompts",
-        "inputNode": {
-          "id": -10,
-          "bounding": [
-            385,
-            401,
-            120,
-            140
-          ],
-          "pinned": false
-        },
-        "outputNode": {
-          "id": -20,
-          "bounding": [
-            1350,
-            401,
-            124.26667022705078,
-            100
-          ],
-          "pinned": false
-        },
-        "inputs": [
-          {
-            "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:input:0",
-            "type": "STRING",
-            "linkIds": [
-              263,
-              270
-            ],
-            "name": "prompt_prefix",
-            "label": "string_a",
-            "localized_name": "string_a"
-          },
-          {
-            "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:input:1",
-            "type": "STRING",
-            "linkIds": [
-              267,
-              314
-            ],
-            "name": "positive_prompt",
-            "label": "positive_prompt",
-            "localized_name": "string"
-          },
-          {
-            "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:input:2",
-            "type": "STRING",
-            "linkIds": [
-              262,
-              315
-            ],
-            "name": "negative_prompt",
-            "label": "negative_prompt",
-            "localized_name": "string"
-          },
-          {
-            "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:input:3",
-            "type": "MODEL",
-            "linkIds": [
-              268
-            ],
-            "name": "model_in",
-            "label": "model",
-            "localized_name": "model",
-            "shape": 7
-          },
-          {
-            "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:input:4",
-            "type": "CLIP",
-            "linkIds": [
-              269
-            ],
-            "name": "clip_in",
-            "label": "clip",
-            "localized_name": "clip",
-            "shape": 7
-          }
-        ],
-        "outputs": [
-          {
-            "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:output:0",
-            "type": "MODEL",
-            "linkIds": [
-              264
-            ],
-            "name": "MODEL",
-            "label": "MODEL",
-            "localized_name": "MODEL"
-          },
-          {
-            "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:output:1",
-            "type": "CONDITIONING",
-            "linkIds": [
-              1386
-            ],
-            "name": "CONDITIONING",
-            "localized_name": "CONDITIONING",
-            "label": "Positive Cond"
-          },
-          {
-            "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:output:2",
-            "type": "CONDITIONING",
-            "linkIds": [
-              1387
-            ],
-            "name": "CONDITIONING_2",
-            "localized_name": "CONDITIONING",
-            "label": "Negative Cond"
-          }
-        ],
-        "widgets": [],
-        "nodes": [
-          {
-            "id": 101,
-            "type": "RegexExtract",
-            "pos": [
-              510,
-              100
-            ],
-            "size": [
-              210,
-              270
-            ],
-            "flags": {},
-            "order": 0,
-            "inputs": [
-              {
-                "localized_name": "string",
-                "name": "string",
-                "type": "STRING",
-                "widget": {
-                  "name": "string"
-                },
-                "link": 267
-              },
-              {
-                "localized_name": "regex_pattern",
-                "name": "regex_pattern",
-                "type": "STRING",
-                "widget": {
-                  "name": "regex_pattern"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "mode",
-                "name": "mode",
-                "type": "COMBO",
-                "widget": {
-                  "name": "mode"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "case_insensitive",
-                "name": "case_insensitive",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "case_insensitive"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "multiline",
-                "name": "multiline",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "multiline"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "dotall",
-                "name": "dotall",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "dotall"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "group_index",
-                "name": "group_index",
-                "type": "INT",
-                "widget": {
-                  "name": "group_index"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  301
-                ]
-              }
-            ],
-            "title": "positive extract prompt",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.8.2",
-              "Node name for S&R": "RegexExtract"
-            },
-            "widgets_values": [
-              "",
-              "(?:^|>)([^<]+)(?=<|$)",
-              "All Matches",
-              true,
-              false,
-              false,
-              1
-            ]
-          },
-          {
-            "id": 102,
-            "type": "RegexExtract",
-            "pos": [
-              600,
-              220
-            ],
-            "size": [
-              210,
-              270
-            ],
-            "flags": {},
-            "order": 1,
-            "inputs": [
-              {
-                "localized_name": "string",
-                "name": "string",
-                "type": "STRING",
-                "widget": {
-                  "name": "string"
-                },
-                "link": 262
-              },
-              {
-                "localized_name": "regex_pattern",
-                "name": "regex_pattern",
-                "type": "STRING",
-                "widget": {
-                  "name": "regex_pattern"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "mode",
-                "name": "mode",
-                "type": "COMBO",
-                "widget": {
-                  "name": "mode"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "case_insensitive",
-                "name": "case_insensitive",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "case_insensitive"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "multiline",
-                "name": "multiline",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "multiline"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "dotall",
-                "name": "dotall",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "dotall"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "group_index",
-                "name": "group_index",
-                "type": "INT",
-                "widget": {
-                  "name": "group_index"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  302
-                ]
-              }
-            ],
-            "title": "negative extract prompt",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.8.2",
-              "Node name for S&R": "RegexExtract"
-            },
-            "widgets_values": [
-              "",
-              "(?:^|>)([^<]+)(?=<|$)",
-              "All Matches",
-              true,
-              false,
-              false,
-              1
-            ]
-          },
-          {
-            "id": 103,
-            "type": "RegexExtract",
-            "pos": [
-              510,
-              160
-            ],
-            "size": [
-              210,
-              270
-            ],
-            "flags": {},
-            "order": 2,
-            "inputs": [
-              {
-                "localized_name": "string",
-                "name": "string",
-                "type": "STRING",
-                "widget": {
-                  "name": "string"
-                },
-                "link": 314
-              },
-              {
-                "localized_name": "regex_pattern",
-                "name": "regex_pattern",
-                "type": "STRING",
-                "widget": {
-                  "name": "regex_pattern"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "mode",
-                "name": "mode",
-                "type": "COMBO",
-                "widget": {
-                  "name": "mode"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "case_insensitive",
-                "name": "case_insensitive",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "case_insensitive"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "multiline",
-                "name": "multiline",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "multiline"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "dotall",
-                "name": "dotall",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "dotall"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "group_index",
-                "name": "group_index",
-                "type": "INT",
-                "widget": {
-                  "name": "group_index"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  303
-                ]
-              }
-            ],
-            "title": "positive extract lora",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.8.2",
-              "Node name for S&R": "RegexExtract"
-            },
-            "widgets_values": [
-              "",
-              "<[^>]*>",
-              "All Matches",
-              true,
-              false,
-              false,
-              1
-            ]
-          },
-          {
-            "id": 104,
-            "type": "RegexExtract",
-            "pos": [
-              600,
-              540
-            ],
-            "size": [
-              210,
-              270
-            ],
-            "flags": {},
-            "order": 3,
-            "inputs": [
-              {
-                "localized_name": "string",
-                "name": "string",
-                "type": "STRING",
-                "widget": {
-                  "name": "string"
-                },
-                "link": 315
-              },
-              {
-                "localized_name": "regex_pattern",
-                "name": "regex_pattern",
-                "type": "STRING",
-                "widget": {
-                  "name": "regex_pattern"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "mode",
-                "name": "mode",
-                "type": "COMBO",
-                "widget": {
-                  "name": "mode"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "case_insensitive",
-                "name": "case_insensitive",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "case_insensitive"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "multiline",
-                "name": "multiline",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "multiline"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "dotall",
-                "name": "dotall",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "dotall"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "group_index",
-                "name": "group_index",
-                "type": "INT",
-                "widget": {
-                  "name": "group_index"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  304
-                ]
-              }
-            ],
-            "title": "negative extract lora",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.8.2",
-              "Node name for S&R": "RegexExtract"
-            },
-            "widgets_values": [
-              "",
-              "<[^>]*>",
-              "All Matches",
-              true,
-              false,
-              false,
-              1
-            ]
-          },
-          {
-            "id": 107,
-            "type": "StringConcatenate",
-            "pos": [
-              730,
-              120
-            ],
-            "size": [
-              210,
-              170
-            ],
-            "flags": {},
-            "order": 6,
-            "inputs": [
-              {
-                "localized_name": "string_a",
-                "name": "string_a",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_a"
-                },
-                "link": 270
-              },
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 301
-              },
-              {
-                "localized_name": "delimiter",
-                "name": "delimiter",
-                "type": "STRING",
-                "widget": {
-                  "name": "delimiter"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  309
-                ]
-              }
-            ],
-            "title": "positive concat",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.8.2",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "",
-              "",
-              ""
-            ]
-          },
-          {
-            "id": 108,
-            "type": "StringConcatenate",
-            "pos": [
-              860,
-              470
-            ],
-            "size": [
-              210,
-              170
-            ],
-            "flags": {},
-            "order": 7,
-            "inputs": [
-              {
-                "localized_name": "string_a",
-                "name": "string_a",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_a"
-                },
-                "link": 263
-              },
-              {
-                "localized_name": "string_b",
-                "name": "string_b",
-                "type": "STRING",
-                "widget": {
-                  "name": "string_b"
-                },
-                "link": 302
-              },
-              {
-                "localized_name": "delimiter",
-                "name": "delimiter",
-                "type": "STRING",
-                "widget": {
-                  "name": "delimiter"
-                },
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "STRING",
-                "name": "STRING",
-                "type": "STRING",
-                "links": [
-                  310
-                ]
-              }
-            ],
-            "title": "negative concat",
-            "properties": {
-              "cnr_id": "comfy-core",
-              "ver": "0.8.2",
-              "Node name for S&R": "StringConcatenate"
-            },
-            "widgets_values": [
-              "",
-              "",
-              ""
-            ]
-          },
-          {
-            "id": 105,
-            "type": "PCLazyLoraLoader",
-            "pos": [
-              520,
-              220
-            ],
-            "size": [
-              230,
-              200
-            ],
-            "flags": {},
-            "order": 4,
-            "inputs": [
-              {
-                "localized_name": "model",
-                "name": "model",
-                "shape": 7,
-                "type": "MODEL",
-                "link": 268
-              },
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "shape": 7,
-                "type": "CLIP",
-                "link": 269
-              },
-              {
-                "localized_name": "text",
-                "name": "text",
-                "type": "STRING",
-                "widget": {
-                  "name": "text"
-                },
-                "link": 303
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "model",
-                "name": "model",
-                "type": "MODEL",
-                "links": [
-                  305
-                ]
-              },
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "type": "CLIP",
-                "links": [
-                  306
-                ]
-              }
-            ],
-            "title": "positive schedule lora",
-            "properties": {
-              "Node name for S&R": "PCLazyLoraLoader",
-              "cnr_id": "comfyui-prompt-control",
-              "ver": "2.1.1"
-            },
-            "widgets_values": [
-              ""
-            ]
-          },
-          {
-            "id": 109,
-            "type": "PCLazyTextEncode",
-            "pos": [
-              900,
-              190
-            ],
-            "size": [
-              210,
-              90
-            ],
-            "flags": {},
-            "order": 8,
-            "inputs": [
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "type": "CLIP",
-                "link": 307
-              },
-              {
-                "localized_name": "text",
-                "name": "text",
-                "type": "STRING",
-                "widget": {
-                  "name": "text"
-                },
-                "link": 309
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "conditioning",
-                "name": "conditioning",
-                "type": "CONDITIONING",
-                "links": [
-                  1386
-                ]
-              }
-            ],
-            "title": "positive cond encode",
-            "properties": {
-              "Node name for S&R": "PCLazyTextEncode",
-              "cnr_id": "comfyui-prompt-control",
-              "ver": "2.1.1"
-            },
-            "widgets_values": [
-              ""
-            ]
-          },
-          {
-            "id": 110,
-            "type": "PCLazyTextEncode",
-            "pos": [
-              1090,
-              470
-            ],
-            "size": [
-              210,
-              90
-            ],
-            "flags": {},
-            "order": 9,
-            "inputs": [
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "type": "CLIP",
-                "link": 308
-              },
-              {
-                "localized_name": "text",
-                "name": "text",
-                "type": "STRING",
-                "widget": {
-                  "name": "text"
-                },
-                "link": 310
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "conditioning",
-                "name": "conditioning",
-                "type": "CONDITIONING",
-                "links": [
-                  1387
-                ]
-              }
-            ],
-            "title": "negative cond encode",
-            "properties": {
-              "Node name for S&R": "PCLazyTextEncode",
-              "cnr_id": "comfyui-prompt-control",
-              "ver": "2.1.1"
-            },
-            "widgets_values": [
-              ""
-            ]
-          },
-          {
-            "id": 106,
-            "type": "PCLazyLoraLoader",
-            "pos": [
-              1130,
-              70
-            ],
-            "size": [
-              230,
-              200
-            ],
-            "flags": {},
-            "order": 5,
-            "inputs": [
-              {
-                "localized_name": "model",
-                "name": "model",
-                "shape": 7,
-                "type": "MODEL",
-                "link": 305
-              },
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "shape": 7,
-                "type": "CLIP",
-                "link": 306
-              },
-              {
-                "localized_name": "text",
-                "name": "text",
-                "type": "STRING",
-                "widget": {
-                  "name": "text"
-                },
-                "link": 304
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "model",
-                "name": "model",
-                "type": "MODEL",
-                "links": [
-                  264
-                ]
-              },
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "type": "CLIP",
-                "links": [
-                  307,
-                  308
-                ]
-              }
-            ],
-            "title": "negative schedule lora",
-            "properties": {
-              "Node name for S&R": "PCLazyLoraLoader",
-              "cnr_id": "comfyui-prompt-control",
-              "ver": "2.1.1"
-            },
-            "widgets_values": [
-              ""
-            ]
-          }
-        ],
-        "links": [
-          {
-            "id": 262,
-            "origin_id": -10,
-            "origin_slot": 2,
-            "target_id": 102,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
-            "id": 267,
-            "origin_id": -10,
-            "origin_slot": 1,
-            "target_id": 101,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
-            "id": 263,
-            "origin_id": -10,
-            "origin_slot": 0,
-            "target_id": 108,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
-            "id": 270,
-            "origin_id": -10,
-            "origin_slot": 0,
-            "target_id": 107,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
-            "id": 268,
-            "origin_id": -10,
-            "origin_slot": 3,
-            "target_id": 105,
-            "target_slot": 0,
-            "type": "MODEL"
-          },
-          {
-            "id": 269,
-            "origin_id": -10,
-            "origin_slot": 4,
-            "target_id": 105,
-            "target_slot": 1,
-            "type": "CLIP"
-          },
-          {
-            "id": 314,
-            "origin_id": -10,
-            "origin_slot": 1,
-            "target_id": 103,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
-            "id": 315,
-            "origin_id": -10,
-            "origin_slot": 2,
-            "target_id": 104,
-            "target_slot": 0,
-            "type": "STRING"
-          },
-          {
-            "id": 301,
-            "origin_id": 101,
-            "origin_slot": 0,
-            "target_id": 107,
-            "target_slot": 1,
-            "type": "STRING"
-          },
-          {
-            "id": 302,
-            "origin_id": 102,
-            "origin_slot": 0,
-            "target_id": 108,
-            "target_slot": 1,
-            "type": "STRING"
-          },
-          {
-            "id": 303,
-            "origin_id": 103,
-            "origin_slot": 0,
-            "target_id": 105,
-            "target_slot": 2,
-            "type": "STRING"
-          },
-          {
-            "id": 304,
-            "origin_id": 104,
-            "origin_slot": 0,
-            "target_id": 106,
-            "target_slot": 2,
-            "type": "STRING"
-          },
-          {
-            "id": 305,
-            "origin_id": 105,
-            "origin_slot": 0,
-            "target_id": 106,
-            "target_slot": 0,
-            "type": "MODEL"
-          },
-          {
-            "id": 306,
-            "origin_id": 105,
-            "origin_slot": 1,
-            "target_id": 106,
-            "target_slot": 1,
-            "type": "CLIP"
-          },
-          {
-            "id": 307,
-            "origin_id": 106,
-            "origin_slot": 1,
-            "target_id": 109,
-            "target_slot": 0,
-            "type": "CLIP"
-          },
-          {
-            "id": 308,
-            "origin_id": 106,
-            "origin_slot": 1,
-            "target_id": 110,
-            "target_slot": 0,
-            "type": "CLIP"
-          },
-          {
-            "id": 309,
-            "origin_id": 107,
-            "origin_slot": 0,
-            "target_id": 109,
-            "target_slot": 1,
-            "type": "STRING"
-          },
-          {
-            "id": 310,
-            "origin_id": 108,
-            "origin_slot": 0,
-            "target_id": 110,
-            "target_slot": 1,
-            "type": "STRING"
-          },
-          {
-            "id": 264,
-            "origin_id": 106,
-            "origin_slot": 0,
-            "target_id": -20,
-            "target_slot": 0,
-            "type": "MODEL"
-          },
-          {
-            "id": 1386,
-            "origin_id": 109,
-            "origin_slot": 0,
-            "target_id": -20,
-            "target_slot": 1,
-            "type": "CONDITIONING"
-          },
-          {
-            "id": 1387,
-            "origin_id": 110,
-            "origin_slot": 0,
-            "target_id": -20,
-            "target_slot": 2,
-            "type": "CONDITIONING"
-          }
-        ],
-        "floatingLinks": [],
-        "reroutes": [],
-        "extra": {
-          "workflowRendererVersion": "LG"
-        }
-      },
-      {
         "id": "5d4d6fa7-684c-42c6-a405-f6e7e72a7a9e",
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2078,
-          "lastLinkId": 2873,
-          "lastGroupId": 295,
+          "lastNodeId": 2303,
+          "lastLinkId": 3835,
+          "lastGroupId": 379,
           "lastRerouteId": 0
         },
         "config": {},
@@ -3362,8 +2136,8 @@
               2402
             ],
             "name": "STRING",
-            "localized_name": "STRING",
-            "label": "Positive"
+            "label": "Positive",
+            "localized_name": "STRING"
           },
           {
             "id": "e14537bf-0785-4192-a8b0-352cb75119ce",
@@ -3372,8 +2146,8 @@
               2401
             ],
             "name": "STRING_1",
-            "localized_name": "STRING_1",
-            "label": "Negative"
+            "label": "Negative",
+            "localized_name": "STRING_1"
           }
         ],
         "widgets": [],
@@ -3525,6 +2299,14 @@
         "label": "vae_name",
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
         "value_type": "string"
+      },
+      {
+        "control_id": "checkpoint.clip_skip",
+        "symbol": "checkpoint",
+        "input_name": "clip_skip",
+        "label": "clip_skip",
+        "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
+        "value_type": "boolean"
       },
       {
         "control_id": "detailer.scale_factor",
@@ -3744,6 +2526,7 @@
         "values": {
           "checkpoint.ckpt_name": "Flux\\flux1-dev-bnb-nf4.safetensors",
           "checkpoint.vae_name": "Use Checkpoint VAE",
+          "checkpoint.clip_skip": false,
           "detailer.scale_factor": 1.5,
           "detailer.upscale_method": "lanczos",
           "detailer.clamp_size": 0,
