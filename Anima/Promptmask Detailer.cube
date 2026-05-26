@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Promptmask Detailer.cube",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Prompt-guided detailing for Anima: create masks with GroundingDINO, SAM, and ViTMatte, then upscale and refine selected regions with tiled diffusion.",
   "metadata": {
     "default_alias": "Anima/Promptmask Detailer",
@@ -132,14 +132,14 @@
     "layout": {
       "workflow_version": 0,
       "origin": [
-        -740.0,
-        3650.0
+        -410.0,
+        3560.0
       ],
       "ds": {
-        "scale": 1.11678157794253,
+        "scale": 0.5730855330117086,
         "offset": [
-          991.5809885040417,
-          -3464.2440902598464
+          1672.9744493308922,
+          -2860.035360191607
         ]
       },
       "nodes": {
@@ -191,7 +191,7 @@
           ],
           "size": [
             290.0,
-            520.0
+            900.0
           ],
           "title": "Prompt SEGS w/ SAM",
           "flags": {
@@ -287,7 +287,7 @@
             -10.0,
             -60.0,
             1260.0,
-            850.0
+            1230.0
           ],
           "color": "#3f789e",
           "font_size": 24,
@@ -298,10 +298,10 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Promptmask Detailer.cube",
             "default_alias": "Anima/Promptmask Detailer",
             "target_model": "Anima",
-            "cube_version": "1.1.0",
+            "cube_version": "1.2.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Promptmask Detailer.cube@1.1.0",
-            "surface_signature": "4f03e69d3f30",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/Promptmask Detailer.cube@1.2.0",
+            "surface_signature": "24984df0d7a1",
             "markers": {
               "inputs": [
                 "15"
@@ -320,10 +320,10 @@
               "18"
             ],
             "bounds": {
-              "x": -750.0,
-              "y": 3590.0,
+              "x": -420.0,
+              "y": 3500.0,
               "w": 1260.0,
-              "h": 850.0,
+              "h": 1230.0,
               "padding": {
                 "x": 2.0,
                 "y": 2.0,
@@ -1048,8 +1048,8 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2304,
-          "lastLinkId": 3842,
+          "lastNodeId": 2305,
+          "lastLinkId": 3865,
           "lastGroupId": 379,
           "lastRerouteId": 0
         },
@@ -1251,8 +1251,8 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2304,
-          "lastLinkId": 3842,
+          "lastNodeId": 2305,
+          "lastLinkId": 3865,
           "lastGroupId": 379,
           "lastRerouteId": 0
         },
@@ -1271,8 +1271,8 @@
         "outputNode": {
           "id": -20,
           "bounding": [
-            2740,
-            3980,
+            2430,
+            4080,
             120,
             60
           ],
@@ -1319,7 +1319,7 @@
             "id": "8481c12a-fe56-4147-9455-ca300935213a",
             "type": "IMAGE",
             "linkIds": [
-              2818
+              3843
             ],
             "name": "image",
             "label": "image"
@@ -1328,7 +1328,7 @@
             "id": "bf083a5a-167a-41df-a2a5-6f8925e9606d",
             "type": "STRING",
             "linkIds": [
-              2820
+              3847
             ],
             "name": "positive_prompt",
             "label": "positive_prompt"
@@ -1337,7 +1337,7 @@
             "id": "f8c0adae-223c-473e-9c19-840940267097",
             "type": "STRING",
             "linkIds": [
-              2821
+              3848
             ],
             "name": "negative_prompt",
             "label": "negative_prompt"
@@ -1346,7 +1346,7 @@
             "id": "aaf76497-b5da-4755-b3f0-b8726666db50",
             "type": "FLOAT",
             "linkIds": [
-              2822
+              3849
             ],
             "name": "confidence_threshold",
             "label": "confidence_threshold"
@@ -1355,7 +1355,7 @@
             "id": "9da85f33-3e7a-4de5-b812-37d11681ff3e",
             "type": "INT",
             "linkIds": [
-              2823
+              3850
             ],
             "name": "size_threshold",
             "label": "size_threshold"
@@ -1364,7 +1364,7 @@
             "id": "1ed11f6e-2d0a-4402-8ecc-88b14b33a8f2",
             "type": "INT",
             "linkIds": [
-              2824
+              3851
             ],
             "name": "bbox_dilation",
             "label": "bbox_dilation"
@@ -1373,7 +1373,7 @@
             "id": "62be3be1-ade0-472c-82f2-677a90870cee",
             "type": "INT",
             "linkIds": [
-              2825
+              3852
             ],
             "name": "mask_dilation",
             "label": "mask_dilation"
@@ -1382,7 +1382,7 @@
             "id": "6a98e011-151f-40da-9dd7-af333cfb4982",
             "type": "COMBO",
             "linkIds": [
-              2826
+              3853
             ],
             "name": "detail_method",
             "label": "detail_method"
@@ -1391,7 +1391,7 @@
             "id": "b7798f6e-7ea3-4773-8972-cae364e05e42",
             "type": "INT",
             "linkIds": [
-              2827
+              3856
             ],
             "name": "detail_erode",
             "label": "detail_erode"
@@ -1400,7 +1400,7 @@
             "id": "736337fb-27b5-4ef2-9967-09483462323b",
             "type": "INT",
             "linkIds": [
-              2828
+              3857
             ],
             "name": "detail_dilate",
             "label": "detail_dilate"
@@ -1409,7 +1409,7 @@
             "id": "c85c3bff-b8cb-49dc-8e9a-97e18cf1c1dc",
             "type": "FLOAT",
             "linkIds": [
-              2829
+              3858
             ],
             "name": "black_point",
             "label": "black_point"
@@ -1418,7 +1418,7 @@
             "id": "2817a98a-18d0-4e4f-a1d0-6d8c950c9be3",
             "type": "FLOAT",
             "linkIds": [
-              2830
+              3859
             ],
             "name": "white_point",
             "label": "white_point"
@@ -1427,7 +1427,7 @@
             "id": "e83de8d6-cb3b-4dbe-8265-6119d42b212a",
             "type": "BOOLEAN",
             "linkIds": [
-              2831
+              3860
             ],
             "name": "refine_mask",
             "label": "refine_mask"
@@ -1436,7 +1436,7 @@
             "id": "4976d53e-3ddb-400a-9ba5-0280696b63cc",
             "type": "INT",
             "linkIds": [
-              2832
+              3861
             ],
             "name": "mask_refinement_max_size",
             "label": "mask_refinement_max_size"
@@ -1445,7 +1445,7 @@
             "id": "5e1f441e-1542-4bc4-89db-48e2c8228411",
             "type": "FLOAT",
             "linkIds": [
-              2833
+              3862
             ],
             "name": "crop_factor",
             "label": "crop_factor"
@@ -1454,7 +1454,7 @@
             "id": "598f850d-5240-4701-b8d9-9049163e4b51",
             "type": "COMBO",
             "linkIds": [
-              2834
+              3863
             ],
             "name": "sort_order",
             "label": "sort_order"
@@ -1463,7 +1463,7 @@
             "id": "10ca6f8c-bb9c-4533-8fa3-c37d36847c08",
             "type": "BOOLEAN",
             "linkIds": [
-              2835
+              3864
             ],
             "name": "combine_segs",
             "label": "combine_segs"
@@ -1474,7 +1474,7 @@
             "id": "9e244fbf-8ac4-479e-a12d-1687f35cf6ef",
             "type": "SEGS",
             "linkIds": [
-              2836
+              3865
             ],
             "name": "segs",
             "label": "segs"
@@ -1512,7 +1512,7 @@
                 "name": "sam_model",
                 "type": "SAM_MODEL",
                 "links": [
-                  2815
+                  3844
                 ]
               }
             ],
@@ -1556,7 +1556,7 @@
                 "name": "vitmatte_model",
                 "type": "VITMATTE_MODEL",
                 "links": [
-                  2816
+                  3845
                 ]
               }
             ],
@@ -1609,7 +1609,7 @@
                 "name": "grounding_dino_model",
                 "type": "GROUNDING_DINO_MODEL",
                 "links": [
-                  2817
+                  3846
                 ]
               }
             ],
@@ -1625,7 +1625,7 @@
             ]
           },
           {
-            "id": 2071,
+            "id": 2305,
             "type": "SimpleSyrup.PromptSEGSWithSAM",
             "pos": [
               2060,
@@ -1642,26 +1642,26 @@
                 "localized_name": "image",
                 "name": "image",
                 "type": "IMAGE",
-                "link": 2818
+                "link": 3843
               },
               {
                 "localized_name": "sam_model",
                 "name": "sam_model",
                 "type": "SAM_MODEL",
-                "link": 2815
+                "link": 3844
               },
               {
                 "localized_name": "grounding_dino_model",
                 "name": "grounding_dino_model",
                 "type": "GROUNDING_DINO_MODEL,DINO_MODEL",
-                "link": 2817
+                "link": 3846
               },
               {
                 "localized_name": "vitmatte_model",
                 "name": "vitmatte_model",
                 "shape": 7,
                 "type": "VITMATTE_MODEL",
-                "link": 2816
+                "link": 3845
               },
               {
                 "localized_name": "positive_prompt",
@@ -1670,7 +1670,7 @@
                 "widget": {
                   "name": "positive_prompt"
                 },
-                "link": 2820
+                "link": 3847
               },
               {
                 "localized_name": "negative_prompt",
@@ -1679,7 +1679,7 @@
                 "widget": {
                   "name": "negative_prompt"
                 },
-                "link": 2821
+                "link": 3848
               },
               {
                 "localized_name": "confidence_threshold",
@@ -1688,7 +1688,7 @@
                 "widget": {
                   "name": "confidence_threshold"
                 },
-                "link": 2822
+                "link": 3849
               },
               {
                 "localized_name": "size_threshold",
@@ -1697,7 +1697,7 @@
                 "widget": {
                   "name": "size_threshold"
                 },
-                "link": 2823
+                "link": 3850
               },
               {
                 "localized_name": "keep_only",
@@ -1724,7 +1724,7 @@
                 "widget": {
                   "name": "bbox_dilation"
                 },
-                "link": 2824
+                "link": 3851
               },
               {
                 "localized_name": "mask_dilation",
@@ -1733,7 +1733,7 @@
                 "widget": {
                   "name": "mask_dilation"
                 },
-                "link": 2825
+                "link": 3852
               },
               {
                 "localized_name": "detail_method",
@@ -1742,7 +1742,7 @@
                 "widget": {
                   "name": "detail_method"
                 },
-                "link": 2826
+                "link": 3853
               },
               {
                 "localized_name": "detail_erode",
@@ -1751,7 +1751,7 @@
                 "widget": {
                   "name": "detail_erode"
                 },
-                "link": 2827
+                "link": 3856
               },
               {
                 "localized_name": "detail_dilate",
@@ -1760,7 +1760,7 @@
                 "widget": {
                   "name": "detail_dilate"
                 },
-                "link": 2828
+                "link": 3857
               },
               {
                 "localized_name": "black_point",
@@ -1769,7 +1769,7 @@
                 "widget": {
                   "name": "black_point"
                 },
-                "link": 2829
+                "link": 3858
               },
               {
                 "localized_name": "white_point",
@@ -1778,7 +1778,7 @@
                 "widget": {
                   "name": "white_point"
                 },
-                "link": 2830
+                "link": 3859
               },
               {
                 "localized_name": "refine_mask",
@@ -1787,7 +1787,7 @@
                 "widget": {
                   "name": "refine_mask"
                 },
-                "link": 2831
+                "link": 3860
               },
               {
                 "localized_name": "mask_refinement_max_size",
@@ -1796,7 +1796,7 @@
                 "widget": {
                   "name": "mask_refinement_max_size"
                 },
-                "link": 2832
+                "link": 3861
               },
               {
                 "localized_name": "execution_device",
@@ -1814,7 +1814,7 @@
                 "widget": {
                   "name": "crop_factor"
                 },
-                "link": 2833
+                "link": 3862
               },
               {
                 "localized_name": "sort_order",
@@ -1823,7 +1823,7 @@
                 "widget": {
                   "name": "sort_order"
                 },
-                "link": 2834
+                "link": 3863
               },
               {
                 "localized_name": "combine_segs",
@@ -1832,7 +1832,7 @@
                 "widget": {
                   "name": "combine_segs"
                 },
-                "link": 2835
+                "link": 3864
               }
             ],
             "outputs": [
@@ -1842,7 +1842,7 @@
                 "shape": 6,
                 "type": "SEGS",
                 "links": [
-                  2836
+                  3865
                 ]
               },
               {
@@ -1863,8 +1863,8 @@
               0.3,
               10,
               0,
-              8,
-              "VITMatte",
+              "highest confidence",
+              null,
               6,
               6,
               0.15,
@@ -1873,7 +1873,7 @@
               2048,
               "auto",
               1.2,
-              "largest to smallest",
+              "auto",
               true,
               "largest to smallest",
               false
@@ -1914,168 +1914,168 @@
             "type": "COMBO"
           },
           {
-            "id": 2815,
-            "origin_id": 2067,
-            "origin_slot": 0,
-            "target_id": 2071,
-            "target_slot": 1,
-            "type": "SAM_MODEL"
-          },
-          {
-            "id": 2816,
-            "origin_id": 2068,
-            "origin_slot": 0,
-            "target_id": 2071,
-            "target_slot": 3,
-            "type": "VITMATTE_MODEL"
-          },
-          {
-            "id": 2817,
-            "origin_id": 2069,
-            "origin_slot": 0,
-            "target_id": 2071,
-            "target_slot": 2,
-            "type": "GROUNDING_DINO_MODEL"
-          },
-          {
-            "id": 2818,
+            "id": 3843,
             "origin_id": -10,
             "origin_slot": 4,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 0,
             "type": "IMAGE"
           },
           {
-            "id": 2820,
+            "id": 3844,
+            "origin_id": 2067,
+            "origin_slot": 0,
+            "target_id": 2305,
+            "target_slot": 1,
+            "type": "SAM_MODEL"
+          },
+          {
+            "id": 3845,
+            "origin_id": 2068,
+            "origin_slot": 0,
+            "target_id": 2305,
+            "target_slot": 3,
+            "type": "VITMATTE_MODEL"
+          },
+          {
+            "id": 3846,
+            "origin_id": 2069,
+            "origin_slot": 0,
+            "target_id": 2305,
+            "target_slot": 2,
+            "type": "GROUNDING_DINO_MODEL"
+          },
+          {
+            "id": 3847,
             "origin_id": -10,
             "origin_slot": 5,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 4,
             "type": "STRING"
           },
           {
-            "id": 2821,
+            "id": 3848,
             "origin_id": -10,
             "origin_slot": 6,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 5,
             "type": "STRING"
           },
           {
-            "id": 2822,
+            "id": 3849,
             "origin_id": -10,
             "origin_slot": 7,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 6,
             "type": "FLOAT"
           },
           {
-            "id": 2823,
+            "id": 3850,
             "origin_id": -10,
             "origin_slot": 8,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 7,
             "type": "INT"
           },
           {
-            "id": 2824,
+            "id": 3851,
             "origin_id": -10,
             "origin_slot": 9,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 10,
             "type": "INT"
           },
           {
-            "id": 2825,
+            "id": 3852,
             "origin_id": -10,
             "origin_slot": 10,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 11,
             "type": "INT"
           },
           {
-            "id": 2826,
+            "id": 3853,
             "origin_id": -10,
             "origin_slot": 11,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 12,
             "type": "COMBO"
           },
           {
-            "id": 2827,
+            "id": 3856,
             "origin_id": -10,
             "origin_slot": 12,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 13,
             "type": "INT"
           },
           {
-            "id": 2828,
+            "id": 3857,
             "origin_id": -10,
             "origin_slot": 13,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 14,
             "type": "INT"
           },
           {
-            "id": 2829,
+            "id": 3858,
             "origin_id": -10,
             "origin_slot": 14,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 15,
             "type": "FLOAT"
           },
           {
-            "id": 2830,
+            "id": 3859,
             "origin_id": -10,
             "origin_slot": 15,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 16,
             "type": "FLOAT"
           },
           {
-            "id": 2831,
+            "id": 3860,
             "origin_id": -10,
             "origin_slot": 16,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 17,
             "type": "BOOLEAN"
           },
           {
-            "id": 2832,
+            "id": 3861,
             "origin_id": -10,
             "origin_slot": 17,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 18,
             "type": "INT"
           },
           {
-            "id": 2833,
+            "id": 3862,
             "origin_id": -10,
             "origin_slot": 18,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 20,
             "type": "FLOAT"
           },
           {
-            "id": 2834,
+            "id": 3863,
             "origin_id": -10,
             "origin_slot": 19,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 21,
             "type": "COMBO"
           },
           {
-            "id": 2835,
+            "id": 3864,
             "origin_id": -10,
             "origin_slot": 20,
-            "target_id": 2071,
+            "target_id": 2305,
             "target_slot": 22,
             "type": "BOOLEAN"
           },
           {
-            "id": 2836,
-            "origin_id": 2071,
+            "id": 3865,
+            "origin_id": 2305,
             "origin_slot": 0,
             "target_id": -20,
             "target_slot": 0,
