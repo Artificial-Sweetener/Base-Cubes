@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Automask Detailer.cube",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Detector-guided detailing: detect image regions with an Ultralytics model, then inpaint and refine them with prompt-guided diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -26,25 +26,26 @@
     "nodes": {
       "checkpoint": {
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
+        "label": "Checkpoint",
         "inputs": {},
         "original_id": "1940",
-        "mode": 4,
-        "label": "Checkpoint"
+        "mode": 4
       },
-      "detailer": {
-        "class_type": "777c9bdf-a67c-4475-b84a-1c6c7b7c90bc",
+      "detail_segs_by_scale_factor": {
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "label": "Detail SEGS by Scale Factor",
         "inputs": {
           "image": [
             "@binding",
-            "input.value"
+            "input.image"
+          ],
+          "segs": [
+            "detect_segs_w_ultralytics",
+            0
           ],
           "model": [
             "mahiro_cfg",
             0
-          ],
-          "vae": [
-            "checkpoint",
-            2
           ],
           "positive": [
             "schedule_encode_prompts",
@@ -53,42 +54,57 @@
           "negative": [
             "schedule_encode_prompts",
             2
+          ],
+          "vae": [
+            "checkpoint",
+            2
           ]
         },
-        "original_id": "16",
-        "label": "Detailer"
+        "original_id": "2237"
+      },
+      "detect_segs_w_ultralytics": {
+        "class_type": "c6bb854c-c2ee-47a7-818d-f51684b83e0a",
+        "label": "Detect SEGS w/ Ultralytics",
+        "inputs": {
+          "image": [
+            "@binding",
+            "input.image"
+          ]
+        },
+        "original_id": "2240"
       },
       "mahiro_cfg": {
         "class_type": "Mahiro",
+        "label": "mahiro CFG",
         "inputs": {
           "model": [
             "vectorscopecc",
             0
           ]
         },
-        "original_id": "17",
-        "label": "mahiro CFG"
+        "original_id": "2226"
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
+        "label": "negative prompt",
         "inputs": {},
-        "original_id": "18",
-        "label": "negative prompt"
+        "original_id": "2227"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
+        "label": "positive prompt",
         "inputs": {},
-        "original_id": "19",
-        "label": "positive prompt"
+        "original_id": "2228"
       },
       "prompt_encode_style": {
         "class_type": "SimpleSyrup.PromptEncodeStyle",
+        "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "20",
-        "label": "Prompt Encode Style"
+        "original_id": "2229"
       },
       "schedule_encode_prompts": {
         "class_type": "53f09d1e-0364-4cb3-b5e7-535f63d1323f",
+        "label": "Schedule & Encode Prompts",
         "inputs": {
           "prompt_prefix": [
             "prompt_encode_style",
@@ -111,11 +127,11 @@
             1
           ]
         },
-        "original_id": "21",
-        "label": "Schedule & Encode Prompts"
+        "original_id": "2230"
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
+        "label": "vectorscopeCC",
         "inputs": {
           "model": [
             "schedule_encode_prompts",
@@ -123,122 +139,41 @@
           ]
         },
         "original_id": "24",
-        "mode": 4,
-        "label": "vectorscopeCC"
+        "mode": 4
       }
     },
     "inputs": {
-      "input.value": {
+      "input.image": {
         "kind": "input",
         "targets": [
           [
-            "detailer",
+            "detail_segs_by_scale_factor",
+            "image"
+          ],
+          [
+            "detect_segs_w_ultralytics",
             "image"
           ]
         ]
       }
     },
     "outputs": {
-      "output.value": "detailer"
+      "output.image": "detail_segs_by_scale_factor"
     },
     "layout": {
       "workflow_version": 0,
       "origin": [
-        3610.0,
-        5080.0
+        -2980.0,
+        -1250.0
       ],
       "ds": {
-        "scale": 0.9304641796782219,
+        "scale": 0.7627768444385761,
         "offset": [
-          -3040.9642768180247,
-          -4649.1754865562225
+          3226.787194372535,
+          1781.6090110068528
         ]
       },
       "nodes": {
-        "detailer": {
-          "id": "16",
-          "class_type": "777c9bdf-a67c-4475-b84a-1c6c7b7c90bc",
-          "pos": [
-            630.0,
-            0.0
-          ],
-          "size": [
-            280.0,
-            550.0
-          ],
-          "title": "Detailer"
-        },
-        "mahiro_cfg": {
-          "id": "17",
-          "class_type": "Mahiro",
-          "pos": [
-            460.0,
-            550.0
-          ],
-          "size": [
-            190.0,
-            40.0
-          ],
-          "title": "mahiro CFG",
-          "flags": {
-            "collapsed": true
-          }
-        },
-        "negative_prompt": {
-          "id": "18",
-          "class_type": "PrimitiveStringMultiline",
-          "pos": [
-            0.0,
-            490.0
-          ],
-          "size": [
-            320.0,
-            160.0
-          ],
-          "title": "negative prompt"
-        },
-        "positive_prompt": {
-          "id": "19",
-          "class_type": "PrimitiveStringMultiline",
-          "pos": [
-            0.0,
-            260.0
-          ],
-          "size": [
-            320.0,
-            180.0
-          ],
-          "title": "positive prompt"
-        },
-        "prompt_encode_style": {
-          "id": "20",
-          "class_type": "SimpleSyrup.PromptEncodeStyle",
-          "pos": [
-            0.0,
-            150.0
-          ],
-          "size": [
-            320.0,
-            60.0
-          ],
-          "title": "Prompt Encode Style"
-        },
-        "schedule_encode_prompts": {
-          "id": "21",
-          "class_type": "53f09d1e-0364-4cb3-b5e7-535f63d1323f",
-          "pos": [
-            370.0,
-            140.0
-          ],
-          "size": [
-            270.0,
-            230.0
-          ],
-          "title": "Schedule & Encode Prompts",
-          "flags": {
-            "collapsed": true
-          }
-        },
         "vectorscopecc": {
           "id": "24",
           "class_type": "VectorscopeCC",
@@ -261,13 +196,110 @@
           ],
           "size": [
             320.0,
-            130.0
+            150.0
           ],
           "title": "Checkpoint"
+        },
+        "mahiro_cfg": {
+          "id": "2226",
+          "class_type": "Mahiro",
+          "pos": [
+            460.0,
+            550.0
+          ],
+          "size": [
+            190.0,
+            40.0
+          ],
+          "title": "mahiro CFG",
+          "flags": {
+            "collapsed": true
+          }
+        },
+        "negative_prompt": {
+          "id": "2227",
+          "class_type": "PrimitiveStringMultiline",
+          "pos": [
+            0.0,
+            490.0
+          ],
+          "size": [
+            320.0,
+            160.0
+          ],
+          "title": "negative prompt"
+        },
+        "positive_prompt": {
+          "id": "2228",
+          "class_type": "PrimitiveStringMultiline",
+          "pos": [
+            0.0,
+            260.0
+          ],
+          "size": [
+            320.0,
+            180.0
+          ],
+          "title": "positive prompt"
+        },
+        "prompt_encode_style": {
+          "id": "2229",
+          "class_type": "SimpleSyrup.PromptEncodeStyle",
+          "pos": [
+            0.0,
+            150.0
+          ],
+          "size": [
+            320.0,
+            60.0
+          ],
+          "title": "Prompt Encode Style"
+        },
+        "schedule_encode_prompts": {
+          "id": "2230",
+          "class_type": "53f09d1e-0364-4cb3-b5e7-535f63d1323f",
+          "pos": [
+            370.0,
+            140.0
+          ],
+          "size": [
+            270.0,
+            230.0
+          ],
+          "title": "Schedule & Encode Prompts",
+          "flags": {
+            "collapsed": true
+          }
+        },
+        "detail_segs_by_scale_factor": {
+          "id": "2237",
+          "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+          "pos": [
+            970.0,
+            0.0
+          ],
+          "size": [
+            290.0,
+            520.0
+          ],
+          "title": "Detail SEGS by Scale Factor"
+        },
+        "detect_segs_w_ultralytics": {
+          "id": "2240",
+          "class_type": "c6bb854c-c2ee-47a7-818d-f51684b83e0a",
+          "pos": [
+            620.0,
+            0.0
+          ],
+          "size": [
+            330.0,
+            300.0
+          ],
+          "title": "Detect SEGS w/ Ultralytics"
         }
       },
       "markers": {
-        "input.value": {
+        "input.image": {
           "id": "14",
           "class_type": "SugarCubes.CubeInput",
           "kind": "input",
@@ -285,12 +317,12 @@
             "bgcolor": "#3f5159"
           }
         },
-        "output.value": {
+        "output.image": {
           "id": "25",
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            930.0,
+            1280.0,
             0.0
           ],
           "size": [
@@ -306,13 +338,13 @@
       },
       "groups": [
         {
-          "id": 303,
+          "id": 370,
           "title": "SDXL/Automask Detailer",
           "bounding": [
             -10.0,
             -60.0,
-            1220.0,
-            910.0
+            1570.0,
+            930.0
           ],
           "color": "#3f789e",
           "font_size": 24,
@@ -323,10 +355,10 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Automask Detailer.cube",
             "default_alias": "SDXL/Automask Detailer",
             "target_model": "SDXL",
-            "cube_version": "2.14.1",
+            "cube_version": "2.0.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Automask Detailer.cube@2.14.1",
-            "surface_signature": "1bdbecdf1256",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Automask Detailer.cube@2.0.0",
+            "surface_signature": "bbb730905464",
             "icon": {
               "kind": "asset",
               "media_type": "image/png",
@@ -339,25 +371,24 @@
               ],
               "outputs": [
                 "25"
-              ],
-              "inherits": [],
-              "metas": []
+              ]
             },
             "nodes": [
-              "16",
-              "17",
+              "2237",
+              "2226",
               "1940",
-              "21",
+              "2230",
+              "2240",
               "24",
-              "18",
-              "20",
-              "19"
+              "2229",
+              "2228",
+              "2227"
             ],
             "bounds": {
-              "x": 3600.0,
-              "y": 5020.0,
-              "w": 1220.0,
-              "h": 910.0,
+              "x": -2990.0,
+              "y": -1310.0,
+              "w": 1570.0,
+              "h": 930.0,
               "padding": {
                 "x": 2.0,
                 "y": 2.0,
@@ -372,117 +403,6 @@
       ]
     },
     "definitions": {
-      "Mahiro": {
-        "input": {
-          "required": {
-            "model": [
-              "MODEL",
-              {}
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "MODEL"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "patched_model"
-        ],
-        "output_matchtypes": null,
-        "name": "Mahiro",
-        "display_name": "Positive-Biased Guidance",
-        "python_module": "comfy_extras.nodes_mahiro",
-        "category": "_for_testing",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": true,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": [
-          "mahiro",
-          "mahiro cfg",
-          "similarity-adaptive guidance",
-          "positive-biased cfg"
-        ],
-        "essentials_category": null
-      },
-      "PrimitiveStringMultiline": {
-        "input": {
-          "required": {
-            "value": [
-              "STRING",
-              {
-                "multiline": true
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "value"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "STRING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "STRING"
-        ],
-        "output_matchtypes": null,
-        "name": "PrimitiveStringMultiline",
-        "display_name": "String (Multiline)",
-        "python_module": "comfy_extras.nodes_primitive",
-        "category": "utils/primitive",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": "Basics"
-      },
-      "SimpleSyrup.PromptEncodeStyle": {
-        "input": {
-          "required": {
-            "encode_style": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "encode_style"
-          ]
-        },
-        "output": [
-          "STRING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "style_tag"
-        ],
-        "name": "SimpleSyrup.PromptEncodeStyle",
-        "display_name": "Prompt Encode Style",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Prompt",
-        "output_node": false
-      },
       "VectorscopeCC": {
         "input": {
           "required": {
@@ -594,13 +514,20 @@
             ],
             "vae_name": [
               "LIST"
+            ],
+            "clip_skip": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
             ]
           }
         },
         "input_order": {
           "required": [
             "ckpt_name",
-            "vae_name"
+            "vae_name",
+            "clip_skip"
           ]
         },
         "output": [
@@ -622,6 +549,280 @@
         "display_name": "Simple Load Checkpoint",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Loaders",
+        "output_node": false
+      },
+      "Mahiro": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "patched_model"
+        ],
+        "output_matchtypes": null,
+        "name": "Mahiro",
+        "display_name": "Positive-Biased Guidance",
+        "python_module": "comfy_extras.nodes_mahiro",
+        "category": "_for_testing",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": true,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "mahiro",
+          "mahiro cfg",
+          "similarity-adaptive guidance",
+          "positive-biased cfg"
+        ],
+        "essentials_category": null
+      },
+      "PrimitiveStringMultiline": {
+        "input": {
+          "required": {
+            "value": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "STRING"
+        ],
+        "output_matchtypes": null,
+        "name": "PrimitiveStringMultiline",
+        "display_name": "String (Multiline)",
+        "python_module": "comfy_extras.nodes_primitive",
+        "category": "utils/primitive",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": "Basics"
+      },
+      "SimpleSyrup.PromptEncodeStyle": {
+        "input": {
+          "required": {
+            "encode_style": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "encode_style"
+          ]
+        },
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "style_tag"
+        ],
+        "name": "SimpleSyrup.PromptEncodeStyle",
+        "display_name": "Prompt Encode Style",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Prompt",
+        "output_node": false
+      },
+      "SimpleSyrup.DetailSEGSByScaleFactor": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {}
+            ],
+            "segs": [
+              "SEGS",
+              {}
+            ],
+            "model": [
+              "MODEL",
+              {}
+            ],
+            "vae": [
+              "VAE",
+              {}
+            ],
+            "positive": [
+              "CONDITIONING,CONDITIONING_BATCH",
+              {}
+            ],
+            "negative": [
+              "CONDITIONING,CONDITIONING_BATCH",
+              {}
+            ],
+            "scale_factor": [
+              "FLOAT",
+              {
+                "default": 1.5,
+                "min": 1.0,
+                "max": 5.0,
+                "step": 0.1
+              }
+            ],
+            "upscale_method": [
+              "LIST"
+            ],
+            "clamp_size": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 16384
+              }
+            ],
+            "seed": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "steps": [
+              "INT",
+              {
+                "default": 20,
+                "min": 1,
+                "max": 10000
+              }
+            ],
+            "cfg": [
+              "FLOAT",
+              {
+                "default": 8.0,
+                "min": 0.0,
+                "max": 100.0,
+                "step": 0.1
+              }
+            ],
+            "sampler_name": [
+              "LIST"
+            ],
+            "scheduler": [
+              "LIST"
+            ],
+            "denoise": [
+              "FLOAT",
+              {
+                "default": 0.5,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01
+              }
+            ],
+            "feather": [
+              "INT",
+              {
+                "default": 5,
+                "min": 0,
+                "max": 512
+              }
+            ],
+            "noise_mask": [
+              "BOOLEAN",
+              {
+                "default": true
+              }
+            ],
+            "noise_mask_feather": [
+              "INT",
+              {
+                "default": 20,
+                "min": 0,
+                "max": 512
+              }
+            ],
+            "tiled_encode": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "tiled_decode": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image",
+            "segs",
+            "model",
+            "vae",
+            "positive",
+            "negative",
+            "scale_factor",
+            "upscale_method",
+            "clamp_size",
+            "seed",
+            "steps",
+            "cfg",
+            "sampler_name",
+            "scheduler",
+            "denoise",
+            "feather",
+            "noise_mask",
+            "noise_mask_feather",
+            "tiled_encode",
+            "tiled_decode"
+          ]
+        },
+        "output": [
+          "IMAGE"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "image"
+        ],
+        "name": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "display_name": "Detail SEGS by Scale Factor",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Detailing",
         "output_node": false
       },
       "RegexExtract": {
@@ -922,169 +1123,6 @@
         "category": "SimpleSyrup/Detection",
         "output_node": false
       },
-      "SimpleSyrup.DetailSEGSByScaleFactor": {
-        "input": {
-          "required": {
-            "image": [
-              "IMAGE",
-              {}
-            ],
-            "segs": [
-              "SEGS",
-              {}
-            ],
-            "model": [
-              "MODEL",
-              {}
-            ],
-            "vae": [
-              "VAE",
-              {}
-            ],
-            "positive": [
-              "CONDITIONING,CONDITIONING_BATCH",
-              {}
-            ],
-            "negative": [
-              "CONDITIONING,CONDITIONING_BATCH",
-              {}
-            ],
-            "scale_factor": [
-              "FLOAT",
-              {
-                "default": 1.5,
-                "min": 0.01,
-                "max": 100.0,
-                "step": 0.05
-              }
-            ],
-            "upscale_method": [
-              "LIST"
-            ],
-            "clamp_size": [
-              "INT",
-              {
-                "default": 0,
-                "min": 0,
-                "max": 16384
-              }
-            ],
-            "seed": [
-              "INT",
-              {
-                "default": 0,
-                "min": 0,
-                "max": 18446744073709551615,
-                "control_after_generate": true
-              }
-            ],
-            "steps": [
-              "INT",
-              {
-                "default": 20,
-                "min": 1,
-                "max": 10000
-              }
-            ],
-            "cfg": [
-              "FLOAT",
-              {
-                "default": 8.0,
-                "min": 0.0,
-                "max": 100.0,
-                "step": 0.1
-              }
-            ],
-            "sampler_name": [
-              "LIST"
-            ],
-            "scheduler": [
-              "LIST"
-            ],
-            "denoise": [
-              "FLOAT",
-              {
-                "default": 0.5,
-                "min": 0.0,
-                "max": 1.0,
-                "step": 0.01
-              }
-            ],
-            "feather": [
-              "INT",
-              {
-                "default": 5,
-                "min": 0,
-                "max": 512
-              }
-            ],
-            "noise_mask": [
-              "BOOLEAN",
-              {
-                "default": true
-              }
-            ],
-            "noise_mask_feather": [
-              "INT",
-              {
-                "default": 20,
-                "min": 0,
-                "max": 512
-              }
-            ],
-            "tiled_encode": [
-              "BOOLEAN",
-              {
-                "default": false
-              }
-            ],
-            "tiled_decode": [
-              "BOOLEAN",
-              {
-                "default": false
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "image",
-            "segs",
-            "model",
-            "vae",
-            "positive",
-            "negative",
-            "scale_factor",
-            "upscale_method",
-            "clamp_size",
-            "seed",
-            "steps",
-            "cfg",
-            "sampler_name",
-            "scheduler",
-            "denoise",
-            "feather",
-            "noise_mask",
-            "noise_mask_feather",
-            "tiled_encode",
-            "tiled_decode"
-          ]
-        },
-        "output": [
-          "IMAGE"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "image"
-        ],
-        "name": "SimpleSyrup.DetailSEGSByScaleFactor",
-        "display_name": "Detail SEGS by Scale Factor",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Detailing",
-        "output_node": false
-      },
       "SimpleSyrup.DetectSEGSWithUltralytics": {
         "input": {
           "required": {
@@ -1112,6 +1150,18 @@
                 "min": 1,
                 "max": 8192
               }
+            ],
+            "keep_only": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 4096,
+                "step": 1
+              }
+            ],
+            "keep_by": [
+              "LIST"
             ],
             "bbox_dilation": [
               "INT",
@@ -1168,6 +1218,8 @@
             "detector_model",
             "confidence_threshold",
             "size_threshold",
+            "keep_only",
+            "keep_by",
             "bbox_dilation",
             "sub_dilation",
             "post_dilation",
@@ -1201,9 +1253,9 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2090,
-          "lastLinkId": 2979,
-          "lastGroupId": 303,
+          "lastNodeId": 2240,
+          "lastLinkId": 3672,
+          "lastGroupId": 376,
           "lastRerouteId": 0
         },
         "config": {},
@@ -1303,8 +1355,8 @@
               1386
             ],
             "name": "CONDITIONING",
-            "localized_name": "CONDITIONING",
-            "label": "Positive Cond"
+            "label": "Positive Cond",
+            "localized_name": "CONDITIONING"
           },
           {
             "id": "53f09d1e-0364-4cb3-b5e7-535f63d1323f:output:2",
@@ -1313,8 +1365,8 @@
               1387
             ],
             "name": "CONDITIONING_2",
-            "localized_name": "CONDITIONING",
-            "label": "Negative Cond"
+            "label": "Negative Cond",
+            "localized_name": "CONDITIONING"
           }
         ],
         "widgets": [],
@@ -2274,32 +2326,32 @@
         }
       },
       {
-        "id": "777c9bdf-a67c-4475-b84a-1c6c7b7c90bc",
+        "id": "c6bb854c-c2ee-47a7-818d-f51684b83e0a",
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2090,
-          "lastLinkId": 2979,
-          "lastGroupId": 303,
+          "lastNodeId": 2240,
+          "lastLinkId": 3672,
+          "lastGroupId": 376,
           "lastRerouteId": 0
         },
         "config": {},
-        "name": "Detailer",
+        "name": "Detect SEGS w/ Ultralytics",
         "inputNode": {
           "id": -10,
           "bounding": [
-            3440,
-            330,
+            2310,
+            2400,
             162.4499969482422,
-            500
+            280
           ],
           "pinned": false
         },
         "outputNode": {
           "id": -20,
           "bounding": [
-            4700,
-            640,
+            2860,
+            2510,
             120,
             60
           ],
@@ -2307,209 +2359,110 @@
         },
         "inputs": [
           {
-            "id": "ba993f8c-4927-4fa7-a488-ec2863d928fd",
+            "id": "f1a5ee8f-ad1a-4e66-be41-f3f00ea6e439",
             "type": "IMAGE",
             "linkIds": [
-              1302,
-              1303
+              3302
             ],
             "name": "image",
-            "label": "image"
+            "label": "image",
+            "localized_name": "image"
           },
           {
-            "id": "18dc15a0-bddd-44c0-9124-8aaf84006381",
+            "id": "3583641d-17d2-4297-9ad9-5851594f1d04",
             "type": "COMBO",
             "linkIds": [
-              1304
+              2747
             ],
             "name": "model_name",
-            "label": "Ultralytics Model"
+            "label": "model_name"
           },
           {
-            "id": "2e8469d9-9754-482b-b73a-2ce667e33f08",
+            "id": "0b36b7e8-d59b-4a89-97cc-968a868c14e1",
             "type": "FLOAT",
             "linkIds": [
-              1305
+              3304
             ],
             "name": "confidence_threshold",
             "label": "confidence_threshold"
           },
           {
-            "id": "d763bb82-c64c-4e74-89f3-7f065f79890b",
+            "id": "29af2ce2-90ff-4ebb-bcac-499976a040b4",
             "type": "INT",
             "linkIds": [
-              1306
+              3305
             ],
             "name": "size_threshold",
             "label": "size_threshold"
           },
           {
-            "id": "83660ce4-c407-47af-8e5e-fa733b0f7fb3",
+            "id": "1dcea69c-26a9-4c89-9d7b-b6336b091735",
             "type": "INT",
             "linkIds": [
-              1307
+              3307
+            ],
+            "name": "keep_only",
+            "label": "keep_only"
+          },
+          {
+            "id": "c37d7b24-e561-443d-a8c0-dfdd79d206d6",
+            "type": "COMBO",
+            "linkIds": [
+              3308
+            ],
+            "name": "keep_by",
+            "label": "keep_by"
+          },
+          {
+            "id": "65cc687b-c6fb-42c3-9e0c-84b647b9ae82",
+            "type": "INT",
+            "linkIds": [
+              3309
+            ],
+            "name": "bbox_dilation",
+            "label": "bbox_dilation"
+          },
+          {
+            "id": "9503b382-aa02-4aac-b496-9adec68c8997",
+            "type": "INT",
+            "linkIds": [
+              3310
+            ],
+            "name": "sub_dilation",
+            "label": "sub_dilation"
+          },
+          {
+            "id": "c2729ab2-649c-425d-ae53-c115a8c2f789",
+            "type": "INT",
+            "linkIds": [
+              3311
             ],
             "name": "post_dilation",
             "label": "post_dilation"
           },
           {
-            "id": "37f0defa-df3c-470b-b257-7bbc900c8bcc",
+            "id": "efdd9099-9e01-4436-9504-70ce531c97f3",
             "type": "FLOAT",
             "linkIds": [
-              1365
+              3312
             ],
             "name": "crop_factor",
             "label": "crop_factor"
           },
           {
-            "id": "e976caa6-603f-48cb-bdad-9d4598c9c4bc",
+            "id": "6841f7be-618b-476b-be21-50cd819da7c9",
             "type": "COMBO",
             "linkIds": [
-              1366
+              3313
             ],
             "name": "sort_order",
             "label": "sort_order"
           },
           {
-            "id": "1d973d74-b913-4be2-bcbd-0b5e9509504f",
-            "type": "MODEL",
-            "linkIds": [
-              1367
-            ],
-            "name": "model",
-            "label": "model"
-          },
-          {
-            "id": "da0512c2-19bd-4762-9940-0291f6dfcdc5",
-            "type": "VAE",
-            "linkIds": [
-              1369
-            ],
-            "name": "vae",
-            "label": "vae"
-          },
-          {
-            "id": "67dc2ac6-102a-4991-895a-79cf3da9f3f6",
-            "type": "CONDITIONING,CONDITIONING_BATCH",
-            "linkIds": [
-              1370
-            ],
-            "name": "positive",
-            "label": "positive"
-          },
-          {
-            "id": "c54ec043-4d59-4f30-92c8-14fbc48ec4e0",
-            "type": "CONDITIONING,CONDITIONING_BATCH",
-            "linkIds": [
-              1371
-            ],
-            "name": "negative",
-            "label": "negative"
-          },
-          {
-            "id": "db7a2c59-204d-422c-bc1b-6eec9d9225b1",
-            "type": "FLOAT",
-            "linkIds": [
-              1372
-            ],
-            "name": "scale_factor",
-            "label": "scale_factor"
-          },
-          {
-            "id": "00a3d4a9-0d27-475e-b31d-dbd57957a74e",
-            "type": "INT",
-            "linkIds": [
-              1373
-            ],
-            "name": "clamp_size",
-            "label": "clamp_size"
-          },
-          {
-            "id": "b9c42c8c-cc1f-467c-b54b-dc4d2246af07",
-            "type": "INT",
-            "linkIds": [
-              1374
-            ],
-            "name": "seed",
-            "label": "seed"
-          },
-          {
-            "id": "76f38458-8d8f-4abc-847b-03ef73b1b6e8",
-            "type": "INT",
-            "linkIds": [
-              1375
-            ],
-            "name": "steps",
-            "label": "steps"
-          },
-          {
-            "id": "e9b2a3ef-54e5-4325-bcd1-923d53cfecf1",
-            "type": "FLOAT",
-            "linkIds": [
-              1376
-            ],
-            "name": "cfg",
-            "label": "cfg"
-          },
-          {
-            "id": "63e0a465-ebc2-4b24-bf87-75446ab1b1ae",
-            "type": "COMBO",
-            "linkIds": [
-              1377
-            ],
-            "name": "sampler_name",
-            "label": "sampler_name"
-          },
-          {
-            "id": "435dd8b2-73eb-467d-ad60-22187d362c04",
-            "type": "COMBO",
-            "linkIds": [
-              1378
-            ],
-            "name": "scheduler",
-            "label": "scheduler"
-          },
-          {
-            "id": "7d4cd999-ce19-4653-907e-c44118980eb5",
-            "type": "FLOAT",
-            "linkIds": [
-              1379
-            ],
-            "name": "denoise",
-            "label": "denoise"
-          },
-          {
-            "id": "f1015814-b506-4559-bb27-2e0a7fb3d352",
-            "type": "INT",
-            "linkIds": [
-              1380
-            ],
-            "name": "feather",
-            "label": "feather"
-          },
-          {
-            "id": "0cc76f52-6939-4836-a7d5-f3ce5bdcb492",
+            "id": "d096e407-e7b7-45cb-9844-299695446c63",
             "type": "BOOLEAN",
             "linkIds": [
-              1381
-            ],
-            "name": "tiled_encode",
-            "label": "tiled_encode"
-          },
-          {
-            "id": "3649e25d-c35e-42e1-bebc-b7f8ad741231",
-            "type": "BOOLEAN",
-            "linkIds": [
-              1382
-            ],
-            "name": "tiled_decode",
-            "label": "tiled_decode"
-          },
-          {
-            "id": "37885cb8-c5d3-435b-a3aa-938fafb9e26a",
-            "type": "BOOLEAN",
-            "linkIds": [
-              2979
+              3314
             ],
             "name": "combine_segs",
             "label": "combine_segs"
@@ -2517,27 +2470,28 @@
         ],
         "outputs": [
           {
-            "id": "1a8ad19c-373b-402d-a96d-6810e3f5c249",
-            "type": "IMAGE",
+            "id": "edd4c3a7-cfdf-431d-9d14-14d15d6f0c2a",
+            "type": "SEGS",
             "linkIds": [
-              1284
+              3306
             ],
-            "name": "IMAGE",
-            "label": "IMAGE",
-            "localized_name": "IMAGE"
+            "name": "segs",
+            "label": "segs",
+            "localized_name": "segs",
+            "shape": 6
           }
         ],
         "widgets": [],
         "nodes": [
           {
-            "id": 1669,
+            "id": 2238,
             "type": "SimpleSyrup.LoadUltralyticsModel",
             "pos": [
-              3750,
-              160
+              2500,
+              2360
             ],
             "size": [
-              270,
+              340,
               100
             ],
             "flags": {},
@@ -2550,7 +2504,7 @@
                 "widget": {
                   "name": "model_name"
                 },
-                "link": 1304
+                "link": 2747
               }
             ],
             "outputs": [
@@ -2559,23 +2513,25 @@
                 "name": "detector_model",
                 "type": "DETECTOR_MODEL",
                 "links": [
-                  1263
+                  3303
                 ]
               },
               {
                 "localized_name": "bbox_detector",
                 "name": "bbox_detector",
                 "type": "BBOX_DETECTOR",
-                "links": null
+                "links": []
               },
               {
                 "localized_name": "segm_detector",
                 "name": "segm_detector",
                 "type": "SEGM_DETECTOR",
-                "links": null
+                "links": []
               }
             ],
             "properties": {
+              "cnr_id": "SimpleSyrup",
+              "ver": "8936cc9069027d966a6153c504d358fa79b9be8e",
               "Node name for S&R": "SimpleSyrup.LoadUltralyticsModel"
             },
             "widgets_values": [
@@ -2583,229 +2539,15 @@
             ]
           },
           {
-            "id": 1671,
-            "type": "SimpleSyrup.DetailSEGSByScaleFactor",
-            "pos": [
-              3740,
-              620
-            ],
-            "size": [
-              290,
-              506
-            ],
-            "flags": {},
-            "order": 2,
-            "inputs": [
-              {
-                "localized_name": "image",
-                "name": "image",
-                "type": "IMAGE",
-                "link": 1303
-              },
-              {
-                "localized_name": "segs",
-                "name": "segs",
-                "type": "SEGS",
-                "link": 1265
-              },
-              {
-                "localized_name": "model",
-                "name": "model",
-                "type": "MODEL",
-                "link": 1367
-              },
-              {
-                "localized_name": "vae",
-                "name": "vae",
-                "type": "VAE",
-                "link": 1369
-              },
-              {
-                "localized_name": "positive",
-                "name": "positive",
-                "type": "CONDITIONING,CONDITIONING_BATCH",
-                "link": 1370
-              },
-              {
-                "localized_name": "negative",
-                "name": "negative",
-                "type": "CONDITIONING,CONDITIONING_BATCH",
-                "link": 1371
-              },
-              {
-                "localized_name": "scale_factor",
-                "name": "scale_factor",
-                "type": "FLOAT",
-                "widget": {
-                  "name": "scale_factor"
-                },
-                "link": 1372
-              },
-              {
-                "localized_name": "upscale_method",
-                "name": "upscale_method",
-                "type": "COMBO",
-                "widget": {
-                  "name": "upscale_method"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "clamp_size",
-                "name": "clamp_size",
-                "type": "INT",
-                "widget": {
-                  "name": "clamp_size"
-                },
-                "link": 1373
-              },
-              {
-                "localized_name": "seed",
-                "name": "seed",
-                "type": "INT",
-                "widget": {
-                  "name": "seed"
-                },
-                "link": 1374
-              },
-              {
-                "localized_name": "steps",
-                "name": "steps",
-                "type": "INT",
-                "widget": {
-                  "name": "steps"
-                },
-                "link": 1375
-              },
-              {
-                "localized_name": "cfg",
-                "name": "cfg",
-                "type": "FLOAT",
-                "widget": {
-                  "name": "cfg"
-                },
-                "link": 1376
-              },
-              {
-                "localized_name": "sampler_name",
-                "name": "sampler_name",
-                "type": "COMBO",
-                "widget": {
-                  "name": "sampler_name"
-                },
-                "link": 1377
-              },
-              {
-                "localized_name": "scheduler",
-                "name": "scheduler",
-                "type": "COMBO",
-                "widget": {
-                  "name": "scheduler"
-                },
-                "link": 1378
-              },
-              {
-                "localized_name": "denoise",
-                "name": "denoise",
-                "type": "FLOAT",
-                "widget": {
-                  "name": "denoise"
-                },
-                "link": 1379
-              },
-              {
-                "localized_name": "feather",
-                "name": "feather",
-                "type": "INT",
-                "widget": {
-                  "name": "feather"
-                },
-                "link": 1380
-              },
-              {
-                "localized_name": "noise_mask",
-                "name": "noise_mask",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "noise_mask"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "noise_mask_feather",
-                "name": "noise_mask_feather",
-                "type": "INT",
-                "widget": {
-                  "name": "noise_mask_feather"
-                },
-                "link": null
-              },
-              {
-                "localized_name": "tiled_encode",
-                "name": "tiled_encode",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "tiled_encode"
-                },
-                "link": 1381
-              },
-              {
-                "localized_name": "tiled_decode",
-                "name": "tiled_decode",
-                "type": "BOOLEAN",
-                "widget": {
-                  "name": "tiled_decode"
-                },
-                "link": 1382
-              },
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "type": "CLIP",
-                "link": null
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "image",
-                "name": "image",
-                "type": "IMAGE",
-                "links": [
-                  1284
-                ]
-              }
-            ],
-            "properties": {
-              "Node name for S&R": "SimpleSyrup.DetailSEGSByScaleFactor"
-            },
-            "widgets_values": [
-              2,
-              0,
-              0,
-              "randomize",
-              28,
-              7,
-              "euler_ancestral",
-              "normal",
-              0.3,
-              5,
-              true,
-              20,
-              false,
-              false,
-              false
-            ]
-          },
-          {
-            "id": 1670,
+            "id": 2239,
             "type": "SimpleSyrup.DetectSEGSWithUltralytics",
             "pos": [
-              3740,
-              320
+              2500,
+              2520
             ],
             "size": [
-              290,
-              258
+              340,
+              300
             ],
             "flags": {},
             "order": 1,
@@ -2814,13 +2556,13 @@
                 "localized_name": "image",
                 "name": "image",
                 "type": "IMAGE",
-                "link": 1302
+                "link": 3302
               },
               {
                 "localized_name": "detector_model",
                 "name": "detector_model",
                 "type": "DETECTOR_MODEL",
-                "link": 1263
+                "link": 3303
               },
               {
                 "localized_name": "confidence_threshold",
@@ -2829,7 +2571,7 @@
                 "widget": {
                   "name": "confidence_threshold"
                 },
-                "link": 1305
+                "link": 3304
               },
               {
                 "localized_name": "size_threshold",
@@ -2838,7 +2580,25 @@
                 "widget": {
                   "name": "size_threshold"
                 },
-                "link": 1306
+                "link": 3305
+              },
+              {
+                "localized_name": "keep_only",
+                "name": "keep_only",
+                "type": "INT",
+                "widget": {
+                  "name": "keep_only"
+                },
+                "link": 3307
+              },
+              {
+                "localized_name": "keep_by",
+                "name": "keep_by",
+                "type": "COMBO",
+                "widget": {
+                  "name": "keep_by"
+                },
+                "link": 3308
               },
               {
                 "localized_name": "bbox_dilation",
@@ -2847,7 +2607,7 @@
                 "widget": {
                   "name": "bbox_dilation"
                 },
-                "link": null
+                "link": 3309
               },
               {
                 "localized_name": "sub_dilation",
@@ -2856,7 +2616,7 @@
                 "widget": {
                   "name": "sub_dilation"
                 },
-                "link": null
+                "link": 3310
               },
               {
                 "localized_name": "post_dilation",
@@ -2865,7 +2625,7 @@
                 "widget": {
                   "name": "post_dilation"
                 },
-                "link": 1307
+                "link": 3311
               },
               {
                 "localized_name": "crop_factor",
@@ -2874,7 +2634,7 @@
                 "widget": {
                   "name": "crop_factor"
                 },
-                "link": 1365
+                "link": 3312
               },
               {
                 "localized_name": "sort_order",
@@ -2883,7 +2643,7 @@
                 "widget": {
                   "name": "sort_order"
                 },
-                "link": 1366
+                "link": 3313
               },
               {
                 "localized_name": "combine_segs",
@@ -2892,7 +2652,7 @@
                 "widget": {
                   "name": "combine_segs"
                 },
-                "link": 2979
+                "link": 3314
               }
             ],
             "outputs": [
@@ -2902,14 +2662,8 @@
                 "shape": 6,
                 "type": "SEGS",
                 "links": [
-                  1265
+                  3306
                 ]
-              },
-              {
-                "localized_name": "mask",
-                "name": "mask",
-                "type": "MASK",
-                "links": null
               },
               {
                 "localized_name": "mask",
@@ -2919,235 +2673,135 @@
               }
             ],
             "properties": {
+              "cnr_id": "SimpleSyrup",
+              "ver": "8f8ee91dea3ce1a044c0e61b482e571c51b372bc",
               "Node name for S&R": "SimpleSyrup.DetectSEGSWithUltralytics"
             },
             "widgets_values": [
               0.5,
               10,
               0,
+              "highest confidence",
               0,
               0,
+              8,
               1.5,
               "largest to smallest",
-              false
+              true
             ]
           }
         ],
         "links": [
           {
-            "id": 1263,
-            "origin_id": 1669,
+            "id": 2747,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 2238,
+            "target_slot": 0,
+            "type": "COMBO"
+          },
+          {
+            "id": 3302,
+            "origin_id": -10,
             "origin_slot": 0,
-            "target_id": 1670,
+            "target_id": 2239,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3303,
+            "origin_id": 2238,
+            "origin_slot": 0,
+            "target_id": 2239,
             "target_slot": 1,
             "type": "DETECTOR_MODEL"
           },
           {
-            "id": 1265,
-            "origin_id": 1670,
-            "origin_slot": 0,
-            "target_id": 1671,
-            "target_slot": 1,
-            "type": "SEGS"
+            "id": 3304,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 2239,
+            "target_slot": 2,
+            "type": "FLOAT"
           },
           {
-            "id": 1284,
-            "origin_id": 1671,
+            "id": 3305,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 2239,
+            "target_slot": 3,
+            "type": "INT"
+          },
+          {
+            "id": 3306,
+            "origin_id": 2239,
             "origin_slot": 0,
             "target_id": -20,
             "target_slot": 0,
-            "type": "IMAGE"
+            "type": "SEGS"
           },
           {
-            "id": 1302,
-            "origin_id": -10,
-            "origin_slot": 0,
-            "target_id": 1670,
-            "target_slot": 0,
-            "type": "IMAGE"
-          },
-          {
-            "id": 1303,
-            "origin_id": -10,
-            "origin_slot": 0,
-            "target_id": 1671,
-            "target_slot": 0,
-            "type": "IMAGE"
-          },
-          {
-            "id": 1304,
-            "origin_id": -10,
-            "origin_slot": 1,
-            "target_id": 1669,
-            "target_slot": 0,
-            "type": "COMBO"
-          },
-          {
-            "id": 1305,
-            "origin_id": -10,
-            "origin_slot": 2,
-            "target_id": 1670,
-            "target_slot": 2,
-            "type": "FLOAT"
-          },
-          {
-            "id": 1306,
-            "origin_id": -10,
-            "origin_slot": 3,
-            "target_id": 1670,
-            "target_slot": 3,
-            "type": "INT"
-          },
-          {
-            "id": 1307,
+            "id": 3307,
             "origin_id": -10,
             "origin_slot": 4,
-            "target_id": 1670,
-            "target_slot": 6,
+            "target_id": 2239,
+            "target_slot": 4,
             "type": "INT"
           },
           {
-            "id": 1365,
+            "id": 3308,
             "origin_id": -10,
             "origin_slot": 5,
-            "target_id": 1670,
-            "target_slot": 7,
-            "type": "FLOAT"
+            "target_id": 2239,
+            "target_slot": 5,
+            "type": "COMBO"
           },
           {
-            "id": 1366,
+            "id": 3309,
             "origin_id": -10,
             "origin_slot": 6,
-            "target_id": 1670,
-            "target_slot": 8,
-            "type": "COMBO"
+            "target_id": 2239,
+            "target_slot": 6,
+            "type": "INT"
           },
           {
-            "id": 1367,
+            "id": 3310,
             "origin_id": -10,
             "origin_slot": 7,
-            "target_id": 1671,
-            "target_slot": 2,
-            "type": "MODEL"
-          },
-          {
-            "id": 1369,
-            "origin_id": -10,
-            "origin_slot": 8,
-            "target_id": 1671,
-            "target_slot": 3,
-            "type": "VAE"
-          },
-          {
-            "id": 1370,
-            "origin_id": -10,
-            "origin_slot": 9,
-            "target_id": 1671,
-            "target_slot": 4,
-            "type": "CONDITIONING,CONDITIONING_BATCH"
-          },
-          {
-            "id": 1371,
-            "origin_id": -10,
-            "origin_slot": 10,
-            "target_id": 1671,
-            "target_slot": 5,
-            "type": "CONDITIONING,CONDITIONING_BATCH"
-          },
-          {
-            "id": 1372,
-            "origin_id": -10,
-            "origin_slot": 11,
-            "target_id": 1671,
-            "target_slot": 6,
-            "type": "FLOAT"
-          },
-          {
-            "id": 1373,
-            "origin_id": -10,
-            "origin_slot": 12,
-            "target_id": 1671,
+            "target_id": 2239,
             "target_slot": 7,
             "type": "INT"
           },
           {
-            "id": 1374,
+            "id": 3311,
             "origin_id": -10,
-            "origin_slot": 13,
-            "target_id": 1671,
+            "origin_slot": 8,
+            "target_id": 2239,
             "target_slot": 8,
             "type": "INT"
           },
           {
-            "id": 1375,
+            "id": 3312,
             "origin_id": -10,
-            "origin_slot": 14,
-            "target_id": 1671,
+            "origin_slot": 9,
+            "target_id": 2239,
             "target_slot": 9,
-            "type": "INT"
+            "type": "FLOAT"
           },
           {
-            "id": 1376,
+            "id": 3313,
             "origin_id": -10,
-            "origin_slot": 15,
-            "target_id": 1671,
+            "origin_slot": 10,
+            "target_id": 2239,
             "target_slot": 10,
-            "type": "FLOAT"
+            "type": "COMBO"
           },
           {
-            "id": 1377,
+            "id": 3314,
             "origin_id": -10,
-            "origin_slot": 16,
-            "target_id": 1671,
+            "origin_slot": 11,
+            "target_id": 2239,
             "target_slot": 11,
-            "type": "COMBO"
-          },
-          {
-            "id": 1378,
-            "origin_id": -10,
-            "origin_slot": 17,
-            "target_id": 1671,
-            "target_slot": 12,
-            "type": "COMBO"
-          },
-          {
-            "id": 1379,
-            "origin_id": -10,
-            "origin_slot": 18,
-            "target_id": 1671,
-            "target_slot": 13,
-            "type": "FLOAT"
-          },
-          {
-            "id": 1380,
-            "origin_id": -10,
-            "origin_slot": 19,
-            "target_id": 1671,
-            "target_slot": 14,
-            "type": "INT"
-          },
-          {
-            "id": 1381,
-            "origin_id": -10,
-            "origin_slot": 20,
-            "target_id": 1671,
-            "target_slot": 17,
-            "type": "BOOLEAN"
-          },
-          {
-            "id": 1382,
-            "origin_id": -10,
-            "origin_slot": 21,
-            "target_id": 1671,
-            "target_slot": 18,
-            "type": "BOOLEAN"
-          },
-          {
-            "id": 2979,
-            "origin_id": -10,
-            "origin_slot": 22,
-            "target_id": 1670,
-            "target_slot": 9,
             "type": "BOOLEAN"
           }
         ],
@@ -3175,6 +2829,126 @@
         "label": "vae_name",
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
         "value_type": "string"
+      },
+      {
+        "control_id": "checkpoint.clip_skip",
+        "symbol": "checkpoint",
+        "input_name": "clip_skip",
+        "label": "clip_skip",
+        "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.scale_factor",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "scale_factor",
+        "label": "scale_factor",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "number"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.upscale_method",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "upscale_method",
+        "label": "upscale_method",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "number"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.clamp_size",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "clamp_size",
+        "label": "clamp_size",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "number"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.seed",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "seed",
+        "label": "seed",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "string"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.steps",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "steps",
+        "label": "steps",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "number"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.cfg",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "cfg",
+        "label": "cfg",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "string"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.sampler_name",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "sampler_name",
+        "label": "sampler_name",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "string"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.scheduler",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "scheduler",
+        "label": "scheduler",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "number"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.denoise",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "denoise",
+        "label": "denoise",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "number"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.feather",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "feather",
+        "label": "feather",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.noise_mask",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "noise_mask",
+        "label": "noise_mask",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "number"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.noise_mask_feather",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "noise_mask_feather",
+        "label": "noise_mask_feather",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.tiled_encode",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "tiled_encode",
+        "label": "tiled_encode",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "detail_segs_by_scale_factor.tiled_decode",
+        "symbol": "detail_segs_by_scale_factor",
+        "input_name": "tiled_decode",
+        "label": "tiled_decode",
+        "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
+        "value_type": "boolean"
       },
       {
         "control_id": "negative_prompt.value",
@@ -3282,6 +3056,20 @@
         "values": {
           "checkpoint.ckpt_name": "",
           "checkpoint.vae_name": "",
+          "checkpoint.clip_skip": false,
+          "detail_segs_by_scale_factor.scale_factor": 2,
+          "detail_segs_by_scale_factor.upscale_method": 0,
+          "detail_segs_by_scale_factor.clamp_size": 0,
+          "detail_segs_by_scale_factor.steps": 7,
+          "detail_segs_by_scale_factor.cfg": "euler_ancestral",
+          "detail_segs_by_scale_factor.sampler_name": "normal",
+          "detail_segs_by_scale_factor.scheduler": 0.3,
+          "detail_segs_by_scale_factor.denoise": 5,
+          "detail_segs_by_scale_factor.feather": true,
+          "detail_segs_by_scale_factor.noise_mask": 20,
+          "detail_segs_by_scale_factor.noise_mask_feather": false,
+          "detail_segs_by_scale_factor.tiled_encode": false,
+          "detail_segs_by_scale_factor.tiled_decode": false,
           "negative_prompt.value": "",
           "positive_prompt.value": "",
           "prompt_encode_style.encode_style": "A1111",
