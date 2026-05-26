@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Prompt-guided detailing: create masks with GroundingDINO, SAM, and ViTMatte, then inpaint and refine selected regions.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -164,8 +164,8 @@
       "ds": {
         "scale": 1.11678157794253,
         "offset": [
-          2580.969670282011,
-          -3344.2564376636515
+          2545.1524605518034,
+          -3252.9225528516217
         ]
       },
       "nodes": {
@@ -297,8 +297,8 @@
             210.0
           ],
           "size": [
-            287.4,
-            122.0
+            290.0,
+            130.0
           ],
           "title": "Schedule & Encode Prompts",
           "flags": {
@@ -363,10 +363,10 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube",
             "default_alias": "SDXL/Promptmask Detailer",
             "target_model": "SDXL",
-            "cube_version": "1.1.0",
+            "cube_version": "1.2.0",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube@1.1.0",
-            "surface_signature": "cc0853c2b2e5",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube@1.2.0",
+            "surface_signature": "3f6d75c7600a",
             "markers": {
               "inputs": [
                 "1623"
@@ -1241,7 +1241,7 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2303,
+          "lastNodeId": 2304,
           "lastLinkId": 3835,
           "lastGroupId": 379,
           "lastRerouteId": 0
@@ -2081,7 +2081,7 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2303,
+          "lastNodeId": 2304,
           "lastLinkId": 3835,
           "lastGroupId": 379,
           "lastRerouteId": 0
