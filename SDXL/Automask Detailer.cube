@@ -1576,7 +1576,7 @@
         "input_name": "upscale_method",
         "label": "upscale_method",
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
-        "value_type": "number"
+        "value_type": "string"
       },
       {
         "control_id": "detail_segs_by_scale_factor.clamp_size",
@@ -1592,7 +1592,7 @@
         "input_name": "seed",
         "label": "seed",
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
-        "value_type": "string"
+        "value_type": "number"
       },
       {
         "control_id": "detail_segs_by_scale_factor.steps",
@@ -1608,7 +1608,7 @@
         "input_name": "cfg",
         "label": "cfg",
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
-        "value_type": "string"
+        "value_type": "number"
       },
       {
         "control_id": "detail_segs_by_scale_factor.sampler_name",
@@ -1624,7 +1624,7 @@
         "input_name": "scheduler",
         "label": "scheduler",
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
-        "value_type": "number"
+        "value_type": "string"
       },
       {
         "control_id": "detail_segs_by_scale_factor.denoise",
@@ -1640,7 +1640,7 @@
         "input_name": "feather",
         "label": "feather",
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
-        "value_type": "boolean"
+        "value_type": "number"
       },
       {
         "control_id": "detail_segs_by_scale_factor.noise_mask",
@@ -1648,7 +1648,7 @@
         "input_name": "noise_mask",
         "label": "noise_mask",
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
-        "value_type": "number"
+        "value_type": "boolean"
       },
       {
         "control_id": "detail_segs_by_scale_factor.noise_mask_feather",
@@ -1656,7 +1656,7 @@
         "input_name": "noise_mask_feather",
         "label": "noise_mask_feather",
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
-        "value_type": "boolean"
+        "value_type": "number"
       },
       {
         "control_id": "detail_segs_by_scale_factor.tiled_encode",
@@ -1782,16 +1782,16 @@
           "checkpoint.vae_name": "",
           "checkpoint.clip_skip": false,
           "detail_segs_by_scale_factor.scale_factor": 2,
-          "detail_segs_by_scale_factor.upscale_method": 0,
+          "detail_segs_by_scale_factor.upscale_method": "lanczos",
           "detail_segs_by_scale_factor.clamp_size": 0,
           "detail_segs_by_scale_factor.steps": 7,
-          "detail_segs_by_scale_factor.cfg": "euler_ancestral",
-          "detail_segs_by_scale_factor.sampler_name": "normal",
-          "detail_segs_by_scale_factor.scheduler": 0.3,
-          "detail_segs_by_scale_factor.denoise": 5,
-          "detail_segs_by_scale_factor.feather": true,
-          "detail_segs_by_scale_factor.noise_mask": 20,
-          "detail_segs_by_scale_factor.noise_mask_feather": false,
+          "detail_segs_by_scale_factor.cfg": 7,
+          "detail_segs_by_scale_factor.sampler_name": "euler_ancestral",
+          "detail_segs_by_scale_factor.scheduler": "normal",
+          "detail_segs_by_scale_factor.denoise": 0.3,
+          "detail_segs_by_scale_factor.feather": 5,
+          "detail_segs_by_scale_factor.noise_mask": true,
+          "detail_segs_by_scale_factor.noise_mask_feather": 20,
           "detail_segs_by_scale_factor.tiled_encode": false,
           "detail_segs_by_scale_factor.tiled_decode": false,
           "negative_prompt.value": "",
