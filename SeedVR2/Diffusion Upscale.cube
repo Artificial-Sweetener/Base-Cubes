@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SeedVR2 image upscaling: load the SeedVR2 DiT model and upscale an input image by a scale factor.",
   "metadata": {
     "default_alias": "SeedVR2/Diffusion Upscale",
@@ -151,9 +151,9 @@
             "cube_id": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube",
             "default_alias": "SeedVR2/Diffusion Upscale",
             "target_model": "SeedVR2",
-            "cube_version": "1.9.1",
+            "cube_version": "1.0.1",
             "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube@1.9.1",
+            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube@1.0.1",
             "surface_signature": "b03285aa8656",
             "icon": {
               "kind": "asset",
@@ -1261,7 +1261,6 @@
             },
             "widgets_values": [
               1741644249,
-              "randomize",
               1080,
               0,
               1,
