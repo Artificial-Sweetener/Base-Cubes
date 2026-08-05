@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Prompt by Region.cube",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "\"Regional Prompting\" for Anima using tiled diffusion. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] will be your global prompt. Mask and region prompt order matter; each region prompt after the first [SEP] will pair with whatever mask is next to it in line.\n\nLoRA scheduling is supported. LoRA in the global prompt will apply to the entire image, but LoRA in a regional prompt area will only apply to that region.",
   "metadata": {
     "default_alias": "Anima/Prompt by Region",
@@ -123,9 +123,14 @@
       }
     },
     "inputs": {},
-    "outputs": {},
+    "outputs": {
+      "output.image": [
+        "vae_decode",
+        0
+      ]
+    },
     "layout": {
-      "workflow_version": 0,
+      "workflow_version": 1,
       "origin": [
         0.0,
         0.0
@@ -247,6 +252,22 @@
             120.0
           ],
           "title": "latent dimensions"
+        }
+      },
+      "markers": {
+        "output.image": {
+          "id": "sugarcubes:native:0:output:0",
+          "class_type": "SugarCubes.CubeOutput",
+          "kind": "output",
+          "pos": [
+            1055.0,
+            20.0
+          ],
+          "size": [
+            140.0,
+            46.0
+          ],
+          "title": "image"
         }
       }
     },
@@ -807,7 +828,7 @@
         "input_name": "image",
         "label": "image",
         "class_type": "SimpleSyrup.LoadMaskBatch",
-        "value_type": "object"
+        "value_type": "array"
       },
       {
         "control_id": "load_mask_batch.channel",
