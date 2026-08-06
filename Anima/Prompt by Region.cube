@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Prompt by Region.cube",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "\"Regional Prompting\" for Anima using tiled diffusion. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] will be your global prompt. Mask and region prompt order matter; each region prompt after the first [SEP] will pair with whatever mask is next to it in line.\n\nLoRA scheduling is supported. LoRA in the global prompt will apply to the entire image, but LoRA in a regional prompt area will only apply to that region.",
   "metadata": {
     "default_alias": "Anima/Prompt by Region",
@@ -9,8 +9,8 @@
       "Anima"
     ],
     "surface_size": [
-      1190.0,
-      775.0
+      1002.0,
+      682.0
     ],
     "surface_state": {
       "schema": 1,
@@ -19,7 +19,7 @@
       "gap": 12.0,
       "preview": {
         "visible": true,
-        "width": 513.6844451311475,
+        "width": 455.22000000000367,
         "selected_output": null
       }
     }
@@ -51,31 +51,31 @@
             0
           ]
         },
-        "original_id": "31667ded-c140-4a32-8d6f-73a65f112212:5fe57ae3-854b-4ed1-9fd8-c8b1b591c387"
+        "original_id": "6630f7e9-11f3-464a-be30-fdc362849e75:9ff4437f-d196-4e40-bb75-056384c95fb5"
       },
       "latent_dimensions": {
         "class_type": "EmptyLatentImage",
         "label": "latent dimensions",
         "inputs": {},
-        "original_id": "31667ded-c140-4a32-8d6f-73a65f112212:b06eed9e-33a9-4e37-ba26-440e4dc6758c"
+        "original_id": "6630f7e9-11f3-464a-be30-fdc362849e75:2c32d6db-c575-4c76-b2f5-17b1162600bf"
       },
       "load_mask_batch": {
         "class_type": "SimpleSyrup.LoadMaskBatch",
         "label": "Load Mask Batch",
         "inputs": {},
-        "original_id": "31667ded-c140-4a32-8d6f-73a65f112212:1f896e90-ab0f-4839-85a3-fecefcc5d453"
+        "original_id": "6630f7e9-11f3-464a-be30-fdc362849e75:8d9e05ea-b2ff-47af-b4e9-44d04c472977"
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "negative prompt",
         "inputs": {},
-        "original_id": "31667ded-c140-4a32-8d6f-73a65f112212:868ec9f2-39e6-4391-b0e7-3b9704782dd5"
+        "original_id": "6630f7e9-11f3-464a-be30-fdc362849e75:188acd6a-c2cc-426d-8881-ccd928f3419a"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "positive prompt",
         "inputs": {},
-        "original_id": "31667ded-c140-4a32-8d6f-73a65f112212:983a4cc8-9da1-4fa2-80fd-2c2c90f514a8"
+        "original_id": "6630f7e9-11f3-464a-be30-fdc362849e75:80a4beab-7a9b-4106-87ae-1517a12ad212"
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -98,13 +98,13 @@
             1
           ]
         },
-        "original_id": "31667ded-c140-4a32-8d6f-73a65f112212:753b02a6-c2f9-4fdc-afb9-6bce8658fc30"
+        "original_id": "6630f7e9-11f3-464a-be30-fdc362849e75:383e3356-7b98-41b5-ad1e-2d9f9dcfc437"
       },
       "simple_load_anima": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Simple Load Anima",
         "inputs": {},
-        "original_id": "31667ded-c140-4a32-8d6f-73a65f112212:70757a4e-fe1f-4cdf-bcaa-2073dedaa187"
+        "original_id": "6630f7e9-11f3-464a-be30-fdc362849e75:1aa9ccdd-5155-419b-bd78-2a89a589883d"
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -119,7 +119,7 @@
             2
           ]
         },
-        "original_id": "31667ded-c140-4a32-8d6f-73a65f112212:953141f7-f9a8-4ab5-8337-861a09c07ea2"
+        "original_id": "6630f7e9-11f3-464a-be30-fdc362849e75:4a17e3b9-b35a-4a25-91b2-af0540d45070"
       }
     },
     "inputs": {},
@@ -130,47 +130,34 @@
       ]
     },
     "layout": {
-      "workflow_version": 1,
+      "workflow_version": 0,
       "origin": [
-        0.0,
-        0.0
+        -440.0,
+        -490.0
       ],
       "ds": {
-        "scale": 1.0152559799477103,
+        "scale": 1.610510000000001,
         "offset": [
-          55.58127602332022,
-          43.33356982278971
+          -90.34228708566746,
+          -68.44381658282501
         ]
       },
       "nodes": {
-        "load_mask_batch": {
-          "id": "31667ded-c140-4a32-8d6f-73a65f112212:1f896e90-ab0f-4839-85a3-fecefcc5d453",
-          "class_type": "SimpleSyrup.LoadMaskBatch",
+        "negative_prompt": {
+          "id": "6630f7e9-11f3-464a-be30-fdc362849e75:188acd6a-c2cc-426d-8881-ccd928f3419a",
+          "class_type": "PrimitiveStringMultiline",
           "pos": [
-            0.0,
-            0.0
+            330.0,
+            220.0
           ],
           "size": [
             320.0,
-            380.0
+            160.0
           ],
-          "title": "Load Mask Batch"
-        },
-        "ksampler": {
-          "id": "31667ded-c140-4a32-8d6f-73a65f112212:5fe57ae3-854b-4ed1-9fd8-c8b1b591c387",
-          "class_type": "SimpleSyrup.KSamplerPromptByRegion",
-          "pos": [
-            680.0,
-            0.0
-          ],
-          "size": [
-            300.0,
-            430.0
-          ],
-          "title": "KSampler"
+          "title": "negative prompt"
         },
         "simple_load_anima": {
-          "id": "31667ded-c140-4a32-8d6f-73a65f112212:70757a4e-fe1f-4cdf-bcaa-2073dedaa187",
+          "id": "6630f7e9-11f3-464a-be30-fdc362849e75:1aa9ccdd-5155-419b-bd78-2a89a589883d",
           "class_type": "SimpleSyrup.SimpleLoadAnima",
           "pos": [
             0.0,
@@ -182,8 +169,21 @@
           ],
           "title": "Simple Load Anima"
         },
+        "latent_dimensions": {
+          "id": "6630f7e9-11f3-464a-be30-fdc362849e75:2c32d6db-c575-4c76-b2f5-17b1162600bf",
+          "class_type": "EmptyLatentImage",
+          "pos": [
+            0.0,
+            190.0
+          ],
+          "size": [
+            320.0,
+            120.0
+          ],
+          "title": "latent dimensions"
+        },
         "schedule_encode_prompts": {
-          "id": "31667ded-c140-4a32-8d6f-73a65f112212:753b02a6-c2f9-4fdc-afb9-6bce8658fc30",
+          "id": "6630f7e9-11f3-464a-be30-fdc362849e75:383e3356-7b98-41b5-ad1e-2d9f9dcfc437",
           "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
           "pos": [
             430.0,
@@ -198,21 +198,8 @@
             "collapsed": true
           }
         },
-        "negative_prompt": {
-          "id": "31667ded-c140-4a32-8d6f-73a65f112212:868ec9f2-39e6-4391-b0e7-3b9704782dd5",
-          "class_type": "PrimitiveStringMultiline",
-          "pos": [
-            330.0,
-            220.0
-          ],
-          "size": [
-            320.0,
-            160.0
-          ],
-          "title": "negative prompt"
-        },
         "vae_decode": {
-          "id": "31667ded-c140-4a32-8d6f-73a65f112212:953141f7-f9a8-4ab5-8337-861a09c07ea2",
+          "id": "6630f7e9-11f3-464a-be30-fdc362849e75:4a17e3b9-b35a-4a25-91b2-af0540d45070",
           "class_type": "VAEDecode",
           "pos": [
             750.0,
@@ -228,7 +215,7 @@
           }
         },
         "positive_prompt": {
-          "id": "31667ded-c140-4a32-8d6f-73a65f112212:983a4cc8-9da1-4fa2-80fd-2c2c90f514a8",
+          "id": "6630f7e9-11f3-464a-be30-fdc362849e75:80a4beab-7a9b-4106-87ae-1517a12ad212",
           "class_type": "PrimitiveStringMultiline",
           "pos": [
             330.0,
@@ -240,18 +227,31 @@
           ],
           "title": "positive prompt"
         },
-        "latent_dimensions": {
-          "id": "31667ded-c140-4a32-8d6f-73a65f112212:b06eed9e-33a9-4e37-ba26-440e4dc6758c",
-          "class_type": "EmptyLatentImage",
+        "load_mask_batch": {
+          "id": "6630f7e9-11f3-464a-be30-fdc362849e75:8d9e05ea-b2ff-47af-b4e9-44d04c472977",
+          "class_type": "SimpleSyrup.LoadMaskBatch",
           "pos": [
             0.0,
-            190.0
+            0.0
           ],
           "size": [
             320.0,
-            120.0
+            380.0
           ],
-          "title": "latent dimensions"
+          "title": "Load Mask Batch"
+        },
+        "ksampler": {
+          "id": "6630f7e9-11f3-464a-be30-fdc362849e75:9ff4437f-d196-4e40-bb75-056384c95fb5",
+          "class_type": "SimpleSyrup.KSamplerPromptByRegion",
+          "pos": [
+            680.0,
+            0.0
+          ],
+          "size": [
+            300.0,
+            430.0
+          ],
+          "title": "KSampler"
         }
       },
       "markers": {
@@ -260,8 +260,8 @@
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            1055.0,
-            20.0
+            1015.148547,
+            467.255318
           ],
           "size": [
             140.0,
@@ -272,6 +272,284 @@
       }
     },
     "definitions": {
+      "PrimitiveStringMultiline": {
+        "input": {
+          "required": {
+            "value": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "STRING"
+        ],
+        "output_matchtypes": null,
+        "name": "PrimitiveStringMultiline",
+        "display_name": "Text (Multiline)",
+        "python_module": "comfy_extras.nodes_primitive",
+        "category": "utilities/primitive",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "text",
+          "string",
+          "text multiline",
+          "string multiline",
+          "text box",
+          "prompt"
+        ],
+        "essentials_category": "Basics",
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.SimpleLoadAnima": {
+        "input": {
+          "required": {
+            "diffusion_model": [
+              "LIST"
+            ],
+            "diffusion_weight_dtype": [
+              "LIST"
+            ],
+            "text_encoder": [
+              "LIST"
+            ],
+            "text_encoder_device": [
+              "LIST"
+            ],
+            "vae": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "diffusion_model",
+            "diffusion_weight_dtype",
+            "text_encoder",
+            "text_encoder_device",
+            "vae"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CLIP",
+          "VAE"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "model",
+          "clip",
+          "vae"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SimpleLoadAnima",
+        "display_name": "Simple Load Anima",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Loaders",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "EmptyLatentImage": {
+        "input": {
+          "required": {
+            "width": [
+              "INT",
+              {
+                "default": 512,
+                "min": 16,
+                "max": 16384,
+                "step": 8
+              }
+            ],
+            "height": [
+              "INT",
+              {
+                "default": 512,
+                "min": 16,
+                "max": 16384,
+                "step": 8
+              }
+            ],
+            "batch_size": [
+              "INT",
+              {
+                "default": 1,
+                "min": 1,
+                "max": 4096
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "width",
+            "height",
+            "batch_size"
+          ]
+        },
+        "output": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "LATENT"
+        ],
+        "name": "EmptyLatentImage",
+        "display_name": "Empty Latent Image",
+        "python_module": "nodes",
+        "category": "model/latent",
+        "output_node": false
+      },
+      "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "rawLink": true
+              }
+            ],
+            "clip": [
+              "CLIP",
+              {
+                "rawLink": true
+              }
+            ],
+            "positive_prompt": [
+              "STRING",
+              {
+                "default": "",
+                "multiline": false
+              }
+            ],
+            "negative_prompt": [
+              "STRING",
+              {
+                "default": "",
+                "multiline": false
+              }
+            ]
+          },
+          "optional": {
+            "encode_style": [
+              "STRING",
+              {
+                "default": "",
+                "forceInput": true,
+                "multiline": false
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "clip",
+            "positive_prompt",
+            "negative_prompt"
+          ],
+          "optional": [
+            "encode_style"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CONDITIONING,CONDITIONING_BATCH",
+          "CONDITIONING,CONDITIONING_BATCH"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "model",
+          "positive",
+          "negative"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "display_name": "Schedule & Encode Prompts",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Conditioning",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "VAEDecode": {
+        "input": {
+          "required": {
+            "samples": [
+              "LATENT",
+              {}
+            ],
+            "vae": [
+              "VAE",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "samples",
+            "vae"
+          ]
+        },
+        "output": [
+          "IMAGE"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "IMAGE"
+        ],
+        "name": "VAEDecode",
+        "display_name": "VAE Decode",
+        "python_module": "nodes",
+        "category": "model/latent",
+        "output_node": false
+      },
       "SimpleSyrup.LoadMaskBatch": {
         "input": {
           "required": {
@@ -449,284 +727,6 @@
         ],
         "essentials_category": null,
         "has_intermediate_output": false
-      },
-      "SimpleSyrup.SimpleLoadAnima": {
-        "input": {
-          "required": {
-            "diffusion_model": [
-              "LIST"
-            ],
-            "diffusion_weight_dtype": [
-              "LIST"
-            ],
-            "text_encoder": [
-              "LIST"
-            ],
-            "text_encoder_device": [
-              "LIST"
-            ],
-            "vae": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "diffusion_model",
-            "diffusion_weight_dtype",
-            "text_encoder",
-            "text_encoder_device",
-            "vae"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "MODEL",
-          "CLIP",
-          "VAE"
-        ],
-        "output_is_list": [
-          false,
-          false,
-          false
-        ],
-        "output_name": [
-          "model",
-          "clip",
-          "vae"
-        ],
-        "output_matchtypes": null,
-        "name": "SimpleSyrup.SimpleLoadAnima",
-        "display_name": "Simple Load Anima",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Loaders",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": null,
-        "has_intermediate_output": false
-      },
-      "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl": {
-        "input": {
-          "required": {
-            "model": [
-              "MODEL",
-              {
-                "rawLink": true
-              }
-            ],
-            "clip": [
-              "CLIP",
-              {
-                "rawLink": true
-              }
-            ],
-            "positive_prompt": [
-              "STRING",
-              {
-                "default": "",
-                "multiline": false
-              }
-            ],
-            "negative_prompt": [
-              "STRING",
-              {
-                "default": "",
-                "multiline": false
-              }
-            ]
-          },
-          "optional": {
-            "encode_style": [
-              "STRING",
-              {
-                "default": "",
-                "forceInput": true,
-                "multiline": false
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model",
-            "clip",
-            "positive_prompt",
-            "negative_prompt"
-          ],
-          "optional": [
-            "encode_style"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "MODEL",
-          "CONDITIONING,CONDITIONING_BATCH",
-          "CONDITIONING,CONDITIONING_BATCH"
-        ],
-        "output_is_list": [
-          false,
-          false,
-          false
-        ],
-        "output_name": [
-          "model",
-          "positive",
-          "negative"
-        ],
-        "output_matchtypes": null,
-        "name": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
-        "display_name": "Schedule & Encode Prompts",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Conditioning",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": null,
-        "has_intermediate_output": false
-      },
-      "PrimitiveStringMultiline": {
-        "input": {
-          "required": {
-            "value": [
-              "STRING",
-              {
-                "multiline": true
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "value"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "STRING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "STRING"
-        ],
-        "output_matchtypes": null,
-        "name": "PrimitiveStringMultiline",
-        "display_name": "Text (Multiline)",
-        "python_module": "comfy_extras.nodes_primitive",
-        "category": "utilities/primitive",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": [
-          "text",
-          "string",
-          "text multiline",
-          "string multiline",
-          "text box",
-          "prompt"
-        ],
-        "essentials_category": "Basics",
-        "has_intermediate_output": false
-      },
-      "VAEDecode": {
-        "input": {
-          "required": {
-            "samples": [
-              "LATENT",
-              {}
-            ],
-            "vae": [
-              "VAE",
-              {}
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "samples",
-            "vae"
-          ]
-        },
-        "output": [
-          "IMAGE"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "IMAGE"
-        ],
-        "name": "VAEDecode",
-        "display_name": "VAE Decode",
-        "python_module": "nodes",
-        "category": "model/latent",
-        "output_node": false
-      },
-      "EmptyLatentImage": {
-        "input": {
-          "required": {
-            "width": [
-              "INT",
-              {
-                "default": 512,
-                "min": 16,
-                "max": 16384,
-                "step": 8
-              }
-            ],
-            "height": [
-              "INT",
-              {
-                "default": 512,
-                "min": 16,
-                "max": 16384,
-                "step": 8
-              }
-            ],
-            "batch_size": [
-              "INT",
-              {
-                "default": 1,
-                "min": 1,
-                "max": 4096
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "width",
-            "height",
-            "batch_size"
-          ]
-        },
-        "output": [
-          "LATENT"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "LATENT"
-        ],
-        "name": "EmptyLatentImage",
-        "display_name": "Empty Latent Image",
-        "python_module": "nodes",
-        "category": "model/latent",
-        "output_node": false
       }
     },
     "subgraphs": []
@@ -828,7 +828,7 @@
         "input_name": "image",
         "label": "image",
         "class_type": "SimpleSyrup.LoadMaskBatch",
-        "value_type": "array"
+        "value_type": "object"
       },
       {
         "control_id": "load_mask_batch.channel",
