@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Diffusion upscaling for Anima: upscale an input image, then refine it with tiled diffusion to avoid running Anima diffusion outside its supported resolutions.",
   "metadata": {
     "default_alias": "Anima/Diffusion Upscale",
@@ -32,6 +32,21 @@
   },
   "implementation": {
     "nodes": {
+      "clip_negpip": {
+        "class_type": "CLIPNegPip",
+        "label": "CLIP NegPip",
+        "inputs": {
+          "model": [
+            "models",
+            0
+          ],
+          "clip": [
+            "models",
+            1
+          ]
+        },
+        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:2302"
+      },
       "ksampler": {
         "class_type": "SimpleSyrup.KSamplerAttentionCouplingTiled",
         "label": "KSampler",
@@ -91,11 +106,11 @@
             0
           ],
           "model": [
-            "models",
+            "clip_negpip",
             0
           ],
           "clip": [
-            "models",
+            "clip_negpip",
             1
           ]
         },
@@ -173,13 +188,13 @@
       "workflow_version": 0,
       "origin": [
         -7227.69484,
-        -3400.0
+        -3400.242253
       ],
       "ds": {
-        "scale": 1.078376620639403,
+        "scale": 0.7365457418478271,
         "offset": [
-          -5769.2683126790125,
-          -3084.533796526776
+          -5527.531574028282,
+          -2777.143001394171
         ]
       },
       "nodes": {
@@ -187,7 +202,7 @@
           "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:03bbfcea-f285-4870-a18f-57248b8acbbd",
           "class_type": "PrimitiveStringMultiline",
           "pos": [
-            167.69484,
+            168.0,
             180.0
           ],
           "size": [
@@ -200,7 +215,7 @@
           "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:1e954afe-8566-4427-ad2b-005d55bc5833",
           "class_type": "SimpleSyrup.SimpleLoadAnima",
           "pos": [
-            167.69484,
+            168.0,
             690.0
           ],
           "size": [
@@ -214,33 +229,52 @@
           "class_type": "SimpleSyrup.KSamplerAttentionCouplingTiled",
           "pos": [
             877.69484,
-            30.0
+            30.242253
           ],
           "size": [
-            420.0,
-            750.0
+            300.0,
+            502.0
           ],
           "title": "KSampler"
+        },
+        "clip_negpip": {
+          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:2302",
+          "class_type": "CLIPNegPip",
+          "pos": [
+            607.69484,
+            200.242253
+          ],
+          "size": [
+            225.0,
+            0.0
+          ],
+          "title": "CLIP NegPip",
+          "flags": {
+            "collapsed": true
+          }
         },
         "schedule_encode_prompts": {
           "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:34be9fcd-2724-4740-b442-4ba03967e30e",
           "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
           "pos": [
-            527.69484,
-            230.0
+            597.69484,
+            250.242253
           ],
           "size": [
-            310.0,
-            170.0
+            225.0,
+            0.0
           ],
-          "title": "Schedule & Encode Prompts"
+          "title": "Schedule & Encode Prompts",
+          "flags": {
+            "collapsed": true
+          }
         },
         "vae_encode": {
           "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:3e86a9b3-bcd7-41ff-a20f-4d4b27ea8694",
           "class_type": "SimpleSyrup.VAEEncodeOptions",
           "pos": [
             527.69484,
-            490.0
+            300.242253
           ],
           "size": [
             310.0,
@@ -252,7 +286,7 @@
           "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:5707a95e-87a4-4d57-bcf3-154172d22b96",
           "class_type": "PrimitiveStringMultiline",
           "pos": [
-            167.69484,
+            168.0,
             440.0
           ],
           "size": [
@@ -265,7 +299,7 @@
           "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:cf1ddaf4-b552-4ec6-be7a-be19f2148eed",
           "class_type": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
           "pos": [
-            527.69484,
+            528.0,
             0.0
           ],
           "size": [
@@ -278,8 +312,8 @@
           "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:dd3903b2-5da9-42a3-99c0-de68443e3b57",
           "class_type": "SimpleSyrup.VAEDecodeOptions",
           "pos": [
-            877.69484,
-            680.0
+            887.69484,
+            580.242253
           ],
           "size": [
             290.0,
@@ -295,7 +329,7 @@
           "kind": "input",
           "pos": [
             -0.0,
-            36.757747
+            31.0
           ],
           "size": [
             140.0,
@@ -309,7 +343,7 @@
           "kind": "input",
           "pos": [
             -0.0,
-            90.757747
+            85.0
           ],
           "size": [
             140.0,
@@ -322,8 +356,8 @@
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            1208.0,
-            735.757747
+            1221.222508,
+            638.870371
           ],
           "size": [
             140.0,
@@ -626,6 +660,53 @@
           "multidiffusion regional lora",
           "mixture of diffusers regional lora"
         ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "CLIPNegPip": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {}
+            ],
+            "clip": [
+              "CLIP",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "clip"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CLIP"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "output_name": [
+          "MODEL",
+          "CLIP"
+        ],
+        "output_matchtypes": null,
+        "name": "CLIPNegPip",
+        "display_name": "CLIP NegPip",
+        "python_module": "custom_nodes.comfyui-ppm",
+        "category": "conditioning",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
         "essentials_category": null,
         "has_intermediate_output": false
       },
@@ -1359,8 +1440,8 @@
         "version": 1,
         "revision": 0,
         "state": {
-          "lastNodeId": 2300,
-          "lastLinkId": 3827,
+          "lastNodeId": 2302,
+          "lastLinkId": 3835,
           "lastGroupId": 379,
           "lastRerouteId": 0
         },
