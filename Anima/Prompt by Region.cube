@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Prompt by Region.cube",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "\"Regional Prompting\" for Anima using tiled diffusion. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] will be your global prompt. Mask and region prompt order matter; each region prompt after the first [SEP] will pair with whatever mask is next to it in line.\n\nLoRA scheduling is supported. LoRA in the global prompt will apply to the entire image, but LoRA in a regional prompt area will only apply to that region.",
   "metadata": {
     "default_alias": "Anima/Prompt by Region",
@@ -26,9 +26,24 @@
   },
   "implementation": {
     "nodes": {
-      "ksampler_attention_coupling": {
+      "clip_negpip": {
+        "class_type": "CLIPNegPip",
+        "label": "CLIP NegPip",
+        "inputs": {
+          "model": [
+            "simple_load_anima",
+            0
+          ],
+          "clip": [
+            "simple_load_anima",
+            1
+          ]
+        },
+        "original_id": "1:2301"
+      },
+      "ksampler": {
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
-        "label": "KSampler (Attention Coupling)",
+        "label": "KSampler",
         "inputs": {
           "model": [
             "schedule_encode_prompts",
@@ -90,11 +105,11 @@
             0
           ],
           "model": [
-            "simple_load_anima",
+            "clip_negpip",
             0
           ],
           "clip": [
-            "simple_load_anima",
+            "clip_negpip",
             1
           ]
         },
@@ -111,7 +126,7 @@
         "label": "VAE decode",
         "inputs": {
           "samples": [
-            "ksampler_attention_coupling",
+            "ksampler",
             0
           ],
           "vae": [
@@ -140,14 +155,14 @@
         -2890.0
       ],
       "ds": {
-        "scale": 1.0696914250000045,
+        "scale": 0.8912203476358707,
         "offset": [
-          -4677.630275235306,
-          -3036.741195974188
+          -4431.302453004213,
+          -3135.9250229885733
         ]
       },
       "nodes": {
-        "ksampler_attention_coupling": {
+        "ksampler": {
           "id": "1:2",
           "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
           "pos": [
@@ -158,7 +173,23 @@
             310.0,
             370.0
           ],
-          "title": "KSampler (Attention Coupling)"
+          "title": "KSampler"
+        },
+        "clip_negpip": {
+          "id": "1:2301",
+          "class_type": "CLIPNegPip",
+          "pos": [
+            420.0,
+            430.0
+          ],
+          "size": [
+            225.0,
+            0.0
+          ],
+          "title": "CLIP NegPip",
+          "flags": {
+            "collapsed": true
+          }
         },
         "negative_prompt": {
           "id": "1:719d0003-87c8-43c9-a112-6f9493f1f0cd",
@@ -190,8 +221,8 @@
           "id": "1:9ea6f242-ab3f-44ac-95cc-a0bbd9329853",
           "class_type": "VAEDecode",
           "pos": [
-            750.0,
-            470.0
+            790.0,
+            460.0
           ],
           "size": [
             230.0,
@@ -206,12 +237,12 @@
           "id": "1:c71fa59d-d080-4dd7-8dc0-42eafda12acb",
           "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
           "pos": [
-            430.0,
-            440.0
+            420.0,
+            470.0
           ],
           "size": [
-            230.0,
-            80.0
+            225.0,
+            0.0
           ],
           "title": "Schedule & Encode Prompts",
           "flags": {
@@ -240,7 +271,7 @@
           ],
           "size": [
             320.0,
-            250.0
+            150.0
           ],
           "title": "Simple Load Anima"
         },
@@ -264,8 +295,8 @@
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            1024.138423,
-            469.783626
+            1070.0,
+            450.0
           ],
           "size": [
             140.0,
@@ -278,8 +309,8 @@
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            1024.138423,
-            523.783626
+            1070.0,
+            504.0
           ],
           "size": [
             140.0,
@@ -424,6 +455,53 @@
           "anima regional prompt",
           "sdxl regional prompt"
         ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "CLIPNegPip": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {}
+            ],
+            "clip": [
+              "CLIP",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "clip"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CLIP"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "output_name": [
+          "MODEL",
+          "CLIP"
+        ],
+        "output_matchtypes": null,
+        "name": "CLIPNegPip",
+        "display_name": "CLIP NegPip",
+        "python_module": "custom_nodes.comfyui-ppm",
+        "category": "conditioning",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
         "essentials_category": null,
         "has_intermediate_output": false
       },
@@ -762,64 +840,64 @@
     "default_flavor_id": "default",
     "controls": [
       {
-        "control_id": "ksampler_attention_coupling.seed",
-        "symbol": "ksampler_attention_coupling",
+        "control_id": "ksampler.seed",
+        "symbol": "ksampler",
         "input_name": "seed",
         "label": "seed",
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
         "value_type": "number"
       },
       {
-        "control_id": "ksampler_attention_coupling.steps",
-        "symbol": "ksampler_attention_coupling",
+        "control_id": "ksampler.steps",
+        "symbol": "ksampler",
         "input_name": "steps",
         "label": "steps",
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
         "value_type": "number"
       },
       {
-        "control_id": "ksampler_attention_coupling.cfg",
-        "symbol": "ksampler_attention_coupling",
+        "control_id": "ksampler.cfg",
+        "symbol": "ksampler",
         "input_name": "cfg",
         "label": "cfg",
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
         "value_type": "number"
       },
       {
-        "control_id": "ksampler_attention_coupling.sampler_name",
-        "symbol": "ksampler_attention_coupling",
+        "control_id": "ksampler.sampler_name",
+        "symbol": "ksampler",
         "input_name": "sampler_name",
         "label": "sampler_name",
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
         "value_type": "string"
       },
       {
-        "control_id": "ksampler_attention_coupling.scheduler",
-        "symbol": "ksampler_attention_coupling",
+        "control_id": "ksampler.scheduler",
+        "symbol": "ksampler",
         "input_name": "scheduler",
         "label": "scheduler",
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
         "value_type": "string"
       },
       {
-        "control_id": "ksampler_attention_coupling.regional_prompt_weight",
-        "symbol": "ksampler_attention_coupling",
+        "control_id": "ksampler.regional_prompt_weight",
+        "symbol": "ksampler",
         "input_name": "regional_prompt_weight",
         "label": "regional_prompt_weight",
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
         "value_type": "number"
       },
       {
-        "control_id": "ksampler_attention_coupling.region_mask_feather",
-        "symbol": "ksampler_attention_coupling",
+        "control_id": "ksampler.region_mask_feather",
+        "symbol": "ksampler",
         "input_name": "region_mask_feather",
         "label": "region_mask_feather",
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
         "value_type": "number"
       },
       {
-        "control_id": "ksampler_attention_coupling.denoise",
-        "symbol": "ksampler_attention_coupling",
+        "control_id": "ksampler.denoise",
+        "symbol": "ksampler",
         "input_name": "denoise",
         "label": "denoise",
         "class_type": "SimpleSyrup.KSamplerAttentionCoupling",
@@ -937,25 +1015,22 @@
         "id": "default",
         "name": "Default",
         "values": {
-          "ksampler_attention_coupling.steps": 30,
-          "ksampler_attention_coupling.cfg": 5,
-          "ksampler_attention_coupling.sampler_name": "euler_ancestral",
-          "ksampler_attention_coupling.scheduler": "normal",
-          "ksampler_attention_coupling.regional_prompt_weight": 1,
-          "ksampler_attention_coupling.region_mask_feather": 0,
-          "ksampler_attention_coupling.denoise": 1,
+          "ksampler.steps": 30,
+          "ksampler.cfg": 5,
+          "ksampler.sampler_name": "euler_ancestral",
+          "ksampler.scheduler": "normal",
+          "ksampler.regional_prompt_weight": 1,
+          "ksampler.region_mask_feather": 0,
+          "ksampler.denoise": 1,
           "latent_dimensions.width": 960,
           "latent_dimensions.height": 1344,
           "latent_dimensions.batch_size": 1,
           "load_mask_batch.channel": "red",
           "negative_prompt.value": "",
           "positive_prompt.value": "",
-          "simple_load_anima.diffusion_model": "Anima\\hassakuAnima_v11.safetensors",
           "simple_load_anima.quantization": "Original",
           "simple_load_anima.diffusion_weight_dtype": "default",
-          "simple_load_anima.text_encoder": "auto",
-          "simple_load_anima.text_encoder_device": "default",
-          "simple_load_anima.vae": "auto"
+          "simple_load_anima.text_encoder_device": "default"
         }
       }
     ]
