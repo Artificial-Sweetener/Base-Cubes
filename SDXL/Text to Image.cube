@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube",
   "version": "2.0.0",
-  "description": "Text-to-image generation: prompts, checkpoint, sampler, size, VAE, prompt encoding, LoRA scheduling, and color controls. [refresh]",
+  "description": "Text-to-image generation: prompts, checkpoint, sampler, size, VAE, prompt encoding, LoRA scheduling, and color controls.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
     "icon": {

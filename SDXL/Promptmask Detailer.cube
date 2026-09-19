@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube",
   "version": "2.0.0",
-  "description": "Prompt-guided detailing: create masks with GroundingDINO, SAM, and ViTMatte, then inpaint and refine selected regions. [refresh]",
+  "description": "Prompt-guided detailing: create masks with GroundingDINO, SAM, and ViTMatte, then inpaint and refine selected regions.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
     "default_alias": "SDXL/Promptmask Detailer",

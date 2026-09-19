@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Automask Detailer.cube",
   "version": "3.0.0",
-  "description": "Detector-guided detailing: detect image regions with an Ultralytics model, then inpaint and refine them with prompt-guided diffusion. [refresh]",
+  "description": "Detector-guided detailing: detect image regions with an Ultralytics model, then inpaint and refine them with prompt-guided diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
     "icon": {

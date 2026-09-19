@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Image to Image.cube",
   "version": "2.0.0",
-  "description": "Auto-converted cube for anima/image to image [refresh]",
+  "description": "Auto-converted cube for anima/image to image",
   "metadata": {
     "default_alias": "Anima/Image to Image",
     "target_model": "Anima",

@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/TileRegion Upscale.cube",
   "version": "2.0.0",
-  "description": "Region-based upscaling for Anima: split an image into tagged regions, then refine each region independently to avoid full-image diffusion outside Anima's supported resolutions. [refresh]",
+  "description": "Region-based upscaling for Anima: split an image into tagged regions, then refine each region independently to avoid full-image diffusion outside Anima's supported resolutions.",
   "metadata": {
     "default_alias": "Anima/TileRegion Upscale",
     "target_model": "Anima",

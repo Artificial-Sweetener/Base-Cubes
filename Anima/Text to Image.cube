@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Text to Image.cube",
   "version": "2.0.0",
-  "description": "Text-to-image generation for Anima: prompts, model loading, prompt scheduling, LoRA scheduling, sampling, and VAE decoding. [refresh]",
+  "description": "Text-to-image generation for Anima: prompts, model loading, prompt scheduling, LoRA scheduling, sampling, and VAE decoding.",
   "metadata": {
     "default_alias": "Anima/Text to Image",
     "target_model": "Anima",

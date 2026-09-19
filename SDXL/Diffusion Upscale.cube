@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube",
   "version": "4.0.0",
-  "description": "Diffusion upscaling: upscale an input image, resize it to target constraints, then refine it with image-to-image diffusion. [refresh]",
+  "description": "Diffusion upscaling: upscale an input image, resize it to target constraints, then refine it with image-to-image diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
     "icon": {
