@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube",
-  "version": "1.2.0",
-  "description": "Text-to-image generation: prompts, checkpoint, sampler, size, VAE, prompt encoding, LoRA scheduling, and color controls.",
+  "version": "2.0.0",
+  "description": "Text-to-image generation: prompts, checkpoint, sampler, size, VAE, prompt encoding, LoRA scheduling, and color controls. [refresh]",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
     "icon": {
@@ -13,7 +13,14 @@
     "supported_models": [
       "SDXL"
     ],
-    "target_model": "SDXL"
+    "target_model": "SDXL",
+    "surface_size": [
+      836.0,
+      670.0
+    ],
+    "surface_state": {
+      "schema": 1
+    }
   },
   "implementation": {
     "nodes": {
@@ -21,7 +28,7 @@
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
         "label": "Checkpoint",
         "inputs": {},
-        "original_id": "1946"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:347f0d60-91be-4219-bc8c-59799282245e"
       },
       "ksampler": {
         "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
@@ -40,7 +47,7 @@
             2
           ]
         },
-        "original_id": "1918"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:57b97c20-ffd2-406c-a58d-d7baa1641689"
       },
       "mahiro_cfg": {
         "class_type": "Mahiro",
@@ -51,25 +58,25 @@
             0
           ]
         },
-        "original_id": "4"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ba492217-c42f-4f8d-9655-fab9b919d9fd"
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "negative prompt",
         "inputs": {},
-        "original_id": "5"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ec533b1b-4bfb-4f93-9da7-9378fca37c4a"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "positive prompt",
         "inputs": {},
-        "original_id": "6"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:832a529f-c417-46f7-bd66-8e98f1918406"
       },
       "prompt_encode_style": {
         "class_type": "SimpleSyrup.PromptEncodeStyle",
         "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "7"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ec4a09ea-152b-4b91-a86c-5bf96804538f"
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -96,7 +103,7 @@
             0
           ]
         },
-        "original_id": "2307"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:425e571b-3bbf-496e-ae4d-4cd65d023120"
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -111,7 +118,7 @@
             2
           ]
         },
-        "original_id": "9"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:3abcf2e8-1963-4ecd-b19f-076b9e131e33"
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
@@ -122,63 +129,95 @@
             0
           ]
         },
-        "original_id": "1945",
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:b9363e4e-2f1b-4cd0-b0a3-9634e24c189b",
         "mode": 4
       }
     },
     "inputs": {},
     "outputs": {
-      "output.image": "vae_decode"
+      "output.image": [
+        "vae_decode",
+        0
+      ]
     },
     "layout": {
       "workflow_version": 0,
       "origin": [
-        -2530.0,
-        4840.0
+        0.0,
+        -0.0
       ],
       "ds": {
-        "scale": 1.351305709310464,
+        "scale": 1.0,
         "offset": [
-          2316.0882391169935,
-          -4626.093928594621
+          0.0,
+          0.0
         ]
       },
       "nodes": {
-        "mahiro_cfg": {
-          "id": "4",
-          "class_type": "Mahiro",
+        "checkpoint": {
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:347f0d60-91be-4219-bc8c-59799282245e",
+          "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
           "pos": [
-            350.0,
-            0.0
+            0.0,
+            706.0
           ],
           "size": [
-            190.0,
-            40.0
+            320.0,
+            182.0
           ],
-          "title": "mahiro CFG",
+          "title": "Checkpoint"
+        },
+        "vae_decode": {
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:3abcf2e8-1963-4ecd-b19f-076b9e131e33",
+          "class_type": "VAEDecode",
+          "pos": [
+            765.0,
+            392.0
+          ],
+          "size": [
+            225.0,
+            0.0
+          ],
+          "title": "VAE decode",
           "flags": {
             "collapsed": true
           }
         },
-        "negative_prompt": {
-          "id": "5",
-          "class_type": "PrimitiveStringMultiline",
+        "schedule_encode_prompts": {
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:425e571b-3bbf-496e-ae4d-4cd65d023120",
+          "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
           "pos": [
-            0.0,
-            340.0
+            350.0,
+            50.0
           ],
           "size": [
-            320.0,
-            160.0
+            225.0,
+            0.0
           ],
-          "title": "negative prompt"
+          "title": "Schedule & Encode Prompts",
+          "flags": {
+            "collapsed": true
+          }
+        },
+        "ksampler": {
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:57b97c20-ffd2-406c-a58d-d7baa1641689",
+          "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+          "pos": [
+            625.0,
+            30.0
+          ],
+          "size": [
+            270.0,
+            322.0
+          ],
+          "title": "KSampler"
         },
         "positive_prompt": {
-          "id": "6",
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:832a529f-c417-46f7-bd66-8e98f1918406",
           "class_type": "PrimitiveStringMultiline",
           "pos": [
             0.0,
-            110.0
+            196.0
           ],
           "size": [
             320.0,
@@ -186,286 +225,139 @@
           ],
           "title": "positive prompt"
         },
-        "prompt_encode_style": {
-          "id": "7",
-          "class_type": "SimpleSyrup.PromptEncodeStyle",
-          "pos": [
-            0.0,
-            0.0
-          ],
-          "size": [
-            320.0,
-            60.0
-          ],
-          "title": "Prompt Encode Style"
-        },
-        "vae_decode": {
-          "id": "9",
-          "class_type": "VAEDecode",
-          "pos": [
-            760.0,
-            310.0
-          ],
-          "size": [
-            140.0,
-            50.0
-          ],
-          "title": "VAE decode",
-          "flags": {
-            "collapsed": true
-          }
-        },
-        "ksampler": {
-          "id": "1918",
-          "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
-          "pos": [
-            620.0,
-            0.0
-          ],
-          "size": [
-            270.0,
-            270.0
-          ],
-          "title": "KSampler"
-        },
         "vectorscopecc": {
-          "id": "1945",
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:b9363e4e-2f1b-4cd0-b0a3-9634e24c189b",
           "class_type": "VectorscopeCC",
           "pos": [
             350.0,
-            100.0
+            130.0
           ],
           "size": [
-            220.0,
-            250.0
+            225.0,
+            310.0
           ],
           "title": "vectorscopeCC"
         },
-        "checkpoint": {
-          "id": "1946",
-          "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
-          "pos": [
-            0.0,
-            560.0
-          ],
-          "size": [
-            320.0,
-            150.0
-          ],
-          "title": "Checkpoint"
-        },
-        "schedule_encode_prompts": {
-          "id": "2307",
-          "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "mahiro_cfg": {
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ba492217-c42f-4f8d-9655-fab9b919d9fd",
+          "class_type": "Mahiro",
           "pos": [
             350.0,
-            50.0
+            -0.0
           ],
           "size": [
-            287.4,
-            122.0
+            225.0,
+            0.0
           ],
-          "title": "Schedule & Encode Prompts",
+          "title": "mahiro CFG",
           "flags": {
             "collapsed": true
           }
+        },
+        "prompt_encode_style": {
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ec4a09ea-152b-4b91-a86c-5bf96804538f",
+          "class_type": "SimpleSyrup.PromptEncodeStyle",
+          "pos": [
+            0.0,
+            30.0
+          ],
+          "size": [
+            320.0,
+            86.0
+          ],
+          "title": "Prompt Encode Style"
+        },
+        "negative_prompt": {
+          "id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ec533b1b-4bfb-4f93-9da7-9378fca37c4a",
+          "class_type": "PrimitiveStringMultiline",
+          "pos": [
+            0.0,
+            456.0
+          ],
+          "size": [
+            320.0,
+            160.0
+          ],
+          "title": "negative prompt"
         }
       },
       "markers": {
         "output.image": {
-          "id": "13",
+          "id": "sugarcubes:native:0:output:0",
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            930.0,
-            0.0
+            1030.0,
+            358.0
           ],
           "size": [
-            270.0,
-            270.0
+            140.0,
+            46.0
           ],
-          "title": "IMAGE Output",
-          "style": {
-            "color": "#2a363b",
-            "bgcolor": "#3f5159"
-          }
+          "title": "image"
         }
-      },
-      "groups": [
-        {
-          "id": 375,
-          "title": "SDXL/Text to Image",
-          "bounding": [
-            -10.0,
-            -60.0,
-            1220.0,
-            780.0
-          ],
-          "color": "#3f789e",
-          "font_size": 24,
-          "flags": {},
-          "sugarcubes": {
-            "schema": 5,
-            "managed": true,
-            "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube",
-            "default_alias": "SDXL/Text to Image",
-            "target_model": "SDXL",
-            "cube_version": "1.2.0",
-            "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube@1.2.0",
-            "surface_signature": "c67393a41753",
-            "icon": {
-              "kind": "asset",
-              "media_type": "image/png",
-              "url": "/sugarcubes/assets/icon?cube_id=Artificial-Sweetener%2FBase-Cubes%2FSDXL%2FText%20to%20Image.cube",
-              "repo_relative_path": "assets/icons/Text to Image.png"
-            },
-            "markers": {
-              "inputs": [],
-              "outputs": [
-                "13"
-              ]
-            },
-            "nodes": [
-              "9",
-              "1918",
-              "1946",
-              "1945",
-              "2307",
-              "4",
-              "7",
-              "6",
-              "5"
-            ],
-            "bounds": {
-              "x": -2540.0,
-              "y": 4780.0,
-              "w": 1220.0,
-              "h": 780.0,
-              "padding": {
-                "x": 2.0,
-                "y": 2.0,
-                "top_extra": 0.0
-              },
-              "header": {
-                "height": 32.0
-              }
-            }
-          }
-        }
-      ]
+      }
     },
     "definitions": {
-      "Mahiro": {
+      "SimpleSyrup.SimpleLoadCheckpoint": {
         "input": {
           "required": {
-            "model": [
-              "MODEL",
-              {}
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "MODEL"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "patched_model"
-        ],
-        "output_matchtypes": null,
-        "name": "Mahiro",
-        "display_name": "Positive-Biased Guidance",
-        "python_module": "comfy_extras.nodes_mahiro",
-        "category": "_for_testing",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": true,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": [
-          "mahiro",
-          "mahiro cfg",
-          "similarity-adaptive guidance",
-          "positive-biased cfg"
-        ],
-        "essentials_category": null
-      },
-      "PrimitiveStringMultiline": {
-        "input": {
-          "required": {
-            "value": [
-              "STRING",
+            "ckpt_name": [
+              "LIST"
+            ],
+            "vae_name": [
+              "LIST"
+            ],
+            "clip_skip": [
+              "BOOLEAN",
               {
-                "multiline": true
+                "default": false
               }
             ]
           }
         },
         "input_order": {
           "required": [
-            "value"
+            "ckpt_name",
+            "vae_name",
+            "clip_skip"
           ]
         },
         "is_input_list": false,
         "output": [
-          "STRING"
+          "MODEL",
+          "CLIP",
+          "VAE"
         ],
         "output_is_list": [
+          false,
+          false,
           false
         ],
         "output_name": [
-          "STRING"
+          "model",
+          "clip",
+          "vae"
         ],
         "output_matchtypes": null,
-        "name": "PrimitiveStringMultiline",
-        "display_name": "String (Multiline)",
-        "python_module": "comfy_extras.nodes_primitive",
-        "category": "utils/primitive",
+        "name": "SimpleSyrup.SimpleLoadCheckpoint",
+        "display_name": "Simple Load Checkpoint",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Loaders",
         "output_node": false,
         "deprecated": false,
         "experimental": false,
         "dev_only": false,
         "api_node": false,
         "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": "Basics"
-      },
-      "SimpleSyrup.PromptEncodeStyle": {
-        "input": {
-          "required": {
-            "encode_style": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "encode_style"
-          ]
-        },
-        "output": [
-          "STRING"
+        "search_aliases": [
+          "load checkpoint",
+          "checkpoint",
+          "ckpt",
+          "vae"
         ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "encode_style"
-        ],
-        "name": "SimpleSyrup.PromptEncodeStyle",
-        "display_name": "Prompt Encode Style",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Prompt",
-        "output_node": false
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "VAEDecode": {
         "input": {
@@ -498,8 +390,139 @@
         "name": "VAEDecode",
         "display_name": "VAE Decode",
         "python_module": "nodes",
-        "category": "latent",
+        "category": "model/latent",
         "output_node": false
+      },
+      "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "rawLink": true
+              }
+            ],
+            "clip": [
+              "CLIP",
+              {
+                "rawLink": true
+              }
+            ],
+            "positive_prompt": [
+              "STRING",
+              {
+                "default": "",
+                "multiline": false
+              }
+            ],
+            "negative_prompt": [
+              "STRING",
+              {
+                "default": "",
+                "multiline": false
+              }
+            ]
+          },
+          "optional": {
+            "encode_style": [
+              "STRING",
+              {
+                "default": "",
+                "forceInput": true,
+                "multiline": false
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "clip",
+            "positive_prompt",
+            "negative_prompt"
+          ],
+          "optional": [
+            "encode_style"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CONDITIONING,CONDITIONING_BATCH",
+          "CONDITIONING,CONDITIONING_BATCH"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "model",
+          "positive",
+          "negative"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "display_name": "Schedule & Encode Prompts",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Conditioning",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "PrimitiveStringMultiline": {
+        "input": {
+          "required": {
+            "value": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "STRING"
+        ],
+        "output_matchtypes": null,
+        "name": "PrimitiveStringMultiline",
+        "display_name": "Text (Multiline)",
+        "python_module": "comfy_extras.nodes_primitive",
+        "category": "utilities/primitive",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "text",
+          "string",
+          "text multiline",
+          "string multiline",
+          "text box",
+          "prompt"
+        ],
+        "essentials_category": "Basics",
+        "has_intermediate_output": false
       },
       "VectorscopeCC": {
         "input": {
@@ -604,118 +627,87 @@
         "category": "model_patches/unet",
         "output_node": false
       },
-      "SimpleSyrup.SimpleLoadCheckpoint": {
-        "input": {
-          "required": {
-            "ckpt_name": [
-              "LIST"
-            ],
-            "vae_name": [
-              "LIST"
-            ],
-            "clip_skip": [
-              "BOOLEAN",
-              {
-                "default": false
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "ckpt_name",
-            "vae_name",
-            "clip_skip"
-          ]
-        },
-        "output": [
-          "MODEL",
-          "CLIP",
-          "VAE"
-        ],
-        "output_is_list": [
-          false,
-          false,
-          false
-        ],
-        "output_name": [
-          "model",
-          "clip",
-          "vae"
-        ],
-        "name": "SimpleSyrup.SimpleLoadCheckpoint",
-        "display_name": "Simple Load Checkpoint",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Loaders",
-        "output_node": false
-      },
-      "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl": {
+      "Mahiro": {
         "input": {
           "required": {
             "model": [
               "MODEL",
-              {
-                "rawLink": true
-              }
-            ],
-            "clip": [
-              "CLIP",
-              {
-                "rawLink": true
-              }
-            ],
-            "encode_style": [
-              "STRING",
-              {
-                "default": "",
-                "forceInput": true
-              }
-            ],
-            "positive_prompt": [
-              "STRING",
-              {
-                "default": "",
-                "multiline": false
-              }
-            ],
-            "negative_prompt": [
-              "STRING",
-              {
-                "default": "",
-                "multiline": false
-              }
+              {}
             ]
           }
         },
         "input_order": {
           "required": [
-            "model",
-            "clip",
-            "encode_style",
-            "positive_prompt",
-            "negative_prompt"
+            "model"
           ]
         },
+        "is_input_list": false,
         "output": [
-          "MODEL",
-          "CONDITIONING,CONDITIONING_BATCH",
-          "CONDITIONING,CONDITIONING_BATCH"
+          "MODEL"
         ],
         "output_is_list": [
-          false,
-          false,
           false
         ],
         "output_name": [
-          "model",
-          "positive",
-          "negative"
+          "patched_model"
         ],
-        "name": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
-        "display_name": "Schedule & Encode Prompts",
+        "output_matchtypes": null,
+        "name": "Mahiro",
+        "display_name": "Positive-Biased Guidance",
+        "python_module": "comfy_extras.nodes_mahiro",
+        "category": "experimental",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": true,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "mahiro",
+          "mahiro cfg",
+          "similarity-adaptive guidance",
+          "positive-biased cfg"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.PromptEncodeStyle": {
+        "input": {
+          "required": {
+            "encode_style": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "encode_style"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "encode_style"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.PromptEncodeStyle",
+        "display_name": "Prompt Encode Style",
         "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Conditioning",
-        "output_node": false
+        "category": "SimpleSyrup/Prompt",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "SimpleSyrup.KSamplerExtras": {
         "input": {
@@ -794,6 +786,7 @@
             "denoise"
           ]
         },
+        "is_input_list": false,
         "output": [
           "LATENT"
         ],
@@ -803,11 +796,26 @@
         "output_name": [
           "LATENT"
         ],
+        "output_matchtypes": null,
         "name": "SimpleSyrup.KSamplerExtras",
         "display_name": "KSampler (Extras)",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Sampling",
-        "output_node": false
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "ksampler",
+          "sampler",
+          "ays",
+          "gits",
+          "lcm"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "EmptyLatentImage": {
         "input": {
@@ -859,7 +867,119 @@
         "name": "EmptyLatentImage",
         "display_name": "Empty Latent Image",
         "python_module": "nodes",
-        "category": "latent",
+        "category": "model/latent",
+        "output_node": false
+      },
+      "244188e0-95d8-45d9-9beb-adafccf862d6": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "forceInput": true
+              }
+            ],
+            "positive": [
+              "CONDITIONING",
+              {
+                "forceInput": true
+              }
+            ],
+            "negative": [
+              "CONDITIONING",
+              {
+                "forceInput": true
+              }
+            ],
+            "width": [
+              "INT",
+              {
+                "default": 512,
+                "min": 16,
+                "max": 16384,
+                "step": 8
+              }
+            ],
+            "height": [
+              "INT",
+              {
+                "default": 512,
+                "min": 16,
+                "max": 16384,
+                "step": 8
+              }
+            ],
+            "seed": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "steps": [
+              "INT",
+              {
+                "default": 20,
+                "min": 1,
+                "max": 10000
+              }
+            ],
+            "cfg": [
+              "FLOAT",
+              {
+                "default": 8.0,
+                "min": 0.0,
+                "max": 100.0,
+                "step": 0.1,
+                "round": 0.01
+              }
+            ],
+            "sampler_name": [
+              "LIST"
+            ],
+            "scheduler": [
+              "LIST"
+            ],
+            "batch_size": [
+              "INT",
+              {
+                "default": 1,
+                "min": 1,
+                "max": 4096
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "positive",
+            "negative",
+            "width",
+            "height",
+            "seed",
+            "steps",
+            "cfg",
+            "sampler_name",
+            "scheduler",
+            "batch_size"
+          ]
+        },
+        "output": [
+          "LATENT"
+        ],
+        "output_name": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "name": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "display_name": "KSampler",
+        "python_module": "comfy.subgraph",
+        "category": "subgraph",
         "output_node": false
       }
     },
@@ -870,7 +990,7 @@
         "revision": 0,
         "state": {
           "lastNodeId": 2307,
-          "lastLinkId": 3897,
+          "lastLinkId": 3910,
           "lastGroupId": 380,
           "lastRerouteId": 0
         },
@@ -1119,14 +1239,13 @@
             ],
             "title": "ksampler",
             "properties": {
+              "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "cnr_id": "SimpleSyrup",
               "ver": "37bcd403c5172adc2505b38d1d31c05969a69443",
-              "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [
-              960950506788860,
-              "randomize",
+              null,
               28,
               5.5,
               "euler_ancestral",
@@ -1188,9 +1307,9 @@
             ],
             "title": "latent dimensions",
             "properties": {
+              "Node name for S&R": "EmptyLatentImage",
               "cnr_id": "comfy-core",
               "ver": "0.18.2",
-              "Node name for S&R": "EmptyLatentImage",
               "sugarcubes_symbol": "latent_dimensions"
             },
             "widgets_values": [
@@ -1340,6 +1459,70 @@
         "value_type": "boolean"
       },
       {
+        "control_id": "ksampler.width",
+        "symbol": "ksampler",
+        "input_name": "width",
+        "label": "width",
+        "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.height",
+        "symbol": "ksampler",
+        "input_name": "height",
+        "label": "height",
+        "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.seed",
+        "symbol": "ksampler",
+        "input_name": "seed",
+        "label": "seed",
+        "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.steps",
+        "symbol": "ksampler",
+        "input_name": "steps",
+        "label": "steps",
+        "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.cfg",
+        "symbol": "ksampler",
+        "input_name": "cfg",
+        "label": "cfg",
+        "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.sampler_name",
+        "symbol": "ksampler",
+        "input_name": "sampler_name",
+        "label": "sampler_name",
+        "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.scheduler",
+        "symbol": "ksampler",
+        "input_name": "scheduler",
+        "label": "scheduler",
+        "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.batch_size",
+        "symbol": "ksampler",
+        "input_name": "batch_size",
+        "label": "batch_size",
+        "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
+        "value_type": "number"
+      },
+      {
         "control_id": "negative_prompt.value",
         "symbol": "negative_prompt",
         "input_name": "value",
@@ -1443,9 +1626,14 @@
         "id": "default",
         "name": "Default",
         "values": {
-          "checkpoint.ckpt_name": "",
-          "checkpoint.vae_name": "",
           "checkpoint.clip_skip": false,
+          "ksampler.width": 960,
+          "ksampler.height": 1344,
+          "ksampler.steps": 28,
+          "ksampler.cfg": 5.5,
+          "ksampler.sampler_name": "euler_ancestral",
+          "ksampler.scheduler": "normal",
+          "ksampler.batch_size": 1,
           "negative_prompt.value": "",
           "positive_prompt.value": "",
           "prompt_encode_style.encode_style": "A1111",
