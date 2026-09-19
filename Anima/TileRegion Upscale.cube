@@ -1,14 +1,21 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/TileRegion Upscale.cube",
-  "version": "1.1.1",
-  "description": "Region-based upscaling for Anima: split an image into tagged regions, then refine each region independently to avoid full-image diffusion outside Anima's supported resolutions.",
+  "version": "2.0.0",
+  "description": "Region-based upscaling for Anima: split an image into tagged regions, then refine each region independently to avoid full-image diffusion outside Anima's supported resolutions. [refresh]",
   "metadata": {
     "default_alias": "Anima/TileRegion Upscale",
     "target_model": "Anima",
     "supported_models": [
       "Anima"
     ],
-    "author_url": "https://artificialsweetener.ai"
+    "author_url": "https://artificialsweetener.ai",
+    "surface_size": [
+      919.984375,
+      1145.984375
+    ],
+    "surface_state": {
+      "schema": 1
+    }
   },
   "implementation": {
     "nodes": {
@@ -16,10 +23,6 @@
         "class_type": "SimpleSyrup.DetailSEGSAsRegions",
         "label": "Detail SEGS as Regions",
         "inputs": {
-          "image": [
-            "@binding",
-            "input.image"
-          ],
           "model": [
             "schedule_encode_prompts",
             0
@@ -43,28 +46,32 @@
           "vae": [
             "models",
             2
+          ],
+          "image": [
+            "@binding",
+            "input.image"
           ]
         },
-        "original_id": "2142"
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:274cf9dd-9c28-4b3e-bfa7-2681ac3cc061"
       },
       "models": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Models",
         "inputs": {},
-        "original_id": "2136",
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:78b8878b-43df-4da2-a29e-44aac6a9d9df",
         "mode": 4
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "negative prompt",
         "inputs": {},
-        "original_id": "2137"
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:8a6569ba-34dd-4a74-929c-605acb9fe3f4"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "positive prompt",
         "inputs": {},
-        "original_id": "2138"
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:46ce7230-7323-45c7-a8bc-3d2c000971e4"
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -87,7 +94,7 @@
             1
           ]
         },
-        "original_id": "2308"
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:8feb4965-8a88-4225-a577-e756e0c82cd7"
       },
       "tile_tag_segs": {
         "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
@@ -98,7 +105,7 @@
             1
           ]
         },
-        "original_id": "2140"
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:b19b5fac-f743-43b7-9f72-7e8f5c696523"
       }
     },
     "inputs": {
@@ -113,290 +120,139 @@
       }
     },
     "outputs": {
-      "output.image": "detail_segs_as_regions"
+      "output.image": [
+        "detail_segs_as_regions",
+        0
+      ]
     },
     "layout": {
       "workflow_version": 0,
       "origin": [
-        -660.0,
-        5920.0
+        -168.0,
+        30.0
       ],
       "ds": {
-        "scale": 1.351305709310464,
+        "scale": 1.0,
         "offset": [
-          567.8262327387072,
-          -5700.35788449653
+          0.0,
+          0.0
         ]
       },
       "nodes": {
-        "models": {
-          "id": "2136",
-          "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "detail_segs_as_regions": {
+          "id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:274cf9dd-9c28-4b3e-bfa7-2681ac3cc061",
+          "class_type": "SimpleSyrup.DetailSEGSAsRegions",
           "pos": [
-            0.0,
-            590.0
+            938.0,
+            -0.0
           ],
           "size": [
-            320.0,
-            200.0
+            289.984375,
+            569.84375
+          ],
+          "title": "Detail SEGS as Regions"
+        },
+        "positive_prompt": {
+          "id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:46ce7230-7323-45c7-a8bc-3d2c000971e4",
+          "class_type": "PrimitiveStringMultiline",
+          "pos": [
+            168.0,
+            140.0
+          ],
+          "size": [
+            319.984375,
+            179.984375
+          ],
+          "title": "positive prompt"
+        },
+        "models": {
+          "id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:78b8878b-43df-4da2-a29e-44aac6a9d9df",
+          "class_type": "SimpleSyrup.SimpleLoadAnima",
+          "pos": [
+            168.0,
+            650.0
+          ],
+          "size": [
+            319.96875,
+            199.96875
           ],
           "title": "Models"
         },
         "negative_prompt": {
-          "id": "2137",
+          "id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:8a6569ba-34dd-4a74-929c-605acb9fe3f4",
           "class_type": "PrimitiveStringMultiline",
           "pos": [
-            0.0,
-            370.0
+            168.0,
+            400.0
           ],
           "size": [
-            320.0,
-            160.0
+            319.96875,
+            159.96875
           ],
           "title": "negative prompt"
         },
-        "positive_prompt": {
-          "id": "2138",
-          "class_type": "PrimitiveStringMultiline",
-          "pos": [
-            0.0,
-            140.0
-          ],
-          "size": [
-            320.0,
-            180.0
-          ],
-          "title": "positive prompt"
-        },
-        "tile_tag_segs": {
-          "id": "2140",
-          "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
-          "pos": [
-            360.0,
-            100.0
-          ],
-          "size": [
-            390.0,
-            380.0
-          ],
-          "title": "Tile & Tag SEGS"
-        },
-        "detail_segs_as_regions": {
-          "id": "2142",
-          "class_type": "SimpleSyrup.DetailSEGSAsRegions",
-          "pos": [
-            770.0,
-            0.0
-          ],
-          "size": [
-            290.0,
-            520.0
-          ],
-          "title": "Detail SEGS as Regions"
-        },
         "schedule_encode_prompts": {
-          "id": "2308",
+          "id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:8feb4965-8a88-4225-a577-e756e0c82cd7",
           "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
           "pos": [
-            360.0,
-            60.0
+            528.0,
+            30.0
           ],
           "size": [
-            287.4,
-            122.0
+            224.984375,
+            0.0
           ],
           "title": "Schedule & Encode Prompts",
           "flags": {
             "collapsed": true
           }
+        },
+        "tile_tag_segs": {
+          "id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:b19b5fac-f743-43b7-9f72-7e8f5c696523",
+          "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+          "pos": [
+            528.0,
+            100.0
+          ],
+          "size": [
+            389.984375,
+            457.84375
+          ],
+          "title": "Tile & Tag SEGS"
         }
       },
       "markers": {
         "input.image": {
-          "id": "2143",
+          "id": "sugarcubes:native:0:input:0",
           "class_type": "SugarCubes.CubeInput",
           "kind": "input",
           "pos": [
             0.0,
-            0.0
+            250.921875
           ],
           "size": [
-            320.0,
-            90.0
+            140.0,
+            46.0
           ],
-          "title": "IMAGE Input",
-          "style": {
-            "color": "#2a363b",
-            "bgcolor": "#3f5159"
-          }
+          "title": "input.image"
         },
         "output.image": {
-          "id": "2144",
+          "id": "sugarcubes:native:0:output:0",
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            1070.0,
-            0.0
+            1267.984375,
+            250.921875
           ],
           "size": [
-            270.0,
-            130.0
+            140.0,
+            46.0
           ],
-          "title": "IMAGE Output",
-          "style": {
-            "color": "#2a363b",
-            "bgcolor": "#3f5159"
-          }
+          "title": "image"
         }
-      },
-      "groups": [
-        {
-          "id": 369,
-          "title": "Anima/TileRegion Upscale",
-          "bounding": [
-            -10.0,
-            -60.0,
-            1360.0,
-            860.0
-          ],
-          "color": "#3f789e",
-          "font_size": 24,
-          "flags": {},
-          "sugarcubes": {
-            "schema": 5,
-            "managed": true,
-            "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/TileRegion Upscale.cube",
-            "default_alias": "Anima/TileRegion Upscale",
-            "target_model": "Anima",
-            "cube_version": "1.1.1",
-            "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Anima/TileRegion Upscale.cube@1.1.1",
-            "surface_signature": "46f3d0f25bad",
-            "markers": {
-              "inputs": [
-                "2143"
-              ],
-              "outputs": [
-                "2144"
-              ]
-            },
-            "nodes": [
-              "2142",
-              "2140",
-              "2136",
-              "2308",
-              "2138",
-              "2137"
-            ],
-            "bounds": {
-              "x": -670.0,
-              "y": 5860.0,
-              "w": 1360.0,
-              "h": 860.0,
-              "padding": {
-                "x": 2.0,
-                "y": 2.0,
-                "top_extra": 0.0
-              },
-              "header": {
-                "height": 32.0
-              }
-            }
-          }
-        }
-      ]
+      }
     },
     "definitions": {
-      "SimpleSyrup.SimpleLoadAnima": {
-        "input": {
-          "required": {
-            "diffusion_model": [
-              "LIST"
-            ],
-            "diffusion_weight_dtype": [
-              "LIST"
-            ],
-            "text_encoder": [
-              "LIST"
-            ],
-            "text_encoder_device": [
-              "LIST"
-            ],
-            "vae": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "diffusion_model",
-            "diffusion_weight_dtype",
-            "text_encoder",
-            "text_encoder_device",
-            "vae"
-          ]
-        },
-        "output": [
-          "MODEL",
-          "CLIP",
-          "VAE"
-        ],
-        "output_is_list": [
-          false,
-          false,
-          false
-        ],
-        "output_name": [
-          "model",
-          "clip",
-          "vae"
-        ],
-        "name": "SimpleSyrup.SimpleLoadAnima",
-        "display_name": "Simple Load Anima",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Loaders",
-        "output_node": false
-      },
-      "PrimitiveStringMultiline": {
-        "input": {
-          "required": {
-            "value": [
-              "STRING",
-              {
-                "multiline": true
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "value"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "STRING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "STRING"
-        ],
-        "output_matchtypes": null,
-        "name": "PrimitiveStringMultiline",
-        "display_name": "String (Multiline)",
-        "python_module": "comfy_extras.nodes_primitive",
-        "category": "utils/primitive",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": "Basics"
-      },
       "SimpleSyrup.DetailSEGSAsRegions": {
         "input": {
           "required": {
@@ -551,6 +407,7 @@
             "tiled_decode"
           ]
         },
+        "is_input_list": true,
         "output": [
           "IMAGE"
         ],
@@ -560,11 +417,139 @@
         "output_name": [
           "image"
         ],
+        "output_matchtypes": null,
         "name": "SimpleSyrup.DetailSEGSAsRegions",
         "display_name": "Detail SEGS as Regions",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Detailing",
-        "output_node": false
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "detailer",
+          "segs detailer",
+          "regional detailer",
+          "multidiffusion detailer",
+          "tiled diffusion detailer",
+          "tile and tag"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "PrimitiveStringMultiline": {
+        "input": {
+          "required": {
+            "value": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "STRING"
+        ],
+        "output_matchtypes": null,
+        "name": "PrimitiveStringMultiline",
+        "display_name": "Text (Multiline)",
+        "python_module": "comfy_extras.nodes_primitive",
+        "category": "utilities/primitive",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "text",
+          "string",
+          "text multiline",
+          "string multiline",
+          "text box",
+          "prompt"
+        ],
+        "essentials_category": "Basics",
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.SimpleLoadAnima": {
+        "input": {
+          "required": {
+            "diffusion_model": [
+              "LIST"
+            ],
+            "quantization": [
+              "LIST"
+            ],
+            "diffusion_weight_dtype": [
+              "LIST"
+            ],
+            "text_encoder": [
+              "LIST"
+            ],
+            "text_encoder_device": [
+              "LIST"
+            ],
+            "vae": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "diffusion_model",
+            "quantization",
+            "diffusion_weight_dtype",
+            "text_encoder",
+            "text_encoder_device",
+            "vae"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CLIP",
+          "VAE"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "model",
+          "clip",
+          "vae"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SimpleLoadAnima",
+        "display_name": "Simple Load Anima",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Loaders",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl": {
         "input": {
@@ -581,13 +566,6 @@
                 "rawLink": true
               }
             ],
-            "encode_style": [
-              "STRING",
-              {
-                "default": "",
-                "forceInput": true
-              }
-            ],
             "positive_prompt": [
               "STRING",
               {
@@ -602,17 +580,30 @@
                 "multiline": false
               }
             ]
+          },
+          "optional": {
+            "encode_style": [
+              "STRING",
+              {
+                "default": "",
+                "forceInput": true,
+                "multiline": false
+              }
+            ]
           }
         },
         "input_order": {
           "required": [
             "model",
             "clip",
-            "encode_style",
             "positive_prompt",
             "negative_prompt"
+          ],
+          "optional": [
+            "encode_style"
           ]
         },
+        "is_input_list": false,
         "output": [
           "MODEL",
           "CONDITIONING,CONDITIONING_BATCH",
@@ -628,11 +619,20 @@
           "positive",
           "negative"
         ],
+        "output_matchtypes": null,
         "name": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
         "display_name": "Schedule & Encode Prompts",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Conditioning",
-        "output_node": false
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "SimpleSyrup.WD14TaggerLoader": {
         "input": {
@@ -647,6 +647,7 @@
             "wd14_model"
           ]
         },
+        "is_input_list": false,
         "output": [
           "WD14_TAGGER"
         ],
@@ -656,11 +657,24 @@
         "output_name": [
           "wd14_tagger"
         ],
+        "output_matchtypes": null,
         "name": "SimpleSyrup.WD14TaggerLoader",
         "display_name": "Load WD14 Tagger",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Tagging",
-        "output_node": false
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "wd14",
+          "tagger",
+          "tags"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "SimpleSyrup.TileAndTagSEGS": {
         "input": {
@@ -723,7 +737,7 @@
             "mask_irregularity": [
               "FLOAT",
               {
-                "default": 0,
+                "default": 0.0,
                 "min": 0.0,
                 "max": 1.0,
                 "step": 0.01
@@ -790,6 +804,7 @@
             "exclude_tags"
           ]
         },
+        "is_input_list": false,
         "output": [
           "SEGS",
           "CONDITIONING_BATCH"
@@ -802,10 +817,174 @@
           "segs",
           "positive"
         ],
+        "output_matchtypes": null,
         "name": "SimpleSyrup.TileAndTagSEGS",
         "display_name": "Tile & Tag SEGS",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Detailing",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "tile",
+          "tag",
+          "wd14",
+          "segs",
+          "detail"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "75a6f7fe-bd13-467a-9dae-217013ac4fe7": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {
+                "forceInput": true
+              }
+            ],
+            "clip": [
+              "CLIP",
+              {
+                "forceInput": true
+              }
+            ],
+            "wd14_model": [
+              "LIST"
+            ],
+            "universal_positive": [
+              "STRING",
+              {
+                "default": "",
+                "multiline": false
+              }
+            ],
+            "bbox_size": [
+              "INT",
+              {
+                "default": 872,
+                "min": 64,
+                "max": 4096,
+                "step": 8
+              }
+            ],
+            "crop_factor": [
+              "FLOAT",
+              {
+                "default": 1.1,
+                "min": 1.0,
+                "max": 10.0,
+                "step": 0.01
+              }
+            ],
+            "min_overlap": [
+              "INT",
+              {
+                "default": 16,
+                "min": 0,
+                "max": 512,
+                "step": 1
+              }
+            ],
+            "filter_segs_dilation": [
+              "INT",
+              {
+                "default": 20,
+                "min": -255,
+                "max": 255,
+                "step": 1
+              }
+            ],
+            "mask_irregularity": [
+              "FLOAT",
+              {
+                "default": 0.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01
+              }
+            ],
+            "irregular_mask_mode": [
+              "LIST"
+            ],
+            "threshold": [
+              "FLOAT",
+              {
+                "default": 0.35,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.05
+              }
+            ],
+            "character_threshold": [
+              "FLOAT",
+              {
+                "default": 1.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.05
+              }
+            ],
+            "replace_underscore": [
+              "BOOLEAN",
+              {
+                "default": true
+              }
+            ],
+            "trailing_comma": [
+              "BOOLEAN",
+              {
+                "default": false
+              }
+            ],
+            "exclude_tags": [
+              "STRING",
+              {
+                "default": "1girl, solo, long_hair, short_hair, silhouette",
+                "multiline": false
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image",
+            "clip",
+            "wd14_model",
+            "universal_positive",
+            "bbox_size",
+            "crop_factor",
+            "min_overlap",
+            "filter_segs_dilation",
+            "mask_irregularity",
+            "irregular_mask_mode",
+            "threshold",
+            "character_threshold",
+            "replace_underscore",
+            "trailing_comma",
+            "exclude_tags"
+          ]
+        },
+        "output": [
+          "SEGS",
+          "CONDITIONING_BATCH"
+        ],
+        "output_name": [
+          "segs",
+          "positive"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "name": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "display_name": "Tile & Tag SEGS",
+        "python_module": "comfy.subgraph",
+        "category": "subgraph",
         "output_node": false
       }
     },
@@ -816,7 +995,7 @@
         "revision": 0,
         "state": {
           "lastNodeId": 2308,
-          "lastLinkId": 3904,
+          "lastLinkId": 3917,
           "lastGroupId": 380,
           "lastRerouteId": 0
         },
@@ -1040,12 +1219,12 @@
               }
             ],
             "properties": {
+              "Node name for S&R": "SimpleSyrup.WD14TaggerLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
-              "Node name for S&R": "SimpleSyrup.WD14TaggerLoader"
+              "ver": "f561f164543f927e0452e14658a0509e8e4866d6"
             },
             "widgets_values": [
-              "wd-eva02-large-tagger-v3"
+              "No local WD14 tagger models found"
             ]
           },
           {
@@ -1208,9 +1387,9 @@
               }
             ],
             "properties": {
+              "Node name for S&R": "SimpleSyrup.TileAndTagSEGS",
               "cnr_id": "SimpleSyrup",
-              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
-              "Node name for S&R": "SimpleSyrup.TileAndTagSEGS"
+              "ver": "f561f164543f927e0452e14658a0509e8e4866d6"
             },
             "widgets_values": [
               "",
@@ -1469,7 +1648,7 @@
         "input_name": "noise_mask",
         "label": "noise_mask",
         "class_type": "SimpleSyrup.DetailSEGSAsRegions",
-        "value_type": "string"
+        "value_type": "boolean"
       },
       {
         "control_id": "detail_segs_as_regions.noise_mask_feather",
@@ -1485,7 +1664,7 @@
         "input_name": "tiled_encode",
         "label": "tiled_encode",
         "class_type": "SimpleSyrup.DetailSEGSAsRegions",
-        "value_type": "string"
+        "value_type": "boolean"
       },
       {
         "control_id": "detail_segs_as_regions.tiled_decode",
@@ -1493,13 +1672,21 @@
         "input_name": "tiled_decode",
         "label": "tiled_decode",
         "class_type": "SimpleSyrup.DetailSEGSAsRegions",
-        "value_type": "string"
+        "value_type": "boolean"
       },
       {
         "control_id": "models.diffusion_model",
         "symbol": "models",
         "input_name": "diffusion_model",
         "label": "diffusion_model",
+        "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "value_type": "string"
+      },
+      {
+        "control_id": "models.quantization",
+        "symbol": "models",
+        "input_name": "quantization",
+        "label": "quantization",
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "value_type": "string"
       },
@@ -1552,11 +1739,107 @@
         "value_type": "string"
       },
       {
-        "control_id": "schedule_encode_prompts.encode_style",
-        "symbol": "schedule_encode_prompts",
-        "input_name": "encode_style",
-        "label": "encode_style",
-        "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "control_id": "tile_tag_segs.wd14_model",
+        "symbol": "tile_tag_segs",
+        "input_name": "wd14_model",
+        "label": "wd14_model",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "string"
+      },
+      {
+        "control_id": "tile_tag_segs.universal_positive",
+        "symbol": "tile_tag_segs",
+        "input_name": "universal_positive",
+        "label": "universal_positive",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "string"
+      },
+      {
+        "control_id": "tile_tag_segs.bbox_size",
+        "symbol": "tile_tag_segs",
+        "input_name": "bbox_size",
+        "label": "bbox_size",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "number"
+      },
+      {
+        "control_id": "tile_tag_segs.crop_factor",
+        "symbol": "tile_tag_segs",
+        "input_name": "crop_factor",
+        "label": "crop_factor",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "number"
+      },
+      {
+        "control_id": "tile_tag_segs.min_overlap",
+        "symbol": "tile_tag_segs",
+        "input_name": "min_overlap",
+        "label": "min_overlap",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "number"
+      },
+      {
+        "control_id": "tile_tag_segs.filter_segs_dilation",
+        "symbol": "tile_tag_segs",
+        "input_name": "filter_segs_dilation",
+        "label": "filter_segs_dilation",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "number"
+      },
+      {
+        "control_id": "tile_tag_segs.mask_irregularity",
+        "symbol": "tile_tag_segs",
+        "input_name": "mask_irregularity",
+        "label": "mask_irregularity",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "number"
+      },
+      {
+        "control_id": "tile_tag_segs.irregular_mask_mode",
+        "symbol": "tile_tag_segs",
+        "input_name": "irregular_mask_mode",
+        "label": "irregular_mask_mode",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "string"
+      },
+      {
+        "control_id": "tile_tag_segs.threshold",
+        "symbol": "tile_tag_segs",
+        "input_name": "threshold",
+        "label": "threshold",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "number"
+      },
+      {
+        "control_id": "tile_tag_segs.character_threshold",
+        "symbol": "tile_tag_segs",
+        "input_name": "character_threshold",
+        "label": "character_threshold",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "number"
+      },
+      {
+        "control_id": "tile_tag_segs.replace_underscore",
+        "symbol": "tile_tag_segs",
+        "input_name": "replace_underscore",
+        "label": "replace_underscore",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "tile_tag_segs.trailing_comma",
+        "symbol": "tile_tag_segs",
+        "input_name": "trailing_comma",
+        "label": "trailing_comma",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "tile_tag_segs.exclude_tags",
+        "symbol": "tile_tag_segs",
+        "input_name": "exclude_tags",
+        "label": "exclude_tags",
+        "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
         "value_type": "string"
       }
     ]
@@ -1580,14 +1863,23 @@
           "detail_segs_as_regions.noise_mask_feather": 20,
           "detail_segs_as_regions.tiled_encode": false,
           "detail_segs_as_regions.tiled_decode": false,
-          "models.diffusion_model": "",
-          "models.diffusion_weight_dtype": "",
-          "models.text_encoder": "",
-          "models.text_encoder_device": "",
-          "models.vae": "",
+          "models.quantization": "Original",
+          "models.diffusion_weight_dtype": "default",
+          "models.text_encoder_device": "default",
           "negative_prompt.value": "",
           "positive_prompt.value": "",
-          "schedule_encode_prompts.encode_style": ""
+          "tile_tag_segs.universal_positive": "",
+          "tile_tag_segs.bbox_size": 1024,
+          "tile_tag_segs.crop_factor": 1.1,
+          "tile_tag_segs.min_overlap": 16,
+          "tile_tag_segs.filter_segs_dilation": 20,
+          "tile_tag_segs.mask_irregularity": 0.0,
+          "tile_tag_segs.irregular_mask_mode": "Reuse fast",
+          "tile_tag_segs.threshold": 0.35,
+          "tile_tag_segs.character_threshold": 1.0,
+          "tile_tag_segs.replace_underscore": true,
+          "tile_tag_segs.trailing_comma": false,
+          "tile_tag_segs.exclude_tags": "1girl, solo, long_hair, short_hair, silhouette"
         }
       }
     ]
