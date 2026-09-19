@@ -1,124 +1,82 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Any/Load Image.cube",
-  "version": "1.0.0",
-  "description": "Load an image for use by downstream SugarCubes or ComfyUI nodes.",
+  "version": "2.0.0",
+  "description": "Load an image for use by downstream SugarCubes or ComfyUI nodes. [refresh]",
   "metadata": {
     "default_alias": "Any/Load Image",
     "target_model": "Any",
     "supported_models": [
       "ALL"
     ],
-    "author_url": "https://artificialsweetener.ai"
+    "author_url": "https://artificialsweetener.ai",
+    "surface_size": [
+      836.0,
+      600.0
+    ],
+    "surface_state": {
+      "schema": 1
+    }
   },
   "implementation": {
     "nodes": {
       "load_image": {
         "class_type": "LoadImage",
+        "label": "Load Image",
         "inputs": {},
-        "original_id": "1683",
-        "label": "Load Image"
+        "original_id": "4be45c0e-749c-47a8-a7f0-0a6d16b54b52:3fad6ae4-c45e-43a0-8851-47cca5237337"
       }
     },
     "inputs": {},
     "outputs": {
-      "output.image": "load_image"
+      "output.image": [
+        "load_image",
+        0
+      ]
     },
     "layout": {
       "workflow_version": 0,
       "origin": [
-        372.918165,
-        2162.904789
+        0.0,
+        30.0
       ],
       "ds": {
-        "scale": 1.2692302164473726,
+        "scale": 1.0,
         "offset": [
-          133.48377727357158,
-          -1814.7227295142716
+          0.0,
+          0.0
         ]
       },
       "nodes": {
         "load_image": {
-          "id": "1683",
+          "id": "4be45c0e-749c-47a8-a7f0-0a6d16b54b52:3fad6ae4-c45e-43a0-8851-47cca5237337",
           "class_type": "LoadImage",
           "pos": [
             0.0,
             0.0
           ],
           "size": [
-            282.83333587646484,
-            314.0
+            282.828125,
+            322.0
           ],
           "title": "Load Image"
         }
       },
       "markers": {
         "output.image": {
-          "id": "1685",
+          "id": "sugarcubes:native:0:output:0",
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            311.952022,
-            1.535354
+            322.828125,
+            127.0
           ],
           "size": [
-            270.0,
-            130.0
+            140.0,
+            46.0
           ],
-          "title": "IMAGE Output",
-          "style": {
-            "color": "#2a363b",
-            "bgcolor": "#3f5159"
-          }
+          "title": "image"
         }
-      },
-      "groups": [
-        {
-          "id": 232,
-          "title": "Any/Load Image",
-          "bounding": [
-            -10.0,
-            -60.0,
-            601.952022,
-            384.0
-          ],
-          "color": "#3f789e",
-          "font_size": 24,
-          "flags": {},
-          "sugarcubes": {
-            "schema": 5,
-            "managed": true,
-            "cube_id": "Artificial-Sweetener/Base-Cubes/Any/Load Image.cube",
-            "default_alias": "Any/Load Image",
-            "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/Any/Load Image.cube",
-            "markers": {
-              "inputs": [],
-              "outputs": [
-                "1685"
-              ],
-              "inherits": [],
-              "metas": []
-            },
-            "nodes": [
-              "1683"
-            ],
-            "bounds": {
-              "x": 362.918165,
-              "y": 2102.904789,
-              "w": 601.952022,
-              "h": 384.0,
-              "padding": {
-                "x": 2.0,
-                "y": 2.0,
-                "top_extra": 0.0
-              },
-              "header": {
-                "height": 32.0
-              }
-            }
-          }
-        }
-      ]
+      }
     },
     "definitions": {
       "LoadImage": {
