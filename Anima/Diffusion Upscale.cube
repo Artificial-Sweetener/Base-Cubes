@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube",
-  "version": "3.1.0",
-  "description": "Diffusion upscaling for Anima: upscale an input image, then refine it with tiled diffusion to avoid running Anima diffusion outside its supported resolutions.",
+  "version": "4.0.0",
+  "description": "Diffusion upscaling for Anima: upscale an input image, then refine it with tiled diffusion to avoid running Anima diffusion outside its supported resolutions. [refresh]",
   "metadata": {
     "default_alias": "Anima/Diffusion Upscale",
     "target_model": "Anima",
@@ -15,8 +15,8 @@
       "media_type": "image/png"
     },
     "surface_size": [
-      1290.0,
-      1040.0
+      1120.0,
+      1022.0
     ],
     "surface_state": {
       "schema": 1,
@@ -32,21 +32,6 @@
   },
   "implementation": {
     "nodes": {
-      "clip_negpip": {
-        "class_type": "CLIPNegPip",
-        "label": "CLIP NegPip",
-        "inputs": {
-          "model": [
-            "models",
-            0
-          ],
-          "clip": [
-            "models",
-            1
-          ]
-        },
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:2302"
-      },
       "ksampler": {
         "class_type": "SimpleSyrup.KSamplerAttentionCouplingTiled",
         "label": "KSampler",
@@ -72,26 +57,26 @@
             "input.mask"
           ]
         },
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:2300"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2dd94dd9-0f1c-4304-bc09-c0a3808b975b"
       },
       "models": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Models",
         "inputs": {},
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:1e954afe-8566-4427-ad2b-005d55bc5833",
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:27ef2f93-a953-4f33-a76e-3b293691fab0",
         "mode": 4
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "negative prompt",
         "inputs": {},
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:5707a95e-87a4-4d57-bcf3-154172d22b96"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2048a908-8478-4219-9de2-9dc9c4f70855"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "positive prompt",
         "inputs": {},
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:03bbfcea-f285-4870-a18f-57248b8acbbd"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:918766b7-b9bc-4b48-87e0-3cd8eda75b97"
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -106,15 +91,15 @@
             0
           ],
           "model": [
-            "clip_negpip",
+            "models",
             0
           ],
           "clip": [
-            "clip_negpip",
+            "models",
             1
           ]
         },
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:34be9fcd-2724-4740-b442-4ba03967e30e"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb"
       },
       "upscale_by_factor": {
         "class_type": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
@@ -122,10 +107,10 @@
         "inputs": {
           "image": [
             "@binding",
-            "input.value"
+            "input.image"
           ]
         },
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:cf1ddaf4-b552-4ec6-be7a-be19f2148eed"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:4e921781-776f-4dcf-9b78-902a2406a0c6"
       },
       "vae_decode": {
         "class_type": "SimpleSyrup.VAEDecodeOptions",
@@ -140,7 +125,7 @@
             2
           ]
         },
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:dd3903b2-5da9-42a3-99c0-de68443e3b57"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde"
       },
       "vae_encode": {
         "class_type": "SimpleSyrup.VAEEncodeOptions",
@@ -155,11 +140,11 @@
             2
           ]
         },
-        "original_id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:3e86a9b3-bcd7-41ff-a20f-4d4b27ea8694"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d490312a-f8a1-43fc-a133-9f732eb5940a"
       }
     },
     "inputs": {
-      "input.value": {
+      "input.image": {
         "kind": "input",
         "targets": [
           [
@@ -187,32 +172,32 @@
     "layout": {
       "workflow_version": 0,
       "origin": [
-        -7227.69484,
-        -3400.242253
+        0.0,
+        0.0
       ],
       "ds": {
-        "scale": 1.435319282071047,
+        "scale": 1.0,
         "offset": [
-          -5951.2196472648675,
-          -2989.3175279291845
+          0.0,
+          0.0
         ]
       },
       "nodes": {
-        "positive_prompt": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:03bbfcea-f285-4870-a18f-57248b8acbbd",
+        "negative_prompt": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2048a908-8478-4219-9de2-9dc9c4f70855",
           "class_type": "PrimitiveStringMultiline",
           "pos": [
             168.0,
-            180.0
+            440.0
           ],
           "size": [
             320.0,
-            180.0
+            160.0
           ],
-          "title": "positive prompt"
+          "title": "negative prompt"
         },
         "models": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:1e954afe-8566-4427-ad2b-005d55bc5833",
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:27ef2f93-a953-4f33-a76e-3b293691fab0",
           "class_type": "SimpleSyrup.SimpleLoadAnima",
           "pos": [
             168.0,
@@ -225,11 +210,11 @@
           "title": "Models"
         },
         "ksampler": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:2300",
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2dd94dd9-0f1c-4304-bc09-c0a3808b975b",
           "class_type": "SimpleSyrup.KSamplerAttentionCouplingTiled",
           "pos": [
-            877.69484,
-            30.242253
+            877.695,
+            30.242
           ],
           "size": [
             300.0,
@@ -237,66 +222,8 @@
           ],
           "title": "KSampler"
         },
-        "clip_negpip": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:2302",
-          "class_type": "CLIPNegPip",
-          "pos": [
-            607.69484,
-            200.242253
-          ],
-          "size": [
-            225.0,
-            0.0
-          ],
-          "title": "CLIP NegPip",
-          "flags": {
-            "collapsed": true
-          }
-        },
-        "schedule_encode_prompts": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:34be9fcd-2724-4740-b442-4ba03967e30e",
-          "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
-          "pos": [
-            597.69484,
-            250.242253
-          ],
-          "size": [
-            225.0,
-            0.0
-          ],
-          "title": "Schedule & Encode Prompts",
-          "flags": {
-            "collapsed": true
-          }
-        },
-        "vae_encode": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:3e86a9b3-bcd7-41ff-a20f-4d4b27ea8694",
-          "class_type": "SimpleSyrup.VAEEncodeOptions",
-          "pos": [
-            527.69484,
-            300.242253
-          ],
-          "size": [
-            310.0,
-            180.0
-          ],
-          "title": "VAE Encode"
-        },
-        "negative_prompt": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:5707a95e-87a4-4d57-bcf3-154172d22b96",
-          "class_type": "PrimitiveStringMultiline",
-          "pos": [
-            168.0,
-            440.0
-          ],
-          "size": [
-            320.0,
-            160.0
-          ],
-          "title": "negative prompt"
-        },
         "upscale_by_factor": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:cf1ddaf4-b552-4ec6-be7a-be19f2148eed",
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:4e921781-776f-4dcf-9b78-902a2406a0c6",
           "class_type": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
           "pos": [
             528.0,
@@ -308,12 +235,54 @@
           ],
           "title": "Upscale by Factor"
         },
+        "schedule_encode_prompts": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb",
+          "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+          "pos": [
+            597.695,
+            250.242
+          ],
+          "size": [
+            225.0,
+            0.0
+          ],
+          "title": "Schedule & Encode Prompts",
+          "flags": {
+            "collapsed": true
+          }
+        },
+        "positive_prompt": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:918766b7-b9bc-4b48-87e0-3cd8eda75b97",
+          "class_type": "PrimitiveStringMultiline",
+          "pos": [
+            168.0,
+            180.0
+          ],
+          "size": [
+            320.0,
+            180.0
+          ],
+          "title": "positive prompt"
+        },
+        "vae_encode": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d490312a-f8a1-43fc-a133-9f732eb5940a",
+          "class_type": "SimpleSyrup.VAEEncodeOptions",
+          "pos": [
+            527.695,
+            300.242
+          ],
+          "size": [
+            310.0,
+            180.0
+          ],
+          "title": "VAE Encode"
+        },
         "vae_decode": {
-          "id": "c0f952f6-44a2-49ce-8dd1-cb3280c7e1a0:dd3903b2-5da9-42a3-99c0-de68443e3b57",
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde",
           "class_type": "SimpleSyrup.VAEDecodeOptions",
           "pos": [
-            887.69484,
-            580.242253
+            887.695,
+            580.242
           ],
           "size": [
             290.0,
@@ -323,13 +292,13 @@
         }
       },
       "markers": {
-        "input.value": {
+        "input.image": {
           "id": "sugarcubes:native:0:input:0",
           "class_type": "SugarCubes.CubeInput",
           "kind": "input",
           "pos": [
-            -0.0,
-            31.0
+            0.0,
+            134.121
           ],
           "size": [
             140.0,
@@ -342,22 +311,22 @@
           "class_type": "SugarCubes.CubeInput",
           "kind": "input",
           "pos": [
-            -0.0,
-            85.0
+            0.0,
+            188.121
           ],
           "size": [
             140.0,
             46.0
           ],
-          "title": "region_masks"
+          "title": "input.mask"
         },
         "output.image": {
           "id": "sugarcubes:native:0:output:0",
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            1221.222508,
-            638.870371
+            1217.695,
+            636.242
           ],
           "size": [
             140.0,
@@ -660,53 +629,6 @@
           "multidiffusion regional lora",
           "mixture of diffusers regional lora"
         ],
-        "essentials_category": null,
-        "has_intermediate_output": false
-      },
-      "CLIPNegPip": {
-        "input": {
-          "required": {
-            "model": [
-              "MODEL",
-              {}
-            ],
-            "clip": [
-              "CLIP",
-              {}
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model",
-            "clip"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "MODEL",
-          "CLIP"
-        ],
-        "output_is_list": [
-          false,
-          false
-        ],
-        "output_name": [
-          "MODEL",
-          "CLIP"
-        ],
-        "output_matchtypes": null,
-        "name": "CLIPNegPip",
-        "display_name": "CLIP NegPip",
-        "python_module": "custom_nodes.comfyui-ppm",
-        "category": "conditioning",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
         "essentials_category": null,
         "has_intermediate_output": false
       },
@@ -1432,6 +1354,55 @@
         ],
         "essentials_category": null,
         "has_intermediate_output": false
+      },
+      "77a3a6f3-813a-47da-b57d-50fcd211cc28": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {
+                "forceInput": true
+              }
+            ],
+            "value": [
+              "FLOAT",
+              {
+                "default": 1.5,
+                "min": 1.0,
+                "max": 5.0,
+                "step": 0.1
+              }
+            ],
+            "model_name": [
+              "LIST"
+            ],
+            "sampling": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image",
+            "value",
+            "model_name",
+            "sampling"
+          ]
+        },
+        "output": [
+          "IMAGE"
+        ],
+        "output_name": [
+          "image"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "name": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
+        "display_name": "Upscale by Factor",
+        "python_module": "comfy.subgraph",
+        "category": "subgraph",
+        "output_node": false
       }
     },
     "subgraphs": [
@@ -1441,7 +1412,7 @@
         "revision": 0,
         "state": {
           "lastNodeId": 2302,
-          "lastLinkId": 3835,
+          "lastLinkId": 3850,
           "lastGroupId": 379,
           "lastRerouteId": 0
         },
@@ -1995,8 +1966,7 @@
               "Node name for S&R": "GetImageSize",
               "cnr_id": "comfy-core",
               "ver": "0.18.2"
-            },
-            "widgets_values": []
+            }
           },
           {
             "id": 2155,
@@ -2039,8 +2009,7 @@
               "Node name for S&R": "ImageUpscaleWithModel",
               "cnr_id": "comfy-core",
               "ver": "0.7.0"
-            },
-            "widgets_values": []
+            }
           }
         ],
         "links": [
@@ -2335,6 +2304,30 @@
         "value_type": "string"
       },
       {
+        "control_id": "upscale_by_factor.value",
+        "symbol": "upscale_by_factor",
+        "input_name": "value",
+        "label": "value",
+        "class_type": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
+        "value_type": "number"
+      },
+      {
+        "control_id": "upscale_by_factor.model_name",
+        "symbol": "upscale_by_factor",
+        "input_name": "model_name",
+        "label": "model_name",
+        "class_type": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
+        "value_type": "string"
+      },
+      {
+        "control_id": "upscale_by_factor.sampling",
+        "symbol": "upscale_by_factor",
+        "input_name": "sampling",
+        "label": "sampling",
+        "class_type": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
+        "value_type": "string"
+      },
+      {
         "control_id": "vae_decode.use_tiling",
         "symbol": "vae_decode",
         "input_name": "use_tiling",
@@ -2439,6 +2432,8 @@
           "models.text_encoder_device": "default",
           "negative_prompt.value": "",
           "positive_prompt.value": "",
+          "upscale_by_factor.value": 1.5,
+          "upscale_by_factor.sampling": "lanczos",
           "vae_decode.use_tiling": false,
           "vae_decode.tile_size": 512,
           "vae_decode.overlap": 64,
