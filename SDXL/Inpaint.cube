@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Inpaint.cube",
-  "version": "1.1.0",
-  "description": "Inpainting: rebuild masked image regions with prompts, checkpoint, sampler, denoise, VAE, LoRA scheduling, and color controls.",
+  "version": "2.0.0",
+  "description": "Inpainting: rebuild masked image regions with prompts, checkpoint, sampler, denoise, VAE, LoRA scheduling, and color controls. [refresh]",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
     "default_alias": "SDXL/Inpaint",
@@ -9,7 +9,14 @@
       "SDXL",
       "SD 1.5"
     ],
-    "target_model": "SDXL"
+    "target_model": "SDXL",
+    "surface_size": [
+      836.0,
+      990.0
+    ],
+    "surface_state": {
+      "schema": 1
+    }
   },
   "implementation": {
     "nodes": {
@@ -22,7 +29,7 @@
             0
           ]
         },
-        "original_id": "1507"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:c92057d9-35e0-4444-a6e7-84a31d78d497"
       },
       "inpaint_with_mask": {
         "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
@@ -53,19 +60,19 @@
             0
           ]
         },
-        "original_id": "1943"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:f3efa1c6-9c0e-419b-b7b0-7ff4a7082d55"
       },
       "load_image": {
         "class_type": "LoadImage",
         "label": "Load Image",
         "inputs": {},
-        "original_id": "1483"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:8d389d56-5b45-4080-a87d-58e88ed108f4"
       },
       "load_image_as_mask": {
         "class_type": "LoadImageMask",
         "label": "Load Image (as Mask)",
         "inputs": {},
-        "original_id": "1508"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:9653a33d-737d-4117-a466-98a36549d9bd"
       },
       "mahiro_cfg": {
         "class_type": "Mahiro",
@@ -76,25 +83,25 @@
             0
           ]
         },
-        "original_id": "1561"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:7d94bac8-4436-49bd-8a82-502686cb8d93"
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "negative prompt",
         "inputs": {},
-        "original_id": "1578"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:7de927f0-81a9-466e-991f-c5d3d7f95ee7"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "positive prompt",
         "inputs": {},
-        "original_id": "1577"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:98dad811-1476-42dd-9e91-d793a0df2705"
       },
       "prompt_encode_style": {
         "class_type": "SimpleSyrup.PromptEncodeStyle",
         "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "1629"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:05dc1bc6-186c-484b-9e1d-387a64d0d30c"
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -121,13 +128,13 @@
             0
           ]
         },
-        "original_id": "2301"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:eddde260-4c36-4f3d-b974-827a2e57059d"
       },
       "simple_load_checkpoint": {
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
         "label": "Simple Load Checkpoint",
         "inputs": {},
-        "original_id": "1942"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:a34dfc62-ab48-4ea0-8870-2d7171390b4b"
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -142,7 +149,7 @@
             2
           ]
         },
-        "original_id": "1567"
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:034e0f13-67e8-4a62-8769-36ca68f03ebd"
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
@@ -153,134 +160,82 @@
             0
           ]
         },
-        "original_id": "1573",
+        "original_id": "40762bbf-1067-4066-a65a-45f1429f1ceb:a25e559a-0dd4-4da2-a121-af5fab58dda1",
         "mode": 4
       }
     },
     "inputs": {},
     "outputs": {
-      "output.image": "vae_decode"
+      "output.image": [
+        "vae_decode",
+        0
+      ]
     },
     "layout": {
       "workflow_version": 0,
       "origin": [
-        -2830.0,
-        2530.0
+        0.0,
+        0.0
       ],
       "ds": {
-        "scale": 1.2284597357367824,
+        "scale": 1.0,
         "offset": [
-          2571.982403099706,
-          -2260.110671429948
+          0.0,
+          0.0
         ]
       },
       "nodes": {
-        "load_image": {
-          "id": "1483",
-          "class_type": "LoadImage",
-          "pos": [
-            240.0,
-            0.0
-          ],
-          "size": [
-            230.0,
-            330.0
-          ],
-          "title": "Load Image"
-        },
-        "differential_diffusion": {
-          "id": "1507",
-          "class_type": "DifferentialDiffusion",
-          "pos": [
-            840.0,
-            430.0
-          ],
-          "size": [
-            220.0,
-            60.0
-          ],
-          "title": "Differential Diffusion",
-          "flags": {
-            "collapsed": false
-          }
-        },
-        "load_image_as_mask": {
-          "id": "1508",
-          "class_type": "LoadImageMask",
-          "pos": [
-            0.0,
-            0.0
-          ],
-          "size": [
-            230.0,
-            330.0
-          ],
-          "title": "Load Image (as Mask)"
-        },
-        "mahiro_cfg": {
-          "id": "1561",
-          "class_type": "Mahiro",
-          "pos": [
-            840.0,
-            0.0
-          ],
-          "size": [
-            190.0,
-            40.0
-          ],
-          "title": "mahiro CFG",
-          "flags": {
-            "collapsed": true
-          }
-        },
         "vae_decode": {
-          "id": "1567",
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:034e0f13-67e8-4a62-8769-36ca68f03ebd",
           "class_type": "VAEDecode",
           "pos": [
-            1200.0,
-            340.0
+            1205.0,
+            414.0
           ],
           "size": [
-            140.0,
-            50.0
+            225.0,
+            0.0
           ],
           "title": "VAE decode",
           "flags": {
             "collapsed": true
           }
         },
-        "vectorscopecc": {
-          "id": "1573",
-          "class_type": "VectorscopeCC",
-          "pos": [
-            840.0,
-            120.0
-          ],
-          "size": [
-            220.0,
-            250.0
-          ],
-          "title": "vectorscopeCC"
-        },
-        "positive_prompt": {
-          "id": "1577",
-          "class_type": "PrimitiveStringMultiline",
+        "prompt_encode_style": {
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:05dc1bc6-186c-484b-9e1d-387a64d0d30c",
+          "class_type": "SimpleSyrup.PromptEncodeStyle",
           "pos": [
             490.0,
-            110.0
+            30.0
           ],
           "size": [
             320.0,
-            180.0
+            86.0
           ],
-          "title": "positive prompt"
+          "title": "Prompt Encode Style"
+        },
+        "mahiro_cfg": {
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:7d94bac8-4436-49bd-8a82-502686cb8d93",
+          "class_type": "Mahiro",
+          "pos": [
+            840.0,
+            0.0
+          ],
+          "size": [
+            225.0,
+            0.0
+          ],
+          "title": "mahiro CFG",
+          "flags": {
+            "collapsed": true
+          }
         },
         "negative_prompt": {
-          "id": "1578",
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:7de927f0-81a9-466e-991f-c5d3d7f95ee7",
           "class_type": "PrimitiveStringMultiline",
           "pos": [
             490.0,
-            330.0
+            446.0
           ],
           "size": [
             320.0,
@@ -288,305 +243,135 @@
           ],
           "title": "negative prompt"
         },
-        "prompt_encode_style": {
-          "id": "1629",
-          "class_type": "SimpleSyrup.PromptEncodeStyle",
+        "load_image": {
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:8d389d56-5b45-4080-a87d-58e88ed108f4",
+          "class_type": "LoadImage",
+          "pos": [
+            240.0,
+            30.0
+          ],
+          "size": [
+            230.0,
+            330.0
+          ],
+          "title": "Load Image"
+        },
+        "load_image_as_mask": {
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:9653a33d-737d-4117-a466-98a36549d9bd",
+          "class_type": "LoadImageMask",
+          "pos": [
+            0.0,
+            30.0
+          ],
+          "size": [
+            230.0,
+            330.0
+          ],
+          "title": "Load Image (as Mask)"
+        },
+        "positive_prompt": {
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:98dad811-1476-42dd-9e91-d793a0df2705",
+          "class_type": "PrimitiveStringMultiline",
           "pos": [
             490.0,
-            0.0
+            196.0
           ],
           "size": [
             320.0,
-            60.0
+            180.0
           ],
-          "title": "Prompt Encode Style"
+          "title": "positive prompt"
+        },
+        "vectorscopecc": {
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:a25e559a-0dd4-4da2-a121-af5fab58dda1",
+          "class_type": "VectorscopeCC",
+          "pos": [
+            840.0,
+            150.0
+          ],
+          "size": [
+            225.0,
+            310.0
+          ],
+          "title": "vectorscopeCC"
         },
         "simple_load_checkpoint": {
-          "id": "1942",
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:a34dfc62-ab48-4ea0-8870-2d7171390b4b",
           "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
           "pos": [
             490.0,
-            560.0
+            706.0
           ],
           "size": [
             320.0,
-            150.0
+            182.0
           ],
           "title": "Simple Load Checkpoint"
         },
-        "inpaint_with_mask": {
-          "id": "1943",
-          "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "differential_diffusion": {
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:c92057d9-35e0-4444-a6e7-84a31d78d497",
+          "class_type": "DifferentialDiffusion",
           "pos": [
-            1090.0,
-            0.0
+            840.0,
+            550.0
           ],
           "size": [
-            240.0,
-            310.0
+            225.0,
+            86.0
           ],
-          "title": "Inpaint with Mask"
+          "title": "Differential Diffusion",
+          "flags": {
+            "collapsed": false
+          }
         },
         "schedule_encode_prompts": {
-          "id": "2301",
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:eddde260-4c36-4f3d-b974-827a2e57059d",
           "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
           "pos": [
             840.0,
             60.0
           ],
           "size": [
-            230.0,
-            130.0
+            225.0,
+            0.0
           ],
           "title": "Schedule & Encode Prompts",
           "flags": {
             "collapsed": true
           }
+        },
+        "inpaint_with_mask": {
+          "id": "40762bbf-1067-4066-a65a-45f1429f1ceb:f3efa1c6-9c0e-419b-b7b0-7ff4a7082d55",
+          "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+          "pos": [
+            1095.0,
+            30.0
+          ],
+          "size": [
+            240.0,
+            354.0
+          ],
+          "title": "Inpaint with Mask"
         }
       },
       "markers": {
         "output.image": {
-          "id": "1509",
+          "id": "sugarcubes:native:0:output:0",
           "class_type": "SugarCubes.CubeOutput",
           "kind": "output",
           "pos": [
-            1380.0,
-            0.0
+            1470.0,
+            380.0
           ],
           "size": [
-            270.0,
-            90.0
+            140.0,
+            46.0
           ],
-          "title": "IMAGE Output",
-          "style": {
-            "color": "#2a363b",
-            "bgcolor": "#3f5159"
-          }
+          "title": "image"
         }
-      },
-      "groups": [
-        {
-          "id": 373,
-          "title": "SDXL/Inpaint",
-          "bounding": [
-            -10.0,
-            -60.0,
-            1670.0,
-            780.0
-          ],
-          "color": "#3f789e",
-          "font_size": 24,
-          "flags": {},
-          "sugarcubes": {
-            "schema": 5,
-            "managed": true,
-            "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Inpaint.cube",
-            "default_alias": "SDXL/Inpaint",
-            "target_model": "SDXL",
-            "cube_version": "1.1.0",
-            "cube_revision_ref": "WORKTREE",
-            "cube_definition_key": "Artificial-Sweetener/Base-Cubes/SDXL/Inpaint.cube@1.1.0",
-            "surface_signature": "674c35ece3aa",
-            "markers": {
-              "inputs": [],
-              "outputs": [
-                "1509"
-              ]
-            },
-            "nodes": [
-              "1567",
-              "1943",
-              "1942",
-              "1483",
-              "1508",
-              "1507",
-              "2301",
-              "1561",
-              "1573",
-              "1629",
-              "1577",
-              "1578"
-            ],
-            "bounds": {
-              "x": -2840.0,
-              "y": 2470.0,
-              "w": 1670.0,
-              "h": 780.0,
-              "padding": {
-                "x": 2.0,
-                "y": 2.0,
-                "top_extra": 0.0
-              },
-              "header": {
-                "height": 32.0
-              }
-            }
-          }
-        }
-      ]
+      }
     },
     "definitions": {
-      "LoadImage": {
-        "input": {
-          "required": {
-            "image": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "image"
-          ]
-        },
-        "output": [
-          "IMAGE",
-          "MASK"
-        ],
-        "output_is_list": [
-          false,
-          false
-        ],
-        "output_name": [
-          "IMAGE",
-          "MASK"
-        ],
-        "name": "LoadImage",
-        "display_name": "Load Image",
-        "python_module": "nodes",
-        "category": "image",
-        "output_node": false
-      },
-      "DifferentialDiffusion": {
-        "input": {
-          "required": {
-            "model": [
-              "MODEL",
-              {}
-            ]
-          },
-          "optional": {
-            "strength": [
-              "FLOAT",
-              {
-                "default": 1.0,
-                "min": 0.0,
-                "max": 1.0,
-                "step": 0.01
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model"
-          ],
-          "optional": [
-            "strength"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "MODEL"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "MODEL"
-        ],
-        "output_matchtypes": null,
-        "name": "DifferentialDiffusion",
-        "display_name": "Differential Diffusion",
-        "python_module": "comfy_extras.nodes_differential_diffusion",
-        "category": "_for_testing",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": true,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": [
-          "inpaint gradient",
-          "variable denoise strength"
-        ],
-        "essentials_category": null
-      },
-      "LoadImageMask": {
-        "input": {
-          "required": {
-            "image": [
-              "LIST"
-            ],
-            "channel": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "image",
-            "channel"
-          ]
-        },
-        "output": [
-          "MASK"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "MASK"
-        ],
-        "name": "LoadImageMask",
-        "display_name": "Load Image (as Mask)",
-        "python_module": "nodes",
-        "category": "mask",
-        "output_node": false
-      },
-      "Mahiro": {
-        "input": {
-          "required": {
-            "model": [
-              "MODEL",
-              {}
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "model"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "MODEL"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "patched_model"
-        ],
-        "output_matchtypes": null,
-        "name": "Mahiro",
-        "display_name": "Positive-Biased Guidance",
-        "python_module": "comfy_extras.nodes_mahiro",
-        "category": "_for_testing",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": true,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": [
-          "mahiro",
-          "mahiro cfg",
-          "similarity-adaptive guidance",
-          "positive-biased cfg"
-        ],
-        "essentials_category": null
-      },
       "VAEDecode": {
         "input": {
           "required": {
@@ -618,7 +403,200 @@
         "name": "VAEDecode",
         "display_name": "VAE Decode",
         "python_module": "nodes",
-        "category": "latent",
+        "category": "model/latent",
+        "output_node": false
+      },
+      "SimpleSyrup.PromptEncodeStyle": {
+        "input": {
+          "required": {
+            "encode_style": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "encode_style"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "encode_style"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.PromptEncodeStyle",
+        "display_name": "Prompt Encode Style",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Prompt",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "Mahiro": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "patched_model"
+        ],
+        "output_matchtypes": null,
+        "name": "Mahiro",
+        "display_name": "Positive-Biased Guidance",
+        "python_module": "comfy_extras.nodes_mahiro",
+        "category": "experimental",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": true,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "mahiro",
+          "mahiro cfg",
+          "similarity-adaptive guidance",
+          "positive-biased cfg"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "PrimitiveStringMultiline": {
+        "input": {
+          "required": {
+            "value": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "STRING"
+        ],
+        "output_matchtypes": null,
+        "name": "PrimitiveStringMultiline",
+        "display_name": "Text (Multiline)",
+        "python_module": "comfy_extras.nodes_primitive",
+        "category": "utilities/primitive",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "text",
+          "string",
+          "text multiline",
+          "string multiline",
+          "text box",
+          "prompt"
+        ],
+        "essentials_category": "Basics",
+        "has_intermediate_output": false
+      },
+      "LoadImage": {
+        "input": {
+          "required": {
+            "image": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image"
+          ]
+        },
+        "output": [
+          "IMAGE",
+          "MASK"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "output_name": [
+          "IMAGE",
+          "MASK"
+        ],
+        "name": "LoadImage",
+        "display_name": "Load Image",
+        "python_module": "nodes",
+        "category": "image",
+        "output_node": false
+      },
+      "LoadImageMask": {
+        "input": {
+          "required": {
+            "image": [
+              "LIST"
+            ],
+            "channel": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image",
+            "channel"
+          ]
+        },
+        "output": [
+          "MASK"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "MASK"
+        ],
+        "name": "LoadImageMask",
+        "display_name": "Load Image (as Mask)",
+        "python_module": "nodes",
+        "category": "image",
         "output_node": false
       },
       "VectorscopeCC": {
@@ -724,74 +702,6 @@
         "category": "model_patches/unet",
         "output_node": false
       },
-      "PrimitiveStringMultiline": {
-        "input": {
-          "required": {
-            "value": [
-              "STRING",
-              {
-                "multiline": true
-              }
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "value"
-          ]
-        },
-        "is_input_list": false,
-        "output": [
-          "STRING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "STRING"
-        ],
-        "output_matchtypes": null,
-        "name": "PrimitiveStringMultiline",
-        "display_name": "String (Multiline)",
-        "python_module": "comfy_extras.nodes_primitive",
-        "category": "utils/primitive",
-        "output_node": false,
-        "deprecated": false,
-        "experimental": false,
-        "dev_only": false,
-        "api_node": false,
-        "price_badge": null,
-        "search_aliases": null,
-        "essentials_category": "Basics"
-      },
-      "SimpleSyrup.PromptEncodeStyle": {
-        "input": {
-          "required": {
-            "encode_style": [
-              "LIST"
-            ]
-          }
-        },
-        "input_order": {
-          "required": [
-            "encode_style"
-          ]
-        },
-        "output": [
-          "STRING"
-        ],
-        "output_is_list": [
-          false
-        ],
-        "output_name": [
-          "encode_style"
-        ],
-        "name": "SimpleSyrup.PromptEncodeStyle",
-        "display_name": "Prompt Encode Style",
-        "python_module": "custom_nodes.SimpleSyrup",
-        "category": "SimpleSyrup/Prompt",
-        "output_node": false
-      },
       "SimpleSyrup.SimpleLoadCheckpoint": {
         "input": {
           "required": {
@@ -816,6 +726,7 @@
             "clip_skip"
           ]
         },
+        "is_input_list": false,
         "output": [
           "MODEL",
           "CLIP",
@@ -831,11 +742,81 @@
           "clip",
           "vae"
         ],
+        "output_matchtypes": null,
         "name": "SimpleSyrup.SimpleLoadCheckpoint",
         "display_name": "Simple Load Checkpoint",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Loaders",
-        "output_node": false
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "load checkpoint",
+          "checkpoint",
+          "ckpt",
+          "vae"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "DifferentialDiffusion": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {}
+            ]
+          },
+          "optional": {
+            "strength": [
+              "FLOAT",
+              {
+                "default": 1.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model"
+          ],
+          "optional": [
+            "strength"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "MODEL"
+        ],
+        "output_matchtypes": null,
+        "name": "DifferentialDiffusion",
+        "display_name": "Differential Diffusion",
+        "python_module": "comfy_extras.nodes_differential_diffusion",
+        "category": "experimental",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": true,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "inpaint gradient",
+          "variable denoise strength"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl": {
         "input": {
@@ -852,13 +833,6 @@
                 "rawLink": true
               }
             ],
-            "encode_style": [
-              "STRING",
-              {
-                "default": "",
-                "forceInput": true
-              }
-            ],
             "positive_prompt": [
               "STRING",
               {
@@ -873,17 +847,30 @@
                 "multiline": false
               }
             ]
+          },
+          "optional": {
+            "encode_style": [
+              "STRING",
+              {
+                "default": "",
+                "forceInput": true,
+                "multiline": false
+              }
+            ]
           }
         },
         "input_order": {
           "required": [
             "model",
             "clip",
-            "encode_style",
             "positive_prompt",
             "negative_prompt"
+          ],
+          "optional": [
+            "encode_style"
           ]
         },
+        "is_input_list": false,
         "output": [
           "MODEL",
           "CONDITIONING,CONDITIONING_BATCH",
@@ -899,11 +886,20 @@
           "positive",
           "negative"
         ],
+        "output_matchtypes": null,
         "name": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
         "display_name": "Schedule & Encode Prompts",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Conditioning",
-        "output_node": false
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "SimpleSyrup.KSamplerExtras": {
         "input": {
@@ -982,6 +978,7 @@
             "denoise"
           ]
         },
+        "is_input_list": false,
         "output": [
           "LATENT"
         ],
@@ -991,11 +988,26 @@
         "output_name": [
           "LATENT"
         ],
+        "output_matchtypes": null,
         "name": "SimpleSyrup.KSamplerExtras",
         "display_name": "KSampler (Extras)",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Sampling",
-        "output_node": false
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "ksampler",
+          "sampler",
+          "ays",
+          "gits",
+          "lcm"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
       },
       "InpaintModelConditioning": {
         "input": {
@@ -1051,7 +1063,128 @@
         "name": "InpaintModelConditioning",
         "display_name": "InpaintModelConditioning",
         "python_module": "nodes",
-        "category": "conditioning/inpaint",
+        "category": "model/conditioning",
+        "output_node": false
+      },
+      "7397287a-88f4-434a-bc22-b9d231a4fb28": {
+        "input": {
+          "required": {
+            "positive": [
+              "CONDITIONING",
+              {
+                "forceInput": true
+              }
+            ],
+            "negative": [
+              "CONDITIONING",
+              {
+                "forceInput": true
+              }
+            ],
+            "vae": [
+              "VAE",
+              {
+                "forceInput": true
+              }
+            ],
+            "pixels": [
+              "IMAGE",
+              {
+                "forceInput": true
+              }
+            ],
+            "mask": [
+              "MASK",
+              {
+                "forceInput": true
+              }
+            ],
+            "model": [
+              "MODEL",
+              {
+                "forceInput": true
+              }
+            ],
+            "seed": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "steps": [
+              "INT",
+              {
+                "default": 20,
+                "min": 1,
+                "max": 10000
+              }
+            ],
+            "cfg": [
+              "FLOAT",
+              {
+                "default": 8.0,
+                "min": 0.0,
+                "max": 100.0,
+                "step": 0.1,
+                "round": 0.01
+              }
+            ],
+            "sampler_name": [
+              "LIST"
+            ],
+            "scheduler": [
+              "LIST"
+            ],
+            "denoise": [
+              "FLOAT",
+              {
+                "default": 1.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01
+              }
+            ],
+            "noise_mask": [
+              "BOOLEAN",
+              {
+                "default": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "positive",
+            "negative",
+            "vae",
+            "pixels",
+            "mask",
+            "model",
+            "seed",
+            "steps",
+            "cfg",
+            "sampler_name",
+            "scheduler",
+            "denoise",
+            "noise_mask"
+          ]
+        },
+        "output": [
+          "LATENT"
+        ],
+        "output_name": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "name": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "display_name": "Inpaint with Mask",
+        "python_module": "comfy.subgraph",
+        "category": "subgraph",
         "output_node": false
       }
     },
@@ -1062,7 +1195,7 @@
         "revision": 0,
         "state": {
           "lastNodeId": 2301,
-          "lastLinkId": 3818,
+          "lastLinkId": 3835,
           "lastGroupId": 379,
           "lastRerouteId": 0
         },
@@ -1332,14 +1465,13 @@
             ],
             "title": "ksampler",
             "properties": {
+              "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "cnr_id": "SimpleSyrup",
               "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
-              "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [
-              0,
-              "randomize",
+              null,
               28,
               5.5,
               "euler_ancestral",
@@ -1429,9 +1561,9 @@
             ],
             "title": "Encode Inpaint Conds",
             "properties": {
+              "Node name for S&R": "InpaintModelConditioning",
               "cnr_id": "comfy-core",
               "ver": "0.18.2",
-              "Node name for S&R": "InpaintModelConditioning",
               "sugarcubes_symbol": "encode_inpaint_conds"
             },
             "widgets_values": [
@@ -1595,6 +1727,62 @@
         "value_type": "number"
       },
       {
+        "control_id": "inpaint_with_mask.seed",
+        "symbol": "inpaint_with_mask",
+        "input_name": "seed",
+        "label": "seed",
+        "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "value_type": "number"
+      },
+      {
+        "control_id": "inpaint_with_mask.steps",
+        "symbol": "inpaint_with_mask",
+        "input_name": "steps",
+        "label": "steps",
+        "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "value_type": "number"
+      },
+      {
+        "control_id": "inpaint_with_mask.cfg",
+        "symbol": "inpaint_with_mask",
+        "input_name": "cfg",
+        "label": "cfg",
+        "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "value_type": "number"
+      },
+      {
+        "control_id": "inpaint_with_mask.sampler_name",
+        "symbol": "inpaint_with_mask",
+        "input_name": "sampler_name",
+        "label": "sampler_name",
+        "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "value_type": "string"
+      },
+      {
+        "control_id": "inpaint_with_mask.scheduler",
+        "symbol": "inpaint_with_mask",
+        "input_name": "scheduler",
+        "label": "scheduler",
+        "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "value_type": "string"
+      },
+      {
+        "control_id": "inpaint_with_mask.denoise",
+        "symbol": "inpaint_with_mask",
+        "input_name": "denoise",
+        "label": "denoise",
+        "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "value_type": "number"
+      },
+      {
+        "control_id": "inpaint_with_mask.noise_mask",
+        "symbol": "inpaint_with_mask",
+        "input_name": "noise_mask",
+        "label": "noise_mask",
+        "class_type": "7397287a-88f4-434a-bc22-b9d231a4fb28",
+        "value_type": "boolean"
+      },
+      {
         "control_id": "load_image.image",
         "symbol": "load_image",
         "input_name": "image",
@@ -1747,14 +1935,16 @@
         "name": "Default",
         "values": {
           "differential_diffusion.strength": 1,
-          "load_image.image": "00282-3430329909-ad-before.png",
-          "load_image_as_mask.image": "00282-3430329909-ad-before.png",
+          "inpaint_with_mask.steps": 28,
+          "inpaint_with_mask.cfg": 5.5,
+          "inpaint_with_mask.sampler_name": "euler_ancestral",
+          "inpaint_with_mask.scheduler": "normal",
+          "inpaint_with_mask.denoise": 0.5,
+          "inpaint_with_mask.noise_mask": true,
           "load_image_as_mask.channel": "alpha",
           "negative_prompt.value": "",
           "positive_prompt.value": "",
           "prompt_encode_style.encode_style": "A1111",
-          "simple_load_checkpoint.ckpt_name": "",
-          "simple_load_checkpoint.vae_name": "",
           "simple_load_checkpoint.clip_skip": false,
           "vectorscopecc.alt": true,
           "vectorscopecc.brightness": 0,
