@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Image to Image.cube",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Auto-converted cube for anima/image to image",
   "metadata": {
     "default_alias": "Anima/Image to Image",
@@ -29,7 +29,7 @@
         "label": "KSampler (Tiled Diffusion)",
         "inputs": {
           "model": [
-            "schedule_encode_prompts",
+            "seed_variation",
             0
           ],
           "positive": [
@@ -103,6 +103,18 @@
           ]
         },
         "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:0c94d925-0699-4de8-a9b0-b1408f38641b"
+      },
+      "seed_variation": {
+        "class_type": "SimpleSyrup.SeedVariation",
+        "label": "Seed Variation",
+        "inputs": {
+          "model": [
+            "schedule_encode_prompts",
+            0
+          ]
+        },
+        "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:8a698df3-c900-4f03-81a0-fab0b9727c51",
+        "mode": 4
       }
     },
     "inputs": {},
@@ -212,6 +224,19 @@
             540.0
           ],
           "title": "Load Image"
+        },
+        "seed_variation": {
+          "id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:8a698df3-c900-4f03-81a0-fab0b9727c51",
+          "class_type": "SimpleSyrup.SeedVariation",
+          "pos": [
+            1125.0,
+            80.0
+          ],
+          "size": [
+            315.0,
+            110.0
+          ],
+          "title": "Seed Variation"
         }
       },
       "markers": {
@@ -663,6 +688,78 @@
         "python_module": "nodes",
         "category": "image",
         "output_node": false
+      },
+      "SimpleSyrup.SeedVariation": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "tooltip": "Model whose sampler-provided initial noise will receive seed variation."
+              }
+            ],
+            "variation_seed": [
+              "INT",
+              {
+                "tooltip": "Seed for the second noise pattern. Change it to explore another variation direction from the sampler's seed.",
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "variation_strength": [
+              "FLOAT",
+              {
+                "tooltip": "Noise interpolation strength. 0 keeps the sampler seed unchanged; 1 uses the variation seed for initial noise.",
+                "default": 0.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01,
+                "round": 0.01
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "variation_seed",
+            "variation_strength"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "model"
+        ],
+        "output_tooltips": [
+          "Model that interpolates initial sampling noise toward the variation seed."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SeedVariation",
+        "display_name": "Seed Variation",
+        "description": "Creates related generations by mixing sampler noise toward a second deterministic seed.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "variation seed",
+          "subseed",
+          "seed interpolation"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
       }
     },
     "subgraphs": []
@@ -845,6 +942,22 @@
         "label": "vae",
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "value_type": "string"
+      },
+      {
+        "control_id": "seed_variation.variation_seed",
+        "symbol": "seed_variation",
+        "input_name": "variation_seed",
+        "label": "variation_seed",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
+      },
+      {
+        "control_id": "seed_variation.variation_strength",
+        "symbol": "seed_variation",
+        "input_name": "variation_strength",
+        "label": "variation_strength",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
       }
     ]
   },
@@ -870,7 +983,9 @@
           "schedule_encode_prompts.negative_prompt": "",
           "simple_load_anima.quantization": "Original",
           "simple_load_anima.diffusion_weight_dtype": "default",
-          "simple_load_anima.text_encoder_device": "default"
+          "simple_load_anima.text_encoder_device": "default",
+          "seed_variation.variation_seed": 0,
+          "seed_variation.variation_strength": 0.0
         }
       }
     ]

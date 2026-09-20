@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Prompt by Region.cube",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "\"Regional Prompting\" for SDXL using attention coupling. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] is the global prompt. Each later region prompt pairs with the next mask in order.\n\nLoRA scheduling is supported. LoRAs in the global prompt apply to the entire image, while LoRAs in a regional prompt apply only to that region.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -117,7 +117,7 @@
         "label": "KSampler",
         "inputs": {
           "model": [
-            "vectorscopecc",
+            "seed_variation",
             0
           ],
           "positive": [
@@ -153,6 +153,18 @@
           ]
         },
         "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:d39faf63-631a-53dd-9c56-8c1252290a0f"
+      },
+      "seed_variation": {
+        "class_type": "SimpleSyrup.SeedVariation",
+        "label": "Seed Variation",
+        "inputs": {
+          "model": [
+            "vectorscopecc",
+            0
+          ]
+        },
+        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:0e66d4f5-5e47-484d-9aa2-0e3aad2248dd",
+        "mode": 4
       }
     },
     "inputs": {},
@@ -328,6 +340,19 @@
             60.0
           ],
           "title": "VAE decode"
+        },
+        "seed_variation": {
+          "id": "3188a75d-ac46-50bc-be7a-643cce948acd:0e66d4f5-5e47-484d-9aa2-0e3aad2248dd",
+          "class_type": "SimpleSyrup.SeedVariation",
+          "pos": [
+            685.0,
+            650.0
+          ],
+          "size": [
+            315.0,
+            110.0
+          ],
+          "title": "Seed Variation"
         }
       },
       "markers": {
@@ -1709,6 +1734,78 @@
         "output_node": false,
         "has_intermediate_output": false,
         "search_aliases": []
+      },
+      "SimpleSyrup.SeedVariation": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "tooltip": "Model whose sampler-provided initial noise will receive seed variation."
+              }
+            ],
+            "variation_seed": [
+              "INT",
+              {
+                "tooltip": "Seed for the second noise pattern. Change it to explore another variation direction from the sampler's seed.",
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "variation_strength": [
+              "FLOAT",
+              {
+                "tooltip": "Noise interpolation strength. 0 keeps the sampler seed unchanged; 1 uses the variation seed for initial noise.",
+                "default": 0.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01,
+                "round": 0.01
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "variation_seed",
+            "variation_strength"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "model"
+        ],
+        "output_tooltips": [
+          "Model that interpolates initial sampling noise toward the variation seed."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SeedVariation",
+        "display_name": "Seed Variation",
+        "description": "Creates related generations by mixing sampler noise toward a second deterministic seed.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "variation seed",
+          "subseed",
+          "seed interpolation"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
       }
     },
     "subgraphs": []
@@ -1939,6 +2036,22 @@
         "label": "scaling",
         "class_type": "VectorscopeCC",
         "value_type": "string"
+      },
+      {
+        "control_id": "seed_variation.variation_seed",
+        "symbol": "seed_variation",
+        "input_name": "variation_seed",
+        "label": "variation_seed",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
+      },
+      {
+        "control_id": "seed_variation.variation_strength",
+        "symbol": "seed_variation",
+        "input_name": "variation_strength",
+        "label": "variation_strength",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
       }
     ]
   },
@@ -1971,7 +2084,9 @@
           "vectorscopecc.g": 0.0,
           "vectorscopecc.b": 0.0,
           "vectorscopecc.method": "Straight Abs.",
-          "vectorscopecc.scaling": "Flat"
+          "vectorscopecc.scaling": "Flat",
+          "seed_variation.variation_seed": 0,
+          "seed_variation.variation_strength": 0.0
         }
       }
     ]

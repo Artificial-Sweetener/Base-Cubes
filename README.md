@@ -141,6 +141,8 @@ Base-Cubes keeps model-specific implementations separate because the best workfl
 
 SugarCubes-compatible tools load this repository as a cube library. Each `.cube` file is a serialized, validated workflow unit with stable bindings and embedded node definitions.
 
+Every cube with a compatible Comfy `MODEL` sampling or detailing path includes SimpleSyrup Seed Variation immediately before its sampler or detailer. The node is bypassed by default, preserving the cube's normal output until seed variation is explicitly enabled. Its variation seed and strength remain available as cube controls for creating related generations after it is enabled.
+
 Inside the UI, cubes display with their model family in the name, such as `SDXL/Text to Image` or `Anima/Text to Image`. That naming is deliberate: it keeps the implementation clear while still letting you think in terms of the workflow you want to build.
 
 Use the model-specific cube when you know which model family should do the work. Use `Any/Load Image` when you just need to bring an image into the graph before passing it into another cube.

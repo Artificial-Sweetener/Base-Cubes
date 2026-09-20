@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/TileRegion Upscale.cube",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Region-based upscaling for Anima: split an image into tagged regions, then refine each region independently to avoid full-image diffusion outside Anima's supported resolutions.",
   "metadata": {
     "default_alias": "Anima/TileRegion Upscale",
@@ -24,7 +24,7 @@
         "label": "Detail SEGS as Regions",
         "inputs": {
           "model": [
-            "schedule_encode_prompts",
+            "seed_variation",
             0
           ],
           "negative": [
@@ -106,6 +106,18 @@
           ]
         },
         "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:b19b5fac-f743-43b7-9f72-7e8f5c696523"
+      },
+      "seed_variation": {
+        "class_type": "SimpleSyrup.SeedVariation",
+        "label": "Seed Variation",
+        "inputs": {
+          "model": [
+            "schedule_encode_prompts",
+            0
+          ]
+        },
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:376d1460-9eeb-4c60-84b8-2da8ddd3e71d",
+        "mode": 4
       }
     },
     "inputs": {
@@ -219,6 +231,19 @@
             457.84375
           ],
           "title": "Tile & Tag SEGS"
+        },
+        "seed_variation": {
+          "id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:376d1460-9eeb-4c60-84b8-2da8ddd3e71d",
+          "class_type": "SimpleSyrup.SeedVariation",
+          "pos": [
+            938.0,
+            -150.0
+          ],
+          "size": [
+            315.0,
+            110.0
+          ],
+          "title": "Seed Variation"
         }
       },
       "markers": {
@@ -986,6 +1011,78 @@
         "python_module": "comfy.subgraph",
         "category": "subgraph",
         "output_node": false
+      },
+      "SimpleSyrup.SeedVariation": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "tooltip": "Model whose sampler-provided initial noise will receive seed variation."
+              }
+            ],
+            "variation_seed": [
+              "INT",
+              {
+                "tooltip": "Seed for the second noise pattern. Change it to explore another variation direction from the sampler's seed.",
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "variation_strength": [
+              "FLOAT",
+              {
+                "tooltip": "Noise interpolation strength. 0 keeps the sampler seed unchanged; 1 uses the variation seed for initial noise.",
+                "default": 0.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01,
+                "round": 0.01
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "variation_seed",
+            "variation_strength"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "model"
+        ],
+        "output_tooltips": [
+          "Model that interpolates initial sampling noise toward the variation seed."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SeedVariation",
+        "display_name": "Seed Variation",
+        "description": "Creates related generations by mixing sampler noise toward a second deterministic seed.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "variation seed",
+          "subseed",
+          "seed interpolation"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
       }
     },
     "subgraphs": [
@@ -1841,6 +1938,22 @@
         "label": "exclude_tags",
         "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
         "value_type": "string"
+      },
+      {
+        "control_id": "seed_variation.variation_seed",
+        "symbol": "seed_variation",
+        "input_name": "variation_seed",
+        "label": "variation_seed",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
+      },
+      {
+        "control_id": "seed_variation.variation_strength",
+        "symbol": "seed_variation",
+        "input_name": "variation_strength",
+        "label": "variation_strength",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
       }
     ]
   },
@@ -1879,7 +1992,9 @@
           "tile_tag_segs.character_threshold": 1.0,
           "tile_tag_segs.replace_underscore": true,
           "tile_tag_segs.trailing_comma": false,
-          "tile_tag_segs.exclude_tags": "1girl, solo, long_hair, short_hair, silhouette"
+          "tile_tag_segs.exclude_tags": "1girl, solo, long_hair, short_hair, silhouette",
+          "seed_variation.variation_seed": 0,
+          "seed_variation.variation_strength": 0.0
         }
       }
     ]

@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Diffusion upscaling: upscale an input image, resize it to target constraints, then refine it with image-to-image diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -41,7 +41,7 @@
         "label": "ksampler",
         "inputs": {
           "model": [
-            "vectorscopecc",
+            "seed_variation",
             0
           ],
           "positive": [
@@ -166,6 +166,18 @@
           ]
         },
         "original_id": "3fd6d0d9-8484-4ec2-8246-41c3e6afed39:70187e2e-2461-4aea-b2ca-e04ac2ef623d",
+        "mode": 4
+      },
+      "seed_variation": {
+        "class_type": "SimpleSyrup.SeedVariation",
+        "label": "Seed Variation",
+        "inputs": {
+          "model": [
+            "vectorscopecc",
+            0
+          ]
+        },
+        "original_id": "3fd6d0d9-8484-4ec2-8246-41c3e6afed39:08026ff0-e1f3-4bb7-9ee8-ab10b51c8b7d",
         "mode": 4
       }
     },
@@ -345,6 +357,19 @@
             190.0
           ],
           "title": "positive prompt"
+        },
+        "seed_variation": {
+          "id": "3fd6d0d9-8484-4ec2-8246-41c3e6afed39:08026ff0-e1f3-4bb7-9ee8-ab10b51c8b7d",
+          "class_type": "SimpleSyrup.SeedVariation",
+          "pos": [
+            1179.0,
+            -150.0
+          ],
+          "size": [
+            315.0,
+            110.0
+          ],
+          "title": "Seed Variation"
         }
       },
       "markers": {
@@ -1626,6 +1651,78 @@
         "python_module": "comfy.subgraph",
         "category": "subgraph",
         "output_node": false
+      },
+      "SimpleSyrup.SeedVariation": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "tooltip": "Model whose sampler-provided initial noise will receive seed variation."
+              }
+            ],
+            "variation_seed": [
+              "INT",
+              {
+                "tooltip": "Seed for the second noise pattern. Change it to explore another variation direction from the sampler's seed.",
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "variation_strength": [
+              "FLOAT",
+              {
+                "tooltip": "Noise interpolation strength. 0 keeps the sampler seed unchanged; 1 uses the variation seed for initial noise.",
+                "default": 0.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01,
+                "round": 0.01
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "variation_seed",
+            "variation_strength"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "model"
+        ],
+        "output_tooltips": [
+          "Model that interpolates initial sampling noise toward the variation seed."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SeedVariation",
+        "display_name": "Seed Variation",
+        "description": "Creates related generations by mixing sampler noise toward a second deterministic seed.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "variation seed",
+          "subseed",
+          "seed interpolation"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
       }
     },
     "subgraphs": [
@@ -2640,6 +2737,22 @@
         "label": "scaling",
         "class_type": "VectorscopeCC",
         "value_type": "string"
+      },
+      {
+        "control_id": "seed_variation.variation_seed",
+        "symbol": "seed_variation",
+        "input_name": "variation_seed",
+        "label": "variation_seed",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
+      },
+      {
+        "control_id": "seed_variation.variation_strength",
+        "symbol": "seed_variation",
+        "input_name": "variation_strength",
+        "label": "variation_strength",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
       }
     ]
   },
@@ -2678,7 +2791,9 @@
           "vectorscopecc.g": 0,
           "vectorscopecc.b": 0,
           "vectorscopecc.method": "Straight Abs.",
-          "vectorscopecc.scaling": "Flat"
+          "vectorscopecc.scaling": "Flat",
+          "seed_variation.variation_seed": 0,
+          "seed_variation.variation_strength": 0.0
         }
       }
     ]
