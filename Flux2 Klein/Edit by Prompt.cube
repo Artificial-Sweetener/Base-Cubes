@@ -1,0 +1,2302 @@
+{
+  "cube_id": "Artificial-Sweetener/Base-Cubes/Flux2 Klein/Edit by Prompt.cube",
+  "version": "1.0.0",
+  "description": "Edit an image by prompt with FLUX.2 Klein and SimpleSyrup Contextual Diffusion while preserving the source composition and fine detail. An optional bypassed resize can constrain the working resolution.",
+  "metadata": {
+    "default_alias": "Flux2 Klein/Edit by Prompt",
+    "target_model": "Flux2 Klein",
+    "supported_models": [
+      "Flux2 Klein"
+    ],
+    "surface_size": [
+      840.0,
+      930.0
+    ],
+    "surface_state": {
+      "schema": 1
+    }
+  },
+  "implementation": {
+    "nodes": {
+      "decode_edit": {
+        "class_type": "VAEDecode",
+        "label": "Decode Edit",
+        "inputs": {
+          "samples": [
+            "ksampler",
+            0
+          ],
+          "vae": [
+            "model",
+            2
+          ]
+        },
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:47109199-bd74-43d9-b66b-5c78cdde048d"
+      },
+      "encode_conds_latent": {
+        "class_type": "cd6d1eb8-3b1b-489a-a030-54442bbe1693",
+        "label": "Encode Conds & Latent",
+        "inputs": {
+          "clip": [
+            "model",
+            1
+          ],
+          "text": [
+            "positive_prompt",
+            0
+          ],
+          "pixels": [
+            "resize_reference",
+            0
+          ],
+          "vae": [
+            "model",
+            2
+          ]
+        },
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:2305"
+      },
+      "ksampler": {
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "label": "KSampler",
+        "inputs": {
+          "model": [
+            "model",
+            0
+          ],
+          "positive": [
+            "encode_conds_latent",
+            0
+          ],
+          "negative": [
+            "encode_conds_latent",
+            1
+          ],
+          "latent_image": [
+            "encode_conds_latent",
+            2
+          ]
+        },
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:6e5eb581-eb9a-4530-9f9b-1e5e1ee31b83"
+      },
+      "model": {
+        "class_type": "SimpleSyrup.SimpleLoadFlux2",
+        "label": "Model",
+        "inputs": {},
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:4949a948-d9be-4505-9119-4d06c279e0fb"
+      },
+      "positive_prompt": {
+        "class_type": "PrimitiveStringMultiline",
+        "label": "Positive Prompt",
+        "inputs": {},
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:f0333ed2-f9d7-494f-895d-0afebd8f515b"
+      },
+      "reference_image": {
+        "class_type": "LoadImage",
+        "label": "Reference Image",
+        "inputs": {},
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:f79b7259-e3e6-4581-abc2-567e0b42a37e"
+      },
+      "resize_reference": {
+        "class_type": "dda13b93-af69-4af6-a0fa-fd0b1c6b2f84",
+        "label": "Resize Reference",
+        "inputs": {
+          "image": [
+            "reference_image",
+            0
+          ]
+        },
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:2303",
+        "mode": 4
+      }
+    },
+    "inputs": {},
+    "outputs": {
+      "output.image": [
+        "decode_edit",
+        0
+      ]
+    },
+    "layout": {
+      "workflow_version": 0,
+      "origin": [
+        -2310.0,
+        -460.0
+      ],
+      "ds": {
+        "scale": 1.0793536111111113,
+        "offset": [
+          -2041.719333183292,
+          -249.9900810184119
+        ]
+      },
+      "nodes": {
+        "resize_reference": {
+          "id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:2303",
+          "class_type": "dda13b93-af69-4af6-a0fa-fd0b1c6b2f84",
+          "pos": [
+            460.0,
+            450.0
+          ],
+          "size": [
+            260.0,
+            90.0
+          ],
+          "title": "Resize Reference"
+        },
+        "encode_conds_latent": {
+          "id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:2305",
+          "class_type": "cd6d1eb8-3b1b-489a-a030-54442bbe1693",
+          "pos": [
+            780.0,
+            0.0
+          ],
+          "size": [
+            225.0,
+            166.0
+          ],
+          "title": "Encode Conds & Latent"
+        },
+        "decode_edit": {
+          "id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:47109199-bd74-43d9-b66b-5c78cdde048d",
+          "class_type": "VAEDecode",
+          "pos": [
+            1540.0,
+            0.0
+          ],
+          "size": [
+            225.0,
+            80.0
+          ],
+          "title": "Decode Edit"
+        },
+        "model": {
+          "id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:4949a948-d9be-4505-9119-4d06c279e0fb",
+          "class_type": "SimpleSyrup.SimpleLoadFlux2",
+          "pos": [
+            0.0,
+            220.0
+          ],
+          "size": [
+            430.0,
+            200.0
+          ],
+          "title": "Model"
+        },
+        "ksampler": {
+          "id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:6e5eb581-eb9a-4530-9f9b-1e5e1ee31b83",
+          "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+          "pos": [
+            1040.0,
+            0.0
+          ],
+          "size": [
+            460.0,
+            620.0
+          ],
+          "title": "KSampler"
+        },
+        "positive_prompt": {
+          "id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:f0333ed2-f9d7-494f-895d-0afebd8f515b",
+          "class_type": "PrimitiveStringMultiline",
+          "pos": [
+            0.0,
+            0.0
+          ],
+          "size": [
+            420.0,
+            180.0
+          ],
+          "title": "Positive Prompt"
+        },
+        "reference_image": {
+          "id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:f79b7259-e3e6-4581-abc2-567e0b42a37e",
+          "class_type": "LoadImage",
+          "pos": [
+            0.0,
+            450.0
+          ],
+          "size": [
+            430.0,
+            410.0
+          ],
+          "title": "Reference Image"
+        }
+      },
+      "markers": {
+        "output.image": {
+          "id": "sugarcubes:native:0:output:0",
+          "class_type": "SugarCubes.CubeOutput",
+          "kind": "output",
+          "pos": [
+            1853.440944,
+            15.896718
+          ],
+          "size": [
+            140.0,
+            46.0
+          ],
+          "title": "value"
+        }
+      }
+    },
+    "definitions": {
+      "VAEDecode": {
+        "input": {
+          "required": {
+            "samples": [
+              "LATENT",
+              {}
+            ],
+            "vae": [
+              "VAE",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "samples",
+            "vae"
+          ]
+        },
+        "output": [
+          "IMAGE"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "IMAGE"
+        ],
+        "name": "VAEDecode",
+        "display_name": "VAE Decode",
+        "python_module": "nodes",
+        "category": "model/latent",
+        "output_node": false
+      },
+      "SimpleSyrup.SimpleLoadFlux2": {
+        "input": {
+          "required": {
+            "diffusion_model": [
+              "LIST"
+            ],
+            "diffusion_weight_dtype": [
+              "LIST"
+            ],
+            "text_encoder": [
+              "LIST"
+            ],
+            "text_encoder_device": [
+              "LIST"
+            ],
+            "vae": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "diffusion_model",
+            "diffusion_weight_dtype",
+            "text_encoder",
+            "text_encoder_device",
+            "vae"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CLIP",
+          "VAE"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "model",
+          "clip",
+          "vae"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SimpleLoadFlux2",
+        "display_name": "Simple Load FLUX.2",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Loaders",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "flux 2",
+          "flux2",
+          "klein",
+          "load flux 2"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.KSamplerContextualDiffusion": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {}
+            ],
+            "seed": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "steps": [
+              "INT",
+              {
+                "default": 4,
+                "min": 1,
+                "max": 10000
+              }
+            ],
+            "cfg": [
+              "FLOAT",
+              {
+                "default": 1.0,
+                "min": 0.0,
+                "max": 100.0,
+                "step": 0.1,
+                "round": 0.01
+              }
+            ],
+            "sampler_name": [
+              "LIST"
+            ],
+            "scheduler": [
+              "LIST"
+            ],
+            "positive": [
+              "CONDITIONING,CONDITIONING_BATCH",
+              {}
+            ],
+            "negative": [
+              "CONDITIONING,CONDITIONING_BATCH",
+              {}
+            ],
+            "latent_image": [
+              "LATENT",
+              {}
+            ],
+            "denoise": [
+              "FLOAT",
+              {
+                "default": 1.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01
+              }
+            ],
+            "diffusion_mode": [
+              "LIST"
+            ],
+            "latent_context_size": [
+              "INT",
+              {
+                "default": 96,
+                "min": 16,
+                "max": 512,
+                "step": 16
+              }
+            ],
+            "latent_context_overlap": [
+              "INT",
+              {
+                "default": 32,
+                "min": 0,
+                "max": 256,
+                "step": 4
+              }
+            ],
+            "latent_context_batch_size": [
+              "INT",
+              {
+                "default": 4,
+                "min": 1,
+                "max": 8,
+                "step": 1
+              }
+            ],
+            "global_weight": [
+              "FLOAT",
+              {
+                "default": 1.0,
+                "min": 0.0,
+                "max": 2.0,
+                "step": 0.05
+              }
+            ],
+            "global_steps": [
+              "INT",
+              {
+                "default": 1,
+                "min": 0,
+                "max": 10000,
+                "step": 1
+              }
+            ],
+            "global_decay": [
+              "FLOAT",
+              {
+                "default": 0.5,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.05
+              }
+            ]
+          },
+          "optional": {
+            "segs": [
+              "SEGS",
+              {}
+            ],
+            "region_masks": [
+              "MASK",
+              {}
+            ],
+            "regional_prompt_weight": [
+              "FLOAT",
+              {
+                "default": 0.5,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01,
+                "round": 0.01
+              }
+            ],
+            "region_mask_feather": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 512,
+                "step": 1
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "seed",
+            "steps",
+            "cfg",
+            "sampler_name",
+            "scheduler",
+            "positive",
+            "negative",
+            "latent_image",
+            "denoise",
+            "diffusion_mode",
+            "latent_context_size",
+            "latent_context_overlap",
+            "latent_context_batch_size",
+            "global_weight",
+            "global_steps",
+            "global_decay"
+          ],
+          "optional": [
+            "segs",
+            "region_masks",
+            "regional_prompt_weight",
+            "region_mask_feather"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "LATENT",
+          "SEGS"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "output_name": [
+          "latent",
+          "contexts_segs"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.KSamplerContextualDiffusion",
+        "display_name": "KSampler (Contextual Diffusion)",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "ksampler",
+          "contextual diffusion",
+          "contextual tiled diffusion",
+          "high resolution edit",
+          "sam tiled diffusion"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "PrimitiveStringMultiline": {
+        "input": {
+          "required": {
+            "value": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "STRING"
+        ],
+        "output_matchtypes": null,
+        "name": "PrimitiveStringMultiline",
+        "display_name": "Text (Multiline)",
+        "python_module": "comfy_extras.nodes_primitive",
+        "category": "utilities/primitive",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "text",
+          "string",
+          "text multiline",
+          "string multiline",
+          "text box",
+          "prompt"
+        ],
+        "essentials_category": "Basics",
+        "has_intermediate_output": false
+      },
+      "LoadImage": {
+        "input": {
+          "required": {
+            "image": [
+              "LIST"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image"
+          ]
+        },
+        "output": [
+          "IMAGE",
+          "MASK"
+        ],
+        "output_is_list": [
+          false,
+          false
+        ],
+        "output_name": [
+          "IMAGE",
+          "MASK"
+        ],
+        "name": "LoadImage",
+        "display_name": "Load Image",
+        "python_module": "nodes",
+        "category": "image",
+        "output_node": false
+      },
+      "CLIPTextEncode": {
+        "input": {
+          "required": {
+            "text": [
+              "STRING",
+              {
+                "multiline": true,
+                "dynamicPrompts": true
+              }
+            ],
+            "clip": [
+              "CLIP",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "text",
+            "clip"
+          ]
+        },
+        "output": [
+          "CONDITIONING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "CONDITIONING"
+        ],
+        "name": "CLIPTextEncode",
+        "display_name": "CLIP Text Encode (Prompt)",
+        "python_module": "nodes",
+        "category": "model/conditioning",
+        "output_node": false
+      },
+      "ReferenceLatent": {
+        "input": {
+          "required": {
+            "conditioning": [
+              "CONDITIONING",
+              {}
+            ]
+          },
+          "optional": {
+            "latent": [
+              "LATENT",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "conditioning"
+          ],
+          "optional": [
+            "latent"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "CONDITIONING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "CONDITIONING"
+        ],
+        "output_matchtypes": null,
+        "name": "ReferenceLatent",
+        "display_name": "Set Reference Latent",
+        "python_module": "comfy_extras.nodes_edit_model",
+        "category": "model/conditioning",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "ConditioningZeroOut": {
+        "input": {
+          "required": {
+            "conditioning": [
+              "CONDITIONING"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "conditioning"
+          ]
+        },
+        "output": [
+          "CONDITIONING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "CONDITIONING"
+        ],
+        "name": "ConditioningZeroOut",
+        "display_name": "Conditioning Zero Out",
+        "python_module": "nodes",
+        "category": "model/conditioning/transform",
+        "output_node": false
+      },
+      "VAEEncode": {
+        "input": {
+          "required": {
+            "pixels": [
+              "IMAGE"
+            ],
+            "vae": [
+              "VAE"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "pixels",
+            "vae"
+          ]
+        },
+        "output": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "LATENT"
+        ],
+        "name": "VAEEncode",
+        "display_name": "VAE Encode",
+        "python_module": "nodes",
+        "category": "model/latent",
+        "output_node": false
+      },
+      "EmptyFlux2LatentImage": {
+        "input": {
+          "required": {
+            "width": [
+              "INT",
+              {
+                "default": 1024,
+                "min": 16,
+                "max": 16384,
+                "step": 16
+              }
+            ],
+            "height": [
+              "INT",
+              {
+                "default": 1024,
+                "min": 16,
+                "max": 16384,
+                "step": 16
+              }
+            ],
+            "batch_size": [
+              "INT",
+              {
+                "default": 1,
+                "min": 1,
+                "max": 4096
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "width",
+            "height",
+            "batch_size"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "LATENT"
+        ],
+        "output_matchtypes": null,
+        "name": "EmptyFlux2LatentImage",
+        "display_name": "Empty Flux 2 Latent",
+        "python_module": "comfy_extras.nodes_flux",
+        "category": "model/latent/flux",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "GetImageSize": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {}
+            ]
+          },
+          "hidden": {
+            "unique_id": [
+              "UNIQUE_ID"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image"
+          ],
+          "hidden": [
+            "unique_id"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "INT",
+          "INT",
+          "INT"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "width",
+          "height",
+          "batch_size"
+        ],
+        "output_matchtypes": null,
+        "name": "GetImageSize",
+        "display_name": "Get Image Size",
+        "python_module": "comfy_extras.nodes_images",
+        "category": "image",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "dimensions",
+          "resolution",
+          "image info"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.ResizeImageToTarget": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {}
+            ],
+            "width": [
+              "INT",
+              {
+                "default": 1024,
+                "min": 1,
+                "max": 16384,
+                "step": 1
+              }
+            ],
+            "height": [
+              "INT",
+              {
+                "default": 1024,
+                "min": 1,
+                "max": 16384,
+                "step": 1
+              }
+            ],
+            "resize_mode": [
+              "LIST"
+            ],
+            "sampling": [
+              "LIST"
+            ],
+            "processor": [
+              "LIST"
+            ],
+            "divisible_by": [
+              "INT",
+              {
+                "default": 1,
+                "min": 1,
+                "max": 4096,
+                "step": 1
+              }
+            ],
+            "crop_position": [
+              "LIST"
+            ],
+            "pad_color": [
+              "STRING",
+              {
+                "default": "0, 0, 0",
+                "multiline": false
+              }
+            ],
+            "max_batch_size": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 4096,
+                "step": 1
+              }
+            ],
+            "sinc_window": [
+              "INT",
+              {
+                "default": 3,
+                "min": 1,
+                "max": 8,
+                "step": 1
+              }
+            ],
+            "precision": [
+              "LIST"
+            ]
+          },
+          "optional": {
+            "mask": [
+              "MASK",
+              {}
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image",
+            "width",
+            "height",
+            "resize_mode",
+            "sampling",
+            "processor",
+            "divisible_by",
+            "crop_position",
+            "pad_color",
+            "max_batch_size",
+            "sinc_window",
+            "precision"
+          ],
+          "optional": [
+            "mask"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "IMAGE",
+          "INT",
+          "INT",
+          "MASK"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "image",
+          "width",
+          "height",
+          "mask"
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.ResizeImageToTarget",
+        "display_name": "Resize Image to Target",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Image",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "PrimitiveInt": {
+        "input": {
+          "required": {
+            "value": [
+              "INT",
+              {
+                "min": -9223372036854775807,
+                "max": 9223372036854775807,
+                "control_after_generate": "fixed"
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "INT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "INT"
+        ],
+        "output_matchtypes": null,
+        "name": "PrimitiveInt",
+        "display_name": "Int",
+        "python_module": "comfy_extras.nodes_primitive",
+        "category": "utilities/primitive",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "cd6d1eb8-3b1b-489a-a030-54442bbe1693": {
+        "input": {
+          "required": {
+            "clip": [
+              "CLIP",
+              {
+                "forceInput": true
+              }
+            ],
+            "text": [
+              "STRING",
+              {
+                "multiline": true,
+                "dynamicPrompts": true
+              }
+            ],
+            "pixels": [
+              "IMAGE",
+              {
+                "forceInput": true
+              }
+            ],
+            "vae": [
+              "VAE",
+              {
+                "forceInput": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "clip",
+            "text",
+            "pixels",
+            "vae"
+          ]
+        },
+        "output": [
+          "CONDITIONING",
+          "CONDITIONING",
+          "LATENT"
+        ],
+        "output_name": [
+          "CONDITIONING",
+          "CONDITIONING_1",
+          "LATENT"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "name": "cd6d1eb8-3b1b-489a-a030-54442bbe1693",
+        "display_name": "Encode Conds & Latent",
+        "python_module": "comfy.subgraph",
+        "category": "subgraph",
+        "output_node": false
+      },
+      "dda13b93-af69-4af6-a0fa-fd0b1c6b2f84": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {
+                "forceInput": true
+              }
+            ],
+            "value": [
+              "INT",
+              {
+                "min": -9223372036854775807,
+                "max": 9223372036854775807,
+                "control_after_generate": "fixed"
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image",
+            "value"
+          ]
+        },
+        "output": [
+          "IMAGE"
+        ],
+        "output_name": [
+          "image"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "name": "dda13b93-af69-4af6-a0fa-fd0b1c6b2f84",
+        "display_name": "Resize Reference",
+        "python_module": "comfy.subgraph",
+        "category": "subgraph",
+        "output_node": false
+      }
+    },
+    "subgraphs": [
+      {
+        "id": "cd6d1eb8-3b1b-489a-a030-54442bbe1693",
+        "version": 1,
+        "revision": 0,
+        "state": {
+          "lastNodeId": 2305,
+          "lastLinkId": 3996,
+          "lastGroupId": 379,
+          "lastRerouteId": 0
+        },
+        "config": {},
+        "name": "Encode Conds & Latent",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -2038,
+            -184,
+            128,
+            128
+          ],
+          "pinned": false
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            -1120,
+            -200,
+            132.44117736816406,
+            108
+          ],
+          "pinned": false
+        },
+        "inputs": [
+          {
+            "id": "852b3471-22f3-47e0-a876-06d2c2cad487",
+            "type": "CLIP",
+            "linkIds": [
+              3960
+            ],
+            "name": "clip",
+            "label": "clip",
+            "localized_name": "clip"
+          },
+          {
+            "id": "7ba25444-3978-4d04-84cf-9c0663e01a91",
+            "type": "STRING",
+            "linkIds": [
+              3959
+            ],
+            "name": "text",
+            "label": "prompt",
+            "localized_name": "text"
+          },
+          {
+            "id": "7315c8ee-a33c-4444-9b0a-34ad81b7112d",
+            "type": "IMAGE",
+            "linkIds": [
+              3979,
+              3980
+            ],
+            "name": "pixels",
+            "label": "pixels",
+            "localized_name": "pixels"
+          },
+          {
+            "id": "868d7e07-dac6-438e-b644-55bf5af6e01c",
+            "type": "VAE",
+            "linkIds": [
+              3963
+            ],
+            "name": "vae",
+            "label": "vae",
+            "localized_name": "vae"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "7f1d22a9-0d6c-4445-8d67-d1438dc68770",
+            "type": "CONDITIONING",
+            "linkIds": [
+              3991
+            ],
+            "name": "CONDITIONING",
+            "label": "Positive Cond"
+          },
+          {
+            "id": "2b2ff9fc-7868-4074-896c-de45f8ee62de",
+            "type": "CONDITIONING",
+            "linkIds": [
+              3992
+            ],
+            "name": "CONDITIONING_1",
+            "label": "Negative Cond"
+          },
+          {
+            "id": "838fc145-4a45-4ff3-af68-dd6f395c812c",
+            "type": "LATENT",
+            "linkIds": [
+              3993
+            ],
+            "name": "LATENT",
+            "label": "Latent"
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": "0b11a70d-bcc3-4dc5-a840-980205f01cd7",
+            "type": "CLIPTextEncode",
+            "pos": [
+              -1890,
+              -170
+            ],
+            "size": [
+              225,
+              102
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 3960
+              },
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": 3959
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  3961,
+                  3964
+                ]
+              }
+            ],
+            "title": "Encode Prompt",
+            "properties": {
+              "Node name for S&R": "CLIPTextEncode",
+              "sugarcubes_symbol": "encode_prompt"
+            },
+            "widgets_values": [
+              ""
+            ]
+          },
+          {
+            "id": "9487dee8-921c-46f2-996d-a2a9385f13e2",
+            "type": "ReferenceLatent",
+            "pos": [
+              -1380,
+              -170
+            ],
+            "size": [
+              225,
+              54
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 1,
+            "inputs": [
+              {
+                "localized_name": "conditioning",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 3966
+              },
+              {
+                "localized_name": "latent",
+                "name": "latent",
+                "shape": 7,
+                "type": "LATENT",
+                "link": 3967
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  3992
+                ]
+              }
+            ],
+            "title": "Negative Reference Latent",
+            "properties": {
+              "Node name for S&R": "ReferenceLatent",
+              "sugarcubes_symbol": "negative_reference"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": "b44bb49c-4ef4-4640-82d5-387dd0470e02",
+            "type": "ReferenceLatent",
+            "pos": [
+              -1620,
+              -270
+            ],
+            "size": [
+              225,
+              54
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 2,
+            "inputs": [
+              {
+                "localized_name": "conditioning",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 3964
+              },
+              {
+                "localized_name": "latent",
+                "name": "latent",
+                "shape": 7,
+                "type": "LATENT",
+                "link": 3965
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  3991
+                ]
+              }
+            ],
+            "title": "Positive Reference Latent",
+            "properties": {
+              "Node name for S&R": "ReferenceLatent",
+              "sugarcubes_symbol": "positive_reference"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": "de0fe79b-0ec6-4669-96c3-06143985dbd0",
+            "type": "ConditioningZeroOut",
+            "pos": [
+              -1630,
+              -170
+            ],
+            "size": [
+              225,
+              34
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 3,
+            "inputs": [
+              {
+                "localized_name": "conditioning",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 3961
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  3966
+                ]
+              }
+            ],
+            "title": "Zero Negative Conditioning",
+            "properties": {
+              "Node name for S&R": "ConditioningZeroOut",
+              "sugarcubes_symbol": "zero_negative"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": "ee0e32da-c947-476f-949a-7a98d070de1e",
+            "type": "VAEEncode",
+            "pos": [
+              -1890,
+              -310
+            ],
+            "size": [
+              225,
+              100
+            ],
+            "flags": {},
+            "order": 4,
+            "inputs": [
+              {
+                "localized_name": "pixels",
+                "name": "pixels",
+                "type": "IMAGE",
+                "link": 3979
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "link": 3963
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "LATENT",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  3965,
+                  3967
+                ]
+              }
+            ],
+            "title": "Encode Working Reference",
+            "properties": {
+              "Node name for S&R": "VAEEncode",
+              "sugarcubes_symbol": "encode_reference"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": "05169afc-22c5-4960-9307-ae78682ee3da",
+            "type": "EmptyFlux2LatentImage",
+            "pos": [
+              -1630,
+              -20
+            ],
+            "size": [
+              300,
+              170
+            ],
+            "flags": {},
+            "order": 5,
+            "inputs": [
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": 3969
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": 3970
+              },
+              {
+                "localized_name": "batch_size",
+                "name": "batch_size",
+                "type": "INT",
+                "widget": {
+                  "name": "batch_size"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "LATENT",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  3993
+                ]
+              }
+            ],
+            "title": "Working-Resolution Flux2 Latent",
+            "properties": {
+              "Node name for S&R": "EmptyFlux2LatentImage",
+              "sugarcubes_symbol": "empty_flux2_latent"
+            },
+            "widgets_values": [
+              1
+            ]
+          },
+          {
+            "id": "6c9040d7-831d-47bc-9e9f-d13867909d65",
+            "type": "GetImageSize",
+            "pos": [
+              -1890,
+              -20
+            ],
+            "size": [
+              225,
+              74
+            ],
+            "flags": {},
+            "order": 6,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 3980
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": [
+                  3969
+                ]
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": [
+                  3970
+                ]
+              },
+              {
+                "localized_name": "batch_size",
+                "name": "batch_size",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "title": "Get Working Image Size",
+            "properties": {
+              "Node name for S&R": "GetImageSize",
+              "sugarcubes_symbol": "get_image_size"
+            },
+            "widgets_values": []
+          }
+        ],
+        "links": [
+          {
+            "id": 3966,
+            "origin_id": "de0fe79b-0ec6-4669-96c3-06143985dbd0",
+            "origin_slot": 0,
+            "target_id": "9487dee8-921c-46f2-996d-a2a9385f13e2",
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 3967,
+            "origin_id": "ee0e32da-c947-476f-949a-7a98d070de1e",
+            "origin_slot": 0,
+            "target_id": "9487dee8-921c-46f2-996d-a2a9385f13e2",
+            "target_slot": 1,
+            "type": "LATENT"
+          },
+          {
+            "id": 3964,
+            "origin_id": "0b11a70d-bcc3-4dc5-a840-980205f01cd7",
+            "origin_slot": 0,
+            "target_id": "b44bb49c-4ef4-4640-82d5-387dd0470e02",
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 3965,
+            "origin_id": "ee0e32da-c947-476f-949a-7a98d070de1e",
+            "origin_slot": 0,
+            "target_id": "b44bb49c-4ef4-4640-82d5-387dd0470e02",
+            "target_slot": 1,
+            "type": "LATENT"
+          },
+          {
+            "id": 3961,
+            "origin_id": "0b11a70d-bcc3-4dc5-a840-980205f01cd7",
+            "origin_slot": 0,
+            "target_id": "de0fe79b-0ec6-4669-96c3-06143985dbd0",
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 3969,
+            "origin_id": "6c9040d7-831d-47bc-9e9f-d13867909d65",
+            "origin_slot": 0,
+            "target_id": "05169afc-22c5-4960-9307-ae78682ee3da",
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 3970,
+            "origin_id": "6c9040d7-831d-47bc-9e9f-d13867909d65",
+            "origin_slot": 1,
+            "target_id": "05169afc-22c5-4960-9307-ae78682ee3da",
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 3960,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": "0b11a70d-bcc3-4dc5-a840-980205f01cd7",
+            "target_slot": 0,
+            "type": "CLIP"
+          },
+          {
+            "id": 3959,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": "0b11a70d-bcc3-4dc5-a840-980205f01cd7",
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 3979,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": "ee0e32da-c947-476f-949a-7a98d070de1e",
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3980,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": "6c9040d7-831d-47bc-9e9f-d13867909d65",
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3963,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": "ee0e32da-c947-476f-949a-7a98d070de1e",
+            "target_slot": 1,
+            "type": "VAE"
+          },
+          {
+            "id": 3991,
+            "origin_id": "b44bb49c-4ef4-4640-82d5-387dd0470e02",
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 3992,
+            "origin_id": "9487dee8-921c-46f2-996d-a2a9385f13e2",
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 3993,
+            "origin_id": "05169afc-22c5-4960-9307-ae78682ee3da",
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 2,
+            "type": "LATENT"
+          }
+        ],
+        "floatingLinks": [],
+        "reroutes": [],
+        "extra": {}
+      },
+      {
+        "id": "dda13b93-af69-4af6-a0fa-fd0b1c6b2f84",
+        "version": 1,
+        "revision": 0,
+        "state": {
+          "lastNodeId": 2305,
+          "lastLinkId": 3996,
+          "lastGroupId": 379,
+          "lastRerouteId": 0
+        },
+        "config": {},
+        "name": "Resize Reference",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -2000,
+            470,
+            128,
+            88
+          ],
+          "pinned": false
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            -1060,
+            440,
+            128,
+            68
+          ],
+          "pinned": false
+        },
+        "inputs": [
+          {
+            "id": "ae79e44b-3ab1-403b-a181-be672e940047",
+            "type": "IMAGE",
+            "linkIds": [
+              3958
+            ],
+            "name": "image",
+            "label": "image",
+            "localized_name": "image"
+          },
+          {
+            "id": "43622e44-2ea4-4674-829c-90ececf532e6",
+            "type": "INT",
+            "linkIds": [
+              3983
+            ],
+            "name": "value",
+            "label": "value"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "b18ebd18-6980-46c8-9f55-18ed6b733cc9",
+            "type": "IMAGE",
+            "linkIds": [
+              3962,
+              3962
+            ],
+            "name": "image",
+            "label": "image",
+            "localized_name": "image"
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": "373d2d4a-dc3a-452e-8eb2-d92b6cec9c80",
+            "type": "SimpleSyrup.ResizeImageToTarget",
+            "pos": [
+              -1570,
+              360
+            ],
+            "size": [
+              330,
+              440
+            ],
+            "flags": {},
+            "order": 1,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 3958
+              },
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "shape": 7,
+                "type": "MASK",
+                "link": null
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": 3981
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": 3982
+              },
+              {
+                "localized_name": "resize_mode",
+                "name": "resize_mode",
+                "type": "COMBO",
+                "widget": {
+                  "name": "resize_mode"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "sampling",
+                "name": "sampling",
+                "type": "COMBO",
+                "widget": {
+                  "name": "sampling"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "processor",
+                "name": "processor",
+                "type": "COMBO",
+                "widget": {
+                  "name": "processor"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "divisible_by",
+                "name": "divisible_by",
+                "type": "INT",
+                "widget": {
+                  "name": "divisible_by"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "crop_position",
+                "name": "crop_position",
+                "type": "COMBO",
+                "widget": {
+                  "name": "crop_position"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "pad_color",
+                "name": "pad_color",
+                "type": "STRING",
+                "widget": {
+                  "name": "pad_color"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "max_batch_size",
+                "name": "max_batch_size",
+                "type": "INT",
+                "widget": {
+                  "name": "max_batch_size"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "sinc_window",
+                "name": "sinc_window",
+                "type": "INT",
+                "widget": {
+                  "name": "sinc_window"
+                },
+                "link": null
+              },
+              {
+                "localized_name": "precision",
+                "name": "precision",
+                "type": "COMBO",
+                "widget": {
+                  "name": "precision"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "links": [
+                  3962
+                ]
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "type": "MASK",
+                "links": null
+              }
+            ],
+            "title": "Resize to Target",
+            "properties": {
+              "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
+              "sugarcubes_symbol": "optional_downscale"
+            },
+            "widgets_values": [
+              "Keep AR",
+              "lanczos",
+              "gpu",
+              16,
+              "center",
+              "0, 0, 0",
+              0,
+              3,
+              "fp32"
+            ]
+          },
+          {
+            "id": 2304,
+            "type": "PrimitiveInt",
+            "pos": [
+              -1860,
+              490
+            ],
+            "size": [
+              270,
+              90
+            ],
+            "flags": {},
+            "order": 0,
+            "inputs": [
+              {
+                "localized_name": "value",
+                "name": "value",
+                "type": "INT",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 3983
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  3981,
+                  3982
+                ]
+              }
+            ],
+            "title": "Target Size",
+            "properties": {
+              "Node name for S&R": "PrimitiveInt"
+            },
+            "widgets_values": [
+              1024
+            ]
+          }
+        ],
+        "links": [
+          {
+            "id": 3958,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": "373d2d4a-dc3a-452e-8eb2-d92b6cec9c80",
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3962,
+            "origin_id": "373d2d4a-dc3a-452e-8eb2-d92b6cec9c80",
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3981,
+            "origin_id": 2304,
+            "origin_slot": 0,
+            "target_id": "373d2d4a-dc3a-452e-8eb2-d92b6cec9c80",
+            "target_slot": 2,
+            "type": "INT"
+          },
+          {
+            "id": 3982,
+            "origin_id": 2304,
+            "origin_slot": 0,
+            "target_id": "373d2d4a-dc3a-452e-8eb2-d92b6cec9c80",
+            "target_slot": 3,
+            "type": "INT"
+          },
+          {
+            "id": 3983,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 2304,
+            "target_slot": 0,
+            "type": "INT"
+          }
+        ],
+        "floatingLinks": [],
+        "reroutes": [],
+        "extra": {}
+      }
+    ]
+  },
+  "surface": {
+    "default_flavor_id": "default",
+    "controls": [
+      {
+        "control_id": "ksampler.seed",
+        "symbol": "ksampler",
+        "input_name": "seed",
+        "label": "seed",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.steps",
+        "symbol": "ksampler",
+        "input_name": "steps",
+        "label": "steps",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.cfg",
+        "symbol": "ksampler",
+        "input_name": "cfg",
+        "label": "cfg",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.sampler_name",
+        "symbol": "ksampler",
+        "input_name": "sampler_name",
+        "label": "sampler_name",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.scheduler",
+        "symbol": "ksampler",
+        "input_name": "scheduler",
+        "label": "scheduler",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.denoise",
+        "symbol": "ksampler",
+        "input_name": "denoise",
+        "label": "denoise",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.diffusion_mode",
+        "symbol": "ksampler",
+        "input_name": "diffusion_mode",
+        "label": "diffusion_mode",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.latent_context_size",
+        "symbol": "ksampler",
+        "input_name": "latent_context_size",
+        "label": "latent_context_size",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.latent_context_overlap",
+        "symbol": "ksampler",
+        "input_name": "latent_context_overlap",
+        "label": "latent_context_overlap",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.latent_context_batch_size",
+        "symbol": "ksampler",
+        "input_name": "latent_context_batch_size",
+        "label": "latent_context_batch_size",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.global_weight",
+        "symbol": "ksampler",
+        "input_name": "global_weight",
+        "label": "global_weight",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.global_steps",
+        "symbol": "ksampler",
+        "input_name": "global_steps",
+        "label": "global_steps",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.global_decay",
+        "symbol": "ksampler",
+        "input_name": "global_decay",
+        "label": "global_decay",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.regional_prompt_weight",
+        "symbol": "ksampler",
+        "input_name": "regional_prompt_weight",
+        "label": "regional_prompt_weight",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.region_mask_feather",
+        "symbol": "ksampler",
+        "input_name": "region_mask_feather",
+        "label": "region_mask_feather",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "model.diffusion_model",
+        "symbol": "model",
+        "input_name": "diffusion_model",
+        "label": "diffusion_model",
+        "class_type": "SimpleSyrup.SimpleLoadFlux2",
+        "value_type": "string"
+      },
+      {
+        "control_id": "model.diffusion_weight_dtype",
+        "symbol": "model",
+        "input_name": "diffusion_weight_dtype",
+        "label": "diffusion_weight_dtype",
+        "class_type": "SimpleSyrup.SimpleLoadFlux2",
+        "value_type": "string"
+      },
+      {
+        "control_id": "model.text_encoder",
+        "symbol": "model",
+        "input_name": "text_encoder",
+        "label": "text_encoder",
+        "class_type": "SimpleSyrup.SimpleLoadFlux2",
+        "value_type": "string"
+      },
+      {
+        "control_id": "model.text_encoder_device",
+        "symbol": "model",
+        "input_name": "text_encoder_device",
+        "label": "text_encoder_device",
+        "class_type": "SimpleSyrup.SimpleLoadFlux2",
+        "value_type": "string"
+      },
+      {
+        "control_id": "model.vae",
+        "symbol": "model",
+        "input_name": "vae",
+        "label": "vae",
+        "class_type": "SimpleSyrup.SimpleLoadFlux2",
+        "value_type": "string"
+      },
+      {
+        "control_id": "positive_prompt.value",
+        "symbol": "positive_prompt",
+        "input_name": "value",
+        "label": "value",
+        "class_type": "PrimitiveStringMultiline",
+        "value_type": "string"
+      },
+      {
+        "control_id": "reference_image.image",
+        "symbol": "reference_image",
+        "input_name": "image",
+        "label": "image",
+        "class_type": "LoadImage",
+        "value_type": "string"
+      },
+      {
+        "control_id": "resize_reference.value",
+        "symbol": "resize_reference",
+        "input_name": "value",
+        "label": "value",
+        "class_type": "dda13b93-af69-4af6-a0fa-fd0b1c6b2f84",
+        "value_type": "number"
+      }
+    ]
+  },
+  "flavors": {
+    "authored": [
+      {
+        "id": "default",
+        "name": "Default",
+        "values": {
+          "ksampler.steps": 4,
+          "ksampler.cfg": 1,
+          "ksampler.sampler_name": "euler",
+          "ksampler.scheduler": "Flux2",
+          "ksampler.denoise": 1,
+          "ksampler.diffusion_mode": "multidiffusion",
+          "ksampler.latent_context_size": 128,
+          "ksampler.latent_context_overlap": 16,
+          "ksampler.latent_context_batch_size": 4,
+          "ksampler.global_weight": 1,
+          "ksampler.global_steps": 3,
+          "ksampler.global_decay": 0.25,
+          "ksampler.regional_prompt_weight": 0.5,
+          "ksampler.region_mask_feather": 0,
+          "model.diffusion_weight_dtype": "default",
+          "model.text_encoder_device": "default",
+          "positive_prompt.value": "",
+          "resize_reference.value": 1024
+        }
+      }
+    ]
+  }
+}
