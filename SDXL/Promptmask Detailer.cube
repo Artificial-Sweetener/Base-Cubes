@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Promptmask Detailer.cube",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Prompt-guided detailing: create masks with GroundingDINO, SAM, and ViTMatte, then inpaint and refine selected regions.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -1900,7 +1900,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.SAMModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1",
+              "ver": "1.9.2",
               "sugarcubes_symbol": "sam_model_loader"
             },
             "widgets_values": [
@@ -1944,7 +1944,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ViTMatteModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1",
+              "ver": "1.9.2",
               "sugarcubes_symbol": "vitmatte_model_loader"
             },
             "widgets_values": [
@@ -1997,7 +1997,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.GroundingDINOModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1",
+              "ver": "1.9.2",
               "sugarcubes_symbol": "groundingdino_model_loader"
             },
             "widgets_values": [
@@ -2236,7 +2236,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.PromptSEGSWithSAM",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1"
+              "ver": "1.9.2"
             },
             "widgets_values": [
               "",

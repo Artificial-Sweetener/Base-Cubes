@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Prompt by Region.cube",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "\"Regional Prompting\" for SDXL using attention coupling. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] is the global prompt. Each later region prompt pairs with the next mask in order.\n\nLoRA scheduling is supported. LoRAs in the global prompt apply to the entire image, while LoRAs in a regional prompt apply only to that region.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",

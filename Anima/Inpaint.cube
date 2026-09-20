@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Inpaint.cube",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Auto-converted cube for anima/inpaint",
   "metadata": {
     "default_alias": "Anima/Inpaint",
@@ -1645,7 +1645,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.KSamplerTiledDiffusion",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1"
+              "ver": "1.9.2"
             },
             "widgets_values": [
               null,

@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/TileRegion Upscale.cube",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Region-based upscaling for Anima: split an image into tagged regions, then refine each region independently to avoid full-image diffusion outside Anima's supported resolutions.",
   "metadata": {
     "default_alias": "Anima/TileRegion Upscale",
@@ -1326,7 +1326,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.WD14TaggerLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1"
+              "ver": "1.9.2"
             },
             "widgets_values": [
               "No local WD14 tagger models found"
@@ -1494,7 +1494,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.TileAndTagSEGS",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1"
+              "ver": "1.9.2"
             },
             "widgets_values": [
               "",

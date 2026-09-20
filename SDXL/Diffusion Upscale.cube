@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Diffusion upscaling: upscale an input image, resize it to target constraints, then refine it with image-to-image diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -1971,7 +1971,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1",
+              "ver": "1.9.2",
               "sugarcubes_symbol": "resize_image_to_target"
             },
             "widgets_values": [
@@ -2194,7 +2194,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1",
+              "ver": "1.9.2",
               "sugarcubes_symbol": "scale_factor"
             },
             "widgets_values": [

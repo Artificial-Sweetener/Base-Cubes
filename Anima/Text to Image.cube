@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Text to Image.cube",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Text-to-image generation for Anima: prompts, model loading, prompt scheduling, LoRA scheduling, sampling, and VAE decoding.",
   "metadata": {
     "default_alias": "Anima/Text to Image",
@@ -1147,7 +1147,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1",
+              "ver": "1.9.2",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [

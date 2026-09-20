@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Flux2 Klein/Edit by Prompt.cube",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Edit an image by prompt with FLUX.2 Klein and SimpleSyrup Contextual Diffusion while preserving the source composition and fine detail. An optional bypassed resize can constrain the working resolution.",
   "metadata": {
     "default_alias": "Flux2 Klein/Edit by Prompt",

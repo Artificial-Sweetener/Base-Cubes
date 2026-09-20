@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Tiled Diffusion Upscale.cube",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Tiled diffusion upscaling for SDXL: upscale an input image, then refine it through overlapping latent tiles. Connect an optional mask and use [SEP] prompts for ordered regional conditioning; leave the mask disconnected for ordinary tiled diffusion. Global and regional LoRA scheduling are supported.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -2111,7 +2111,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1",
+              "ver": "1.9.2",
               "sugarcubes_symbol": "resize_image_to_target"
             },
             "widgets_values": [
@@ -2334,7 +2334,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.1",
+              "ver": "1.9.2",
               "sugarcubes_symbol": "scale_factor"
             },
             "widgets_values": [
