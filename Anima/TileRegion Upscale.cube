@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/TileRegion Upscale.cube",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Region-based upscaling for Anima: split an image into tagged regions, then refine each region independently to avoid full-image diffusion outside Anima's supported resolutions.",
   "metadata": {
     "default_alias": "Anima/TileRegion Upscale",
@@ -100,6 +100,10 @@
         "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
         "label": "Tile & Tag SEGS",
         "inputs": {
+          "image": [
+            "@binding",
+            "input.image"
+          ],
           "clip": [
             "models",
             1
@@ -126,6 +130,10 @@
         "targets": [
           [
             "detail_segs_as_regions",
+            "image"
+          ],
+          [
+            "tile_tag_segs",
             "image"
           ]
         ]
