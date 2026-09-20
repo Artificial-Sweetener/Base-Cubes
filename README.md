@@ -21,6 +21,13 @@ The SDXL version includes checkpoint and VAE controls, prompt encode style selec
 
 The Anima version uses the Anima model loader and keeps the prompt and LoRA scheduling path suited to Anima workflows.
 
+**Prompt by Region**  
+Supported model types: **SDXL**, **Anima**
+
+Generate one image from a global prompt plus ordered regional prompts. Add `[SEP]` between the global prompt and each regional prompt, then provide masks in the same order as the regional prompts.
+
+The SDXL version uses checkpoint loading, SDXL prompt encoding, Mahiro guidance, VectorscopeCC color controls, and attention coupling. The Anima version uses the Anima model loader with the same ordered prompt-and-mask contract. Both versions support global and regional LoRA scheduling.
+
 ### Image Transformation
 
 **Image to Image**  
@@ -51,6 +58,13 @@ The SDXL version follows a hires-fix style path: upscale the input image, resize
 The Anima version is tiled because Anima does not behave well when diffusion is run outside its supported resolutions. It upscales the image, then refines it in latent tiles so the diffusion work stays inside a safer resolution range.
 
 The SeedVR2 version is a dedicated SeedVR2 upscaler. It loads the SeedVR2 DiT model and upscales an input image by a scale factor using the SeedVR2 node stack.
+
+**Tiled Diffusion Upscale**  
+Supported model types: **SDXL**
+
+Upscale an image, then refine the enlarged result through overlapping latent tiles. This keeps diffusion memory bounded while retaining the SDXL checkpoint, prompt encoding, Mahiro guidance, LoRA scheduling, VAE, and VectorscopeCC controls used by the other SDXL generation cubes.
+
+The optional mask input enables ordered regional conditioning. Add `[SEP]` between the global prompt and each regional prompt, then connect masks in the same order. Leave the mask disconnected for ordinary tiled diffusion over the complete image.
 
 **Tile Region Upscale**  
 Supported model types: **Anima**
@@ -99,9 +113,11 @@ This cube is intentionally simple. It gives workflows a reusable image source wi
 | Workflow | SDXL | SD 1.5 | Anima | SeedVR2 | Any |
 | --- | --- | --- | --- | --- | --- |
 | Text to Image | Yes |  | Yes |  |  |
+| Prompt by Region | Yes |  | Yes |  |  |
 | Image to Image | Yes | Yes |  |  |  |
 | Inpaint | Yes | Yes |  |  |  |
 | Diffusion Upscale | Yes |  | Yes | Yes |  |
+| Tiled Diffusion Upscale | Yes |  |  |  |  |
 | Tile Region Upscale |  |  | Yes |  |  |
 | Automask Detailer | Yes |  | Yes |  |  |
 | Promptmask Detailer | Yes | Yes | Yes |  |  |
@@ -132,12 +148,15 @@ Use the model-specific cube when you know which model family should do the work.
 ## Included Files
 
 - `SDXL/Text to Image.cube`
+- `SDXL/Prompt by Region.cube`
 - `SDXL/Image to Image.cube`
 - `SDXL/Inpaint.cube`
 - `SDXL/Diffusion Upscale.cube`
+- `SDXL/Tiled Diffusion Upscale.cube`
 - `SDXL/Automask Detailer.cube`
 - `SDXL/Promptmask Detailer.cube`
 - `Anima/Text to Image.cube`
+- `Anima/Prompt by Region.cube`
 - `Anima/Diffusion Upscale.cube`
 - `Anima/Automask Detailer.cube`
 - `Anima/Promptmask Detailer.cube`

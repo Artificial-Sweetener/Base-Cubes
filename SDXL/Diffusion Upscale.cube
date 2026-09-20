@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Diffusion upscaling: upscale an input image, resize it to target constraints, then refine it with image-to-image diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -1076,11 +1076,14 @@
           "required": {
             "image": [
               "IMAGE",
-              {}
+              {
+                "tooltip": "Image batch to resize to the target dimensions."
+              }
             ],
             "width": [
               "INT",
               {
+                "tooltip": "Target width in pixels before divisibility rounding.",
                 "default": 1024,
                 "min": 1,
                 "max": 16384,
@@ -1090,6 +1093,7 @@
             "height": [
               "INT",
               {
+                "tooltip": "Target height in pixels before divisibility rounding.",
                 "default": 1024,
                 "min": 1,
                 "max": 16384,
@@ -1097,17 +1101,50 @@
               }
             ],
             "resize_mode": [
-              "LIST"
+              "COMBO",
+              {
+                "tooltip": "How aspect ratio is handled. Stretch fills exactly, crop trims overflow, and pad fills empty space.",
+                "default": "Keep AR",
+                "multiselect": false,
+                "options": [
+                  "Stretch",
+                  "Keep AR",
+                  "Crop (Cover + Crop)",
+                  "Pad (Fit + Pad)"
+                ]
+              }
             ],
             "sampling": [
-              "LIST"
+              "COMBO",
+              {
+                "tooltip": "Resize filter. Sharper filters preserve detail but can show more ringing.",
+                "default": "lanczos",
+                "multiselect": false,
+                "options": [
+                  "nearest-exact",
+                  "bilinear",
+                  "area",
+                  "bicubic",
+                  "lanczos"
+                ]
+              }
             ],
             "processor": [
-              "LIST"
+              "COMBO",
+              {
+                "tooltip": "Processor used for resizing. GPU is usually faster; CPU can reduce GPU memory pressure.",
+                "default": "gpu",
+                "multiselect": false,
+                "options": [
+                  "cpu",
+                  "gpu"
+                ]
+              }
             ],
             "divisible_by": [
               "INT",
               {
+                "tooltip": "Round final dimensions to a multiple of this value for model or latent-size compatibility.",
                 "default": 1,
                 "min": 1,
                 "max": 4096,
@@ -1115,11 +1152,28 @@
               }
             ],
             "crop_position": [
-              "LIST"
+              "COMBO",
+              {
+                "tooltip": "Anchor used when crop mode trims overflow from the resized image.",
+                "default": "center",
+                "multiselect": false,
+                "options": [
+                  "center",
+                  "top-left",
+                  "top",
+                  "top-right",
+                  "left",
+                  "right",
+                  "bottom-left",
+                  "bottom",
+                  "bottom-right"
+                ]
+              }
             ],
             "pad_color": [
               "STRING",
               {
+                "tooltip": "RGB color used to fill empty space in pad mode.",
                 "default": "0, 0, 0",
                 "multiline": false
               }
@@ -1127,6 +1181,7 @@
             "max_batch_size": [
               "INT",
               {
+                "tooltip": "Maximum images resized at once. Lower values reduce memory use; 0 processes the full batch together.",
                 "default": 0,
                 "min": 0,
                 "max": 4096,
@@ -1136,6 +1191,7 @@
             "sinc_window": [
               "INT",
               {
+                "tooltip": "Lanczos window size. Higher values can look sharper but may add ringing.",
                 "default": 3,
                 "min": 1,
                 "max": 8,
@@ -1143,13 +1199,25 @@
               }
             ],
             "precision": [
-              "LIST"
+              "COMBO",
+              {
+                "tooltip": "Math precision for resizing. Lower precision can save memory but may slightly change results.",
+                "default": "fp32",
+                "multiselect": false,
+                "options": [
+                  "fp32",
+                  "fp16",
+                  "bf16"
+                ]
+              }
             ]
           },
           "optional": {
             "mask": [
               "MASK",
-              {}
+              {
+                "tooltip": "Optional mask to resize with the image batch."
+              }
             ]
           }
         },
@@ -1191,9 +1259,16 @@
           "height",
           "mask"
         ],
+        "output_tooltips": [
+          "Resized image batch after aspect-ratio handling and divisibility rounding.",
+          "Final image width in pixels.",
+          "Final image height in pixels.",
+          "Resized mask aligned to the output image size."
+        ],
         "output_matchtypes": null,
         "name": "SimpleSyrup.ResizeImageToTarget",
         "display_name": "Resize Image to Target",
+        "description": "Resize image batches to a target size with selectable aspect handling, sampler, and CPU/GPU processor.",
         "python_module": "custom_nodes.SimpleSyrup",
         "category": "SimpleSyrup/Image",
         "output_node": false,
@@ -1812,7 +1887,18 @@
               0,
               3,
               "fp32"
-            ]
+            ],
+            "sugarcubes_widget_values": {
+              "resize_mode": "Keep AR",
+              "sampling": "lanczos",
+              "processor": "gpu",
+              "divisible_by": 2,
+              "crop_position": "center",
+              "pad_color": "0, 0, 0",
+              "max_batch_size": 0,
+              "sinc_window": 3,
+              "precision": "fp32"
+            }
           },
           {
             "id": 2217,

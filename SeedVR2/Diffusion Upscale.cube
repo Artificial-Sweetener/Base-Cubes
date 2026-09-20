@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "SeedVR2 image upscaling: load the SeedVR2 DiT model and upscale an input image by a scale factor.",
   "metadata": {
     "default_alias": "SeedVR2/Diffusion Upscale",
@@ -377,19 +377,26 @@
           "required": {
             "image": [
               "IMAGE",
-              {}
+              {
+                "tooltip": "Input video frames as image batch.\nAccepts both RGB (3-channel) and RGBA (4-channel) formats.\nOutput format will match input format."
+              }
             ],
             "dit": [
               "SEEDVR2_DIT",
-              {}
+              {
+                "tooltip": "DiT model configuration from SeedVR2 (Down)Load DiT Model node"
+              }
             ],
             "vae": [
               "SEEDVR2_VAE",
-              {}
+              {
+                "tooltip": "VAE model configuration from SeedVR2 (Down)Load VAE Model node"
+              }
             ],
             "seed": [
               "INT",
               {
+                "tooltip": "Random seed for reproducible generation (default: 42).\nSame seed with same inputs produces identical output.",
                 "default": 42,
                 "min": 0,
                 "max": 4294967295,
@@ -399,6 +406,7 @@
             "resolution": [
               "INT",
               {
+                "tooltip": "Target resolution for the shortest edge in pixels (default: 1080).\nAutomatically maintains aspect ratio of input.\nEven values required for optimal processing.",
                 "default": 1080,
                 "min": 16,
                 "max": 16384,
@@ -408,6 +416,7 @@
             "max_resolution": [
               "INT",
               {
+                "tooltip": "Maximum resolution limit for any dimension (default: 0, no limit).\nIf any edge exceeds this after applying resolution,\nboth dimensions are scaled down proportionally.\nUseful to prevent excessive VRAM usage on extreme aspect ratios.",
                 "default": 0,
                 "min": 0,
                 "max": 16384,
@@ -417,6 +426,7 @@
             "batch_size": [
               "INT",
               {
+                "tooltip": "Number of frames processed together per batch (default: 5).\nMust follow pattern 4n+1: 1, 5, 9, 13, 17, 21, ...\n\n� Higher values: Better temporal consistency and faster processing\n� Lower values: Reduced VRAM usage\n\nIdeally match to shot length for best quality.",
                 "default": 5,
                 "min": 1,
                 "max": 16384,
@@ -426,17 +436,32 @@
             "uniform_batch_size": [
               "BOOLEAN",
               {
+                "tooltip": "Pad final batch to match batch_size (default: False).\nPrevents temporal artifacts caused by small final batch.\nAdd extra compute but recommended for optimal quality.",
                 "default": false
               }
             ],
             "color_correction": [
-              "LIST"
+              "COMBO",
+              {
+                "tooltip": "Corrects color shifts in upscaled output to match original input (default: lab).\nThe upscaling process may alter colors; this applies color grading to restore them.\n\n� lab: Perceptual color matching with detail preservation (recommended)\n� wavelet: Frequency-based natural colors, preserves fine details\n� wavelet_adaptive: Wavelet base with targeted saturation correction\n� hsv: Hue-conditional saturation matching\n� adain: Statistical style transfer approach\n� none: No color correction applied",
+                "default": "lab",
+                "multiselect": false,
+                "options": [
+                  "lab",
+                  "wavelet",
+                  "wavelet_adaptive",
+                  "hsv",
+                  "adain",
+                  "none"
+                ]
+              }
             ]
           },
           "optional": {
             "temporal_overlap": [
               "INT",
               {
+                "tooltip": "Overlapping frames between consecutive batches (default: 0, disabled).\nImproves temporal consistency across batch boundaries through blending.\nValues 1-4 work well for most content.",
                 "default": 0,
                 "min": 0,
                 "max": 16,
@@ -446,6 +471,7 @@
             "prepend_frames": [
               "INT",
               {
+                "tooltip": "Number of frames to prepend (reversed from start) before processing (default: 0).\nHelps reduce artifacts at video beginning.\nPrepended frames are automatically removed from final output.",
                 "default": 0,
                 "min": 0,
                 "max": 32,
@@ -455,6 +481,7 @@
             "input_noise_scale": [
               "FLOAT",
               {
+                "tooltip": "Input noise injection scale (default: 0.0, disabled).\nAdds controlled variation to input images before encoding.\nRange: 0.0 (no noise) to 1.0 (maximum noise).\nCan help with certain types of artifacts.",
                 "default": 0.0,
                 "min": 0.0,
                 "max": 1.0,
@@ -464,6 +491,7 @@
             "latent_noise_scale": [
               "FLOAT",
               {
+                "tooltip": "Latent space noise injection scale (default: 0.0, disabled).\nAdds controlled variation during the diffusion process.\nRange: 0.0 (no noise) to 1.0 (maximum noise).\nCan soften details if input_noise_scale doesn't help.",
                 "default": 0.0,
                 "min": 0.0,
                 "max": 1.0,
@@ -471,11 +499,22 @@
               }
             ],
             "offload_device": [
-              "LIST"
+              "COMBO",
+              {
+                "tooltip": "Device for storing intermediate tensors between processing phases (default: cpu).\n� 'none': Keep all tensors on inference device (fastest but highest VRAM usage)\n� 'cpu': Offload to system RAM (recommended for long videos, slower transfers)\n� 'cuda:X': Offload to another GPU (good balance if available, faster than CPU)",
+                "default": "cpu",
+                "multiselect": false,
+                "options": [
+                  "none",
+                  "cpu",
+                  "cuda:0"
+                ]
+              }
             ],
             "enable_debug": [
               "BOOLEAN",
               {
+                "tooltip": "Enable detailed debug logging (default: False).\nShows memory usage, timing information, and processing details.\nUseful for troubleshooting errors and performance issues.",
                 "default": false
               }
             ]
@@ -512,9 +551,13 @@
         "output_name": [
           "IMAGE"
         ],
+        "output_tooltips": [
+          "Upscaled video frames with color correction applied. Format (RGB/RGBA) matches input. Range [0, 1] normalized for ComfyUI compatibility."
+        ],
         "output_matchtypes": null,
         "name": "SeedVR2VideoUpscaler",
         "display_name": "SeedVR2 Video Upscaler (v2.5.22)",
+        "description": "SeedVR2 main upscaling node: processes video frames using DiT and VAE models with diffusion-based enhancement. Handles RGB/RGBA formats, maintains temporal consistency across frames, applies color correction, and manages VRAM through intelligent tensor offloading. \n\nRequires DiT and VAE model configurations.",
         "python_module": "custom_nodes.seedvr2_videoupscaler",
         "category": "SEEDVR2",
         "output_node": false,
@@ -1377,7 +1420,18 @@
               0.025,
               "cuda:0",
               false
-            ]
+            ],
+            "sugarcubes_widget_values": {
+              "batch_size": 1,
+              "uniform_batch_size": false,
+              "color_correction": "none",
+              "temporal_overlap": 0,
+              "prepend_frames": 0,
+              "input_noise_scale": 0.025,
+              "latent_noise_scale": 0.025,
+              "offload_device": "cuda:0",
+              "enable_debug": false
+            }
           },
           {
             "id": 1680,

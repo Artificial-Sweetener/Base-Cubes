@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Prompt by Region.cube",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "description": "\"Regional Prompting\" for Anima using tiled diffusion. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] will be your global prompt. Mask and region prompt order matter; each region prompt after the first [SEP] will pair with whatever mask is next to it in line.\n\nLoRA scheduling is supported. LoRA in the global prompt will apply to the entire image, but LoRA in a regional prompt area will only apply to that region.",
   "metadata": {
     "default_alias": "Anima/Prompt by Region",
@@ -941,7 +941,7 @@
           "ksampler.cfg": 5,
           "ksampler.sampler_name": "euler_ancestral",
           "ksampler.scheduler": "normal",
-          "ksampler.regional_prompt_weight": 1,
+          "ksampler.regional_prompt_weight": 0.8,
           "ksampler.region_mask_feather": 0,
           "ksampler.denoise": 1,
           "latent_dimensions.width": 960,
