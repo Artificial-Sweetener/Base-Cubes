@@ -1795,7 +1795,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.SAMModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
+              "ver": "1.9.1",
               "sugarcubes_symbol": "sam_model_loader"
             },
             "widgets_values": [
@@ -1839,7 +1839,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ViTMatteModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
+              "ver": "1.9.1",
               "sugarcubes_symbol": "vitmatte_model_loader"
             },
             "widgets_values": [
@@ -1892,7 +1892,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.GroundingDINOModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "f561f164543f927e0452e14658a0509e8e4866d6",
+              "ver": "1.9.1",
               "sugarcubes_symbol": "groundingdino_model_loader"
             },
             "widgets_values": [
@@ -2131,7 +2131,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.PromptSEGSWithSAM",
               "cnr_id": "SimpleSyrup",
-              "ver": "f561f164543f927e0452e14658a0509e8e4866d6"
+              "ver": "1.9.1"
             },
             "widgets_values": [
               "",

@@ -1221,7 +1221,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.WD14TaggerLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "f561f164543f927e0452e14658a0509e8e4866d6"
+              "ver": "1.9.1"
             },
             "widgets_values": [
               "No local WD14 tagger models found"
@@ -1389,7 +1389,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.TileAndTagSEGS",
               "cnr_id": "SimpleSyrup",
-              "ver": "f561f164543f927e0452e14658a0509e8e4866d6"
+              "ver": "1.9.1"
             },
             "widgets_values": [
               "",

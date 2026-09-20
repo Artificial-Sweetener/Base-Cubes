@@ -1190,7 +1190,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.LoadUltralyticsModel",
               "cnr_id": "SimpleSyrup",
-              "ver": "8936cc9069027d966a6153c504d358fa79b9be8e"
+              "ver": "1.9.1"
             },
             "widgets_values": [
               null
@@ -1333,7 +1333,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.DetectSEGSWithUltralytics",
               "cnr_id": "SimpleSyrup",
-              "ver": "8f8ee91dea3ce1a044c0e61b482e571c51b372bc"
+              "ver": "1.9.1"
             },
             "widgets_values": [
               0.5,

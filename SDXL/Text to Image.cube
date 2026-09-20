@@ -1241,7 +1241,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "cnr_id": "SimpleSyrup",
-              "ver": "37bcd403c5172adc2505b38d1d31c05969a69443",
+              "ver": "1.9.1",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [
