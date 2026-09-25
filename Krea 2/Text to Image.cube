@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Text to Image.cube",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Generate Krea 2 images from natural-language prompts with automatic Qwen3-VL and Qwen Image VAE selection. Defaults target practical Turbo checkpoints at eight sampling steps.",
   "metadata": {
     "default_alias": "Krea 2/Text to Image",
@@ -35,10 +35,6 @@
           "positive": [
             "schedule_encode_prompts",
             1
-          ],
-          "negative": [
-            "schedule_encode_prompts",
-            2
           ]
         },
         "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:3be3a3ee-9589-4abc-baed-b80958c3de84"
@@ -48,12 +44,6 @@
         "label": "Models",
         "inputs": {},
         "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:daaaae29-3cbd-454f-a807-4d9689b5cd7a"
-      },
-      "negative_prompt": {
-        "class_type": "PrimitiveStringMultiline",
-        "label": "negative prompt",
-        "inputs": {},
-        "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:665fb790-633a-4631-81a4-7d3aee447632"
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -67,10 +57,6 @@
         "inputs": {
           "positive_prompt": [
             "positive_prompt",
-            0
-          ],
-          "negative_prompt": [
-            "negative_prompt",
             0
           ],
           "model": [
@@ -161,19 +147,6 @@
           "flags": {
             "collapsed": true
           }
-        },
-        "negative_prompt": {
-          "id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:665fb790-633a-4631-81a4-7d3aee447632",
-          "class_type": "PrimitiveStringMultiline",
-          "pos": [
-            0.0,
-            280.0
-          ],
-          "size": [
-            320.0,
-            160.0
-          ],
-          "title": "negative prompt"
         },
         "positive_prompt": {
           "id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:c6d181a4-96b0-4408-902a-aff808bd2f26",
@@ -1516,14 +1489,6 @@
         "value_type": "string"
       },
       {
-        "control_id": "negative_prompt.value",
-        "symbol": "negative_prompt",
-        "input_name": "value",
-        "label": "value",
-        "class_type": "PrimitiveStringMultiline",
-        "value_type": "string"
-      },
-      {
         "control_id": "positive_prompt.value",
         "symbol": "positive_prompt",
         "input_name": "value",
@@ -1562,7 +1527,6 @@
           "ksampler.sampler_name": "euler",
           "ksampler.scheduler": "simple",
           "ksampler.batch_size": 1,
-          "negative_prompt.value": "",
           "positive_prompt.value": "",
           "seed_variation.variation_seed": 0,
           "seed_variation.variation_strength": 0.0,

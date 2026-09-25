@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Contextual Upscale.cube",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Upscale a Krea 2 image and refine it with coordinated local and global diffusion contexts while optionally preserving prompt-by-region or attention-coupling masks. Defaults target practical Krea 2 Turbo sampling.",
   "metadata": {
     "default_alias": "Krea 2/Contextual Upscale",
@@ -44,10 +44,6 @@
             "schedule_encode_prompts",
             1
           ],
-          "negative": [
-            "schedule_encode_prompts",
-            2
-          ],
           "latent_image": [
             "vae_encode",
             0
@@ -66,12 +62,6 @@
         "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:27ef2f93-a953-4f33-a76e-3b293691fab0",
         "mode": 4
       },
-      "negative_prompt": {
-        "class_type": "PrimitiveStringMultiline",
-        "label": "negative prompt",
-        "inputs": {},
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2048a908-8478-4219-9de2-9dc9c4f70855"
-      },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
         "label": "positive prompt",
@@ -84,10 +74,6 @@
         "inputs": {
           "positive_prompt": [
             "positive_prompt",
-            0
-          ],
-          "negative_prompt": [
-            "negative_prompt",
             0
           ],
           "model": [
@@ -195,19 +181,6 @@
         ]
       },
       "nodes": {
-        "negative_prompt": {
-          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2048a908-8478-4219-9de2-9dc9c4f70855",
-          "class_type": "PrimitiveStringMultiline",
-          "pos": [
-            168.0,
-            440.0
-          ],
-          "size": [
-            320.0,
-            160.0
-          ],
-          "title": "negative prompt"
-        },
         "models": {
           "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:27ef2f93-a953-4f33-a76e-3b293691fab0",
           "class_type": "SimpleSyrup.SimpleLoadKrea2",
@@ -2628,14 +2601,6 @@
         "value_type": "string"
       },
       {
-        "control_id": "negative_prompt.value",
-        "symbol": "negative_prompt",
-        "input_name": "value",
-        "label": "value",
-        "class_type": "PrimitiveStringMultiline",
-        "value_type": "string"
-      },
-      {
         "control_id": "positive_prompt.value",
         "symbol": "positive_prompt",
         "input_name": "value",
@@ -2785,7 +2750,6 @@
           "ksampler.global_weight": 1.0,
           "ksampler.global_steps": 6,
           "ksampler.global_decay": 0.5,
-          "negative_prompt.value": "",
           "positive_prompt.value": "",
           "upscale_by_factor.value": 1.5,
           "upscale_by_factor.sampling": "lanczos",
