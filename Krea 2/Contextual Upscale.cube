@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Contextual Upscale.cube",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Upscale a Krea 2 image and refine it with coordinated local and global diffusion contexts while optionally preserving prompt-by-region or attention-coupling masks. Defaults target practical Krea 2 Turbo sampling.",
   "metadata": {
     "default_alias": "Krea 2/Contextual Upscale",
@@ -2738,7 +2738,7 @@
         "values": {
           "ksampler.steps": 8,
           "ksampler.cfg": 1.0,
-          "ksampler.sampler_name": "euler",
+          "ksampler.sampler_name": "er_sde",
           "ksampler.scheduler": "simple",
           "ksampler.regional_prompt_weight": 0.8,
           "ksampler.region_mask_feather": 0,

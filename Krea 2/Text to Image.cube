@@ -1,7 +1,7 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Text to Image.cube",
-  "version": "2.0.0",
-  "description": "Generate Krea 2 images from natural-language prompts with automatic Qwen3-VL and Qwen Image VAE selection. Defaults target practical Turbo checkpoints at eight sampling steps.",
+  "version": "2.1.0",
+  "description": "Generate Krea 2 images from natural-language prompts with automatic Qwen3-VL and Qwen Image VAE selection. Defaults target practical Turbo checkpoints at ten sampling steps.",
   "metadata": {
     "default_alias": "Krea 2/Text to Image",
     "target_model": "Krea 2",
@@ -1520,11 +1520,11 @@
         "id": "default",
         "name": "Default",
         "values": {
-          "ksampler.width": 1024,
-          "ksampler.height": 1024,
-          "ksampler.steps": 8,
+          "ksampler.width": 1536,
+          "ksampler.height": 2048,
+          "ksampler.steps": 10,
           "ksampler.cfg": 1.0,
-          "ksampler.sampler_name": "euler",
+          "ksampler.sampler_name": "er_sde",
           "ksampler.scheduler": "simple",
           "ksampler.batch_size": 1,
           "positive_prompt.value": "",
