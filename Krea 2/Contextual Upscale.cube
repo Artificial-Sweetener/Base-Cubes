@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Contextual Upscale.cube",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Upscale a Krea 2 image and refine it with coordinated local and global diffusion contexts while optionally preserving prompt-by-region or attention-coupling masks. Defaults target practical Krea 2 Turbo sampling.",
   "metadata": {
     "default_alias": "Krea 2/Contextual Upscale",
@@ -1945,7 +1945,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.2",
+              "ver": "1.12.0",
               "sugarcubes_symbol": "resize_image_to_target"
             },
             "widgets_values": [
@@ -2168,7 +2168,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.9.2",
+              "ver": "1.12.0",
               "sugarcubes_symbol": "scale_factor"
             },
             "widgets_values": [
