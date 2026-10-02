@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Contextual Upscale.cube",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Upscale a Krea 2 image and refine it with coordinated local and global diffusion contexts while optionally preserving prompt-by-region or attention-coupling masks. Defaults target practical Krea 2 Turbo sampling.",
   "metadata": {
     "default_alias": "Krea 2/Contextual Upscale",
@@ -51,16 +51,29 @@
           "region_masks": [
             "@binding",
             "input.mask"
-          ]
+          ],
+          "inversion_method": "euler",
+          "inversion_resolution_scale": 0.5,
+          "inversion_steps": 2,
+          "inversion_switch_fraction": 0.75,
+          "inversion_finishing_steps": 1
         },
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2dd94dd9-0f1c-4304-bc09-c0a3808b975b"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2dd94dd9-0f1c-4304-bc09-c0a3808b975b",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "models": {
         "class_type": "SimpleSyrup.SimpleLoadKrea2",
         "label": "Models",
         "inputs": {},
         "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:27ef2f93-a953-4f33-a76e-3b293691fab0",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -85,7 +98,11 @@
             1
           ]
         },
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "upscale_by_factor": {
         "class_type": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
@@ -111,7 +128,11 @@
             2
           ]
         },
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_encode": {
         "class_type": "SimpleSyrup.VAEEncodeOptions",
@@ -126,7 +147,11 @@
             2
           ]
         },
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d490312a-f8a1-43fc-a133-9f732eb5940a"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d490312a-f8a1-43fc-a133-9f732eb5940a",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "seed_variation": {
         "class_type": "SimpleSyrup.SeedVariation",
@@ -138,7 +163,11 @@
           ]
         },
         "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:e5fc9d06-b50e-42a7-a5d7-b318c281b5ef",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {
@@ -427,10 +456,6 @@
               "CONDITIONING,CONDITIONING_BATCH",
               {}
             ],
-            "negative": [
-              "CONDITIONING,CONDITIONING_BATCH",
-              {}
-            ],
             "latent_image": [
               "LATENT",
               {}
@@ -503,6 +528,10 @@
             ]
           },
           "optional": {
+            "negative": [
+              "CONDITIONING,CONDITIONING_BATCH",
+              {}
+            ],
             "segs": [
               "SEGS",
               {}
@@ -529,6 +558,43 @@
                 "max": 512,
                 "step": 1
               }
+            ],
+            "inversion_method": [
+              "LIST"
+            ],
+            "inversion_resolution_scale": [
+              "FLOAT",
+              {
+                "default": 0.5,
+                "min": 0.01,
+                "max": 1.0,
+                "step": 0.05
+              }
+            ],
+            "inversion_steps": [
+              "INT",
+              {
+                "default": 2,
+                "min": 0,
+                "max": 64
+              }
+            ],
+            "inversion_switch_fraction": [
+              "FLOAT",
+              {
+                "default": 0.75,
+                "min": 0.01,
+                "max": 1.0,
+                "step": 0.05
+              }
+            ],
+            "inversion_finishing_steps": [
+              "INT",
+              {
+                "default": 1,
+                "min": 0,
+                "max": 64
+              }
             ]
           }
         },
@@ -541,7 +607,6 @@
             "sampler_name",
             "scheduler",
             "positive",
-            "negative",
             "latent_image",
             "denoise",
             "diffusion_mode",
@@ -553,10 +618,16 @@
             "global_decay"
           ],
           "optional": [
+            "negative",
             "segs",
             "region_masks",
             "regional_prompt_weight",
-            "region_mask_feather"
+            "region_mask_feather",
+            "inversion_method",
+            "inversion_resolution_scale",
+            "inversion_steps",
+            "inversion_switch_fraction",
+            "inversion_finishing_steps"
           ]
         },
         "is_input_list": false,
@@ -1945,7 +2016,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "resize_image_to_target"
             },
             "widgets_values": [
@@ -2168,7 +2239,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "scale_factor"
             },
             "widgets_values": [
@@ -2561,6 +2632,46 @@
         "value_type": "number"
       },
       {
+        "control_id": "ksampler.inversion_method",
+        "symbol": "ksampler",
+        "input_name": "inversion_method",
+        "label": "inversion_method",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.inversion_resolution_scale",
+        "symbol": "ksampler",
+        "input_name": "inversion_resolution_scale",
+        "label": "inversion_resolution_scale",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.inversion_steps",
+        "symbol": "ksampler",
+        "input_name": "inversion_steps",
+        "label": "inversion_steps",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.inversion_switch_fraction",
+        "symbol": "ksampler",
+        "input_name": "inversion_switch_fraction",
+        "label": "inversion_switch_fraction",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.inversion_finishing_steps",
+        "symbol": "ksampler",
+        "input_name": "inversion_finishing_steps",
+        "label": "inversion_finishing_steps",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
         "control_id": "models.diffusion_model",
         "symbol": "models",
         "input_name": "diffusion_model",
@@ -2768,7 +2879,12 @@
           "models.diffusion_weight_dtype": "default",
           "models.text_encoder": "auto",
           "models.text_encoder_device": "default",
-          "models.vae": "auto"
+          "models.vae": "auto",
+          "ksampler.inversion_method": "euler",
+          "ksampler.inversion_resolution_scale": 0.5,
+          "ksampler.inversion_steps": 2,
+          "ksampler.inversion_switch_fraction": 0.75,
+          "ksampler.inversion_finishing_steps": 1
         }
       }
     ]

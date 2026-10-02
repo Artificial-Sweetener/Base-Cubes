@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Text-to-image generation: prompts, checkpoint, sampler, size, VAE, prompt encoding, LoRA scheduling, and color controls.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -28,7 +28,11 @@
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
         "label": "Checkpoint",
         "inputs": {},
-        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:347f0d60-91be-4219-bc8c-59799282245e"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:347f0d60-91be-4219-bc8c-59799282245e",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "ksampler": {
         "class_type": "244188e0-95d8-45d9-9beb-adafccf862d6",
@@ -76,7 +80,11 @@
         "class_type": "SimpleSyrup.PromptEncodeStyle",
         "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ec4a09ea-152b-4b91-a86c-5bf96804538f"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ec4a09ea-152b-4b91-a86c-5bf96804538f",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -103,7 +111,11 @@
             0
           ]
         },
-        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:425e571b-3bbf-496e-ae4d-4cd65d023120"
+        "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:425e571b-3bbf-496e-ae4d-4cd65d023120",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -142,7 +154,11 @@
           ]
         },
         "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:d7b5b7b5-3a2b-46c0-8d52-3c936c18f3b5",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {},
@@ -1338,7 +1354,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [

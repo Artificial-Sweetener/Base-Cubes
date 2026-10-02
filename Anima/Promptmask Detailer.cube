@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Promptmask Detailer.cube",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Prompt-guided detailing for Anima: create masks with GroundingDINO, SAM, and ViTMatte, then upscale and refine selected regions with tiled diffusion.",
   "metadata": {
     "default_alias": "Anima/Promptmask Detailer",
@@ -48,14 +48,22 @@
             "input.image"
           ]
         },
-        "original_id": "b1c0057a-0196-4d4f-863a-303e083ab08d:556c8ec5-ce80-482c-b9a7-e84fe7a996bf"
+        "original_id": "b1c0057a-0196-4d4f-863a-303e083ab08d:556c8ec5-ce80-482c-b9a7-e84fe7a996bf",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "models": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Models",
         "inputs": {},
         "original_id": "b1c0057a-0196-4d4f-863a-303e083ab08d:56295d23-6b36-4de2-b6d4-a554a2723415",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -115,7 +123,11 @@
             1
           ]
         },
-        "original_id": "b1c0057a-0196-4d4f-863a-303e083ab08d:8c29c88e-b4b4-458b-a795-69317a6ce86c"
+        "original_id": "b1c0057a-0196-4d4f-863a-303e083ab08d:8c29c88e-b4b4-458b-a795-69317a6ce86c",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "seed_variation": {
         "class_type": "SimpleSyrup.SeedVariation",
@@ -127,7 +139,11 @@
           ]
         },
         "original_id": "b1c0057a-0196-4d4f-863a-303e083ab08d:470a374c-3f99-4d98-bc00-b85b6b863121",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {
@@ -1892,7 +1908,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.SAMModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "sam_model_loader"
             },
             "widgets_values": [
@@ -1936,7 +1952,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ViTMatteModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "vitmatte_model_loader"
             },
             "widgets_values": [
@@ -1989,7 +2005,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.GroundingDINOModelLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "groundingdino_model_loader"
             },
             "widgets_values": [
@@ -2228,7 +2244,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.PromptSEGSWithSAM",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0"
+              "ver": "1.13.0"
             },
             "widgets_values": [
               "",

@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Text to Image.cube",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Text-to-image generation for Anima: prompts, model loading, prompt scheduling, LoRA scheduling, sampling, and VAE decoding.",
   "metadata": {
     "default_alias": "Anima/Text to Image",
@@ -47,7 +47,11 @@
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Models",
         "inputs": {},
-        "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:daaaae29-3cbd-454f-a807-4d9689b5cd7a"
+        "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:daaaae29-3cbd-454f-a807-4d9689b5cd7a",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -82,7 +86,11 @@
             1
           ]
         },
-        "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:47481c5c-bfed-44e6-bc07-f103bc83fa96"
+        "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:47481c5c-bfed-44e6-bc07-f103bc83fa96",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -109,7 +117,11 @@
           ]
         },
         "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:7e6ede85-f03d-43fd-b19e-bc42ee069f47",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {},
@@ -1147,7 +1159,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [

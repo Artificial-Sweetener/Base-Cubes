@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Image to Image.cube",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Image-to-image generation: transform a selected image with prompts, checkpoint, sampler, denoise, VAE, LoRA scheduling, and color controls.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -29,7 +29,11 @@
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
         "label": "Checkpoint",
         "inputs": {},
-        "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:a939cb43-1c11-44f1-9906-a93b50a64f86"
+        "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:a939cb43-1c11-44f1-9906-a93b50a64f86",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "ksampler": {
         "class_type": "SimpleSyrup.KSamplerExtras",
@@ -52,7 +56,11 @@
             0
           ]
         },
-        "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:9d3e4d23-7465-4aa2-a62f-a36a0ce9fec3"
+        "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:9d3e4d23-7465-4aa2-a62f-a36a0ce9fec3",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "load_image": {
         "class_type": "LoadImage",
@@ -87,7 +95,11 @@
         "class_type": "SimpleSyrup.PromptEncodeStyle",
         "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:8c5bb2c6-c4cc-4621-81ac-e1ffc3e495a4"
+        "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:8c5bb2c6-c4cc-4621-81ac-e1ffc3e495a4",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -114,7 +126,11 @@
             0
           ]
         },
-        "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:5d9cd55c-6028-47e0-a013-98e9a7df1919"
+        "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:5d9cd55c-6028-47e0-a013-98e9a7df1919",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -168,7 +184,11 @@
           ]
         },
         "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:f05532cb-5729-42cb-bb20-1d51dee1919e",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {},

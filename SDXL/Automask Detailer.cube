@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Automask Detailer.cube",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "Detector-guided detailing: detect image regions with an Ultralytics model, then inpaint and refine them with prompt-guided diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -36,7 +36,11 @@
         "label": "Checkpoint",
         "inputs": {},
         "original_id": "f757f288-678e-4b52-886e-815c1ede99ee:6f1ca0fa-62a1-49aa-958a-055cacb2510b",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "detail_segs_by_scale_factor": {
         "class_type": "SimpleSyrup.DetailSEGSByScaleFactor",
@@ -67,7 +71,11 @@
             "input.image"
           ]
         },
-        "original_id": "f757f288-678e-4b52-886e-815c1ede99ee:440f3eba-de80-48ea-83c9-4be06a87089c"
+        "original_id": "f757f288-678e-4b52-886e-815c1ede99ee:440f3eba-de80-48ea-83c9-4be06a87089c",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "detect_segs_w_ultralytics": {
         "class_type": "c6bb854c-c2ee-47a7-818d-f51684b83e0a",
@@ -107,7 +115,11 @@
         "class_type": "SimpleSyrup.PromptEncodeStyle",
         "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "f757f288-678e-4b52-886e-815c1ede99ee:2c1db78d-cb58-4b4c-992d-523ae46bb83a"
+        "original_id": "f757f288-678e-4b52-886e-815c1ede99ee:2c1db78d-cb58-4b4c-992d-523ae46bb83a",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -134,7 +146,11 @@
             1
           ]
         },
-        "original_id": "f757f288-678e-4b52-886e-815c1ede99ee:643b1f48-fcdc-4bde-a541-a09dccca3486"
+        "original_id": "f757f288-678e-4b52-886e-815c1ede99ee:643b1f48-fcdc-4bde-a541-a09dccca3486",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
@@ -158,7 +174,11 @@
           ]
         },
         "original_id": "f757f288-678e-4b52-886e-815c1ede99ee:9f1118e3-ffa7-440e-bd6e-8ea560f05986",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {
@@ -1504,7 +1524,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.LoadUltralyticsModel",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0"
+              "ver": "1.13.0"
             },
             "widgets_values": [
               null
@@ -1647,7 +1667,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.DetectSEGSWithUltralytics",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0"
+              "ver": "1.13.0"
             },
             "widgets_values": [
               0.5,

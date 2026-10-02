@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Prompt by Region.cube",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "\"Regional Prompting\" for SDXL using attention coupling. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] is the global prompt. Each later region prompt pairs with the next mask in order.\n\nLoRA scheduling is supported. LoRAs in the global prompt apply to the entire image, while LoRAs in a regional prompt apply only to that region.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -31,7 +31,11 @@
         "class_type": "SimpleSyrup.SimpleLoadCheckpoint",
         "label": "Checkpoint",
         "inputs": {},
-        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:dba5654a-b9be-5e75-ae73-29572c0a8e96"
+        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:dba5654a-b9be-5e75-ae73-29572c0a8e96",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -49,7 +53,11 @@
         "class_type": "SimpleSyrup.PromptEncodeStyle",
         "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:5aafd36f-7b59-5277-b090-0578869cbe89"
+        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:5aafd36f-7b59-5277-b090-0578869cbe89",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "mahiro_cfg": {
         "class_type": "Mahiro",
@@ -87,7 +95,11 @@
             0
           ]
         },
-        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:667bb405-4fef-5c65-9787-c65f8d564f3e"
+        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:667bb405-4fef-5c65-9787-c65f8d564f3e",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
@@ -104,7 +116,11 @@
         "class_type": "SimpleSyrup.LoadMaskBatch",
         "label": "Load Mask Batch",
         "inputs": {},
-        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:bf2c6762-450c-5aaf-86de-fb167de8f194"
+        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:bf2c6762-450c-5aaf-86de-fb167de8f194",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "latent_dimensions": {
         "class_type": "EmptyLatentImage",
@@ -137,7 +153,11 @@
             0
           ]
         },
-        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:4a5e3323-9a7c-5b59-a011-c27b9cc41eee"
+        "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:4a5e3323-9a7c-5b59-a011-c27b9cc41eee",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -164,7 +184,11 @@
           ]
         },
         "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:0e66d4f5-5e47-484d-9aa2-0e3aad2248dd",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {},

@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Image to Image.cube",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Auto-converted cube for anima/image to image",
   "metadata": {
     "default_alias": "Anima/Image to Image",
@@ -45,7 +45,11 @@
             0
           ]
         },
-        "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:4df26d0c-da3b-417f-9194-e545df83629f"
+        "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:4df26d0c-da3b-417f-9194-e545df83629f",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "load_image": {
         "class_type": "LoadImage",
@@ -66,13 +70,21 @@
             1
           ]
         },
-        "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:15d66de5-2805-48fb-8e09-96caa7fa7972"
+        "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:15d66de5-2805-48fb-8e09-96caa7fa7972",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "simple_load_anima": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Simple Load Anima",
         "inputs": {},
-        "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:8762d2a4-49d6-46e6-8a0e-92310486182b"
+        "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:8762d2a4-49d6-46e6-8a0e-92310486182b",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -114,7 +126,11 @@
           ]
         },
         "original_id": "c0300ffa-8c0f-405f-80e1-7c7da52ff33d:8a698df3-c900-4f03-81a0-fab0b9727c51",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {},

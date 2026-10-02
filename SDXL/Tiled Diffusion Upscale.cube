@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Tiled Diffusion Upscale.cube",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Tiled diffusion upscaling for SDXL: upscale an input image, then refine it through overlapping latent tiles. Connect an optional mask and use [SEP] prompts for ordered regional conditioning; leave the mask disconnected for ordinary tiled diffusion. Global and regional LoRA scheduling are supported.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -36,7 +36,11 @@
         "label": "Checkpoint",
         "inputs": {},
         "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:95da5e5d-7dd9-4b5f-99da-22507b4dde5a",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "ksampler": {
         "class_type": "SimpleSyrup.KSamplerAttentionCouplingTiled",
@@ -63,7 +67,11 @@
             "input.mask"
           ]
         },
-        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:092af40d-1cff-4aba-87f8-595d90e41cdc"
+        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:092af40d-1cff-4aba-87f8-595d90e41cdc",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "mahiro_cfg": {
         "class_type": "Mahiro",
@@ -92,7 +100,11 @@
         "class_type": "SimpleSyrup.PromptEncodeStyle",
         "label": "Prompt Encode Style",
         "inputs": {},
-        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:deb92ecb-4a1c-4de2-911f-96cb76a29035"
+        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:deb92ecb-4a1c-4de2-911f-96cb76a29035",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "schedule_encode_prompts": {
         "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
@@ -119,7 +131,11 @@
             1
           ]
         },
-        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:35c1142e-ece3-4c8d-80de-0ac979369a12"
+        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:35c1142e-ece3-4c8d-80de-0ac979369a12",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "upscale_by_factor": {
         "class_type": "8a36fa26-de83-4e4f-a89f-0e5f545f3c0f",
@@ -145,7 +161,11 @@
             2
           ]
         },
-        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:204ecab1-9c14-4359-b5d4-394b8bd54a74"
+        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:204ecab1-9c14-4359-b5d4-394b8bd54a74",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_encode": {
         "class_type": "SimpleSyrup.VAEEncodeOptions",
@@ -160,7 +180,11 @@
             2
           ]
         },
-        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:5e2298ef-1c63-452a-85ec-466beaeed284"
+        "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:5e2298ef-1c63-452a-85ec-466beaeed284",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vectorscopecc": {
         "class_type": "VectorscopeCC",
@@ -184,7 +208,11 @@
           ]
         },
         "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:b5944c7f-8804-4688-86fc-907b2f511c5b",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {
@@ -2111,7 +2139,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "resize_image_to_target"
             },
             "widgets_values": [
@@ -2334,7 +2362,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "scale_factor"
             },
             "widgets_values": [

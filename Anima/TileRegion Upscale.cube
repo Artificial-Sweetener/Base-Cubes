@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/TileRegion Upscale.cube",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "description": "Region-based upscaling for Anima: split an image into tagged regions, then refine each region independently to avoid full-image diffusion outside Anima's supported resolutions.",
   "metadata": {
     "default_alias": "Anima/TileRegion Upscale",
@@ -52,14 +52,22 @@
             "input.image"
           ]
         },
-        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:274cf9dd-9c28-4b3e-bfa7-2681ac3cc061"
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:274cf9dd-9c28-4b3e-bfa7-2681ac3cc061",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "models": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Models",
         "inputs": {},
         "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:78b8878b-43df-4da2-a29e-44aac6a9d9df",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -94,7 +102,11 @@
             1
           ]
         },
-        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:8feb4965-8a88-4225-a577-e756e0c82cd7"
+        "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:8feb4965-8a88-4225-a577-e756e0c82cd7",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "tile_tag_segs": {
         "class_type": "75a6f7fe-bd13-467a-9dae-217013ac4fe7",
@@ -121,7 +133,11 @@
           ]
         },
         "original_id": "60cf58cd-4c05-4afc-900c-95b46d7ced19:376d1460-9eeb-4c60-84b8-2da8ddd3e71d",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {
@@ -1326,7 +1342,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.WD14TaggerLoader",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0"
+              "ver": "1.13.0"
             },
             "widgets_values": [
               "No local WD14 tagger models found"
@@ -1494,7 +1510,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.TileAndTagSEGS",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0"
+              "ver": "1.13.0"
             },
             "widgets_values": [
               "",

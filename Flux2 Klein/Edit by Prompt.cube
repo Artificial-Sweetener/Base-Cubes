@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Flux2 Klein/Edit by Prompt.cube",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Edit an image by prompt with FLUX.2 Klein and SimpleSyrup Contextual Diffusion while preserving the source composition and fine detail. An optional bypassed resize can constrain the working resolution.",
   "metadata": {
     "default_alias": "Flux2 Klein/Edit by Prompt",
@@ -75,15 +75,28 @@
           "latent_image": [
             "encode_conds_latent",
             2
-          ]
+          ],
+          "inversion_method": "euler",
+          "inversion_resolution_scale": 0.5,
+          "inversion_steps": 2,
+          "inversion_switch_fraction": 0.75,
+          "inversion_finishing_steps": 1
         },
-        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:6e5eb581-eb9a-4530-9f9b-1e5e1ee31b83"
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:6e5eb581-eb9a-4530-9f9b-1e5e1ee31b83",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "model": {
         "class_type": "SimpleSyrup.SimpleLoadFlux2",
         "label": "Model",
         "inputs": {},
-        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:4949a948-d9be-4505-9119-4d06c279e0fb"
+        "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:4949a948-d9be-4505-9119-4d06c279e0fb",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "positive_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -119,7 +132,11 @@
           ]
         },
         "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:478726ea-d05e-402f-8ecc-05c6719f8a7b",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {},
@@ -409,10 +426,6 @@
               "CONDITIONING,CONDITIONING_BATCH",
               {}
             ],
-            "negative": [
-              "CONDITIONING,CONDITIONING_BATCH",
-              {}
-            ],
             "latent_image": [
               "LATENT",
               {}
@@ -485,6 +498,10 @@
             ]
           },
           "optional": {
+            "negative": [
+              "CONDITIONING,CONDITIONING_BATCH",
+              {}
+            ],
             "segs": [
               "SEGS",
               {}
@@ -511,6 +528,43 @@
                 "max": 512,
                 "step": 1
               }
+            ],
+            "inversion_method": [
+              "LIST"
+            ],
+            "inversion_resolution_scale": [
+              "FLOAT",
+              {
+                "default": 0.5,
+                "min": 0.01,
+                "max": 1.0,
+                "step": 0.05
+              }
+            ],
+            "inversion_steps": [
+              "INT",
+              {
+                "default": 2,
+                "min": 0,
+                "max": 64
+              }
+            ],
+            "inversion_switch_fraction": [
+              "FLOAT",
+              {
+                "default": 0.75,
+                "min": 0.01,
+                "max": 1.0,
+                "step": 0.05
+              }
+            ],
+            "inversion_finishing_steps": [
+              "INT",
+              {
+                "default": 1,
+                "min": 0,
+                "max": 64
+              }
             ]
           }
         },
@@ -523,7 +577,6 @@
             "sampler_name",
             "scheduler",
             "positive",
-            "negative",
             "latent_image",
             "denoise",
             "diffusion_mode",
@@ -535,10 +588,16 @@
             "global_decay"
           ],
           "optional": [
+            "negative",
             "segs",
             "region_masks",
             "regional_prompt_weight",
-            "region_mask_feather"
+            "region_mask_feather",
+            "inversion_method",
+            "inversion_resolution_scale",
+            "inversion_steps",
+            "inversion_switch_fraction",
+            "inversion_finishing_steps"
           ]
         },
         "is_input_list": false,
@@ -2073,7 +2132,9 @@
             "title": "Resize to Target",
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
-              "sugarcubes_symbol": "optional_downscale"
+              "sugarcubes_symbol": "optional_downscale",
+              "cnr_id": "SimpleSyrup",
+              "ver": "1.13.0"
             },
             "widgets_values": [
               "Keep AR",
@@ -2303,6 +2364,46 @@
         "value_type": "number"
       },
       {
+        "control_id": "ksampler.inversion_method",
+        "symbol": "ksampler",
+        "input_name": "inversion_method",
+        "label": "inversion_method",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.inversion_resolution_scale",
+        "symbol": "ksampler",
+        "input_name": "inversion_resolution_scale",
+        "label": "inversion_resolution_scale",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.inversion_steps",
+        "symbol": "ksampler",
+        "input_name": "inversion_steps",
+        "label": "inversion_steps",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.inversion_switch_fraction",
+        "symbol": "ksampler",
+        "input_name": "inversion_switch_fraction",
+        "label": "inversion_switch_fraction",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.inversion_finishing_steps",
+        "symbol": "ksampler",
+        "input_name": "inversion_finishing_steps",
+        "label": "inversion_finishing_steps",
+        "class_type": "SimpleSyrup.KSamplerContextualDiffusion",
+        "value_type": "number"
+      },
+      {
         "control_id": "model.diffusion_model",
         "symbol": "model",
         "input_name": "diffusion_model",
@@ -2409,7 +2510,12 @@
           "positive_prompt.value": "",
           "resize_reference.value": 1024,
           "seed_variation.variation_seed": 0,
-          "seed_variation.variation_strength": 0.0
+          "seed_variation.variation_strength": 0.0,
+          "ksampler.inversion_method": "euler",
+          "ksampler.inversion_resolution_scale": 0.5,
+          "ksampler.inversion_steps": 2,
+          "ksampler.inversion_switch_fraction": 0.75,
+          "ksampler.inversion_finishing_steps": 1
         }
       }
     ]

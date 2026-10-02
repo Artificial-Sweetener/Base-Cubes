@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Diffusion Upscale.cube",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "Diffusion upscaling for Anima: upscale an input image, then refine it with tiled diffusion to avoid running Anima diffusion outside its supported resolutions.",
   "metadata": {
     "default_alias": "Anima/Diffusion Upscale",
@@ -57,14 +57,22 @@
             "input.mask"
           ]
         },
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2dd94dd9-0f1c-4304-bc09-c0a3808b975b"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2dd94dd9-0f1c-4304-bc09-c0a3808b975b",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "models": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Models",
         "inputs": {},
         "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:27ef2f93-a953-4f33-a76e-3b293691fab0",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -99,7 +107,11 @@
             1
           ]
         },
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "upscale_by_factor": {
         "class_type": "77a3a6f3-813a-47da-b57d-50fcd211cc28",
@@ -125,7 +137,11 @@
             2
           ]
         },
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_encode": {
         "class_type": "SimpleSyrup.VAEEncodeOptions",
@@ -140,7 +156,11 @@
             2
           ]
         },
-        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d490312a-f8a1-43fc-a133-9f732eb5940a"
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d490312a-f8a1-43fc-a133-9f732eb5940a",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "seed_variation": {
         "class_type": "SimpleSyrup.SeedVariation",
@@ -152,7 +172,11 @@
           ]
         },
         "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:e5fc9d06-b50e-42a7-a5d7-b318c281b5ef",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {
@@ -1823,7 +1847,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "resize_image_to_target"
             },
             "widgets_values": [
@@ -2046,7 +2070,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.12.0",
+              "ver": "1.13.0",
               "sugarcubes_symbol": "scale_factor"
             },
             "widgets_values": [

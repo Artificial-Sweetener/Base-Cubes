@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Prompt by Region.cube",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "\"Regional Prompting\" for Anima using tiled diffusion. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] will be your global prompt. Mask and region prompt order matter; each region prompt after the first [SEP] will pair with whatever mask is next to it in line.\n\nLoRA scheduling is supported. LoRA in the global prompt will apply to the entire image, but LoRA in a regional prompt area will only apply to that region.",
   "metadata": {
     "default_alias": "Anima/Prompt by Region",
@@ -51,7 +51,11 @@
             0
           ]
         },
-        "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:afb8bc9b-2de2-44f0-bf07-477b9c60e16c"
+        "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:afb8bc9b-2de2-44f0-bf07-477b9c60e16c",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "latent_dimensions": {
         "class_type": "EmptyLatentImage",
@@ -63,7 +67,11 @@
         "class_type": "SimpleSyrup.LoadMaskBatch",
         "label": "Load Mask Batch",
         "inputs": {},
-        "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:c9b7e8c3-fbee-4278-8806-d963ca4da730"
+        "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:c9b7e8c3-fbee-4278-8806-d963ca4da730",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "negative_prompt": {
         "class_type": "PrimitiveStringMultiline",
@@ -98,13 +106,21 @@
             1
           ]
         },
-        "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:4d27ba80-38e9-4d93-8467-3456ec565334"
+        "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:4d27ba80-38e9-4d93-8467-3456ec565334",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "simple_load_anima": {
         "class_type": "SimpleSyrup.SimpleLoadAnima",
         "label": "Simple Load Anima",
         "inputs": {},
-        "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:132c31f0-671c-4b5e-9fb4-7bf4bebbe443"
+        "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:132c31f0-671c-4b5e-9fb4-7bf4bebbe443",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       },
       "vae_decode": {
         "class_type": "VAEDecode",
@@ -131,7 +147,11 @@
           ]
         },
         "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:021d9f55-6493-4e50-af26-86fe669054fe",
-        "mode": 4
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.13.0"
+        }
       }
     },
     "inputs": {},
