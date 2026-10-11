@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Latent Upscale.cube",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Enlarge the connected T2I latent with learned latent upscaling, captured source noise, and Contextual Diffusion. Queue the source T2I and this Cube together.",
   "metadata": {
     "default_alias": "Krea 2/Latent Upscale",
@@ -48,13 +48,6 @@
           "cnr_id": "SimpleSyrup",
           "ver": "1.14.0",
           "Node name for S&R": "SimpleSyrup"
-        }
-      },
-      {
-        "properties": {
-          "cnr_id": "SugarCubes",
-          "ver": "0.15.3",
-          "Node name for S&R": "SugarCubes"
         }
       }
     ]

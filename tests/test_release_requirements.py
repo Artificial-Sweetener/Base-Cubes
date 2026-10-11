@@ -20,7 +20,6 @@ from sugarcubes.cube_model import CubeDocument
 
 PACK = Path(__file__).resolve().parents[1]
 LATEST_SIMPLE_SYRUP = "1.14.0"
-NOISE_CAPTURE_SUGAR_CUBES = "0.15.3"
 CUBES = tuple(sorted(PACK.glob("*/*.cube")))
 
 
@@ -55,6 +54,10 @@ def test_every_cube_requires_the_published_simple_syrup(path: Path) -> None:
         default_base_repo=True,
     )
     simple_syrup = tuple(item for item in requirements if item.node_id == "SimpleSyrup")
+    assert not any(
+        item.node_id == "SugarCubes" and item.required_version == "0.15.3"
+        for item in requirements
+    )
     assert simple_syrup
     assert {item.required_version for item in simple_syrup} == {LATEST_SIMPLE_SYRUP}
     assert all(item.version_policy == "minimum" for item in simple_syrup)
@@ -82,10 +85,10 @@ def test_every_cube_requires_the_published_simple_syrup(path: Path) -> None:
 
 
 @pytest.mark.parametrize("family", ("Anima", "Krea 2"))
-def test_latent_cubes_require_capture_queue_support_and_use_plain_sampler_names(
+def test_latent_cubes_require_only_simple_syrup_and_use_plain_sampler_names(
     family: str,
 ) -> None:
-    """Keep source capture available while displaying one consistent sampler name."""
+    """Keep cube dependencies scoped to SimpleSyrup and use plain sampler names."""
     path = PACK / family / "Latent Upscale.cube"
     payload: Any = json.loads(path.read_text(encoding="utf-8"))
     document = CubeDocument.from_dict(payload)
@@ -96,11 +99,7 @@ def test_latent_cubes_require_capture_queue_support_and_use_plain_sampler_names(
         source_path=str(path),
         default_base_repo=True,
     )
-    assert any(
-        item.node_id == "SugarCubes"
-        and item.required_version == NOISE_CAPTURE_SUGAR_CUBES
-        for item in requirements
-    )
+    assert {item.node_id for item in requirements} == {"SimpleSyrup"}
     implementation = payload["implementation"]
     assert implementation["nodes"]["ksampler"]["label"] == "KSampler"
     assert implementation["layout"]["nodes"]["ksampler"]["title"] == "KSampler"
@@ -109,7 +108,7 @@ def test_latent_cubes_require_capture_queue_support_and_use_plain_sampler_names(
         == "KSampler"
     )
     assert "Contextual Attention" not in json.dumps(implementation["definitions"])
-    assert document.version == "1.0.0"
+    assert document.version == "1.0.1"
 
 
 def test_existing_cube_versions_advance_for_the_release() -> None:
