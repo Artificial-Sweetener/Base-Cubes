@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Prompt by Region.cube",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "\"Regional Prompting\" for Anima using tiled diffusion. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] will be your global prompt. Mask and region prompt order matter; each region prompt after the first [SEP] will pair with whatever mask is next to it in line.\n\nLoRA scheduling is supported. LoRA in the global prompt will apply to the entire image, but LoRA in a regional prompt area will only apply to that region.",
   "metadata": {
     "default_alias": "Anima/Prompt by Region",
@@ -27,7 +27,7 @@
       {
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0",
+          "ver": "1.14.1",
           "Node name for S&R": "SimpleSyrup"
         }
       }
@@ -63,7 +63,7 @@
         "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:afb8bc9b-2de2-44f0-bf07-477b9c60e16c",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "latent_dimensions": {
@@ -79,7 +79,7 @@
         "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:c9b7e8c3-fbee-4278-8806-d963ca4da730",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "negative_prompt": {
@@ -118,7 +118,7 @@
         "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:4d27ba80-38e9-4d93-8467-3456ec565334",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "simple_load_anima": {
@@ -128,7 +128,7 @@
         "original_id": "2e4a1a7b-c646-4861-bab6-ed9519070b18:132c31f0-671c-4b5e-9fb4-7bf4bebbe443",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "vae_decode": {
@@ -159,7 +159,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       }
     },

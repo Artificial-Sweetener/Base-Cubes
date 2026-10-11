@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Tiled Diffusion Upscale.cube",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Tiled diffusion upscaling for SDXL: upscale an input image, then refine it through overlapping latent tiles. Connect an optional mask and use [SEP] prompts for ordered regional conditioning; leave the mask disconnected for ordinary tiled diffusion. Global and regional LoRA scheduling are supported.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -32,7 +32,7 @@
       {
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0",
+          "ver": "1.14.1",
           "Node name for S&R": "SimpleSyrup"
         }
       }
@@ -48,7 +48,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "ksampler": {
@@ -79,7 +79,7 @@
         "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:092af40d-1cff-4aba-87f8-595d90e41cdc",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "mahiro_cfg": {
@@ -112,7 +112,7 @@
         "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:deb92ecb-4a1c-4de2-911f-96cb76a29035",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "schedule_encode_prompts": {
@@ -143,7 +143,7 @@
         "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:35c1142e-ece3-4c8d-80de-0ac979369a12",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "upscale_by_factor": {
@@ -173,7 +173,7 @@
         "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:204ecab1-9c14-4359-b5d4-394b8bd54a74",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "vae_encode": {
@@ -192,7 +192,7 @@
         "original_id": "15ad9b2a-9548-4269-86b5-38d59c93d02f:5e2298ef-1c63-452a-85ec-466beaeed284",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "vectorscopecc": {
@@ -220,7 +220,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       }
     },
@@ -2148,7 +2148,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.14.0",
+              "ver": "1.14.1",
               "sugarcubes_symbol": "resize_image_to_target"
             },
             "widgets_values": [
@@ -2371,7 +2371,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.14.0",
+              "ver": "1.14.1",
               "sugarcubes_symbol": "scale_factor"
             },
             "widgets_values": [

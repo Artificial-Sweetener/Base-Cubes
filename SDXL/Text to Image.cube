@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Text-to-image generation: prompts, checkpoint, sampler, size, VAE, prompt encoding, LoRA scheduling, and color controls.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -25,7 +25,7 @@
       {
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0",
+          "ver": "1.14.1",
           "Node name for S&R": "SimpleSyrup"
         }
       }
@@ -40,7 +40,7 @@
         "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:347f0d60-91be-4219-bc8c-59799282245e",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "ksampler": {
@@ -92,7 +92,7 @@
         "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:ec4a09ea-152b-4b91-a86c-5bf96804538f",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "schedule_encode_prompts": {
@@ -123,7 +123,7 @@
         "original_id": "1ce9c5e9-5e32-4258-bea2-de7af732c0af:425e571b-3bbf-496e-ae4d-4cd65d023120",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "vae_decode": {
@@ -166,7 +166,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       }
     },
@@ -1363,7 +1363,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.14.0",
+              "ver": "1.14.1",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [

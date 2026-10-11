@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Latent Upscale.cube",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Enlarge the connected T2I latent with learned latent upscaling, captured source noise, and Contextual Diffusion. Queue the source T2I and this Cube together.",
   "metadata": {
     "default_alias": "Krea 2/Latent Upscale",
@@ -46,7 +46,7 @@
       {
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0",
+          "ver": "1.14.1",
           "Node name for S&R": "SimpleSyrup"
         }
       }
@@ -62,7 +62,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "positive_prompt": {
@@ -101,7 +101,7 @@
         "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "seed_variation": {
@@ -117,7 +117,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "vae_decode": {
@@ -136,7 +136,7 @@
         "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "source_latent": {
@@ -151,7 +151,7 @@
         "original_id": "d493dbe6-294b-42d2-b4d0-03850ec2453f",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "latent_upscale": {
@@ -166,7 +166,7 @@
         "original_id": "daa6dfcb-3dac-4ba9-a1d6-ef32ff0cd7c4",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "contextual_diffusion": {
@@ -176,7 +176,7 @@
         "original_id": "2a6b3447-67d0-4767-9ae3-7902d5e59e6f",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "noise_reuse": {
@@ -191,7 +191,7 @@
         "original_id": "8d45c3fb-74d7-47e1-a725-a1dd89ad9356",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "attention_coupling": {
@@ -207,7 +207,7 @@
         "original_id": "71b65deb-e954-4c5f-9610-2f93d1276060",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       },
       "ksampler": {
@@ -242,7 +242,7 @@
         "original_id": "508f4814-7c74-416c-8898-4b9f86da28cd",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0"
+          "ver": "1.14.1"
         }
       }
     },

@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "SeedVR2 image upscaling: load the SeedVR2 DiT model and upscale an input image by a scale factor.",
   "metadata": {
     "default_alias": "SeedVR2/Diffusion Upscale",
@@ -25,7 +25,7 @@
       {
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.14.0",
+          "ver": "1.14.1",
           "Node name for S&R": "SimpleSyrup"
         }
       }
@@ -1207,7 +1207,7 @@
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "sugarcubes_symbol": "scale_factor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.14.0"
+              "ver": "1.14.1"
             },
             "widgets_values": [
               1.5
@@ -1250,7 +1250,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.Seed",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.14.0"
+              "ver": "1.14.1"
             },
             "widgets_values": [
               null

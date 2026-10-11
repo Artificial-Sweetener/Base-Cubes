@@ -19,7 +19,7 @@ from sugarcubes.backend.services.dependency_versions import (
 from sugarcubes.cube_model import CubeDocument
 
 PACK = Path(__file__).resolve().parents[1]
-LATEST_SIMPLE_SYRUP = "1.14.0"
+LATEST_SIMPLE_SYRUP = "1.14.1"
 CUBES = tuple(sorted(PACK.glob("*/*.cube")))
 
 
@@ -108,34 +108,34 @@ def test_latent_cubes_require_only_simple_syrup_and_use_plain_sampler_names(
         == "KSampler"
     )
     assert "Contextual Attention" not in json.dumps(implementation["definitions"])
-    assert document.version == "1.0.1"
+    assert document.version == "1.0.2"
 
 
 def test_existing_cube_versions_advance_for_the_release() -> None:
     """Require new patch versions for the existing catalog dependency changes."""
     expected = {
-        "Anima/Automask Detailer.cube": "3.1.1",
-        "Anima/Contextual Upscale.cube": "1.1.1",
-        "Anima/Diffusion Upscale.cube": "5.1.1",
-        "Anima/Image to Image.cube": "3.1.1",
-        "Anima/Inpaint.cube": "3.1.1",
-        "Anima/Prompt by Region.cube": "5.1.1",
-        "Anima/Promptmask Detailer.cube": "3.1.1",
-        "Anima/Text to Image.cube": "3.1.1",
-        "Anima/TileRegion Upscale.cube": "3.1.1",
-        "Any/Load Image.cube": "2.0.2",
-        "Flux2 Klein/Edit by Prompt.cube": "2.1.1",
-        "Krea 2/Contextual Upscale.cube": "2.2.1",
-        "Krea 2/Text to Image.cube": "2.2.1",
-        "SDXL/Automask Detailer.cube": "4.1.1",
-        "SDXL/Diffusion Upscale.cube": "5.1.1",
-        "SDXL/Image to Image.cube": "3.1.1",
-        "SDXL/Inpaint.cube": "3.1.1",
-        "SDXL/Prompt by Region.cube": "2.1.1",
-        "SDXL/Promptmask Detailer.cube": "3.1.1",
-        "SDXL/Text to Image.cube": "3.1.1",
-        "SDXL/Tiled Diffusion Upscale.cube": "2.1.1",
-        "SeedVR2/Diffusion Upscale.cube": "2.1.1",
+        "Anima/Automask Detailer.cube": "3.1.2",
+        "Anima/Contextual Upscale.cube": "1.1.2",
+        "Anima/Diffusion Upscale.cube": "5.1.2",
+        "Anima/Image to Image.cube": "3.1.2",
+        "Anima/Inpaint.cube": "3.1.2",
+        "Anima/Prompt by Region.cube": "5.1.2",
+        "Anima/Promptmask Detailer.cube": "3.1.2",
+        "Anima/Text to Image.cube": "3.1.2",
+        "Anima/TileRegion Upscale.cube": "3.1.2",
+        "Any/Load Image.cube": "2.0.3",
+        "Flux2 Klein/Edit by Prompt.cube": "2.1.2",
+        "Krea 2/Contextual Upscale.cube": "2.2.2",
+        "Krea 2/Text to Image.cube": "2.2.2",
+        "SDXL/Automask Detailer.cube": "4.1.2",
+        "SDXL/Diffusion Upscale.cube": "5.1.2",
+        "SDXL/Image to Image.cube": "3.1.2",
+        "SDXL/Inpaint.cube": "3.1.2",
+        "SDXL/Prompt by Region.cube": "2.1.2",
+        "SDXL/Promptmask Detailer.cube": "3.1.2",
+        "SDXL/Text to Image.cube": "3.1.2",
+        "SDXL/Tiled Diffusion Upscale.cube": "2.1.2",
+        "SeedVR2/Diffusion Upscale.cube": "2.1.2",
     }
     actual = {
         path.relative_to(PACK).as_posix(): json.loads(path.read_text())["version"]
