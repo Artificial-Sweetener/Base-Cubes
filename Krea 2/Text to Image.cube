@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Krea 2/Text to Image.cube",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Generate Krea 2 images from natural-language prompts with automatic Qwen3-VL and Qwen Image VAE selection. Defaults target practical Turbo checkpoints at ten sampling steps.",
   "metadata": {
     "default_alias": "Krea 2/Text to Image",
@@ -20,7 +20,16 @@
     ],
     "surface_state": {
       "schema": 1
-    }
+    },
+    "node_pack_requirements": [
+      {
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0",
+          "Node name for S&R": "SimpleSyrup"
+        }
+      }
+    ]
   },
   "implementation": {
     "nodes": {
@@ -46,7 +55,7 @@
         "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:daaaae29-3cbd-454f-a807-4d9689b5cd7a",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "positive_prompt": {
@@ -75,7 +84,7 @@
         "original_id": "ab0aed42-8a65-4405-9ddf-19bd08db7775:47481c5c-bfed-44e6-bc07-f103bc83fa96",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "vae_decode": {
@@ -106,7 +115,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       }
     },
@@ -1268,7 +1277,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.KSamplerExtras",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.13.0",
+              "ver": "1.14.0",
               "sugarcubes_symbol": "ksampler"
             },
             "widgets_values": [

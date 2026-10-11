@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SeedVR2/Diffusion Upscale.cube",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "SeedVR2 image upscaling: load the SeedVR2 DiT model and upscale an input image by a scale factor.",
   "metadata": {
     "default_alias": "SeedVR2/Diffusion Upscale",
@@ -20,7 +20,16 @@
     ],
     "surface_state": {
       "schema": 1
-    }
+    },
+    "node_pack_requirements": [
+      {
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0",
+          "Node name for S&R": "SimpleSyrup"
+        }
+      }
+    ]
   },
   "implementation": {
     "nodes": {
@@ -426,7 +435,7 @@
             "batch_size": [
               "INT",
               {
-                "tooltip": "Number of frames processed together per batch (default: 5).\nMust follow pattern 4n+1: 1, 5, 9, 13, 17, 21, ...\n\n� Higher values: Better temporal consistency and faster processing\n� Lower values: Reduced VRAM usage\n\nIdeally match to shot length for best quality.",
+                "tooltip": "Number of frames processed together per batch (default: 5).\nMust follow pattern 4n+1: 1, 5, 9, 13, 17, 21, ...\n\n\ufffd Higher values: Better temporal consistency and faster processing\n\ufffd Lower values: Reduced VRAM usage\n\nIdeally match to shot length for best quality.",
                 "default": 5,
                 "min": 1,
                 "max": 16384,
@@ -443,7 +452,7 @@
             "color_correction": [
               "COMBO",
               {
-                "tooltip": "Corrects color shifts in upscaled output to match original input (default: lab).\nThe upscaling process may alter colors; this applies color grading to restore them.\n\n� lab: Perceptual color matching with detail preservation (recommended)\n� wavelet: Frequency-based natural colors, preserves fine details\n� wavelet_adaptive: Wavelet base with targeted saturation correction\n� hsv: Hue-conditional saturation matching\n� adain: Statistical style transfer approach\n� none: No color correction applied",
+                "tooltip": "Corrects color shifts in upscaled output to match original input (default: lab).\nThe upscaling process may alter colors; this applies color grading to restore them.\n\n\ufffd lab: Perceptual color matching with detail preservation (recommended)\n\ufffd wavelet: Frequency-based natural colors, preserves fine details\n\ufffd wavelet_adaptive: Wavelet base with targeted saturation correction\n\ufffd hsv: Hue-conditional saturation matching\n\ufffd adain: Statistical style transfer approach\n\ufffd none: No color correction applied",
                 "default": "lab",
                 "multiselect": false,
                 "options": [
@@ -501,7 +510,7 @@
             "offload_device": [
               "COMBO",
               {
-                "tooltip": "Device for storing intermediate tensors between processing phases (default: cpu).\n� 'none': Keep all tensors on inference device (fastest but highest VRAM usage)\n� 'cpu': Offload to system RAM (recommended for long videos, slower transfers)\n� 'cuda:X': Offload to another GPU (good balance if available, faster than CPU)",
+                "tooltip": "Device for storing intermediate tensors between processing phases (default: cpu).\n\ufffd 'none': Keep all tensors on inference device (fastest but highest VRAM usage)\n\ufffd 'cpu': Offload to system RAM (recommended for long videos, slower transfers)\n\ufffd 'cuda:X': Offload to another GPU (good balance if available, faster than CPU)",
                 "default": "cpu",
                 "multiselect": false,
                 "options": [
@@ -1198,7 +1207,7 @@
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "sugarcubes_symbol": "scale_factor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.13.0"
+              "ver": "1.14.0"
             },
             "widgets_values": [
               1.5
@@ -1241,7 +1250,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.Seed",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.13.0"
+              "ver": "1.14.0"
             },
             "widgets_values": [
               null

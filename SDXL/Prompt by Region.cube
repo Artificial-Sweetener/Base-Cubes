@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Prompt by Region.cube",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "\"Regional Prompting\" for SDXL using attention coupling. Create regions with masks. Use [SEP] to create a region prompt; everything before your first [SEP] is the global prompt. Each later region prompt pairs with the next mask in order.\n\nLoRA scheduling is supported. LoRAs in the global prompt apply to the entire image, while LoRAs in a regional prompt apply only to that region.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -23,7 +23,16 @@
         "width": 581.14,
         "selected_output": null
       }
-    }
+    },
+    "node_pack_requirements": [
+      {
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0",
+          "Node name for S&R": "SimpleSyrup"
+        }
+      }
+    ]
   },
   "implementation": {
     "nodes": {
@@ -34,7 +43,7 @@
         "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:dba5654a-b9be-5e75-ae73-29572c0a8e96",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "positive_prompt": {
@@ -56,7 +65,7 @@
         "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:5aafd36f-7b59-5277-b090-0578869cbe89",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "mahiro_cfg": {
@@ -98,7 +107,7 @@
         "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:667bb405-4fef-5c65-9787-c65f8d564f3e",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "vectorscopecc": {
@@ -119,7 +128,7 @@
         "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:bf2c6762-450c-5aaf-86de-fb167de8f194",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "latent_dimensions": {
@@ -156,7 +165,7 @@
         "original_id": "3188a75d-ac46-50bc-be7a-643cce948acd:4a5e3323-9a7c-5b59-a011-c27b9cc41eee",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "vae_decode": {
@@ -187,7 +196,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       }
     },

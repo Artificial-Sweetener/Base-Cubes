@@ -1,6 +1,9 @@
 name: SugarSubstitute input-asset contract
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -10,6 +13,29 @@ permissions:
   contents: read
 
 jobs:
+  cube-release-contract:
+    name: Cube release and latent upscale contracts
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Base-Cubes
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Checkout released SugarCubes contract
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Artificial-Sweetener/SugarCubes
+          ref: v0.15.3
+          path: contract/SugarCubes
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12.10"
+      - name: Install contract dependencies
+        shell: pwsh
+        run: python -m pip install -e "contract/SugarCubes[dev]" pytest-xdist
+      - name: Validate cube release contracts
+        shell: pwsh
+        run: python -m pytest -n auto -q tests
   input-asset-contract:
     name: SugarSubstitute canary contract
     runs-on: windows-latest

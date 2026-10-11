@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Automask Detailer.cube",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Detector-guided detailing for Anima: detect image regions with an Ultralytics model, then upscale and refine those regions with tiled diffusion.",
   "metadata": {
     "default_alias": "Anima/Automask Detailer",
@@ -20,7 +20,16 @@
     ],
     "surface_state": {
       "schema": 1
-    }
+    },
+    "node_pack_requirements": [
+      {
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0",
+          "Node name for S&R": "SimpleSyrup"
+        }
+      }
+    ]
   },
   "implementation": {
     "nodes": {
@@ -56,7 +65,7 @@
         "original_id": "c7b9cae0-03e1-445e-81cd-4fec927eaf29:0973983c-dc03-458c-9971-c3d379bf9370",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "detect_segs_w_ultralytics": {
@@ -78,7 +87,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "negative_prompt": {
@@ -117,7 +126,7 @@
         "original_id": "c7b9cae0-03e1-445e-81cd-4fec927eaf29:a85689df-dabe-41e7-8fd0-b85eb43a31aa",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "seed_variation": {
@@ -133,7 +142,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       }
     },
@@ -1303,7 +1312,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.LoadUltralyticsModel",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.13.0"
+              "ver": "1.14.0"
             },
             "widgets_values": [
               null
@@ -1446,7 +1455,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.DetectSEGSWithUltralytics",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.13.0"
+              "ver": "1.14.0"
             },
             "widgets_values": [
               0.5,

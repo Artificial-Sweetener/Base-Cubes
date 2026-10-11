@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Diffusion Upscale.cube",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Diffusion upscaling: upscale an input image, resize it to target constraints, then refine it with image-to-image diffusion.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -25,7 +25,16 @@
     ],
     "surface_state": {
       "schema": 1
-    }
+    },
+    "node_pack_requirements": [
+      {
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0",
+          "Node name for S&R": "SimpleSyrup"
+        }
+      }
+    ]
   },
   "implementation": {
     "nodes": {
@@ -37,7 +46,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "ksampler": {
@@ -64,7 +73,7 @@
         "original_id": "3fd6d0d9-8484-4ec2-8246-41c3e6afed39:92d4693b-d648-4b82-a3f6-eb726b402831",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "mahiro_cfg": {
@@ -97,7 +106,7 @@
         "original_id": "3fd6d0d9-8484-4ec2-8246-41c3e6afed39:dbe4fdf5-9b3e-4599-9fae-be4e3260ce42",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "schedule_encode_prompts": {
@@ -128,7 +137,7 @@
         "original_id": "3fd6d0d9-8484-4ec2-8246-41c3e6afed39:866817f4-3f05-449d-9b8f-f8dcbf1f41c3",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "upscale_by_factor": {
@@ -158,7 +167,7 @@
         "original_id": "3fd6d0d9-8484-4ec2-8246-41c3e6afed39:556d8f35-4ee7-43bd-bbb2-0ea5ffaa792e",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "vae_encode": {
@@ -177,7 +186,7 @@
         "original_id": "3fd6d0d9-8484-4ec2-8246-41c3e6afed39:e8f50783-d1a8-418c-9cfd-83355b43e471",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "vectorscopecc": {
@@ -205,7 +214,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       }
     },
@@ -1999,7 +2008,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.13.0",
+              "ver": "1.14.0",
               "sugarcubes_symbol": "resize_image_to_target"
             },
             "widgets_values": [
@@ -2222,7 +2231,7 @@
             "properties": {
               "Node name for S&R": "SimpleSyrup.ScaleFactor",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.13.0",
+              "ver": "1.14.0",
               "sugarcubes_symbol": "scale_factor"
             },
             "widgets_values": [

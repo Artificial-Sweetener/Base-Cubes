@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/SDXL/Image to Image.cube",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Image-to-image generation: transform a selected image with prompts, checkpoint, sampler, denoise, VAE, LoRA scheduling, and color controls.",
   "metadata": {
     "author_url": "https://artificialsweetener.ai",
@@ -21,7 +21,16 @@
     ],
     "surface_state": {
       "schema": 1
-    }
+    },
+    "node_pack_requirements": [
+      {
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0",
+          "Node name for S&R": "SimpleSyrup"
+        }
+      }
+    ]
   },
   "implementation": {
     "nodes": {
@@ -32,7 +41,7 @@
         "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:a939cb43-1c11-44f1-9906-a93b50a64f86",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "ksampler": {
@@ -59,7 +68,7 @@
         "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:9d3e4d23-7465-4aa2-a62f-a36a0ce9fec3",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "load_image": {
@@ -98,7 +107,7 @@
         "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:8c5bb2c6-c4cc-4621-81ac-e1ffc3e495a4",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "schedule_encode_prompts": {
@@ -129,7 +138,7 @@
         "original_id": "1eec0d01-9c6a-4001-bc97-85823f442fd9:5d9cd55c-6028-47e0-a013-98e9a7df1919",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "vae_decode": {
@@ -187,7 +196,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       }
     },

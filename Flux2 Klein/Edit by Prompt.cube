@@ -1,6 +1,6 @@
 {
   "cube_id": "Artificial-Sweetener/Base-Cubes/Flux2 Klein/Edit by Prompt.cube",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Edit an image by prompt with FLUX.2 Klein and SimpleSyrup Contextual Diffusion while preserving the source composition and fine detail. An optional bypassed resize can constrain the working resolution.",
   "metadata": {
     "default_alias": "Flux2 Klein/Edit by Prompt",
@@ -14,7 +14,16 @@
     ],
     "surface_state": {
       "schema": 1
-    }
+    },
+    "node_pack_requirements": [
+      {
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0",
+          "Node name for S&R": "SimpleSyrup"
+        }
+      }
+    ]
   },
   "implementation": {
     "nodes": {
@@ -85,7 +94,7 @@
         "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:6e5eb581-eb9a-4530-9f9b-1e5e1ee31b83",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "model": {
@@ -95,7 +104,7 @@
         "original_id": "8171f115-9dcd-483f-9599-ff43fd9d68f8:4949a948-d9be-4505-9119-4d06c279e0fb",
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       },
       "positive_prompt": {
@@ -135,7 +144,7 @@
         "mode": 4,
         "properties": {
           "cnr_id": "SimpleSyrup",
-          "ver": "1.13.0"
+          "ver": "1.14.0"
         }
       }
     },
@@ -2134,7 +2143,7 @@
               "Node name for S&R": "SimpleSyrup.ResizeImageToTarget",
               "sugarcubes_symbol": "optional_downscale",
               "cnr_id": "SimpleSyrup",
-              "ver": "1.13.0"
+              "ver": "1.14.0"
             },
             "widgets_values": [
               "Keep AR",

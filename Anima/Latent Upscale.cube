@@ -1,0 +1,1879 @@
+{
+  "cube_id": "Artificial-Sweetener/Base-Cubes/Anima/Latent Upscale.cube",
+  "version": "1.0.0",
+  "description": "Enlarge the connected T2I latent with learned latent upscaling, captured source noise, and Contextual Diffusion. Queue the source T2I and this Cube together.",
+  "metadata": {
+    "default_alias": "Anima/Latent Upscale",
+    "target_model": "Anima",
+    "supported_models": [
+      "Anima"
+    ],
+    "author_url": "https://artificialsweetener.ai",
+    "icon": {
+      "kind": "asset",
+      "path": "assets/icons/Diffusion Upscale.png",
+      "media_type": "image/png"
+    },
+    "surface_size": [
+      1120,
+      1280
+    ],
+    "surface_state": {
+      "schema": 1,
+      "node_order": [
+        "latent_upscale",
+        "ksampler",
+        "contextual_diffusion",
+        "noise_reuse",
+        "attention_coupling",
+        "positive_prompt",
+        "negative_prompt",
+        "models",
+        "seed_variation",
+        "vae_decode",
+        "source_latent",
+        "schedule_encode_prompts"
+      ],
+      "minimum_column_width": 240.0,
+      "gap": 12.0,
+      "preview": {
+        "visible": true,
+        "width": 690.0,
+        "selected_output": null
+      }
+    },
+    "node_pack_requirements": [
+      {
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0",
+          "Node name for S&R": "SimpleSyrup"
+        }
+      },
+      {
+        "properties": {
+          "cnr_id": "SugarCubes",
+          "ver": "0.15.3",
+          "Node name for S&R": "SugarCubes"
+        }
+      }
+    ]
+  },
+  "implementation": {
+    "nodes": {
+      "models": {
+        "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "label": "Models",
+        "inputs": {},
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:27ef2f93-a953-4f33-a76e-3b293691fab0",
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "positive_prompt": {
+        "class_type": "PrimitiveStringMultiline",
+        "label": "positive prompt",
+        "inputs": {},
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:918766b7-b9bc-4b48-87e0-3cd8eda75b97"
+      },
+      "negative_prompt": {
+        "class_type": "PrimitiveStringMultiline",
+        "label": "negative prompt",
+        "inputs": {},
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2048a908-8478-4219-9de2-9dc9c4f70855"
+      },
+      "schedule_encode_prompts": {
+        "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "label": "Schedule & Encode Prompts",
+        "inputs": {
+          "positive_prompt": [
+            "positive_prompt",
+            0
+          ],
+          "negative_prompt": [
+            "negative_prompt",
+            0
+          ],
+          "model": [
+            "models",
+            0
+          ],
+          "clip": [
+            "models",
+            1
+          ]
+        },
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "seed_variation": {
+        "class_type": "SimpleSyrup.SeedVariation",
+        "label": "Seed Variation",
+        "inputs": {
+          "model": [
+            "schedule_encode_prompts",
+            0
+          ]
+        },
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:e5fc9d06-b50e-42a7-a5d7-b318c281b5ef",
+        "mode": 4,
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "vae_decode": {
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "label": "VAE Decode",
+        "inputs": {
+          "samples": [
+            "ksampler",
+            0
+          ],
+          "vae": [
+            "models",
+            2
+          ]
+        },
+        "original_id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "source_latent": {
+        "class_type": "SimpleSyrup.LatentFromImage",
+        "label": "Source Latent",
+        "inputs": {
+          "image": [
+            "@binding",
+            "input.image"
+          ]
+        },
+        "original_id": "144179fd-dd2f-4e50-8785-692decddf2cf",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "latent_upscale": {
+        "class_type": "SimpleSyrup.SimpleUpscaleLatent",
+        "label": "Latent Upscale",
+        "inputs": {
+          "latent": [
+            "source_latent",
+            0
+          ]
+        },
+        "original_id": "f4500022-c5a0-44ce-bad8-72a240355338",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "contextual_diffusion": {
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "label": "Contextual Diffusion",
+        "inputs": {},
+        "original_id": "9f66a5d2-1c90-434a-b139-3608b8996284",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "noise_reuse": {
+        "class_type": "SimpleSyrup.NoiseReuseOptions",
+        "label": "Noise Reuse",
+        "inputs": {
+          "options": [
+            "contextual_diffusion",
+            0
+          ]
+        },
+        "original_id": "7f0d4189-924a-4790-a3f0-e64b0d2e2ee3",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "attention_coupling": {
+        "class_type": "SimpleSyrup.AttentionCouplingOptions",
+        "label": "Attention Coupling",
+        "mode": 4,
+        "inputs": {
+          "options": [
+            "noise_reuse",
+            0
+          ]
+        },
+        "original_id": "0fb6664b-76fb-41a8-8935-067541a8e7c0",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      },
+      "ksampler": {
+        "class_type": "SimpleSyrup.KSampler",
+        "label": "KSampler",
+        "inputs": {
+          "model": [
+            "seed_variation",
+            0
+          ],
+          "positive": [
+            "schedule_encode_prompts",
+            1
+          ],
+          "negative": [
+            "schedule_encode_prompts",
+            2
+          ],
+          "latent_image": [
+            "latent_upscale",
+            0
+          ],
+          "options": [
+            "attention_coupling",
+            0
+          ],
+          "region_masks": [
+            "@binding",
+            "input.mask"
+          ]
+        },
+        "original_id": "2a260749-6561-4b91-bbb1-55f98918aec5",
+        "properties": {
+          "cnr_id": "SimpleSyrup",
+          "ver": "1.14.0"
+        }
+      }
+    },
+    "inputs": {
+      "input.image": {
+        "kind": "input",
+        "targets": [
+          [
+            "source_latent",
+            "image"
+          ]
+        ]
+      },
+      "input.mask": {
+        "kind": "input",
+        "targets": [
+          [
+            "ksampler",
+            "region_masks"
+          ]
+        ]
+      }
+    },
+    "outputs": {
+      "output.image": [
+        "vae_decode",
+        0
+      ]
+    },
+    "layout": {
+      "workflow_version": 0,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "ds": {
+        "scale": 1.0,
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "nodes": {
+        "models": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:27ef2f93-a953-4f33-a76e-3b293691fab0",
+          "class_type": "SimpleSyrup.SimpleLoadAnima",
+          "title": "Models",
+          "pos": [
+            0,
+            0
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "positive_prompt": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:918766b7-b9bc-4b48-87e0-3cd8eda75b97",
+          "class_type": "PrimitiveStringMultiline",
+          "title": "positive prompt",
+          "pos": [
+            380,
+            0
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "negative_prompt": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:2048a908-8478-4219-9de2-9dc9c4f70855",
+          "class_type": "PrimitiveStringMultiline",
+          "title": "negative prompt",
+          "pos": [
+            760,
+            0
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "schedule_encode_prompts": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:59bd7518-8baf-4532-8d6c-04209dad20fb",
+          "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+          "title": "Schedule & Encode Prompts",
+          "pos": [
+            0,
+            400
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "seed_variation": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:e5fc9d06-b50e-42a7-a5d7-b318c281b5ef",
+          "class_type": "SimpleSyrup.SeedVariation",
+          "title": "Seed Variation",
+          "pos": [
+            380,
+            400
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "vae_decode": {
+          "id": "b806a34d-b6fc-494e-876f-2173a4cb30bd:d78406e2-bb49-44e3-9730-97ff0aa1fcde",
+          "class_type": "SimpleSyrup.VAEDecodeOptions",
+          "title": "VAE Decode",
+          "pos": [
+            760,
+            400
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "source_latent": {
+          "id": "144179fd-dd2f-4e50-8785-692decddf2cf",
+          "class_type": "SimpleSyrup.LatentFromImage",
+          "title": "Source Latent",
+          "pos": [
+            0,
+            800
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "latent_upscale": {
+          "id": "f4500022-c5a0-44ce-bad8-72a240355338",
+          "class_type": "SimpleSyrup.SimpleUpscaleLatent",
+          "title": "Latent Upscale",
+          "pos": [
+            380,
+            800
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "contextual_diffusion": {
+          "id": "9f66a5d2-1c90-434a-b139-3608b8996284",
+          "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+          "title": "Contextual Diffusion",
+          "pos": [
+            760,
+            800
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "noise_reuse": {
+          "id": "7f0d4189-924a-4790-a3f0-e64b0d2e2ee3",
+          "class_type": "SimpleSyrup.NoiseReuseOptions",
+          "title": "Noise Reuse",
+          "pos": [
+            0,
+            1200
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "attention_coupling": {
+          "id": "0fb6664b-76fb-41a8-8935-067541a8e7c0",
+          "class_type": "SimpleSyrup.AttentionCouplingOptions",
+          "title": "Attention Coupling",
+          "pos": [
+            380,
+            1200
+          ],
+          "size": [
+            340,
+            330
+          ]
+        },
+        "ksampler": {
+          "id": "2a260749-6561-4b91-bbb1-55f98918aec5",
+          "class_type": "SimpleSyrup.KSampler",
+          "title": "KSampler",
+          "pos": [
+            760,
+            1200
+          ],
+          "size": [
+            340,
+            330
+          ]
+        }
+      },
+      "markers": {
+        "input.image": {
+          "id": "sugarcubes:native:0:input:0",
+          "class_type": "SugarCubes.CubeInput",
+          "kind": "input",
+          "pos": [
+            0.0,
+            134.121
+          ],
+          "size": [
+            140.0,
+            46.0
+          ],
+          "title": "input.value"
+        },
+        "input.mask": {
+          "id": "sugarcubes:native:0:input:1",
+          "class_type": "SugarCubes.CubeInput",
+          "kind": "input",
+          "pos": [
+            0.0,
+            188.121
+          ],
+          "size": [
+            140.0,
+            46.0
+          ],
+          "title": "input.mask"
+        },
+        "output.image": {
+          "id": "sugarcubes:native:0:output:0",
+          "class_type": "SugarCubes.CubeOutput",
+          "kind": "output",
+          "pos": [
+            1217.695,
+            636.242
+          ],
+          "size": [
+            140.0,
+            46.0
+          ],
+          "title": "image"
+        }
+      }
+    },
+    "definitions": {
+      "SimpleSyrup.SimpleLoadAnima": {
+        "input": {
+          "required": {
+            "diffusion_model": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Anima diffusion model file used as the main image generation model.",
+                "multiselect": false
+              }
+            ],
+            "quantization": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Creates or reuses a GPU-supported quantized copy in the global models/SyrupQuants cache; Original loads the selected model unchanged.",
+                "advanced": true,
+                "default": "Original",
+                "multiselect": false
+              }
+            ],
+            "diffusion_weight_dtype": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Load-time weight precision used with Original; cached quantized copies use their stored quantization format.",
+                "advanced": true,
+                "default": "default",
+                "multiselect": false
+              }
+            ],
+            "text_encoder": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Qwen text encoder used for Anima prompt understanding. Auto selects the expected model.",
+                "advanced": true,
+                "default": "auto",
+                "multiselect": false
+              }
+            ],
+            "text_encoder_device": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Device for the text encoder. Auto follows the normal ComfyUI placement.",
+                "advanced": true,
+                "default": "default",
+                "multiselect": false
+              }
+            ],
+            "vae": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "VAE used to decode Anima latents. Auto selects the expected Qwen image VAE.",
+                "advanced": true,
+                "default": "auto",
+                "multiselect": false
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "diffusion_model",
+            "quantization",
+            "diffusion_weight_dtype",
+            "text_encoder",
+            "text_encoder_device",
+            "vae"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CLIP",
+          "VAE"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "model",
+          "clip",
+          "vae"
+        ],
+        "output_tooltips": [
+          "Loaded diffusion model for downstream MODEL inputs.",
+          "Loaded text encoder for downstream CLIP inputs.",
+          "Loaded VAE used to encode images to latents and decode latents to images."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SimpleLoadAnima",
+        "display_name": "Simple Load Anima",
+        "description": "Loads Anima model components with auto-resolved Qwen assets.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Loaders",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "PrimitiveStringMultiline": {
+        "input": {
+          "required": {
+            "value": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "value"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "STRING"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "STRING"
+        ],
+        "output_tooltips": [
+          null
+        ],
+        "output_matchtypes": null,
+        "name": "PrimitiveStringMultiline",
+        "display_name": "Text (Multiline)",
+        "description": "",
+        "python_module": "comfy_extras.nodes_primitive",
+        "category": "utilities/primitive",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "text",
+          "string",
+          "text multiline",
+          "string multiline",
+          "text box",
+          "prompt"
+        ],
+        "essentials_category": "Basics",
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "tooltip": "Model that receives LoRA changes found in Prompt-Control prompt tags.",
+                "rawLink": true
+              }
+            ],
+            "clip": [
+              "CLIP",
+              {
+                "tooltip": "CLIP connection used for scheduled hooks and cleaned prompt encoding.",
+                "rawLink": true
+              }
+            ],
+            "positive_prompt": [
+              "STRING",
+              {
+                "tooltip": "Positive Prompt-Control text; [SEP] or [SEP|name] creates ordered conditioning entries, and global text fills missing positive regions.",
+                "default": "",
+                "multiline": false
+              }
+            ]
+          },
+          "optional": {
+            "encode_style": [
+              "STRING",
+              {
+                "tooltip": "Encode style text from Prompt Encode Style or Prompt Encode Style & Normalization.",
+                "default": "",
+                "forceInput": true,
+                "multiline": false
+              }
+            ],
+            "negative_prompt": [
+              "STRING",
+              {
+                "tooltip": "Optional negative Prompt-Control text; [SEP] or [SEP|name] creates ordered conditioning entries, and global text fills missing negative regions. Leave disconnected to encode an empty negative prompt.",
+                "default": "",
+                "multiline": false
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "clip",
+            "positive_prompt"
+          ],
+          "optional": [
+            "encode_style",
+            "negative_prompt"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL",
+          "CONDITIONING,CONDITIONING_BATCH",
+          "CONDITIONING,CONDITIONING_BATCH"
+        ],
+        "output_is_list": [
+          false,
+          false,
+          false
+        ],
+        "output_name": [
+          "model",
+          "positive",
+          "negative"
+        ],
+        "output_tooltips": [
+          "Model with single-prompt LoRAs applied globally; SEP-local LoRAs travel on their conditioning entries instead.",
+          "Positive conditioning or SimpleSyrup conditioning batch.",
+          "Negative conditioning or SimpleSyrup conditioning batch."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "display_name": "Schedule & Encode Prompts",
+        "description": "Schedules Prompt-Control LoRAs and encodes prompts. With [SEP] or [SEP|name], both sides are matched using global text for missing regions and share each segment's LoRA hooks.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Conditioning",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.SeedVariation": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "tooltip": "Model whose sampler-provided initial noise will receive seed variation."
+              }
+            ],
+            "variation_seed": [
+              "INT",
+              {
+                "tooltip": "Seed for the second noise pattern. Change it to explore another variation direction from the sampler's seed.",
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "variation_strength": [
+              "FLOAT",
+              {
+                "tooltip": "Noise interpolation strength. 0 keeps the sampler seed unchanged; 1 uses the variation seed for initial noise.",
+                "default": 0.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01,
+                "round": 0.01
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "variation_seed",
+            "variation_strength"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "MODEL"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "model"
+        ],
+        "output_tooltips": [
+          "Model that interpolates initial sampling noise toward the variation seed."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SeedVariation",
+        "display_name": "Seed Variation",
+        "description": "Creates related generations by mixing sampler noise toward a second deterministic seed.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "variation seed",
+          "subseed",
+          "seed interpolation"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.VAEDecodeOptions": {
+        "input": {
+          "required": {
+            "use_tiling": [
+              "BOOLEAN",
+              {
+                "tooltip": "Use ComfyUI's tiled VAE node. Disabled uses normal ComfyUI VAE behavior, including its automatic tiled retry after out-of-memory.",
+                "default": false
+              }
+            ],
+            "samples": [
+              "LATENT",
+              {
+                "tooltip": "Latent samples to decode into an image.",
+                "rawLink": true
+              }
+            ],
+            "vae": [
+              "VAE",
+              {
+                "tooltip": "VAE used for the selected encode or decode operation.",
+                "rawLink": true
+              }
+            ],
+            "tile_size": [
+              "INT",
+              {
+                "tooltip": "Tile size in pixels. Larger tiles are faster but use more memory.",
+                "advanced": true,
+                "default": 512,
+                "min": 64,
+                "max": 4096,
+                "step": 32
+              }
+            ],
+            "overlap": [
+              "INT",
+              {
+                "tooltip": "Overlap between tiles in pixels. Larger overlaps reduce seams but do more work.",
+                "advanced": true,
+                "default": 64,
+                "min": 0,
+                "max": 4096,
+                "step": 32
+              }
+            ],
+            "temporal_size": [
+              "INT",
+              {
+                "tooltip": "For video VAEs, number of frames to decode at once.",
+                "advanced": true,
+                "default": 64,
+                "min": 8,
+                "max": 4096,
+                "step": 4
+              }
+            ],
+            "temporal_overlap": [
+              "INT",
+              {
+                "tooltip": "For video VAEs, number of overlapping frames between temporal tiles.",
+                "advanced": true,
+                "default": 8,
+                "min": 4,
+                "max": 4096,
+                "step": 4
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "use_tiling",
+            "samples",
+            "vae",
+            "tile_size",
+            "overlap",
+            "temporal_size",
+            "temporal_overlap"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "IMAGE"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "image"
+        ],
+        "output_tooltips": [
+          "Image produced by ComfyUI's selected VAE decode node."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.VAEDecodeOptions",
+        "display_name": "VAE Decode (Options)",
+        "description": "Decodes latents to images with selectable normal or tiled VAE execution.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Latent",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": [
+          "vae decode",
+          "decode latent",
+          "tiled vae decode",
+          "latent to image"
+        ],
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.LatentFromImage": {
+        "input": {
+          "required": {
+            "image": [
+              "IMAGE",
+              {
+                "tooltip": "Connect an unmodified VAE Decode image; the original latent is recovered through graph provenance.",
+                "rawLink": true
+              }
+            ]
+          },
+          "hidden": {
+            "prompt": [
+              "PROMPT"
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "image"
+          ],
+          "hidden": [
+            "prompt"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "latent"
+        ],
+        "output_tooltips": [
+          "Original sampler latent with its sampling provenance."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.LatentFromImage",
+        "display_name": "Latent From Image",
+        "description": "Recovers the original latent behind an unmodified decoded image using graph provenance.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Latent",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.SimpleUpscaleLatent": {
+        "input": {
+          "required": {
+            "latent": [
+              "LATENT",
+              {
+                "tooltip": "Clean latent to enlarge, carrying source sampling provenance when noise reuse is needed."
+              }
+            ],
+            "method": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Auto selects a compatible learned model from sampling provenance, or Comfy's bislerp for unknown latent formats.",
+                "default": "Auto",
+                "multiselect": false
+              }
+            ],
+            "scale_factor": [
+              "FLOAT",
+              {
+                "tooltip": "Width and height multiplier; learned models enlarge through internal stages of at most 2x.",
+                "default": 2.0,
+                "min": 0.01,
+                "max": 8.0,
+                "step": 0.01
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "latent",
+            "method",
+            "scale_factor"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "latent"
+        ],
+        "output_tooltips": [
+          "Resized clean latent retaining source sampling provenance for downstream noise reuse."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.SimpleUpscaleLatent",
+        "display_name": "Simple Upscale Latent",
+        "description": "Upscales clean latents with a compatible learned model or native interpolation, preserving sampling provenance.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Latent",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.ContextualDiffusionOptions": {
+        "input": {
+          "required": {
+            "latent_context_size": [
+              "INT",
+              {
+                "tooltip": "Maximum side of each model context in latent pixels. Larger contexts preserve more relationships but use more memory.",
+                "default": 96,
+                "min": 16,
+                "max": 512,
+                "step": 16
+              }
+            ],
+            "global_weight": [
+              "FLOAT",
+              {
+                "tooltip": "Strength of whole-image low-frequency guidance. 1 makes the global context authoritative; lower values allow more tile interpretation.",
+                "default": 1.0,
+                "min": 0.0,
+                "max": 2.0,
+                "step": 0.05
+              }
+            ],
+            "global_steps": [
+              "INT",
+              {
+                "tooltip": "Number of initial denoising steps that use the global context. Fewer steps leave more late sampling for local detail.",
+                "default": 1,
+                "min": 0,
+                "max": 10000,
+                "step": 1
+              }
+            ],
+            "global_decay": [
+              "FLOAT",
+              {
+                "tooltip": "Multiplier applied to whole-image strength after each global step. Lower values hand control to local contexts faster.",
+                "default": 0.5,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.05
+              }
+            ],
+            "diffusion_mode": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Tile overlap blend. MultiDiffusion averages predictions; Mixture of Diffusers gives tile centers more influence.",
+                "default": "multidiffusion",
+                "multiselect": false
+              }
+            ],
+            "latent_context_overlap": [
+              "INT",
+              {
+                "tooltip": "Overlap between local latent contexts in latent pixels. Larger overlaps reduce seams but increase sampling work.",
+                "default": 32,
+                "min": 0,
+                "max": 256,
+                "step": 4
+              }
+            ],
+            "latent_context_batch_size": [
+              "INT",
+              {
+                "tooltip": "Number of equal-sized latent contexts sampled together. Higher values can be faster but use more memory.",
+                "default": 4,
+                "min": 1,
+                "max": 8,
+                "step": 1
+              }
+            ],
+            "differential_diffusion": [
+              "BOOLEAN",
+              {
+                "tooltip": "Uses the noise mask to vary denoising strength spatially; preserves existing model mask behavior.",
+                "default": false
+              }
+            ]
+          },
+          "optional": {
+            "options": [
+              "SIMPLE_SYRUP_SAMPLER_OPTIONS",
+              {
+                "tooltip": "Optional preceding sampler options; bypass this node to omit its contribution."
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "latent_context_size",
+            "global_weight",
+            "global_steps",
+            "global_decay",
+            "diffusion_mode",
+            "latent_context_overlap",
+            "latent_context_batch_size",
+            "differential_diffusion"
+          ],
+          "optional": [
+            "options"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "SIMPLE_SYRUP_SAMPLER_OPTIONS"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "options"
+        ],
+        "output_tooltips": [
+          "Combined sampler options; connect another options node or KSampler."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.ContextualDiffusionOptions",
+        "display_name": "Contextual Diffusion Options",
+        "description": "Samples local contexts with global scene guidance; takes precedence over connected Tiling Options.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling/Options",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.NoiseReuseOptions": {
+        "input": {
+          "required": {
+            "enabled": [
+              "BOOLEAN",
+              {
+                "tooltip": "Requests captured source noise when enabled; disabled passes preceding options through unchanged.",
+                "default": true
+              }
+            ],
+            "finishing_steps": [
+              "INT",
+              {
+                "tooltip": "Full-resolution inversion steps before sampling; 0 reuses captured noise without finishing.",
+                "default": 0,
+                "min": 0,
+                "max": 100
+              }
+            ],
+            "finishing_method": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Euler uses one evaluation per finishing step; Heun uses two for greater accuracy.",
+                "default": "euler",
+                "multiselect": false
+              }
+            ],
+            "finishing_start_fraction": [
+              "FLOAT",
+              {
+                "tooltip": "With finishing enabled, captures at this fraction of the receiving sampler's starting noise coordinate.",
+                "default": 0.75,
+                "min": 0.01,
+                "max": 0.99,
+                "step": 0.01
+              }
+            ]
+          },
+          "optional": {
+            "options": [
+              "SIMPLE_SYRUP_SAMPLER_OPTIONS",
+              {
+                "tooltip": "Optional preceding sampler options; bypass this node to omit its contribution."
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "enabled",
+            "finishing_steps",
+            "finishing_method",
+            "finishing_start_fraction"
+          ],
+          "optional": [
+            "options"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "SIMPLE_SYRUP_SAMPLER_OPTIONS"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "options"
+        ],
+        "output_tooltips": [
+          "Combined sampler options; connect another options node or KSampler."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.NoiseReuseOptions",
+        "display_name": "Noise Reuse Options",
+        "description": "Reuses noise from the source sampling run, with optional full-resolution inversion finishing before sampling.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling/Options",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.AttentionCouplingOptions": {
+        "input": {
+          "required": {
+            "regional_prompt_weight": [
+              "FLOAT",
+              {
+                "tooltip": "Balances regional cross-attention against the global prompt from 0 (global only) to 1 (regional only inside solid masks); regional LoRA strength remains controlled by each hook.",
+                "default": 1.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01,
+                "round": 0.01
+              }
+            ],
+            "region_mask_feather": [
+              "INT",
+              {
+                "tooltip": "Softens Attention Coupling and regional LoRA boundaries by this many image pixels; 0 preserves authored mask values.",
+                "default": 0,
+                "min": 0,
+                "max": 512,
+                "step": 1
+              }
+            ]
+          },
+          "optional": {
+            "options": [
+              "SIMPLE_SYRUP_SAMPLER_OPTIONS",
+              {
+                "tooltip": "Optional preceding sampler options; bypass this node to omit its contribution."
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "regional_prompt_weight",
+            "region_mask_feather"
+          ],
+          "optional": [
+            "options"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "SIMPLE_SYRUP_SAMPLER_OPTIONS"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "options"
+        ],
+        "output_tooltips": [
+          "Combined sampler options; connect another options node or KSampler."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.AttentionCouplingOptions",
+        "display_name": "Attention Coupling Options",
+        "description": "Routes global-first sampler conditioning to ordered image regions through regional attention and LoRA hooks.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling/Options",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      },
+      "SimpleSyrup.KSampler": {
+        "input": {
+          "required": {
+            "model": [
+              "MODEL",
+              {
+                "tooltip": "Diffusion model used to denoise the input latent."
+              }
+            ],
+            "seed": [
+              "INT",
+              {
+                "tooltip": "Seed used to create sampling noise. Reusing it with matching settings makes results repeatable.",
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709551615,
+                "control_after_generate": true
+              }
+            ],
+            "steps": [
+              "INT",
+              {
+                "tooltip": "Number of denoising steps. More steps can add refinement but take longer.",
+                "default": 20,
+                "min": 1,
+                "max": 10000
+              }
+            ],
+            "cfg": [
+              "FLOAT",
+              {
+                "tooltip": "Prompt guidance strength. Higher values follow the positive prompt more strongly but can look overcooked.",
+                "default": 8.0,
+                "min": 0.0,
+                "max": 100.0,
+                "step": 0.1,
+                "round": 0.01
+              }
+            ],
+            "sampler_name": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Sampling algorithm. It affects the image's look, speed, and stability.",
+                "multiselect": false
+              }
+            ],
+            "scheduler": [
+              [
+                "LIST"
+              ],
+              {
+                "tooltip": "Noise schedule used during sampling. It changes how quickly structure and detail form.",
+                "multiselect": false
+              }
+            ],
+            "positive": [
+              "CONDITIONING,CONDITIONING_BATCH",
+              {
+                "tooltip": "Positive conditioning that guides what the sampler should add."
+              }
+            ],
+            "latent_image": [
+              "LATENT",
+              {
+                "tooltip": "Latent input whose samples will be denoised."
+              }
+            ],
+            "denoise": [
+              "FLOAT",
+              {
+                "tooltip": "Sampling strength. Lower values preserve the input more; higher values allow larger changes.",
+                "default": 1.0,
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.01
+              }
+            ]
+          },
+          "optional": {
+            "negative": [
+              "CONDITIONING,CONDITIONING_BATCH",
+              {
+                "tooltip": "Optional conditioning that guides what the sampler should avoid. Leave disconnected for positive-only sampling without CFG."
+              }
+            ],
+            "options": [
+              "SIMPLE_SYRUP_SAMPLER_OPTIONS",
+              {
+                "tooltip": "Optional preceding sampler options; bypass this node to omit its contribution."
+              }
+            ],
+            "segs": [
+              "SEGS",
+              {
+                "tooltip": "Guides local sampling regions when Tiling or Contextual Diffusion options are connected; ignored otherwise."
+              }
+            ],
+            "region_masks": [
+              "MASK",
+              {
+                "tooltip": "Ordered masks paired with global-first conditioning batches when Attention Coupling options are connected; ignored otherwise."
+              }
+            ]
+          }
+        },
+        "input_order": {
+          "required": [
+            "model",
+            "seed",
+            "steps",
+            "cfg",
+            "sampler_name",
+            "scheduler",
+            "positive",
+            "latent_image",
+            "denoise"
+          ],
+          "optional": [
+            "negative",
+            "options",
+            "segs",
+            "region_masks"
+          ]
+        },
+        "is_input_list": false,
+        "output": [
+          "LATENT"
+        ],
+        "output_is_list": [
+          false
+        ],
+        "output_name": [
+          "latent"
+        ],
+        "output_tooltips": [
+          "Denoised latent for VAE decode or more latent processing."
+        ],
+        "output_matchtypes": null,
+        "name": "SimpleSyrup.KSampler",
+        "display_name": "KSampler",
+        "description": "Samples latents with connected sampler options for tiling, Contextual Diffusion, noise inversion and Attention Coupling.",
+        "python_module": "custom_nodes.SimpleSyrup",
+        "category": "SimpleSyrup/Sampling",
+        "output_node": false,
+        "deprecated": false,
+        "experimental": false,
+        "dev_only": false,
+        "api_node": false,
+        "price_badge": null,
+        "search_aliases": null,
+        "essentials_category": null,
+        "has_intermediate_output": false
+      }
+    },
+    "subgraphs": []
+  },
+  "surface": {
+    "default_flavor_id": "default",
+    "controls": [
+      {
+        "control_id": "latent_upscale.method",
+        "symbol": "latent_upscale",
+        "input_name": "method",
+        "label": "method",
+        "class_type": "SimpleSyrup.SimpleUpscaleLatent",
+        "value_type": "string"
+      },
+      {
+        "control_id": "latent_upscale.scale_factor",
+        "symbol": "latent_upscale",
+        "input_name": "scale_factor",
+        "label": "scale factor",
+        "class_type": "SimpleSyrup.SimpleUpscaleLatent",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.seed",
+        "symbol": "ksampler",
+        "input_name": "seed",
+        "label": "seed",
+        "class_type": "SimpleSyrup.KSampler",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.steps",
+        "symbol": "ksampler",
+        "input_name": "steps",
+        "label": "steps",
+        "class_type": "SimpleSyrup.KSampler",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.cfg",
+        "symbol": "ksampler",
+        "input_name": "cfg",
+        "label": "cfg",
+        "class_type": "SimpleSyrup.KSampler",
+        "value_type": "number"
+      },
+      {
+        "control_id": "ksampler.sampler_name",
+        "symbol": "ksampler",
+        "input_name": "sampler_name",
+        "label": "sampler name",
+        "class_type": "SimpleSyrup.KSampler",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.scheduler",
+        "symbol": "ksampler",
+        "input_name": "scheduler",
+        "label": "scheduler",
+        "class_type": "SimpleSyrup.KSampler",
+        "value_type": "string"
+      },
+      {
+        "control_id": "ksampler.denoise",
+        "symbol": "ksampler",
+        "input_name": "denoise",
+        "label": "denoise",
+        "class_type": "SimpleSyrup.KSampler",
+        "value_type": "number"
+      },
+      {
+        "control_id": "contextual_diffusion.latent_context_size",
+        "symbol": "contextual_diffusion",
+        "input_name": "latent_context_size",
+        "label": "latent context size",
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "contextual_diffusion.global_weight",
+        "symbol": "contextual_diffusion",
+        "input_name": "global_weight",
+        "label": "global weight",
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "contextual_diffusion.global_steps",
+        "symbol": "contextual_diffusion",
+        "input_name": "global_steps",
+        "label": "global steps",
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "contextual_diffusion.global_decay",
+        "symbol": "contextual_diffusion",
+        "input_name": "global_decay",
+        "label": "global decay",
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "contextual_diffusion.diffusion_mode",
+        "symbol": "contextual_diffusion",
+        "input_name": "diffusion_mode",
+        "label": "diffusion mode",
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "value_type": "string"
+      },
+      {
+        "control_id": "contextual_diffusion.latent_context_overlap",
+        "symbol": "contextual_diffusion",
+        "input_name": "latent_context_overlap",
+        "label": "latent context overlap",
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "contextual_diffusion.latent_context_batch_size",
+        "symbol": "contextual_diffusion",
+        "input_name": "latent_context_batch_size",
+        "label": "latent context batch size",
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "contextual_diffusion.differential_diffusion",
+        "symbol": "contextual_diffusion",
+        "input_name": "differential_diffusion",
+        "label": "differential diffusion",
+        "class_type": "SimpleSyrup.ContextualDiffusionOptions",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "noise_reuse.enabled",
+        "symbol": "noise_reuse",
+        "input_name": "enabled",
+        "label": "enabled",
+        "class_type": "SimpleSyrup.NoiseReuseOptions",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "noise_reuse.finishing_steps",
+        "symbol": "noise_reuse",
+        "input_name": "finishing_steps",
+        "label": "finishing steps",
+        "class_type": "SimpleSyrup.NoiseReuseOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "noise_reuse.finishing_method",
+        "symbol": "noise_reuse",
+        "input_name": "finishing_method",
+        "label": "finishing method",
+        "class_type": "SimpleSyrup.NoiseReuseOptions",
+        "value_type": "string"
+      },
+      {
+        "control_id": "noise_reuse.finishing_start_fraction",
+        "symbol": "noise_reuse",
+        "input_name": "finishing_start_fraction",
+        "label": "finishing start fraction",
+        "class_type": "SimpleSyrup.NoiseReuseOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "attention_coupling.regional_prompt_weight",
+        "symbol": "attention_coupling",
+        "input_name": "regional_prompt_weight",
+        "label": "regional prompt weight",
+        "class_type": "SimpleSyrup.AttentionCouplingOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "attention_coupling.region_mask_feather",
+        "symbol": "attention_coupling",
+        "input_name": "region_mask_feather",
+        "label": "region mask feather",
+        "class_type": "SimpleSyrup.AttentionCouplingOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "positive_prompt.value",
+        "symbol": "positive_prompt",
+        "input_name": "value",
+        "label": "value",
+        "class_type": "PrimitiveStringMultiline",
+        "value_type": "string"
+      },
+      {
+        "control_id": "negative_prompt.value",
+        "symbol": "negative_prompt",
+        "input_name": "value",
+        "label": "value",
+        "class_type": "PrimitiveStringMultiline",
+        "value_type": "string"
+      },
+      {
+        "control_id": "models.diffusion_model",
+        "symbol": "models",
+        "input_name": "diffusion_model",
+        "label": "diffusion model",
+        "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "value_type": "string"
+      },
+      {
+        "control_id": "models.quantization",
+        "symbol": "models",
+        "input_name": "quantization",
+        "label": "quantization",
+        "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "value_type": "string"
+      },
+      {
+        "control_id": "models.diffusion_weight_dtype",
+        "symbol": "models",
+        "input_name": "diffusion_weight_dtype",
+        "label": "diffusion weight dtype",
+        "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "value_type": "string"
+      },
+      {
+        "control_id": "models.text_encoder",
+        "symbol": "models",
+        "input_name": "text_encoder",
+        "label": "text encoder",
+        "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "value_type": "string"
+      },
+      {
+        "control_id": "models.text_encoder_device",
+        "symbol": "models",
+        "input_name": "text_encoder_device",
+        "label": "text encoder device",
+        "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "value_type": "string"
+      },
+      {
+        "control_id": "models.vae",
+        "symbol": "models",
+        "input_name": "vae",
+        "label": "vae",
+        "class_type": "SimpleSyrup.SimpleLoadAnima",
+        "value_type": "string"
+      },
+      {
+        "control_id": "seed_variation.variation_seed",
+        "symbol": "seed_variation",
+        "input_name": "variation_seed",
+        "label": "variation seed",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
+      },
+      {
+        "control_id": "seed_variation.variation_strength",
+        "symbol": "seed_variation",
+        "input_name": "variation_strength",
+        "label": "variation strength",
+        "class_type": "SimpleSyrup.SeedVariation",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_decode.use_tiling",
+        "symbol": "vae_decode",
+        "input_name": "use_tiling",
+        "label": "use tiling",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "boolean"
+      },
+      {
+        "control_id": "vae_decode.tile_size",
+        "symbol": "vae_decode",
+        "input_name": "tile_size",
+        "label": "tile size",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_decode.overlap",
+        "symbol": "vae_decode",
+        "input_name": "overlap",
+        "label": "overlap",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_decode.temporal_size",
+        "symbol": "vae_decode",
+        "input_name": "temporal_size",
+        "label": "temporal size",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "vae_decode.temporal_overlap",
+        "symbol": "vae_decode",
+        "input_name": "temporal_overlap",
+        "label": "temporal overlap",
+        "class_type": "SimpleSyrup.VAEDecodeOptions",
+        "value_type": "number"
+      },
+      {
+        "control_id": "schedule_encode_prompts.encode_style",
+        "symbol": "schedule_encode_prompts",
+        "input_name": "encode_style",
+        "label": "encode style",
+        "class_type": "SimpleSyrup.ScheduleAndEncodePromptsWithPromptControl",
+        "value_type": "string"
+      }
+    ]
+  },
+  "flavors": {
+    "authored": [
+      {
+        "id": "default",
+        "name": "Default",
+        "values": {
+          "latent_upscale.method": "Auto",
+          "latent_upscale.scale_factor": 1.5,
+          "ksampler.seed": 0,
+          "ksampler.steps": 12,
+          "ksampler.cfg": 6.0,
+          "ksampler.sampler_name": "euler_ancestral",
+          "ksampler.scheduler": "normal",
+          "ksampler.denoise": 0.15,
+          "contextual_diffusion.latent_context_size": 128,
+          "contextual_diffusion.global_weight": 1.0,
+          "contextual_diffusion.global_steps": 14,
+          "contextual_diffusion.global_decay": 0.5,
+          "contextual_diffusion.diffusion_mode": "mixture_of_diffusers",
+          "contextual_diffusion.latent_context_overlap": 16,
+          "contextual_diffusion.latent_context_batch_size": 4,
+          "contextual_diffusion.differential_diffusion": false,
+          "noise_reuse.enabled": true,
+          "noise_reuse.finishing_steps": 0,
+          "noise_reuse.finishing_method": "euler",
+          "noise_reuse.finishing_start_fraction": 0.75,
+          "attention_coupling.regional_prompt_weight": 0.8,
+          "attention_coupling.region_mask_feather": 0,
+          "positive_prompt.value": "",
+          "negative_prompt.value": "",
+          "models.diffusion_model": "",
+          "models.quantization": "Original",
+          "models.diffusion_weight_dtype": "default",
+          "models.text_encoder": "auto",
+          "models.text_encoder_device": "default",
+          "models.vae": "auto",
+          "seed_variation.variation_seed": 0,
+          "seed_variation.variation_strength": 0.0,
+          "vae_decode.use_tiling": true,
+          "vae_decode.tile_size": 512,
+          "vae_decode.overlap": 64,
+          "vae_decode.temporal_size": 64,
+          "vae_decode.temporal_overlap": 8,
+          "schedule_encode_prompts.encode_style": ""
+        }
+      }
+    ]
+  }
+}
